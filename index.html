@@ -1,1 +1,960 @@
+<!doctype html>
+<!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en-us" class="ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en-us" class="ie8"> <![endif]-->
+<!--[if (gt IE 7)|!(IE)]><!-->
+<html lang="en-us"><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
 
+    <title>Soundlab - Music Band & Musician Template</title>
+
+    <meta name="description" content="A Perfect HTML5 Template for your site with unlimited options, colors and pre built pages to make your work easier, 2 different portfolio pages, 4 different homepages and much more..">
+    <meta name="author" content="Jellythemes">
+    <meta name="copyright" content="Jellythemes">
+    <meta name="generator" content="Documenter v2.0 http://rxa.li/documenter">
+    <meta name="date" content="2013-05-30T00:00:00+02:00">
+
+    <link rel="stylesheet" href="assets/css/documenter_style.css" media="all">
+        <link type="text/css" rel="stylesheet" href="assets/css/SyntaxHighlighter.css"></link>
+
+
+
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery.scrollTo.js"></script>
+    <script src="assets/js/jquery.easing.js"></script>
+
+    <script>document.createElement('section');var duration='500',easing='swing';</script>
+    <script src="assets/js/script.js"></script>
+
+
+
+    <style>
+        html{background-color:#EEEEEE;color:#383838;}
+        ::-moz-selection{background:#333636;color:#00DFFC;}
+        ::selection{background:#333636;color:#00DFFC;}
+        #documenter_sidebar #documenter_logo{background-image:url();}
+        a{color:#008C9E;}
+        .btn {
+            border-radius:3px;
+        }
+        .btn-primary {
+              background-image: -moz-linear-gradient(top, #008C9E, #006673);
+              background-image: -ms-linear-gradient(top, #008C9E, #006673);
+              background-image: -webkit-gradient(linear, 0 0, 0 008C9E%, from(#343838), to(#006673));
+              background-image: -webkit-linear-gradient(top, #008C9E, #006673);
+              background-image: -o-linear-gradient(top, #008C9E, #006673);
+              background-image: linear-gradient(top, #008C9E, #006673);
+              filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#008C9E', endColorstr='#006673', GradientType=0);
+              border-color: #006673 #006673 #bfbfbf;
+              color:#FFFFFF;
+        }
+        .btn-primary:hover,
+        .btn-primary:active,
+        .btn-primary.active,
+        .btn-primary.disabled,
+        .btn-primary[disabled] {
+          border-color: #008C9E #008C9E #bfbfbf;
+          background-color: #006673;
+        }
+        hr{border-top:1px solid #D4D4D4;border-bottom:1px solid #FFFFFF;}
+        #documenter_sidebar, #documenter_sidebar ul a{background-color:#343838;color:#FFFFFF;}
+        #documenter_sidebar ul a{-webkit-text-shadow:1px 1px 0px #494F4F;-moz-text-shadow:1px 1px 0px #494F4F;text-shadow:1px 1px 0px #494F4F;}
+        #documenter_sidebar ul{border-top:1px solid #212424;}
+        #documenter_sidebar ul a{border-top:1px solid #494F4F;border-bottom:1px solid #212424;color:#FFFFFF;}
+        #documenter_sidebar ul a:hover{background:#333636;color:gray;border-top:1px solid #333636;}
+        #documenter_sidebar ul a.current{background:#333636;color:gray;border-top:1px solid #333636;}
+        #documenter_copyright{display:block !important;visibility:visible !important;}
+    </style>
+
+</head>
+<body>
+    <div id="documenter_sidebar">
+        <a href="#documenter_cover" id="documenter_logo"><img style="padding: 27px;" src="assets/logo.png" alt=""></a>
+        <ul id="documenter_nav">
+            <li><a class="current" href="#documenter_cover">Start</a></li>
+
+            <li><a href="#html_structure" title="HTML Structure">HTML Structure</a></li>
+            <li><a href="#css_files_and_structure" title="CSS files and structure">CSS files and structure</a></li>
+            <li><a href="#javascript" title="Javascript">Javascript</a></li>
+            <li><a href="#tutorial" title="Tutorial">Tutorial</a></li>
+            <li><a href="#rate" title="rate">How to rate this item</a></li>
+            <li><a href="#sources_and_credits" title="Sources and Credits">Sources and Credits</a></li>
+
+        </ul>
+        <div id="documenter_copyright">Copyright Jellythemes 2017<br>
+        made with the <a href="http://rxa.li/documenter">Documenter v2.0</a>
+        </div>
+    </div>
+    <div id="documenter_content">
+    <section id="documenter_cover">
+    <h1>Soundlab </h1>
+    <h2>Music Band & Musician Template</h2>
+    <div id="documenter_buttons">
+
+    </div>
+    <hr>
+    <ul>
+    <li>Created: 11/30/2017</li>
+    <li>By: Jellythemes</li>
+    </ul>
+    <p>Thank you very much for purchasing our theme!</p>
+    <p>If you have any issue or question that this document does not cover, feel free to contact us <a href="http://themeforest.net/user/Jellythemes" target="_blank">here.</a> or use <a target="_blank" href="http://www.jellythemes.com/support/">our forum</a> to get help. Thank you.</p>
+
+    <strong>About</strong></br>
+
+    <p>Soundlab is a clean and professional site template, perfect for Music Event, Live music and ticket music web sites. Built on the Advanced Bootstrap 3 framework with HTML5 / CSS3. Its responsive too - will fit great on all devices. More features with , and much more gives you more space to work with and also with a few lines of code.</p>
+    <p>Clean coded and Easy updation are the key features. Go ahead to know more.</p>
+    </section>
+
+    <section id="html_structure">
+    <div class="page-header"><h3>HTML Structure</h3><hr class="notop"></div>
+<p>This theme is a Responsive layout with four columns. The general template structure is the same throughout the template. Here is the general structure.</p>
+
+<pre name="code" class="html">
+<section id="" class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                .....
+                .....
+                .....
+            </div>
+        </div>
+    </div>
+</section>
+</pre>
+
+</section>
+<section id="css_files_and_structure">
+    <div class="page-header"><h3>CSS files and structure</h3><hr class="notop"></div>
+
+<p>I have used 12 CSS files in this theme.</p>
+
+<ol>
+<li>main.css       - template styl file.</li>
+<li>bootstrap.css       - Bootstrap css.</li>
+<li>font-awesome.min.css    - Fontawesome Icons.</li>
+<li>superslides.css      - A fullscreen slider for jQuery</li>
+<li>owl.carousel.css    - Contains all of the specific stylings for Owl Carousel</li>
+<li>owl.transitions.css     - Contains all of the specific stylings for Owl Carousel</li>
+<li>flickity.min.css    - Contains all of the specific stylings for Flickityl</li>
+<li>TimeCircles.css    - Contains all of the specific stylings for TimeCircles plugin</li>
+<li>swipebox.css    - Contains all of the specific stylings for Swipebox plugin</li>
+<li>intro-slider.css    - Contains all of the specific stylings for Intro slider</li>
+<li>animate.min.css    - Contains all of the specific stylings for Intro slider</li>
+
+</ol>
+
+
+Main.css file contains all of the specific stylings for the page. You can get more check more style files in styles folder. There is demo.css for insert image in our template.
+
+</section>
+<section id="javascript">
+    <div class="page-header"><h3>Javascript</h3><hr class="notop"></div>
+<p>This theme imports Twenty Javascript files.</p>
+
+<ol>
+
+<li>modernizr.custom.js     - Modernizer plugin.</li>
+<li>jquery.js       - To Enable jQuery.</li>
+<li>jquery.superslides.min.js       - To Enable SuperSlider.</li>
+<li>flickity.pkgd.js      - To enable Flickity plugin.</li>
+<li>audio.min.js       - Audio plugin.</li>
+<li>twitterFetcher_min.js       - Twitter Feet plugin.</li>
+<li>isotope.pkgd.min.js       - Isotope Plugin.</li>
+<li>jquery.swipebox.js      - Lightbox Plugin.</li>
+<li>TimeCircles.js     - TimCircles plugin.</li>
+<li>owl.carousel.min.js        - Carousel plugin.</li>
+<li>jquery.parallax.min.js       - Parallax plugin.</li>
+<li>discography.js      - Album plugin.</li>
+<li>news.js      - News post jquery.</li>
+<li>main.js        - Main jquery file.</li>
+<li>bootstrap.js      - Bootstrap script file.</li>
+<li>intro-slider.js      - Slider script.</li>
+<li>countdown.js       -  Countdown script.</li>
+
+
+</ol>
+
+</section>
+
+<section id="tutorial">
+<div class="page-header"><h3>Tutorial</h3><hr class="notop"></div>
+<p>Lets start updating the template. Open index.html file and follow the steps.</p>
+
+<p>Most of the updates are same for all versions. So will explain once here.</p>
+
+<h4>Loader</h4>
+
+<pre name="code" class="html">
+<div id="mask">
+<div class="spinner">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+</div>
+</div>
+</pre>
+
+<ol>
+<li>This is the source code for loader.</li>
+</ol>
+
+<br>
+<hr>
+
+<h4>Header - Logo</h4>
+
+<pre name="code" class="html">
+    <a class="navbar-brand" href="#anchor00"><img src="images/logo-white.png" alt="logo"></a>
+</pre>
+
+<ol>
+<li>Replace "images/logo-white.png" with the your logo url or source.</li>
+</ol>
+
+<br>
+<hr>
+<h4>Navmenu</h4>
+
+This is the basic structure.
+
+<pre name="code" class="html">
+<div class="collapse navbar-collapse navbar-ex1-collapse" id="navbar-muziq">
+  <ul class="nav navbar-nav navbar-right">
+    <li class="active"><a href="#1">Menu</a></li>
+  </ul>
+</div>
+</pre>
+
+<ol>
+<li>Replace "<strong>Menu title</strong>" with the menu name and url .</li>
+<li>Replace "<strong>#1</strong>" with your content id to scroll to.</li>
+<li>Same for all. You can add unmited menus.</li>
+</ol>
+
+<!-- <p><strong>Submenu</strong></p>
+
+This is the basic structure.
+
+<pre name="code" class="html">
+    <nav class="collapse navbar-collapse navbar-right navbar-main-collapse" role="navigation">
+        <ul id="nav" class="nav navbar-nav navigation">
+            <li class="page-scroll menu-item">
+                <a href="#1">Menu title</a>
+                <ul class="submenu">
+                    <li><a href="#sub">This submenu</a></li>
+                    <li><a href="#sub">This submenu</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</pre>
+
+<ol>
+<li>Replace "<strong>This submenu</strong>" with the menu name and url .</li>
+<li>Replace "<strong>#sub</strong>" with your content id to scroll to or your url.</li>
+<li>Same for all. You can add unmited menus.</li>
+</ol> -->
+
+
+<br>
+<hr>
+
+
+<h4>Main Slider.</h4>
+<pre name="code" class="html">
+  <!-- INTRO -->
+  <section class="intro full-width jIntro" id="anchor00">
+    <div id="intro-carousel" class="carousel slide carousel-fade" data-pause="false">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#intro-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#intro-carousel" data-slide-to="1"></li>
+        <li data-target="#intro-carousel" data-slide-to="2"></li>
+      </ol>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+
+        <!-- First slide -->
+        <div class="item active intro-fullscreen">
+          <!-- Modify Image BG -->
+          <div class="fill" style="background-image:url('images/demo/slider/intro-slide1.jpg');"></div>
+          <div class="carousel-caption intro-center">
+            <h1 data-animation="animated fadeIn" class="primary-title">Sound Lab</h1>
+            <h2 data-animation="animated fadeIn" class="subtitle-text">Music Band & Musician Template</h2>
+            <div class="voffset50"></div>
+            <div data-animation="animated fadeInUp" class="animate-btn">
+              <input class="btn square stay-in-touch-submit" type="submit" name="button" value="Buy Template">
+            </div>
+          </div>
+        </div><!-- /.item -->
+
+        <!-- Second slide -->
+        <div class="item">
+          <!-- Modify Image BG -->
+          <div class="fill" style="background-image:url('images/demo/slider/intro-slide2.jpg');"></div>
+          <div class="carousel-caption p-intro-animate">
+            <p data-animation="animated fadeIn">We are a <span>electronic band,</span> focused on<br>electro and techno & clubbing.</p>
+            <a class="intro-link" href="#0" data-animation="animated fadeIn">Let’s Connect <i class="fa  fa-angle-right"></i></a>
+          </div>
+        </div><!-- /.item -->
+
+        <!-- Third slide -->
+        <div class="item title-alt">
+          <!-- Modify Image BG -->
+          <div class="fill" style="background-image:url('images/demo/slider/intro-slide3.jpg');"></div>
+          <div class="carousel-caption">
+            <p data-animation="animated fadeInUp">New Album<br>Release</p>
+            <div data-animation="animated fadeInUp" class="animate-btn-alt">
+              <input class="btn square stay-in-touch-submit" type="submit" name="button" value="Listen Album">
+            </div>
+          </div>
+        </div><!-- /.item -->
+
+      </div><!-- /.carousel-inner -->
+    </div><!-- /.carousel -->
+  </section>
+</pre>
+
+
+<ol>
+<li>Replace "images/demo/slider/intro-slide1.jpg" with your image source or url.</li>
+<li>Same for all three. Unlimited slides can be added.</li>
+<li>Change the text in each item with your own text, same for all.</li>
+</ol>
+
+<br>
+<hr>
+
+<h4>Player content</h4>
+
+<p><strong>Player Title</strong></p>
+<pre name="code" class="html">
+<div class="info-album-player">
+<div class="album-cover" style="background: url('images/demo/cover-player.jpg') no-repeat center" id="bg-image3"></div>
+    <p class="album-title">Spectrum</p>
+    <p class="artist-name">Album by Blummsday</p>
+</div>
+</pre>
+
+<ol>
+<li>Replace "images/demo/cover-player.jpg" with your image source or url.</li>
+<li>Replace the text with your own text.</li>
+</ol>
+
+<p><strong>Player List</strong></p>
+<pre name="code" class="html">
+<div class="player-content">
+<audio preload></audio>
+<ol class="playlist">
+  <li><a href="#" data-src="mp3/01.mp3">Destiny</a></li>
+  <li><a href="#" data-src="mp3/02.mp3">Sunless</a></li>
+  <li><a href="#" data-src="mp3/03.mp3">Deep inspire</a></li>
+</ol>
+<div class="nextprev">
+  <span class="prev">prev</span>
+  <span class="next">next</span>
+</div>
+<span class="btnloop">loop</span>
+</div>
+</pre>
+
+<ol>
+<li>Please replace music link to your local music and change the tile of that song.</li>
+</ol>
+
+<br>
+<hr>
+<h4>Latest Album</h4>
+<p><strong>Latest album Title</strong></p>
+<pre class="html" name="code">
+<div class="title-wrapper">
+    <h2 class="title">LATEST ALBUM</h2>
+</div>
+</pre>
+
+<ol>
+    <li>Replace the text with your own text.</li>
+</ol>
+
+<p><strong>Album Info</strong></p>
+
+<pre name="code" class="html">
+<div class="info-album">
+<div class="cover">
+  <img src="images/demo/albums/cover.jpg" alt="">
+</div>
+<p class="album album-list">Perfect Symmetry</p>
+<p class="artist">Keane</p>
+<div class="voffset20"></div>
+<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae omnis, debitis.</p>
+<p class="buyalbum">
+  <a href="#" class="btn square inverse">buy album</a>
+</p>
+<ul class="links">
+  <li><a href="#">itunes</a></li>
+  <li><a href="#">spotify</a></li>
+  <li><a href="#">beatport</a></li>
+</ul>
+<div class="voffset80"></div>
+</div>
+</pre>
+
+<ol>
+    <li>Replace "images/demo/albums/cover.jpg" with your image source or url.</li>
+    <li>Replace the text with your own text.</li>
+</ol>
+
+<p><strong>Album List</strong></p>
+
+<pre name="code" class="html">
+<li>
+  <a href="#" data-src="mp3/01.mp3">
+    <div class="track-info">
+      <p class="track-title">We Exist</p>
+      <p class="track-album">Perfect Symmetry</p>
+    </div>
+  </a>
+</li>
+</pre>
+
+<ol>
+  <li>Please replace music link to your local music and change the tile of that song.</li>
+</ol>
+
+
+<br>
+<hr>
+
+<h4>Stay in touch</h4>
+
+
+<pre class="html" name="code">
+  <!-- STAY IN TOUCH -->
+  <section class="section stay-in-touch inverse-color parallax-section" data-parallax-image="images/demo/stay-in-touch/bg-stay-in-touch.jpg" id="anchor02">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="voffset190"></div>
+          <p class="titulo">Stay in<br> Touch</p>
+          <div class="voffset20"></div>
+          <p class="cousine subtitulo">Subscribe for free downloads and news updates.</p>
+          <div class="voffset30"></div>
+          <label for="stay-in-touch-email">YOUR EMAIL</label>
+          <form class="" action="index.html" method="post">
+            <div class="row">
+              <div class="col-xs-12 col-sm-8">
+                <input  id="stay-in-touch-email" type="text" name="stay-in-touch-email" value="">
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <input class="btn square stay-in-touch-submit" type="submit" name="button" value="GET STARTED">
+              </div>
+            </div>
+          </form>
+          <div class="voffset190"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</pre>
+
+<ol>
+    <li>Replace "images/demo/stay-in-touch/bg-stay-in-touch.jpg" with your image source or url.</li>
+    <li>Replace the text with your own text.</li>
+</ol>
+
+<br>
+<hr>
+
+<h4>Discography</h4>
+
+<p><strong>Discography Title</strong></p>
+<pre class="html" name="code">
+  <div class="title-wrapper">
+    <h2 class="title">Discography</h2>
+  </div>
+</pre>
+
+<ol>
+    <li>Replace the text with your own text.</li>
+</ol>
+
+<p><strong>Discography Layout</strong></p>
+
+<pre class="html" name="code">
+<div class="col-xs-12 col-md-6 item-disc">
+  <div class="info-album">
+    <div class="cover open-disc" data-url="discs/disc-01.html">
+      <img src="images/demo/albums/cover1.jpg" alt="">
+      <div class="rollover">
+        <i class="plus"></i>
+        <p>view album</p>
+      </div>
+    </div>
+    <p class="album">Perfect symmetry</p>
+    <p class="artist">Keane</p>
+  </div>
+</div>
+</pre>
+
+<ol>
+    <li>Replace "images/demo/albums/cover1.jpg" with your image source or url.</li>
+    <li>Replace the text with your own text.</li>
+    <li>Same for other discography area.</li>
+</ol>
+
+
+<br>
+<hr>
+
+<h4>Biography</h4>
+
+<pre class="html" name="code">
+<!-- BIOGRAPHY -->
+<section class="section container-fluid full-width biography" id="anchor04">
+
+  <div class="row">
+    <div class="col-xs-12 col-md-4 col-md-offset-1 biography-description">
+      <h2 class="title inverse">biography</h2>
+      <div class="voffset40"></div>
+      <p class="cousine">Southern Avenue is a Memphis street that runs from the easternmost part of the city limits all the way to Soulsville, the original home of Stax Records. Southern Avenue is also the name of a fiery young Memphis quintet that embodies its home city's soul, blues and gospel traditions, while adding a youthful spirit and dynamic energy all their own. “If Memphis is a genre, this is it!” proclaims American Blues Scene and Rock 103FM calls Southern Avenue - “The most talked about band in Memphis.”</p>
+      <div class="voffset40"></div>
+      <p class="montserrat extra-bold cita">
+        “If I can play one note and make you cry, then that's better than those fancy dancers playing twenty notes.”
+      </p>
+      <br>
+      <p>
+        <img src="images/demo/biography/sign.png" alt="" />
+      </p>
+    </div>
+    <div class="col-xs-12 col-md-6 col-sm-offset-1 biography-image"></div>
+  </div>
+
+</section>
+</pre>
+
+<ol>
+    <li>Replace "images/demo/biography/sign.png" with your image source or url.</li>
+    <li>Replace the text with your own text.</li>
+</ol>
+
+<br>
+<hr>
+
+
+<h4>Next Show</h4>
+
+<pre name="code" class="html">
+<!-- NEXT SHOW -->
+<section class="section next-show" id="anchor05" id="anchor05">
+  <div class="container">
+    <div class="voffset150"></div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="title-wrapper">
+          <h2 class="next-show-title">Next Show</h2>
+        </div>
+      </div>
+    </div>
+    <div class="voffset30"></div>
+    <hr>
+    <div class="voffset20"></div>
+    <p class="text-center next-show-subtitle">I‘m Ready for my new gig in Toronto (Canada)</p>
+    <div class="voffset90"></div>
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <div class='countdown' data-date="2017-12-20"></div>
+      </div>
+    </div>
+    <div class="voffset150"></div>
+  </div>
+</section>
+</pre>
+
+<ol>
+<li>Please repalce <strong>data-date="2017-12-20"</strong> with your own date time</li>
+<li>Replace the text with your own text.</li>
+</ol>
+
+</br>
+<hr>
+
+<h4>UpComing Events</h4>
+
+<p><strong>Upcoming Events Title</strong></p>
+<pre name="code" class="html">
+<div class="col-md-8 col-md-offset-2">
+  <h4 class="upcomming-events-list-title montserrat extra-bold">upcoming events</h4>
+</div>
+</pre>
+
+<ol>
+    <li>Replace "your text" with your own month.</li>
+</ol>
+
+<p><strong>Upcoming Events Schedule</strong></p>
+<pre name="code" class="html">
+<li>
+<div>
+  <p class="date-event">number day <span>week days - number year</span></p>
+  <p class="name">
+    <span>your text</span>
+    your text
+  </p>
+  <p class="venue">
+    venue
+    <span>your text</span>
+  </p>
+  <p class="price">
+    tickets
+    <span>price</span>
+  </p>
+  <p class="buy">
+    <a href="#" class="btn rounded icon"><i class="fa fa-ticket"></i> buy ticket</a>
+  </p>
+</div>
+</li>
+</pre>
+
+<ol>
+    <li>Replace "your text" with your own text.</li>
+    <li>Replace "price" with your own price.</li>
+    <li>Replace "number" with your own day/time and the week days.</li>
+</ol>
+
+</br>
+<hr>
+
+<h4>Gallery</h4>
+
+<p><strong>The Gallery Title</strong></p>
+<pre name="code" class="html">
+<div class="title-wrapper">
+  <h2 class="title">GALLERY</h2>
+</div>
+</pre>
+
+<ol>
+  <li>Replace the text with your own text.</li>
+</ol>
+
+<p><strong>The Gallery Title</strong></p>
+<pre name="code" class="html">
+<!-- Filters -->
+<div class="row">
+  <div class="col-md-12">
+    <ul class="filters">
+      <li data-filter="*" class="is-checked wow fadeInUp" data-wow-delay="0.5s">All</li>
+      <li data-filter=".your text" class="wow fadeInUp" data-wow-delay="0.8s">your text</li>
+      <li data-filter=".your text" class="wow fadeInUp" data-wow-delay="1s">your text</li>
+      <li data-filter=".your text" class="wow fadeInUp" data-wow-delay="1.2s">your text</li>
+      <li data-filter=".your text" class="wow fadeInUp" data-wow-delay="1.4s">your text</li>
+      <li data-filter=".your text" class="wow fadeInUp" data-wow-delay="1.6s">your text</li>
+      <li data-filter=".your text" class="wow fadeInUp" data-wow-delay="1.8s">your text</li>
+    </ul>
+  </div>
+</div>
+</pre>
+
+<ol>
+    <li>Replace "your text" with your own filter.</li>
+    <li>Sam for all.</li>
+</ol>
+
+<p><strong>The Gallery Details</strong></p>
+<pre name="code" class="html">
+<div class="thumbnail video">
+<a href="https://vimeo.com/5182570" class="swipebox"> <!-- data-fancybox-type="iframe" -->
+  <img src="images/demo/gallery/gallery1.jpg" alt="">
+  <div class="rollover">
+    <i class="video"></i>
+  </div>
+</a>
+</div>
+
+
+<div class="thumbnail music">
+<a href="images/demo/gallery/gallery3.jpg" class="swipebox">
+  <img src="images/demo/gallery/gallery3.jpg" alt="">
+  <div class="rollover">
+    <i class="plus"></i>
+  </div>
+</a>
+</div>
+</pre>
+
+<ol>
+    <li>Please replace <strong>gallery1.jpg</strong> and <strong>gallery3.jpg</strong> with your own background image.</li>
+    <li>Replace <strong>https://vimeo.com/5182570</strong> with your own video.</li>
+    <li>Sam for all.</li>
+</ol>
+
+</br>
+<hr>
+
+<h4>New Video</h4>
+
+<pre name="code" class="html">
+<!-- NEW VIDEO -->
+<div class="section new-video">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-xs-12">
+        <div class="voffset70"></div>
+        <div class="title-wrapper">
+          <h2 class="title inverse">NEW VIDEO</h2>
+        </div>
+        <div class="voffset70"></div>
+        <iframe src="https://player.vimeo.com/video/184417111?color=ffffff" width="1060" height="596" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="voffset70"></div>
+  </div>
+</div>
+</pre>
+
+<ol>
+    <li>Replace the text with your own text.</li>
+    <li>Please replace <strong>src="https://player.vimeo.com/video/184417111?color=ffffff</strong> with your own video link.</li>
+</ol>
+
+</br>
+<hr>
+
+<h4>News</h4>
+
+<p><strong>News Title</strong></p>
+<pre name="code" class="html">
+<div class="title-wrapper">
+  <h2 class="title">on the blog</h2>
+</div>
+</pre>
+
+<ol>
+    <li>Replace the text with your own text.</li>
+</ol>
+
+<p><strong>News Layout</strong></p>
+<pre name="code" class="html">
+<article class="post-item">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="photo-post" id="image-post1" style="background: url('images/demo/blog/post1.jpg') no-repeat center"></div>
+      <p class="date">
+        <span class="day">01</span>
+        <span class="month">feb</span>
+      </p>
+    </div>
+    <div class="col-sm-6">
+      <div class="voffset30"></div>
+      <h4 class="title small"><span>Posted by:</span> admin | music, concert</h4>
+      <h3 class="title post">KYgo Brings the tropical house feels on new single 'stay'</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed repudiandae, officiis. Maxime neque similique doloremque eveniet, minima, quam perspiciatis, dolore, sapiente quisquam error tenetur rem vitae ratione. Atque, asperiores voluptatem?</p>
+      <span class="btn rounded close-new">view less</span>
+      <a href="blog-post.html" class="btn square inverse" data-url="new-01.html">Read more</a>
+      <section class="section news-window">
+        <div class="news-content"></div><!-- AJAX Dinamic Content -->
+      </section>
+    </div>
+  </div>
+</article>
+</pre>
+
+<ol>
+    <li>Replace the text with your own text.</li>
+    <li>Please replace "images/demo/blog/post1.jpg" with your own image.</li>
+</ol>
+
+</br>
+<hr>
+
+<h4>Contacts</h4>
+
+<p><strong>Contacts - Title</strong></p>
+<pre name="code" class="html">
+<div class="title-wrapper">
+  <h2 class="title inverse">follow & contact</h2>
+</div>
+</pre>
+
+<ol>
+    <li>Replace the text with your own text.</li>
+</ol>
+
+<p><strong>Contacts - Columns</strong></p>
+<pre name="code" class="html">
+<div class="col-xs-12 col-md-3 text-center">
+  <h2 class="title-follow">MGMT</h2>
+  <div class="voffset40"></div>
+  <hr class="hidden-xs">
+  <div class="voffset40"></div>
+  <p class="name">Jhon Smith</p>
+  <p class="phone"><a href="tel:+1-456-768-9864">T+1-456-768-9864</a></p>
+  <p class="email"><a href="mailto:mgtm@music.com">mgtm@music.com</a></p>
+  <div class="voffset40"></div>
+
+  <hr class="hidden-xs">
+</div>
+</pre>
+
+<ol>
+    <li>Replace the text with your own text.</li>
+</ol>
+
+<p><strong>Contacts - Social</strong></p>
+<pre name="code" class="html">
+<div class="row social">
+  <a href="#"><img src="images/demo/social/facebook.png" alt="Facebook"></a>
+  <a href="#"><img src="images/demo/social/twitter.png" alt="Twitter"></a>
+  <a href="#"><img src="images/demo/social/soundcloud.png" alt="Soundcloud"></a>
+  <a href="#"><img src="images/demo/social/spotify.png" alt="Spotify"></a>
+  <a href="#"><img src="images/demo/social/youtube.png" alt="Youtube"></a>
+</div>
+</pre>
+
+<ol>
+  <li>Replace "images/demo/biography/facebook.png" with your image icons.</li>
+  <li>Same for all.</li>
+</ol>
+
+</br>
+<hr>
+
+<h4>Footer</h4>
+<pre name="code" class="html">
+<footer>
+  <div class="container">
+    <p class="copy">© 2016. All Rights Reserved. Designed by JellyThemes</p>
+    <ul class="menu-footer">
+      <li><a href="#">disclaimer</a></li>
+      <li><a href="#">terms & conditions</a></li>
+      <li><a href="#">privacy policy</a></li>
+    </ul>
+  </div>
+</footer>
+</pre>
+
+<ol>
+    <li>Replace the text with your own text.</li>
+</ol>
+
+</br>
+<hr>
+
+<h4>Change color</h4>
+
+<pre name="code" class="html">
+    <link rel="stylesheet" href="styles/colors/color-caqui.css">
+    <link rel="stylesheet" href="styles/colors/color-darkturquoise.css">
+    <link rel="stylesheet" href="styles/colors/color-electricred.css">
+    <link rel="stylesheet" href="styles/colors/color-gold.css">
+    <link rel="stylesheet" href="styles/colors/color-green.css">
+    <link rel="stylesheet" href="styles/colors/color-lightblue.css">
+    <link rel="stylesheet" href="styles/colors/color-lightgreen.css">
+    <link rel="stylesheet" href="styles/colors/color-lightred.css">
+    <link rel="stylesheet" href="styles/colors/color-lightyellow.css">
+    <link rel="stylesheet" href="styles/colors/color-malva.css">
+    <link rel="stylesheet" href="styles/colors/color-militar.css">
+    <link rel="stylesheet" href="styles/colors/color-pink.css">
+    <link rel="stylesheet" href="styles/colors/color-purple.css">
+    <link rel="stylesheet" href="styles/colors/color-red.css">
+    <link rel="stylesheet" href="styles/colors/color-silver.css">
+    <link rel="stylesheet" href="styles/colors/color-water.css">
+    <link rel="stylesheet" href="styles/colors/color-yellow.css">
+</pre>
+
+<ol>
+    <li>Please copy the color you want and add it before </head> tags.
+    <li>Then add class in body tags</li>
+    <li>Yellow class: paletteyellow</li>
+    <li>Blue class: palettelightblue</li>
+    <li>Purple class: palettepurple</li>
+    <li>Green class: palettegreen</li>
+    <li>Militar class: palettemilitar</li>
+    <li>Caqui class: palettecaqui</li>
+
+</ol>
+
+</br>
+<hr>
+<h3>Thats it. You are done. Now your website is ready to launch.</h3>
+
+</br>
+</br>
+</br>
+<hr>
+
+</section>
+
+<section id="rate">
+<h4>How to rate this item</h4>
+It's easy to rate this template. Just click <a href="http://themeforest.net/downloads">http://themeforest.net/downloads</a> and you will see this template there. Click 5 Stars to make author more happy and he will make more awesome templates :)
+
+  <p><img src="assets/rate-screen.jpg" alt=""></p>
+
+</section>
+
+<!-- <section id="psd_files">
+    <div class="page-header"><h3>PSD files</h3><hr class="notop"></div>
+<p>PSD files are not added with this template. You can get it <a href="#" target="_blank">here</a></p>
+</section> -->
+
+<section id="sources_and_credits">
+    <div class="page-header"><h3>Sources & Credits</h3><hr class="notop"></div>
+<p>We have used the following plugins, fonts & images. All fonts, images, icons used in this template are free for commercial use.</p>
+
+<strong>Fonts</strong>
+<ul>
+<li><a href="http://www.google.com/fonts/specimen/Anton">Anton</a> from google webfont.</li>
+<li><a href="https://www.google.com/fonts/specimen/Cousine">Cousine</a> from google webfont.</li>
+<li><a href="https://www.google.com/fonts/specimen/Roboto">Roboto</a> from google webfont.</li>
+<li><a href="https://www.google.com/fonts/specimen/Monsterrat">Monsterrat</a> from google webfont.</li>
+</ul>
+
+<br>
+
+<!-- <strong>jQuery Plugins</strong>
+<ul>
+<li>Isotope plugin by <a href="isotope.metafizzy.co">metafizzy</a></li>
+<li>Owlscroll carousel plugin by <a href="http://owlgraphic.com/owlcarousel/?">owlgraphic</a></li>
+</ul> -->
+
+<h4>All images are for preview purposes only and are not included in the download files.</h4>
+
+<br>
+
+</section>
+
+<br>
+<p>Once again, thank you so much for purchasing this theme.<br>As I said at the beginning, We'd be glad to help you if you have any questions relating to this theme. We I'll do our best to assist.</p>
+Thanks
+<h4>Jellythemes</h4>
+
+
+    </div>
+
+
+
+
+    <script language="javascript" src="assets/js/shCore.js"></script>
+    <script language="javascript" src="assets/js/shBrushCss.js"></script>
+    <script language="javascript" src="assets/js/shBrushXml.js"></script>
+    <script language="javascript" src="assets/js/shBrushJScript.js"></script>
+
+    <style type="text/css" media="screen">
+        p, table, hr, .box { padding-bottom:15px; }
+        .box p { margin-bottom:10px; }
+        pre, code{
+        font-size: 14px;
+        margin:1.5em 0;
+        white-space:pre;
+        }
+    </style>
+
+
+</body>
+</html>
