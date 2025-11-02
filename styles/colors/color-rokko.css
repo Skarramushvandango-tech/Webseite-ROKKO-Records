@@ -1,0 +1,83 @@
+/* ROKKO! Records palette (from logo) */
+:root{
+  --rokko-sand:#DEC191;
+  --rokko-dark:#1A1A1A;
+  --rokko-orange:#DB770B;
+  --rokko-red:#AD1A27;
+  --rokko-sand-alpha:rgba(222,193,145,0.9);
+}
+
+.paletterokko .navbar-default .navbar-nav>li.active>a,
+.paletterokko .navbar-default .navbar-nav>li.active>a:focus,
+.paletterokko .navbar-default .navbar-nav>li.active>a:hover,
+.paletterokko .navbar-default .navbar-nav>li>a:hover,
+.paletterokko .subtitle-text,
+.paletterokko .title,
+.paletterokko .title.small,
+.paletterokko p.quote-post{
+  color:var(--rokko-sand);
+}
+
+.paletterokko footer,
+.paletterokko .flickity-page-dots .dot.is-selected,
+.paletterokko .navbar-default .navbar-toggle:focus .icon-bar,
+.paletterokko .navbar-default .navbar-toggle:hover .icon-bar{
+  background-color:var(--rokko-sand);
+  color:var(--rokko-dark);
+}
+
+@media (min-width:992px){
+  .paletterokko .navbar-default .navbar-nav>li>a:before{
+    background-color:var(--rokko-sand);
+  }
+}
+
+.paletterokko .cssload-container>div,
+.paletterokko .btn.rounded,
+.paletterokko .player.horizontal .audiojs .play-pause,
+.paletterokko .player.horizontal .audiojs .progress,
+.paletterokko p.date,
+.paletterokko .quote p.author:before,
+.paletterokko .disc-tracklist li.playing a,
+.paletterokko .disc-tracklist li.playing a .track-info,
+.paletterokko .paginationposts .pagination>li.active>a,
+.paletterokko .paginationposts .pagination>li:hover>a{
+  background-color:var(--rokko-sand);
+}
+
+.paletterokko .btn.rounded.unactive{background-color:#B7B7B7;color:#7D7D7D;}
+.paletterokko .btn.rounded.unactive i{color:#5A5A5A;}
+
+.paletterokko .btn-invert:hover,
+.paletterokko .btn-invert:focus,
+.paletterokko .btn-invert:active{
+  background-color:var(--rokko-dark);
+  border-color:var(--rokko-dark);
+  color:var(--rokko-sand);
+}
+
+.paletterokko .featured-artist .rollover .social a:hover,
+.paletterokko ul.contact i,
+.paletterokko .social-links a:hover,
+.paletterokko .quote p.author,
+.paletterokko .info-album p.artist,
+.paletterokko .tour-info p.subtitle-tour,
+.paletterokko .shop-item .info .artist,
+.paletterokko .shop-item .info .price,
+.paletterokko .sidebar .title.small i{
+  color:var(--rokko-dark);
+}
+
+.paletterokko .quote{border:10px solid var(--rokko-sand);}
+
+.paletterokko .carousel-discography .gallery-cell .cover .rollover,
+.paletterokko .featured-artist .rollover,
+.paletterokko .last-media .thumbnails .thumbnail .rollover{
+  background-color:var(--rokko-sand-alpha);
+}
+
+/* optionale Sekundär-Akzente – falls Buttons/Badges differenziert werden sollen */
+.paletterokko .badge-orange,
+.paletterokko .btn.orange{background-color:var(--rokko-orange); color:#fff; border-color:var(--rokko-orange);}
+.paletterokko .badge-red,
+.paletterokko .btn.red{background-color:var(--rokko-red); color:#fff; border-color:var(--rokko-red);}
