@@ -1,0 +1,61 @@
+/*------------------------------------------------------------------
+[7. Demo]
+*/
+#bg-image3 {
+  background-image: url('../images/demo/discography/disco-3.jpg');
+}
+#image-post1 {
+  background-image: url('../images/demo/news/post1.jpg');
+}
+#image-post2 {
+  background-image: url('../images/demo/news/post2.jpg');
+}
+#image-post3 {
+  background-image: url('../images/demo/news/post3.jpg');
+}
+/*.section.discography {
+  background-image: url('../images/demo/bg-discography.jpg');
+}*/
+.section.biography {
+  background-image: url('../images/demo/bg-biography.jpg');
+}
+/*.section.upcomming-events-list {
+  background-image: url('../images/demo/bg-upcomming-events-list.jpg');
+}*/
+/*.section.contact {
+  background-image: url('../images/demo/bg-contact.jpg');
+}*/
+.tourdates .image-tour {
+  background-image: url('../images/demo/tour/photo-tour.jpg');
+}
+.tour-info #tour1 {
+  background-image: url('../images/demo/tour/bg-tour01.jpg');
+}
+.tour-info #tour2 {
+  background-image: url('../images/demo/tour/bg-tour02.jpg');
+}
+.tour-info #tour3 {
+  background-image: url('../images/demo/tour/bg-tour03.jpg');
+}
+.bg-patern {
+  background-image: url('../images/demo/pattern.jpg');
+  background-repeat: repeat;
+}
+.bg-blog {
+  background-image: url('../images/demo/blog/bg-blog.jpg');
+}
+.bg-shop {
+  background-image: url('../images/demo/shop/bg-shop.jpg');
+}
+#banner-shop-1 {
+  background-image: url('../images/demo/shop/banner1.jpg');
+}
+#banner-shop-2 {
+  background-image: url('../images/demo/shop/banner2.jpg');
+}
+#banner-shop-3 {
+  background-image: url('../images/demo/shop/banner3.jpg');
+}
+#banner-shop-4 {
+  background-image: url('../images/demo/shop/banner4.jpg');
+}

@@ -1,0 +1,259 @@
+.main-container {
+    padding: 0;
+}
+
+.intro-fullscreen {
+    width: 100%;
+    height: auto;
+    bottom: 0px;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.intro-center {
+    top: 50%;
+    position: absolute;
+}
+
+.intro-fullscreen .carousel-caption {
+    text-shadow: none;
+    margin: 0 -20%;
+    top: 40%;
+    bottom: auto;
+}
+
+@media (max-width: 768px) {
+    .intro-fullscreen .carousel-caption {
+        margin: 0;
+        bottom: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .intro-fullscreen .carousel-caption {
+        margin: 0;
+        top: 10px;
+        bottom: auto;
+    }
+}
+
+.p-intro-animate {
+	top: 50%;
+    bottom: auto;
+}
+
+
+@media (max-width: 1100px) {
+    .p-intro-animate {
+	    top: 10%;
+        bottom: 0;
+    }  
+}
+
+@media (max-width: 480px) {
+    .p-intro-animate {
+        bottom: 0;
+    }
+
+    .p-intro-animate p,
+    .p-intro-animate p span {
+        font-size: 24px !important;
+        line-height: 40px !important;
+    } 
+}
+
+#intro-carousel .carousel-caption h1 {
+	color: #fff;
+	font-size: 135px;
+	padding-bottom: 20px;
+	letter-spacing: 14px;
+}
+
+@media (max-width: 1000px) {
+    #intro-carousel .carousel-caption h1 {
+        font-size: 35px;
+        line-height: 50px;
+        letter-spacing: 10px;
+    }
+
+    #intro-carousel .carousel-caption {
+	    display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+    }
+}
+
+#intro-carousel .carousel-caption h2 {
+	letter-spacing: 4px;
+}
+
+#intro-carousel .title-alt .carousel-caption {
+	left: 150px;
+	bottom: 25%;
+}
+
+#intro-carousel .title-alt p {
+	color: #fff !important;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	font-size: 70px !important;
+	line-height: 70px !important;
+	letter-spacing: 2px !important;
+	text-align: left;
+}
+
+#intro-carousel .title-alt p:before {
+	content: "";
+    width: 117px;
+    height: 1px;
+    background-color: #fff;
+    left: 0;
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1000px) {
+    #intro-carousel .title-alt p {
+        font-size: 50px !important;
+        letter-spacing: 2px;
+    }
+
+    #intro-carousel .title-alt .carousel-caption {
+	    left: 50px;
+	    bottom: 150px;
+    }
+}
+
+.animate-btn-alt {
+	text-align: left;
+	margin-top: 20px;
+}
+
+#intro-carousel .carousel-caption p {
+	color: #c8caca;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 45px;
+	line-height: 50px;
+	letter-spacing: -1px;
+}
+
+#intro-carousel .carousel-caption p span {
+	color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 45px;
+	border-bottom: 2px solid #fff;
+}
+
+#intro-carousel .carousel-caption .intro-link {
+	color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 10px;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	margin-top: 50px;
+	margin-right: -50%;
+	opacity: 1;
+}
+
+#intro-carousel .carousel-caption .intro-link:hover {
+	text-decoration: none;
+	opacity: .8;
+}
+
+#intro-carousel .carousel-caption .intro-link i {
+	font-size: 14px;
+	position: relative;
+	top: 1px;
+}
+
+.carousel-indicators {
+	bottom: 30px;
+}
+
+#intro-carousel .carousel-indicators li {
+	margin: 0 5px;
+}
+
+#intro-carousel .carousel-indicators .active {
+	width: 10px;
+	height: 10px;
+}
+
+.carousel-control.right,
+.carousel-control.left {
+	background-image: none;
+}
+
+.carousel,.item,.active {
+	height:100%;
+}
+
+.carousel-inner {
+	height:100%;
+}
+
+.fill {
+	width: 100%;
+	height: 100%;
+	background-position: center;
+	background-size: cover;
+}
+
+.carousel .item {
+	height: 100%;
+	width:100%; 
+}
+
+/* Animation delays */
+.carousel-caption h1,
+.p-intro-animate p,
+.title-alt p {
+	animation-delay: 1s;
+}
+
+.carousel-caption h2,
+.p-intro-animate a,
+.animate-btn-alt {
+	animation-delay: 2s;
+}
+
+.carousel-caption .animate-btn {
+	animation-delay: 3s;
+}
+
+/* Carousel Fade */
+.carousel-fade .carousel-inner .item {
+    -webkit-transition-property: opacity;
+    transition-property: opacity;
+}
+
+.carousel-fade .carousel-inner .item,
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+    opacity: 0;
+}
+
+.carousel-fade .carousel-inner .active,
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+    opacity: 1;
+}
+
+.carousel-fade .carousel-inner .next,
+.carousel-fade .carousel-inner .prev,
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+    left: 0;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.carousel-fade .carousel-control {
+    z-index: 2;
+}
+
+
+
+
