@@ -30,6 +30,7 @@
 
   <!-- Intro Slider -->
   <link rel="stylesheet" href="styles/intro-slider.css">
+  <link rel="stylesheet" href="styles/intro-video.css">
   <link rel="stylesheet" href="styles/vendor/animate.min.css">
 
   <script src="scripts/vendor/modernizr.js"></script>
@@ -63,8 +64,8 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="#anchor00">Home</a></li>
           <li><a href="#anchor03">DISCOGRAPHY</a></li>
+          <li><a href="artists.html">ARTISTS</a></li>
           <li><a href="#anchor04">ABOUT</a></li>
-          <li><a href="#anchor05">TOUR DATES</a></li>
           <li><a href="#anchor06">GALLERY</a></li>
           <li><a href="#anchor07">NEWS</a></li>
           <li><a href="#anchor08">CONTACT</a></li>
@@ -76,54 +77,22 @@
 
   <!-- INTRO -->
   <section class="intro full-width jIntro" id="anchor00">
-    <div id="intro-carousel" class="carousel slide carousel-fade" data-pause="false">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#intro-carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#intro-carousel" data-slide-to="1"></li>
-        <li data-target="#intro-carousel" data-slide-to="2"></li>
-      </ol>
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox">
-
-        <!-- First slide -->
-        <div class="item active intro-fullscreen">
-          <!-- Modify Image BG -->
-          <div class="fill" style="background-image:url('images/demo/slider/label/intro-slide1.jpg');"></div>
-          <div class="carousel-caption intro-center">
-            <h1 data-animation="animated fadeIn" class="primary-title">MUSIC LABEL</h1>
-            <h2 data-animation="animated fadeIn" class="subtitle-text">record label music template</h2>
-            <div class="voffset50"></div>
-            <div data-animation="animated fadeInUp" class="animate-btn">
-              <input class="btn square stay-in-touch-submit" type="submit" name="button" value="Buy Template">
-            </div>
-          </div>
-        </div><!-- /.item -->
-
-        <!-- Second slide -->
-        <div class="item">
-          <!-- Modify Image BG -->
-          <div class="fill" style="background-image:url('images/demo/slider/label/intro-slide2.jpg');"></div>
-          <div class="carousel-caption p-intro-animate">
-            <p data-animation="animated fadeIn">We are a <span>electronic band,</span> focused on<br>electro and techno & clubbing.</p>
-            <a class="intro-link" href="#0" data-animation="animated fadeIn">Let’s Connect <i class="fa  fa-angle-right"></i></a>
-          </div>
-        </div><!-- /.item -->
-
-        <!-- Third slide -->
-        <div class="item title-alt">
-          <!-- Modify Image BG -->
-          <div class="fill" style="background-image:url('images/demo/slider/label/intro-slide3.jpg');"></div>
-          <div class="carousel-caption">
-            <p data-animation="animated fadeInUp">New Album<br>Release</p>
-            <div data-animation="animated fadeInUp" class="animate-btn-alt">
-              <input class="btn square stay-in-touch-submit" type="submit" name="button" value="Listen Album">
-            </div>
-          </div>
-        </div><!-- /.item -->
-
-      </div><!-- /.carousel-inner -->
-    </div><!-- /.carousel -->
+    <div class="intro-video-wrapper intro-fullscreen">
+      <!-- Video for Desktop -->
+      <video class="intro-video intro-video-desktop" autoplay loop muted playsinline>
+        <source src="images/intro_movie.mp4" type="video/mp4">
+      </video>
+      <!-- Video for Mobile -->
+      <video class="intro-video intro-video-mobile" autoplay loop muted playsinline>
+        <source src="images/intro_movie_mobile.mp4" type="video/mp4">
+      </video>
+      <!-- Overlay Text -->
+      <div class="intro-video-overlay">
+        <div class="carousel-caption intro-center">
+          <h1 class="primary-title">Willkommen bei ROKKO Records</h1>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- PLAYER -->
