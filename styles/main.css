@@ -3573,6 +3573,9 @@ header.overflow.fixed {
 
 header .navbar-brand img {
   max-height: 100%;
+  max-width: 150px;
+  width: auto;
+  height: auto;
 }
 
 @media (min-width: 1600px) {
