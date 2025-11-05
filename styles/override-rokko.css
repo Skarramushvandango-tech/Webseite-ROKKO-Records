@@ -1,0 +1,14 @@
+/* Logo override: erzwingt kleine Darstellung in allen Headern */
+header .navbar-brand img {
+  max-height: 40px !important;
+  height: auto !important;
+  width: auto !important;
+  display: inline-block;
+}
+
+/* etwas kleiner auf sehr schmalen Bildschirmen */
+@media (max-width: 420px) {
+  header .navbar-brand img {
+    max-height: 32px !important;
+  }
+}
