@@ -12,3 +12,93 @@ header .navbar-brand img {
     max-height: 32px !important;
   }
 }
+
+/* --- Overlay entfernen & Header fixieren --- */
+/* Versteckt das Overlay-Text-Element, das das Intro-Video überlagert */
+.intro-video-overlay {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Header immer sichtbar, fixes Verhalten, kleine Höhe */
+header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99999;
+  background: rgba(10,10,10,0.90) !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* Navbar klein halten */
+header .navbar {
+  min-height: 48px !important;
+  padding: 6px 0 !important;
+}
+
+/* Brand-Box: weniger Padding, damit das Logo klein bleibt */
+header .navbar-brand {
+  padding: 6px 12px !important;
+  height: auto !important;
+}
+
+/* Sicherstellen, dass Seiteninhalt nicht unter dem fixierten Header verschwindet */
+body {
+  padding-top: 56px !important; /* ausreichend Platz für den Header */
+}
+@media (min-width: 1200px) {
+  body { padding-top: 64px !important; }
+}
+
+/* Falls JS versucht, Header zu verstecken, erzwinge sichtbar */
+header.hidden, header.overflow, header.overflow-video {
+  position: fixed !important;
+  top: 0 !important;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+/* Kleinere Anpassung für sehr schmale Geräte */
+@media (max-width: 420px) {
+  body { padding-top: 56px !important; }
+  header .navbar { min-height: 44px !important; }
+}
+
+/* Falls ein intro-logo-Element existiert, verkleinern */
+.intro .text-overlay .logo-intro img,
+.logo-intro {
+  max-height: 36px !important;
+  height: auto !important;
+}
+
+/* --- Farb-Overrides (Basis) --- */
+:root {
+  --rokko-accent: #c12f2f; /* Accent (rot/dunkel) — anpassen falls nötig */
+  --rokko-foreground: #ffffff;
+  --rokko-bg: #0a0a0a;
+}
+
+.primary-title,
+.title,
+h1, h2, h3 {
+  color: var(--rokko-foreground) !important;
+}
+
+title { color: var(--rokko-accent) !important; }
+
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-brand {
+  color: #ffffff !important;
+}
+
+/* Buttons mit Accent */
+.btn.square.inverse,
+.btn.square {
+  background: var(--rokko-accent) !important;
+  border-color: var(--rokko-accent) !important;
+  color: #fff !important;
+}
