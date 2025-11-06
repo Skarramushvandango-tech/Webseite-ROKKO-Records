@@ -1,0 +1,54 @@
+{
+  "bellieu": {
+    "artist_slug": "bellieu",
+    "artist_folder": "artists/henri_bellieu",
+    "cover": "artists/henri_bellieu/cover.png",
+    "tracks": [
+      "mp3/bellieu/petite_colibri.m4a",
+      "mp3/bellieu/petite_colibri_ennio_mix.m4a",
+      "mp3/bellieu/petite_colibri_nocturne_mix.m4a"
+    ]
+  },
+  "fleurbeunie": {
+    "artist_slug": "fleurbeunie",
+    "artist_folder": "artists/fleuretbeunie",
+    "cover": "artists/fleuretbeunie/cover.png",
+    "tracks": [
+      "mp3/fleurbeunie/feuleger_main.m4a",
+      "mp3/fleurbeunie/feuleger_house.m4a",
+      "mp3/fleurbeunie/feuleger_frenchclassic.m4a",
+      "mp3/fleurbeunie/feuleger_electricclub1.m4a",
+      "mp3/fleurbeunie/feuleger_sundown.m4a"
+    ]
+  },
+  "schablonski": {
+    "artist_slug": "schablonski",
+    "artist_folder": "artists/ska_schablonski",
+    "cover": "artists/ska_schablonski/cover.png",
+    "tracks": [
+      "mp3/schablonski/kohle_raus.m4a",
+      "mp3/schablonski/kohle_raus_rmx.m4a"
+    ]
+  },
+  "vandango": {
+    "artist_slug": "vandango",
+    "artist_folder": "artists/skaramush_vandango",
+    "cover": "artists/skaramush_vandango/cover.png",
+    "tracks": [
+      "mp3/vandango/set_the_fire.m4a",
+      "mp3/vandango/set_the_fire_remix.m4a",
+      "mp3/vandango/always_sunny.m4a",
+      "mp3/vandango/among_the_crowd.m4a",
+      "mp3/vandango/borrowed_time.m4a",
+      "mp3/vandango/like_water.m4a",
+      "mp3/vandango/love_song.m4a",
+      "mp3/vandango/man_on_a_mission.m4a",
+      "mp3/vandango/nights_go_by.m4a",
+      "mp3/vandango/no_stitch_no_story.m4a",
+      "mp3/vandango/oh_i_try.m4a",
+      "mp3/vandango/system_failure_kortana_mix.m4a",
+      "mp3/vandango/tiptoes.m4a",
+      "mp3/vandango/what_you_need.m4a"
+    ]
+  }
+}
