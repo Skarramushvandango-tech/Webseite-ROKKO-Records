@@ -4964,20 +4964,23 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .artist-card a:hover .artist-image img {
   transform: scale(1.05);
 }
 
-.artist-card a:hover .artist-image .overlay {
+.artist-card a:hover .artist-image .overlay,
+.artist-card.open .artist-image .overlay,
+.artist-card:focus-within .artist-image .overlay {
   opacity: 1;
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .artist-card .overlay .view-more {
@@ -4995,9 +4998,31 @@ img {
   margin-top: 15px;
 }
 
+/* Card overlay support for artist cards */
+.artist-card .card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
+.artist-card:hover .card-overlay,
+.artist-card.open .card-overlay {
+  background: rgba(0, 0, 0, 0.45);
+}
+
 /* Artist Detail Page Styles */
 .artist-bio {
   margin-bottom: 40px;
+}
+
+/* Artist bio placeholder - show if no content */
+.artist-bio.placeholder {
+  font-style: italic;
+  color: #888;
 }
 
 .artist-photo {
