@@ -1,15 +1,25 @@
-/* Logo override: erzwingt kleine Darstellung in allen Headern */
+/* Logo override: responsive sizing with proper constraints */
+.site-logo,
 header .navbar-brand img {
-  max-height: 40px !important;
-  height: auto !important;
-  width: auto !important;
-  display: inline-block;
+  max-width: 180px;
+  height: auto;
+  display: block;
+  width: auto;
 }
 
-/* etwas kleiner auf sehr schmalen Bildschirmen */
-@media (max-width: 420px) {
+/* Tablet breakpoint */
+@media (max-width: 768px) {
+  .site-logo,
   header .navbar-brand img {
-    max-height: 32px !important;
+    max-width: 140px;
+  }
+}
+
+/* Mobile breakpoint */
+@media (max-width: 480px) {
+  .site-logo,
+  header .navbar-brand img {
+    max-width: 120px;
   }
 }
 

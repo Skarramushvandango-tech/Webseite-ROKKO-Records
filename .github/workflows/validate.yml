@@ -1,0 +1,57 @@
+name: Validate Website
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Validate HTML
+      run: |
+        echo "Checking for broken image references..."
+        # Check if all referenced images exist
+        for file in *.html; do
+          echo "Checking $file..."
+          # Extract image src attributes and check if files exist
+          grep -oP 'src="[^"]*\.(png|jpg|jpeg|gif|svg|mp4)"' "$file" | sed 's/src="//;s/"//' | while read img; do
+            if [ ! -f "$img" ]; then
+              echo "Warning: Image $img referenced in $file not found"
+            fi
+          done
+        done
+        
+    - name: Check for demo content
+      run: |
+        echo "Checking for leftover demo content..."
+        if grep -r "images/demo" *.html; then
+          echo "Warning: Demo image references found"
+          exit 1
+        fi
+        echo "No demo content found ✓"
+        
+    - name: Validate CSS files
+      run: |
+        echo "Checking CSS files exist..."
+        for css in styles/main.css styles/override-rokko.css styles/colors/color-rokko.css; do
+          if [ ! -f "$css" ]; then
+            echo "Error: Required CSS file $css not found"
+            exit 1
+          fi
+        done
+        echo "All required CSS files present ✓"
+        
+    - name: Check logo files
+      run: |
+        echo "Checking logo files..."
+        if [ ! -f "images/logo.png" ]; then
+          echo "Error: Logo file not found"
+          exit 1
+        fi
+        echo "Logo files present ✓"
