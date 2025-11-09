@@ -904,3 +904,54 @@ section,
     margin-left: 0;
   }
 }
+
+/* ===== REDUCE SPACING SITE-WIDE ===== */
+/* Reduce vertical offsets for tighter layout */
+.voffset140 {
+  height: 70px !important;
+}
+
+.voffset100 {
+  height: 50px !important;
+}
+
+.voffset90 {
+  height: 40px !important;
+}
+
+.voffset80 {
+  height: 40px !important;
+}
+
+.voffset70 {
+  height: 35px !important;
+}
+
+.voffset40 {
+  height: 20px !important;
+}
+
+/* Reduce spacing in disc player sections */
+.player-album .container {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+}
+
+.disc-tracklist {
+  margin-top: 0 !important;
+}
+
+.info-album {
+  margin-bottom: 20px !important;
+}
+
+/* Tighten up featured artists section */
+.featured-artists {
+  padding-top: 40px !important;
+  padding-bottom: 40px !important;
+}
+
+.section {
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
+}
