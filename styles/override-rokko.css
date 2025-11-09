@@ -78,10 +78,25 @@ section,
 .section,
 .intro,
 .intro-mini,
+.intro.full-width,
+.jIntro,
 .artist-detail,
 .discography,
 .section.discography,
-.player-album {
+.player-album,
+.featured-artists,
+.stay-in-touch {
+  background-color: var(--rokko-sand) !important;
+}
+
+/* Specifically target the intro video wrapper to ensure no black background */
+.intro-video-wrapper,
+.intro-fullscreen {
+  background-color: transparent !important;
+}
+
+/* Ensure page continues with sand color after video */
+.intro.full-width.jIntro {
   background-color: var(--rokko-sand) !important;
 }
 
@@ -92,6 +107,31 @@ body,
 .cousine,
 .album-title,
 .artist-name {
+  color: var(--rokko-dark) !important;
+}
+
+/* White text on dark/inverse backgrounds */
+.inverse-color,
+.inverse-color p,
+.inverse-color .title,
+.inverse-color .title-follow,
+.inverse-color .name,
+.inverse-color .phone,
+.inverse-color .email,
+footer {
+  color: #fff !important;
+}
+
+.inverse-color {
+  background-color: var(--rokko-dark) !important;
+}
+
+footer {
+  background-color: var(--rokko-sand) !important;
+}
+
+footer p.copy,
+footer .menu-footer a {
   color: var(--rokko-dark) !important;
 }
 @media (min-width: 1200px) {
@@ -491,4 +531,74 @@ title { color: var(--rokko-accent) !important; }
   color: #fff !important;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* --- Fix Carousel Scroll Behavior --- */
+/* Prevent vertical scrolling when swiping carousel horizontally */
+.js-flickity {
+  touch-action: pan-x !important;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.flickity-viewport {
+  touch-action: pan-x !important;
+  overflow: hidden !important;
+}
+
+.flickity-enabled {
+  position: relative;
+  touch-action: pan-x !important;
+}
+
+.flickity-enabled:focus {
+  outline: none;
+}
+
+/* Snap scrolling for better UX */
+.carousel-discography .gallery-cell {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Prevent page scroll during carousel interaction on mobile */
+.carousel-discography,
+.featured-artists .js-flickity {
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: none;
+}
+
+/* Ensure carousel containers don't cause page height changes */
+.featured-artists,
+.section.discography {
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+/* --- Streaming Links in Disc Pages --- */
+.streaming-links-disc h4 {
+  color: var(--rokko-sand);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.streaming-links-disc p {
+  margin: 8px 0;
+}
+
+.streaming-links-disc a {
+  color: var(--rokko-sand) !important;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.streaming-links-disc a:hover {
+  color: var(--rokko-orange) !important;
+}
+
+.streaming-links-disc i {
+  margin-right: 8px;
 }
