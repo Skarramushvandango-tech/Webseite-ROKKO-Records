@@ -265,3 +265,33 @@ title { color: var(--rokko-accent) !important; }
     max-width: 300px;
   }
 }
+
+/* --- Two Column Layout for Artist Pages --- */
+/* Desktop: Biography on left, Photo on right */
+@media (min-width: 992px) {
+  .artist-detail .artist-photo {
+    position: sticky;
+    top: 100px;
+  }
+  
+  .artist-detail .artist-photo img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+}
+
+/* Mobile: Stack photo on top, content below */
+@media (max-width: 991px) {
+  .artist-detail .artist-photo {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .artist-detail .artist-photo img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+}
