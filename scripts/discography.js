@@ -2,8 +2,41 @@ var $actual= null;
 var opened=false;
 
 $(".open-disc").on( "click", function(e) {
-  open($(this).data('url'));
-  $actual=$(this);
+  e.preventDefault();
+  
+  // If already opened, close it
+  if (opened && $actual && $actual.is($(this))) {
+    close_immediate();
+    opened = false;
+    $actual = null;
+  } else {
+    // Open the new disc
+    open($(this).data('url'));
+    $actual=$(this);
+  }
+});
+
+// Check if page loaded with hash (from artist page link)
+$(document).ready(function() {
+  if (window.location.hash) {
+    var hash = window.location.hash;
+    var discId = hash.substring(1); // Remove '#'
+    
+    // Find the disc element and trigger click
+    setTimeout(function() {
+      var $discElement = $('#' + discId);
+      if ($discElement.length) {
+        var $openDisc = $discElement.find('.open-disc');
+        if ($openDisc.length) {
+          $openDisc.trigger('click');
+          // Scroll to the opened disc
+          $('html, body').animate({
+            scrollTop: $discElement.offset().top - 100
+          }, 500);
+        }
+      }
+    }, 500);
+  }
 });
 
 if ($('.playlist1').length) {
@@ -64,11 +97,16 @@ function open(e){
 
 function close(){
   $(".close-btn").on( "click", function(e) {
-    $(".project-window").slideUp("slow");
-    $(".project-content").fadeOut("slow");
-    $("html, body").animate({ scrollTop: $('#discography').offset().top -(50) }, 1000);
-    opened=false;
+    close_immediate();
   });
+}
+
+function close_immediate(){
+  $(".project-window").slideUp("slow");
+  $(".project-content").fadeOut("slow");
+  $("html, body").animate({ scrollTop: $('#discography').offset().top -(50) }, 1000);
+  opened=false;
+  $actual = null;
 }
 
 

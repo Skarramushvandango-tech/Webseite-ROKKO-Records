@@ -50,42 +50,40 @@
   <!-- HEADER -->
   <header id="jHeader">
     <nav class="navbar navbar-default " role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo" class="site-logo"></a>
+        </div>
 
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-          <span class="sr-only">Desplegar navegación</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#anchor00"><img src="images/logo.png" alt="logo" class="site-logo"></a>
+        <div class="navbar-nav-wrapper">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="index.html">WELCOME</a></li>
+            <li><a href="news.html">NEWS</a></li>
+            <li><a href="artists.html">ARTISTS</a></li>
+            <li><a href="discography.html">DISKOGRAPHIE</a></li>
+            <li><a href="contact.html">KONTAKT</a></li>
+          </ul>
+        </div>
       </div>
-
-      <div class="collapse navbar-collapse navbar-ex1-collapse" id="navbar-muziq">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="artists.html">ARTISTS</a></li>
-          <li><a href="discography.html">DISCOGRAPHY</a></li>
-          <li><a href="news.html">NEWS</a></li>
-          <li><a href="contact.html">CONTACT</a></li>
-        </ul>
-      </div>
-
     </nav>
   </header>
 
-  <!-- INTRO -->
+  <!-- INTRO VIDEO - directly under header -->
   <section class="intro full-width jIntro" id="anchor00">
-    <div class="intro-video-wrapper intro-fullscreen">
-      <!-- Use the landscape video for both desktop and mobile (mobile will use CSS scaling to reduce resolution) -->
+    <div class="intro-video-wrapper">
       <video id="intro-landscape" class="intro-video" autoplay loop muted playsinline preload="metadata">
         <source src="images/intro_movie.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
+    </div>
+  </section>
 
-      <!-- Overlay Text -->
-      <div class="intro-video-overlay">
-        <div class="carousel-caption intro-center">
-          <h1 class="primary-title">Willkommen bei ROKKO Records</h1>
+  <!-- ROKKO SLOGAN -->
+  <section class="section rokko-slogan">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="slogan-text">Wir sind ROKKO!<br>Und Du noch nicht.</h2>
         </div>
       </div>
     </div>
@@ -122,7 +120,7 @@
     <div class="container">
       <div class="voffset70"></div>
       <div class="divider-section">
-        <img src="images/trenner.svg" alt="" class="section-divider">
+        <img src="images/trenner.png" alt="" class="section-divider">
       </div>
       <div class="voffset40"></div>
       <div class="title-wrapper">
@@ -252,7 +250,7 @@
         <div class="col-md-12">
           <div class="voffset70"></div>
           <div class="divider-section">
-            <img src="images/trenner.svg" alt="" class="section-divider">
+            <img src="images/trenner.png" alt="" class="section-divider">
           </div>
           <div class="voffset40"></div>
           <div class="title-wrapper">
@@ -345,12 +343,16 @@
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <p class="copy">© 2017. All Rights Reserved. Designed by JellyThemes</p>
-      <ul class="menu-footer">
-        <li><a href="#">disclaimer</a></li>
-        <li><a href="#">terms & conditions</a></li>
-        <li><a href="#">privacy policy</a></li>
-      </ul>
+      <div class="footer-content">
+        <div class="impressum">
+          <h4>Impressum</h4>
+          <p>Markus Ilgner</p>
+        </div>
+        <div class="copyright">
+          <p class="made-with">made with ❤️ im Ruhrpott</p>
+          <p class="rights">all rights reserved by MILG</p>
+        </div>
+      </div>
     </div>
   </footer>
 
