@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="styles/vendor/font-awesome.min.css">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/colors/color-rokko.css">
+  <link rel="stylesheet" href="styles/override-rokko.css">
 
   <script src="scripts/vendor/modernizr.js"></script>
 </head>
@@ -57,31 +58,12 @@
     </nav>
   </header>
 
-  <!-- INTRO -->
-  <section class="intro intro-mini full-width jIntro bg-header" id="anchor00">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="text-center">
-            <h1 class="primary-title">Skaramush Vandango</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ARTIST CONTENT -->
   <section class="section artist-detail">
     <div class="container">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <div class="voffset70"></div>
-          
-          <!-- Artist Photo -->
-          <div class="artist-photo text-center">
-            <img src="artists/skaramush_vandango/skaramush.png" alt="Skaramush Vandango">
-          </div>
-          
+        <!-- Left Column: Biography and Info -->
+        <div class="col-md-6">
           <!-- Artist Bio -->
           <div class="artist-bio">
             <h2 class="title">Biografie</h2>
@@ -107,113 +89,22 @@
             <a href="#" target="_blank"><i class="fa fa-soundcloud"></i> Soundcloud</a>
           </div>
           
-          <!-- Songs -->
-          <div class="artist-songs">
-            <h3 class="title small">Tracks</h3>
+          <!-- Album Cover - Link to Discography -->
+          <div class="artist-album-cover">
+            <h3 class="title small">Album</h3>
             <div class="voffset30"></div>
-            <ul class="song-list">
-              <li>
-                <div class="song-title">Set The Fire</div>
-                <audio controls>
-                  <source src="mp3/vandango/set_the_fire.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li>
-                <div class="song-title">Set The Fire Remix</div>
-                <audio controls>
-                  <source src="mp3/vandango/set_the_fire_remix.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li>
-                <div class="song-title">Always Sunny</div>
-                <audio controls>
-                  <source src="mp3/vandango/always_sunny.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li>
-                <div class="song-title">Among The Crowd</div>
-                <audio controls>
-                  <source src="mp3/vandango/among_the_crowd.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li>
-                <div class="song-title">Borrowed Time</div>
-                <audio controls>
-                  <source src="mp3/vandango/borrowed_time.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li>
-                <div class="song-title">Like Water</div>
-                <audio controls>
-                  <source src="mp3/vandango/like_water.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li>
-                <div class="song-title">Love Song</div>
-                <audio controls>
-                  <source src="mp3/vandango/love_song.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li>
-                <div class="song-title">Man On A Mission</div>
-                <audio controls>
-                  <source src="mp3/vandango/man_on_a_mission.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li>
-                <div class="song-title">Nights Go By</div>
-                <audio controls>
-                  <source src="mp3/vandango/nights_go_by.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li>
-                <div class="song-title">No Stitch No Story</div>
-                <audio controls>
-                  <source src="mp3/vandango/no_stitch_no_story.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li>
-                <div class="song-title">Oh I Try</div>
-                <audio controls>
-                  <source src="mp3/vandango/oh_i_try.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li>
-                <div class="song-title">System Failure Kortana Mix</div>
-                <audio controls>
-                  <source src="mp3/vandango/system_failure_kortana_mix.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li>
-                <div class="song-title">Tiptoes</div>
-                <audio controls>
-                  <source src="mp3/vandango/tiptoes.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li>
-                <div class="song-title">What You Need</div>
-                <audio controls>
-                  <source src="mp3/vandango/what_you_need.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-            </ul>
+            <a href="discography.html" title="View full discography">
+              <img src="artists/skaramush_vandango/cover.png" alt="Neurosis - Skaramush Vandango Album Cover">
+            </a>
+            <p>Click to view full discography</p>
           </div>
-          
-          <div class="voffset70"></div>
+        </div>
+        
+        <!-- Right Column: Artist Photo -->
+        <div class="col-md-6">
+          <div class="artist-photo">
+            <img src="artists/skaramush_vandango/skaramush.png" alt="Skaramush Vandango">
+          </div>
         </div>
       </div>
     </div>

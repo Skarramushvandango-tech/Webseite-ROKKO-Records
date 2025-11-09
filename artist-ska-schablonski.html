@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="styles/vendor/font-awesome.min.css">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/colors/color-rokko.css">
+  <link rel="stylesheet" href="styles/override-rokko.css">
 
   <script src="scripts/vendor/modernizr.js"></script>
 </head>
@@ -57,31 +58,12 @@
     </nav>
   </header>
 
-  <!-- INTRO -->
-  <section class="intro intro-mini full-width jIntro bg-header" id="anchor00">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="text-center">
-            <h1 class="primary-title">Ska Schablonski</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ARTIST CONTENT -->
   <section class="section artist-detail">
     <div class="container">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <div class="voffset70"></div>
-          
-          <!-- Artist Photo -->
-          <div class="artist-photo text-center">
-            <img src="artists/ska_schablonski/skank.png" alt="Ska Schablonski">
-          </div>
-          
+        <!-- Left Column: Biography and Info -->
+        <div class="col-md-6">
           <!-- Artist Bio -->
           <div class="artist-bio">
             <h2 class="title">Biografie</h2>
@@ -107,29 +89,22 @@
             <a href="#" target="_blank"><i class="fa fa-soundcloud"></i> Soundcloud</a>
           </div>
           
-          <!-- Songs -->
-          <div class="artist-songs">
-            <h3 class="title small">Tracks</h3>
+          <!-- Album Cover - Link to Discography -->
+          <div class="artist-album-cover">
+            <h3 class="title small">Album</h3>
             <div class="voffset30"></div>
-            <ul class="song-list">
-              <li>
-                <div class="song-title">Kohle Raus</div>
-                <audio controls>
-                  <source src="mp3/schablonski/kohle_raus.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-              <li>
-                <div class="song-title">Kohle Raus Rmx</div>
-                <audio controls>
-                  <source src="mp3/schablonski/kohle_raus_rmx.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-              </li>
-            </ul>
+            <a href="discography.html" title="View full discography">
+              <img src="artists/ska_schablonski/cover.png" alt="Kohle Raus - Ska Schablonski Album Cover">
+            </a>
+            <p>Click to view full discography</p>
           </div>
-          
-          <div class="voffset70"></div>
+        </div>
+        
+        <!-- Right Column: Artist Photo -->
+        <div class="col-md-6">
+          <div class="artist-photo">
+            <img src="artists/ska_schablonski/skank.png" alt="Ska Schablonski">
+          </div>
         </div>
       </div>
     </div>
