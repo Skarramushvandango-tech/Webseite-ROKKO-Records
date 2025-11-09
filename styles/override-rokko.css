@@ -1,15 +1,24 @@
-/* Logo override: erzwingt kleine Darstellung in allen Headern */
+/* Logo sizing: .site-logo class with responsive breakpoints */
+.site-logo,
 header .navbar-brand img {
-  max-height: 40px !important;
-  height: auto !important;
-  width: auto !important;
+  max-width: 180px;
+  height: auto;
+  width: auto;
   display: inline-block;
 }
 
-/* etwas kleiner auf sehr schmalen Bildschirmen */
-@media (max-width: 420px) {
+/* Responsive logo adjustments */
+@media (max-width: 768px) {
+  .site-logo,
   header .navbar-brand img {
-    max-height: 32px !important;
+    max-width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-logo,
+  header .navbar-brand img {
+    max-width: 120px;
   }
 }
 

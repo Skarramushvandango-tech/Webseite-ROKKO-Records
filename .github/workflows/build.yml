@@ -1,0 +1,42 @@
+name: Build and Validate
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Check for package.json
+      id: check_package
+      run: |
+        if [ -f "package.json" ]; then
+          echo "has_package=true" >> $GITHUB_OUTPUT
+        else
+          echo "has_package=false" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Install dependencies
+      if: steps.check_package.outputs.has_package == 'true'
+      run: npm install
+    
+    - name: Build
+      if: steps.check_package.outputs.has_package == 'true'
+      run: npm run build
+    
+    - name: Validate HTML structure
+      run: |
+        echo "Validating HTML files exist..."
+        test -f index.html || (echo "index.html not found" && exit 1)
+        echo "HTML validation passed"

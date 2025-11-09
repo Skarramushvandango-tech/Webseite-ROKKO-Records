@@ -4627,7 +4627,7 @@ form.newsletter-form .form-group {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(20, 30, 41, 0.95);
+  background-color: rgba(0, 0, 0, 0.45);
   opacity: 0;
   -webkit-transition: opacity 0.25s ease-in-out;
   transition: opacity 0.25s ease-in-out;
