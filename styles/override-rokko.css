@@ -304,15 +304,10 @@ title { color: var(--rokko-accent) !important; }
 
 .artist-album-cover a:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
 }
 
-.artist-album-cover img {
-  max-width: 400px;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+.artist-album-cover a:hover .album-cover-img {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
 }
 
 .artist-album-cover p {
@@ -320,12 +315,6 @@ title { color: var(--rokko-accent) !important; }
   font-size: 14px;
   color: var(--rokko-dark);
   font-style: italic;
-}
-
-@media (max-width: 768px) {
-  .artist-album-cover img {
-    max-width: 300px;
-  }
 }
 
 /* --- Two Column Layout for Artist Pages --- */
@@ -370,12 +359,28 @@ title { color: var(--rokko-accent) !important; }
   height: auto;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (max-width: 768px) {
   .artist-main-photo {
     max-width: 100%;
   }
+}
+
+/* Ensure album covers have same max-width as artist photos */
+.album-cover-img {
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Divider styling */
@@ -438,36 +443,18 @@ title { color: var(--rokko-accent) !important; }
   padding: 20px;
 }
 
-.album-cover-img {
-  max-width: 400px;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.album-cover-img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-}
-
 .album-title {
   margin-top: 15px;
   font-size: 18px;
   color: var(--rokko-dark) !important;
+  font-weight: bold;
 }
 
 .artist-name {
   font-size: 16px;
   color: var(--rokko-dark) !important;
   font-style: italic;
-}
-
-@media (max-width: 768px) {
-  .album-cover-img {
-    max-width: 300px;
-  }
+  margin-top: 5px;
 }
 
 /* --- Contact Form Styling --- */
