@@ -49,6 +49,7 @@ header .navbar-brand {
 /* Sicherstellen, dass Seiteninhalt nicht unter dem fixierten Header verschwindet */
 body {
   padding-top: 56px !important; /* ausreichend Platz für den Header */
+  background-color: var(--rokko-sand) !important;
 }
 @media (min-width: 1200px) {
   body { padding-top: 64px !important; }
