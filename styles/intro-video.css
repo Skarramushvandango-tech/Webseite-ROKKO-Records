@@ -1,10 +1,10 @@
-/* Video Intro Styles - vollständig sichtbar (contain), keine Beschneidung */
+/* Video Intro Styles - transparent background, no black letterbox */
 .intro-video-wrapper {
   position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: #000;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,8 +15,8 @@
   width: 100%;
   height: auto;
   max-height: 100vh;
-  object-fit: contain;
-  background: #000;
+  object-fit: cover;
+  background: transparent;
 }
 .intro-video-desktop { display: block; }
 .intro-video-mobile { display: none; }
@@ -36,4 +36,15 @@
 .intro-video-overlay .primary-title {
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Optional hero overlay for site-wide shading */
+.hero .overlay {
+  background: rgba(0,0,0,0.45);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }

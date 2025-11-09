@@ -80,7 +80,8 @@ $(function() {
     // })
   }
 
-  if ($('.player').length>0 ) {
+  // Player disabled on index page - only load if explicitly enabled
+  if ($('.player').length>0 && $('.player').is(':visible') ) {
     loadAudio();
   };
 
@@ -374,3 +375,14 @@ $('#more-events').on( "click", function(e) {
   $(this).hide();
   return false;
 })
+
+/*----------------------------------------------
+ARTIST CARD TOGGLE
+------------------------------------------------*/
+// Toggle .open class on artist cards when clicked
+$(function() {
+  $('.artist-card').on('click', function(e) {
+    // Toggle open class for overlay effect
+    $(this).toggleClass('open');
+  });
+});
