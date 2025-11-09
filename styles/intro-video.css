@@ -2,49 +2,58 @@
 .intro-video-wrapper {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: auto;
   overflow: hidden;
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: transparent !important;
+  display: block;
+  padding: 0;
+  margin: 0;
 }
+
 .intro-video {
   position: relative;
   z-index: 0;
   width: 100%;
   height: auto;
-  max-height: 100vh;
-  object-fit: cover;
-  background: transparent;
-}
-.intro-video-desktop { display: block; }
-.intro-video-mobile { display: none; }
-@media (max-width: 768px) {
-  .intro-video-desktop { display: none; }
-  .intro-video-mobile { display: block; }
-  .intro-video-wrapper { height: 55vh; }
-}
-.intro-video-overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  z-index: 1; pointer-events: none;
-}
-.intro-video-overlay .carousel-caption { position: relative; transform: none; }
-.intro-video-overlay .primary-title {
-  color: #fff;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  max-height: 70vh;
+  object-fit: contain !important;
+  background: transparent !important;
+  display: block;
+  margin: 0 auto;
 }
 
-/* Optional hero overlay for site-wide shading */
-.hero .overlay {
-  background: rgba(0,0,0,0.45);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
+.intro-video-desktop { 
+  display: block; 
+}
+
+.intro-video-mobile { 
+  display: none; 
+}
+
+@media (max-width: 768px) {
+  .intro-video-desktop { 
+    display: none; 
+  }
+  .intro-video-mobile { 
+    display: block; 
+  }
+  .intro-video {
+    max-height: 50vh;
+  }
+}
+
+/* Hide overlay completely */
+.intro-video-overlay {
+  display: none !important;
+}
+
+/* Remove any potential black backgrounds */
+.intro.full-width,
+.intro.jIntro,
+section.intro {
+  background: transparent !important;
+  background-color: var(--rokko-sand) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: auto !important;
 }
