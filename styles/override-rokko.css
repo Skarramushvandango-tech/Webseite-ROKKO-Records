@@ -72,6 +72,28 @@ body {
   padding-top: 56px !important; /* ausreichend Platz für den Header */
   background-color: var(--rokko-sand) !important;
 }
+
+/* Force sand background on all sections and pages */
+section,
+.section,
+.intro,
+.intro-mini,
+.artist-detail,
+.discography,
+.section.discography,
+.player-album {
+  background-color: var(--rokko-sand) !important;
+}
+
+/* Ensure text is black on sand backgrounds */
+body,
+.section p,
+.artist-bio p,
+.cousine,
+.album-title,
+.artist-name {
+  color: var(--rokko-dark) !important;
+}
 @media (min-width: 1200px) {
   body { padding-top: 64px !important; }
 }
@@ -294,4 +316,179 @@ title { color: var(--rokko-accent) !important; }
     height: auto;
     border-radius: 8px;
   }
+}
+
+/* --- New Artist Page Layout --- */
+/* Artist photo header at top */
+.artist-photo-header {
+  margin: 40px 0 20px;
+}
+
+.artist-main-photo {
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 768px) {
+  .artist-main-photo {
+    max-width: 100%;
+  }
+}
+
+/* Divider styling */
+.divider-section {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.section-divider {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  opacity: 0.7;
+}
+
+/* Artist bio centered */
+.artist-bio {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: left;
+}
+
+.artist-bio .title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Streaming links centered */
+.streaming-links {
+  margin: 40px 0;
+  padding: 20px;
+}
+
+.streaming-links .title {
+  margin-bottom: 20px;
+}
+
+.streaming-link {
+  display: inline-block;
+  margin: 10px 15px;
+  padding: 10px 20px;
+  background: var(--rokko-dark);
+  color: var(--rokko-sand) !important;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.streaming-link:hover {
+  background: var(--rokko-orange);
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Album cover section */
+.artist-album-cover {
+  margin: 40px 0;
+  padding: 20px;
+}
+
+.album-cover-img {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.album-cover-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+}
+
+.album-title {
+  margin-top: 15px;
+  font-size: 18px;
+  color: var(--rokko-dark) !important;
+}
+
+.artist-name {
+  font-size: 16px;
+  color: var(--rokko-dark) !important;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .album-cover-img {
+    max-width: 300px;
+  }
+}
+
+/* --- Contact Form Styling --- */
+.contact-form-section {
+  background-color: var(--rokko-sand) !important;
+  padding: 40px 0;
+}
+
+.contact-form-section form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-form-section label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--rokko-dark);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.contact-form-section input[type="text"],
+.contact-form-section input[type="email"],
+.contact-form-section textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 2px solid var(--rokko-dark);
+  background-color: #fff;
+  color: var(--rokko-dark);
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.contact-form-section input[type="text"]:focus,
+.contact-form-section input[type="email"]:focus,
+.contact-form-section textarea:focus {
+  outline: none;
+  border-color: var(--rokko-orange);
+}
+
+.contact-form-section textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-submit {
+  background-color: var(--rokko-dark) !important;
+  color: var(--rokko-sand) !important;
+  border: none !important;
+  padding: 12px 40px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-submit:hover {
+  background-color: var(--rokko-orange) !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
