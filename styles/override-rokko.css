@@ -1,957 +1,134 @@
-/* ===== HEADER AND NAVIGATION ===== */
-/* Logo sizing - responsive with max-width approach */
-.site-logo {
-  max-width: 180px;
-  height: auto;
-  object-fit: contain;
-  display: inline-block;
+/* Override / Ergänzungen für ROKKO-Layout - reduziert Abstände, entfernt Foto-Schatten,
+   stellt Header-Höhe wieder her, Desktop-Rahmen, trenner-Regel, versteckt Subscribe-Block */
+
+:root{
+  --rokko-brown: #201613; /* dunkles Braun, an Header angelehnt */
+  --main-width: 1000px; /* Breite der Inhalte auf Desktop (zentriert) */
+  --content-bg: #e6cfab; /* beiges Content-Hintergrund (falls gebraucht) */
+  --artist-img-max: 520px;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .site-logo {
-    max-width: 140px;
-  }
+/* --- globale Abstände reduzieren --- */
+*{box-sizing:border-box}
+body, html {
+  margin:0;
+  padding:0;
+  line-height:1.15;
+  background: var(--content-bg);
+  color:#111;
+  -webkit-font-smoothing:antialiased;
 }
 
-@media (max-width: 480px) {
-  .site-logo {
-    max-width: 120px;
-  }
+/* Enge Ränder für Sections */
+section, .container, main {
+  padding-top: 18px !important;
+  padding-bottom: 18px !important;
 }
 
-/* Logo override: erzwingt kleine Darstellung in allen Headern */
-header .navbar-brand img {
-  max-height: 40px !important;
+/* Headline-Abstände kleiner */
+h1,h2,h3 { margin-top: 0.35rem; margin-bottom: 0.35rem; }
+
+/* --- Header: zurück zur natürlichen Höhe (nicht fixed/overlay) --- */
+header.site-header, .topbar, #header {
+  position: relative !important;
   height: auto !important;
-  width: auto !important;
+  padding: 12px 0 !important;
+  background: var(--rokko-brown) !important;
+  z-index: 10;
+  box-shadow: none;
+}
+
+/* Menü inline mit Logo - reduziert Platz */
+.site-header .logo, .site-header nav {
   display: inline-block;
+  vertical-align: middle;
 }
+.site-header nav { margin-left: 24px; }
 
-/* etwas kleiner auf sehr schmalen Bildschirmen */
-@media (max-width: 420px) {
-  header .navbar-brand img {
-    max-height: 32px !important;
-  }
+/* Welcome-Button: ist sichtbar auf allen Seiten (kann per page-class auf index aufgehoben werden) */
+.btn-welcome { 
+  display:inline-block;
+  margin-left:16px;
+  padding:6px 12px;
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.07);
+  color:#d9af6b;
+  font-weight:600;
 }
 
-/* Remove burger menu and display navigation inline */
-.navbar-toggle {
-  display: none !important;
+/* --- Artist-Foto: kein Shadow, kompakter Rahmen --- */
+.artist-card img, .artist-photo {
+  box-shadow: none !important;
+  border-radius: 10px;
+  max-width: var(--artist-img-max);
+  width:100%;
+  display:block;
 }
 
-.navbar-nav-wrapper {
-  float: right;
-}
-
-.navbar-nav {
-  display: flex !important;
-  flex-direction: row !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.navbar-nav > li {
-  float: left;
-  display: inline-block;
-}
-
-.navbar-nav > li > a {
-  color: var(--rokko-sand) !important;
-  padding: 12px 15px !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.navbar-nav > li > a:hover,
-.navbar-nav > li.active > a {
-  color: var(--rokko-orange) !important;
-}
-
-@media (max-width: 991px) {
-  .navbar-nav {
-    flex-wrap: wrap;
-  }
-  
-  .navbar-nav > li > a {
-    font-size: 12px !important;
-    padding: 10px 8px !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar-nav > li > a {
-    font-size: 11px !important;
-    padding: 8px 6px !important;
-  }
-}
-
-/* ===== INTRO VIDEO SECTION ===== */
-/* Remove black background and overlay from intro video */
-.intro-video-wrapper {
-  background-color: transparent !important;
-  background: transparent !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  height: auto !important;
-  min-height: 0 !important;
-}
-
-.intro.full-width.jIntro {
-  background-color: var(--rokko-sand) !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  min-height: 0 !important;
-}
-
-.intro-video {
-  width: 100%;
-  height: auto;
-  display: block;
-  background: transparent !important;
-  object-fit: contain !important;
-  max-height: 70vh;
-}
-
-/* Remove overlay completely */
-.intro-video-overlay {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* ===== ROKKO SLOGAN ===== */
-.rokko-slogan {
-  background-color: var(--rokko-sand) !important;
-  padding: 40px 0 60px !important;
-  text-align: center;
-}
-
-.slogan-text {
-  font-size: 48px !important;
-  font-weight: 900 !important;
-  color: var(--rokko-dark) !important;
-  line-height: 1.3 !important;
-  letter-spacing: 2px !important;
-  text-transform: none !important;
-  margin: 0 !important;
-}
-
-@media (max-width: 768px) {
-  .slogan-text {
-    font-size: 32px !important;
-    letter-spacing: 1px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .slogan-text {
-    font-size: 24px !important;
-  }
-}
-
-/* Header immer sichtbar, fixes Verhalten, kleine Höhe */
-header {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 99999;
-  background: rgba(10,10,10,0.90) !important;
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-}
-
-/* Navbar klein halten */
-header .navbar {
-  min-height: 48px !important;
-  padding: 6px 0 !important;
-}
-
-/* Brand-Box: weniger Padding, damit das Logo klein bleibt */
-header .navbar-brand {
-  padding: 6px 12px !important;
-  height: auto !important;
-}
-
-/* Sicherstellen, dass Seiteninhalt nicht unter dem fixierten Header verschwindet */
-body {
-  padding-top: 56px !important; /* ausreichend Platz für den Header */
-  background-color: var(--rokko-sand) !important;
-}
-
-/* Force sand background on all sections and pages */
-section,
-.section,
-.intro,
-.intro-mini,
-.intro.full-width,
-.jIntro,
-.artist-detail,
-.discography,
-.section.discography,
-.player-album,
-.featured-artists,
-.stay-in-touch {
-  background-color: var(--rokko-sand) !important;
-}
-
-/* Specifically target the intro video wrapper to ensure no black background */
-.intro-video-wrapper,
-.intro-fullscreen {
-  background-color: transparent !important;
-}
-
-/* Ensure page continues with sand color after video */
-.intro.full-width.jIntro {
-  background-color: var(--rokko-sand) !important;
-}
-
-/* Ensure text is black on sand backgrounds */
-body,
-.section p,
-.artist-bio p,
-.cousine,
-.album-title,
-.artist-name {
-  color: var(--rokko-dark) !important;
-}
-
-/* White text on dark/inverse backgrounds */
-.inverse-color,
-.inverse-color p,
-.inverse-color .title,
-.inverse-color .title-follow,
-.inverse-color .name,
-.inverse-color .phone,
-.inverse-color .email,
-footer {
-  color: #fff !important;
-}
-
-.inverse-color {
-  background-color: var(--rokko-dark) !important;
-}
-
-/* ===== FOOTER ===== */
-footer {
-  background-color: var(--rokko-sand) !important;
-  padding: 40px 0 20px !important;
-}
-
-footer p.copy,
-footer .menu-footer a {
-  color: var(--rokko-dark) !important;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 30px;
-}
-
-.impressum h4 {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--rokko-dark) !important;
-  margin-bottom: 10px;
-}
-
-.impressum p {
-  font-size: 14px;
-  color: var(--rokko-dark) !important;
-  margin: 5px 0;
-}
-
-.copyright {
-  text-align: right;
-}
-
-.made-with,
-.rights {
-  font-size: 14px;
-  color: var(--rokko-dark) !important;
-  margin: 5px 0;
-}
-
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .copyright {
-    text-align: center;
-  }
-}
-@media (min-width: 1200px) {
-  body { padding-top: 64px !important; }
-}
-
-/* Falls JS versucht, Header zu verstecken, erzwinge sichtbar */
-header.hidden, header.overflow, header.overflow-video {
-  position: fixed !important;
-  top: 0 !important;
-  transform: none !important;
-  opacity: 1 !important;
-}
-
-/* Kleinere Anpassung für sehr schmale Geräte */
-@media (max-width: 420px) {
-  body { padding-top: 56px !important; }
-  header .navbar { min-height: 44px !important; }
-}
-
-/* Falls ein intro-logo-Element existiert, verkleinern */
-.intro .text-overlay .logo-intro img,
-.logo-intro {
-  max-height: 36px !important;
-  height: auto !important;
-}
-
-/* ===== COLOR OVERRIDES ===== */
-/* All text should be brown (dark color) on sand background */
-body,
-p,
-h1, h2, h3, h4, h5, h6,
-.title,
-.title.small,
-.primary-title,
-.cousine,
-label,
-span,
-div {
-  color: var(--rokko-dark) !important;
-}
-
-/* Orange accents from trenner.png */
-.section-divider {
-  border-top: 3px solid var(--rokko-orange);
-  border-bottom: 3px solid var(--rokko-orange);
-  padding: 5px 0;
-}
-
-/* Add orange outline/border to key elements */
-.btn.square,
-.contact-submit,
-input[type="text"],
-input[type="email"],
-textarea {
-  border: 2px solid var(--rokko-orange) !important;
-  outline: none;
-}
-
-.btn.square:hover,
-.contact-submit:hover {
-  background-color: var(--rokko-orange) !important;
-  border-color: var(--rokko-orange) !important;
-}
-
-/* Album covers and images with orange border on hover */
-.info-album .cover,
-.album-cover-img {
-  transition: all 0.3s ease;
-}
-
-.info-album .cover:hover,
-.album-cover-img:hover {
-  box-shadow: 0 0 0 3px var(--rokko-orange);
-}
-
-/* Buttons mit Accent */
-.btn.square.inverse,
-.btn.square {
-  background: var(--rokko-accent) !important;
-  border-color: var(--rokko-accent) !important;
-  color: #fff !important;
-}
-
-/* --- Responsive Artist Name Sizing --- */
-/* Prevent artist names from overflowing on mobile */
-.primary-title {
-  font-size: 32px !important;
-  line-height: 36px !important;
-  letter-spacing: 4px !important;
-  word-break: break-word;
-  hyphens: auto;
-}
-
-@media (min-width: 480px) {
-  .primary-title {
-    font-size: 40px !important;
-    line-height: 44px !important;
-    letter-spacing: 6px !important;
-  }
-}
-
-@media (min-width: 768px) {
-  .primary-title {
-    font-size: 60px !important;
-    line-height: 64px !important;
-    letter-spacing: 10px !important;
-  }
-}
-
-@media (min-width: 992px) {
-  .primary-title {
-    font-size: 80px !important;
-    line-height: 84px !important;
-    letter-spacing: 15px !important;
-  }
-}
-
-@media (min-width: 1200px) {
-  .primary-title {
-    font-size: 100px !important;
-    line-height: 90px !important;
-    letter-spacing: 20px !important;
-  }
-}
-
-/* --- Remove Black Bar Above Artist Photos --- */
-/* Remove unnecessary spacing on artist pages */
-.artist-detail .voffset70 {
-  display: none !important;
-}
-
-/* Add top padding to artist detail section to account for fixed header */
-.artist-detail {
-  padding-top: 80px !important;
-}
-
-@media (max-width: 768px) {
-  .artist-detail {
-    padding-top: 70px !important;
-  }
-}
-
-/* Reduce top margin on intro-mini sections for artist pages */
-.intro.intro-mini .text-center {
-  margin-top: 120px !important;
-  margin-bottom: 40px !important;
-}
-
-@media (max-width: 768px) {
-  .intro.intro-mini .text-center {
-    margin-top: 80px !important;
-    margin-bottom: 30px !important;
-  }
-}
-
-/* --- Fix Burger Menu --- */
-/* Make burger menu overlay instead of pushing content */
-.navbar-collapse.collapse {
-  position: relative;
-}
-
-@media (max-width: 991px) {
-  .navbar-collapse {
-    position: fixed !important;
-    top: 56px !important;
-    left: 0;
-    right: 0;
-    max-height: calc(100vh - 56px) !important;
-    overflow-y: auto !important;
-    background: rgba(10,10,10,0.98) !important;
-    z-index: 9999 !important;
-    border-top: 1px solid rgba(222,193,145,0.3);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-  }
-  
-  .navbar-collapse.in,
-  .navbar-collapse.collapsing {
-    display: block !important;
-  }
-  
-  .navbar-collapse:not(.in) {
-    display: none !important;
-  }
-}
-
-/* --- Album Cover Styling for Artist Pages --- */
-.artist-album-cover {
-  text-align: center;
-  margin: 40px 0;
-}
-
-.artist-album-cover a {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.artist-album-cover a:hover {
-  transform: scale(1.05);
-}
+/* Abstand unter dem Artist Bild verringern */
+.artist-card, .artist-wrapper { margin-bottom: 12px !important; padding-bottom: 6px !important; }
 
-.artist-album-cover a:hover .album-cover-img {
-  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+/* Trenner halb so lang wie das Artist-Bild: klassisch mit img src=images/trenner.png */
+.trenner {
+  display:block;
+  width:50%;
+  max-width: calc(var(--artist-img-max) / 2);
+  margin: 8px 0 12px 0;
 }
 
-.artist-album-cover p {
-  margin-top: 15px;
-  font-size: 14px;
-  color: var(--rokko-dark);
-  font-style: italic;
-}
-
-/* --- Two Column Layout for Artist Pages --- */
-/* Desktop: Biography on left, Photo on right */
-@media (min-width: 992px) {
-  .artist-detail .artist-photo {
-    position: sticky;
-    top: 100px;
-  }
-  
-  .artist-detail .artist-photo img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  }
-}
-
-/* Mobile: Stack photo on top, content below */
-@media (max-width: 991px) {
-  .artist-detail .artist-photo {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .artist-detail .artist-photo img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-}
-
-/* --- New Artist Page Layout --- */
-/* Artist photo header at top */
-.artist-photo-header {
-  margin: 40px 0 20px;
-}
-
-.artist-main-photo {
-  max-width: 600px;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-@media (max-width: 768px) {
-  .artist-main-photo {
-    max-width: 100%;
-  }
-}
-
-/* Ensure album covers have same max-width as artist photos */
-.album-cover-img {
-  max-width: 600px;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Divider styling */
-.divider-section {
-  margin: 30px 0;
-  text-align: center;
-}
-
-.section-divider {
-  width: 100%;
-  max-width: 800px;
-  height: auto;
-  opacity: 0.7;
-}
-
-/* Artist bio centered */
-.artist-bio {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: left;
-}
-
-.artist-bio .title {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* Streaming links centered */
-.streaming-links {
-  margin: 40px 0;
-  padding: 20px;
-}
-
-.streaming-links .title {
-  margin-bottom: 20px;
-}
-
-.streaming-link {
-  display: inline-block;
-  margin: 10px 15px;
-  padding: 10px 20px;
-  background: var(--rokko-dark);
-  color: var(--rokko-sand) !important;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.streaming-link:hover {
-  background: var(--rokko-orange);
-  color: #fff !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-/* Album cover section */
-.artist-album-cover {
-  margin: 40px 0;
-  padding: 20px;
-}
-
-.album-title {
-  margin-top: 15px;
-  font-size: 18px;
-  color: var(--rokko-dark) !important;
-  font-weight: bold;
-}
-
-.artist-name {
-  font-size: 16px;
-  color: var(--rokko-dark) !important;
-  font-style: italic;
-  margin-top: 5px;
-}
-
-/* --- Contact Form Styling --- */
-.contact-form-section {
-  background-color: var(--rokko-sand) !important;
-  padding: 40px 0;
-}
-
-.contact-form-section form {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.contact-form-section label {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--rokko-dark);
-  font-weight: 500;
-  font-size: 14px;
-}
-
-.contact-form-section input[type="text"],
-.contact-form-section input[type="email"],
-.contact-form-section textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 20px;
-  border: 2px solid var(--rokko-dark);
-  background-color: #fff;
-  color: var(--rokko-dark);
-  border-radius: 4px;
-  font-size: 16px;
-  transition: border-color 0.3s ease;
-}
-
-.contact-form-section input[type="text"]:focus,
-.contact-form-section input[type="email"]:focus,
-.contact-form-section textarea:focus {
-  outline: none;
-  border-color: var(--rokko-orange);
-}
-
-.contact-form-section textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-.contact-submit {
-  background-color: var(--rokko-dark) !important;
-  color: var(--rokko-sand) !important;
-  border: none !important;
-  padding: 12px 40px !important;
-  font-size: 16px !important;
-  font-weight: 600 !important;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.contact-submit:hover {
-  background-color: var(--rokko-orange) !important;
-  color: #fff !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-/* ===== MOBILE SCROLLING FIX ===== */
-/* Prevent horizontal wobble on mobile */
-html,
-body {
-  overflow-x: hidden !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  position: relative;
-}
-
-body {
-  overscroll-behavior-x: none !important;
-}
-
-/* Ensure all containers don't exceed viewport width */
-.container,
-.container-fluid,
-.row,
-section,
-.section {
-  max-width: 100% !important;
-  overflow-x: hidden !important;
-}
-
-/* Fix Carousel Scroll Behavior */
-/* Prevent vertical scrolling when swiping carousel horizontally */
-.js-flickity {
-  touch-action: pan-x !important;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  max-width: 100% !important;
-}
-
-.flickity-viewport {
-  touch-action: pan-x !important;
-  overflow-x: scroll !important;
-  overflow-y: hidden !important;
-  max-width: 100% !important;
-}
-
-.flickity-enabled {
-  position: relative;
-  touch-action: pan-x !important;
-  max-width: 100% !important;
-}
-
-.flickity-enabled:focus {
-  outline: none;
-}
-
-/* Snap scrolling for better UX */
-.carousel-discography .gallery-cell {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-/* Prevent page scroll during carousel interaction on mobile */
-.carousel-discography,
-.featured-artists .js-flickity {
-  overscroll-behavior-x: contain;
-  overscroll-behavior-y: none;
-  max-width: 100% !important;
-}
-
-/* Ensure carousel containers don't cause page height changes */
-.featured-artists,
-.section.discography {
-  overflow-x: hidden;
-  overflow-y: visible;
-  max-width: 100% !important;
-}
-
-/* Make artist cards scroll horizontally properly */
-.featured-artists .js-flickity {
-  width: 100% !important;
-  overflow: hidden !important;
-}
-
-/* --- Streaming Links in Disc Pages --- */
-.streaming-links-disc h4 {
-  color: var(--rokko-sand);
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.streaming-links-disc p {
-  margin: 8px 0;
-}
-
-.streaming-links-disc a {
-  color: var(--rokko-sand) !important;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.streaming-links-disc a:hover {
-  color: var(--rokko-orange) !important;
-}
-
-.streaming-links-disc i {
-  margin-right: 8px;
-}
-
-/* ===== ARTIST PAGE DISCOGRAPHY LIST ===== */
-.artist-discography-list {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.artist-discography-list .title.small {
-  text-align: center;
-  margin-bottom: 30px;
-  color: var(--rokko-dark) !important;
-}
+/* Biografie linksbündig, kompakter Textfluss */
+.artist-bio { text-align:left; margin: 6px 0 18px 0; line-height:1.45; }
 
-.disc-item {
-  margin-bottom: 30px;
-  padding-bottom: 30px;
-  border-bottom: 2px solid var(--rokko-orange);
-}
-
-.disc-item:last-child {
-  border-bottom: none;
-}
-
-.disc-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  padding: 15px;
-  border-radius: 8px;
-}
-
-.disc-link:hover {
-  background-color: rgba(222, 193, 145, 0.3);
-  transform: translateX(10px);
-}
-
-.disc-cover-small {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-}
-
-.disc-link:hover .disc-cover-small {
-  box-shadow: 0 6px 12px rgba(219, 119, 11, 0.4);
-}
-
-.disc-info {
-  margin-left: 20px;
-  flex-grow: 1;
-}
-
-.disc-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--rokko-dark) !important;
-  margin-bottom: 5px;
-}
+/* Diskographie-Section: Cover verkleinert; dropdown-Stil */
+.disco-cover-small { width: 180px; height: auto; cursor:pointer; border-radius:6px; }
+.disco-dropdown { max-height:0; overflow:hidden; transition: max-height 0.35s ease; }
+.disco-dropdown.open { max-height: 900px; /* ausreichend für Cover + players */ }
+.disco-cover-large { width: 320px; display:block; margin: 12px 0; }
+.disco-links { margin-top:8px; display:flex; gap:8px; }
+.disco-links a { color:var(--rokko-brown); text-decoration:none; padding:6px 10px; background:#f3e2c9; border-radius:4px; }
 
-.disc-artist {
-  font-size: 16px;
-  color: var(--rokko-dark) !important;
-  font-style: italic;
-  margin-bottom: 5px;
-}
-
-.disc-type {
-  font-size: 14px;
-  color: var(--rokko-orange) !important;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-@media (max-width: 768px) {
-  .disc-link {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .disc-cover-small {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 15px;
-  }
-  
-  .disc-info {
-    margin-left: 0;
-  }
-}
-
-/* ===== REDUCE SPACING SITE-WIDE ===== */
-/* Reduce vertical offsets for tighter layout */
-.voffset140 {
-  height: 70px !important;
-}
+/* Player-Liste untereinander */
+.track-player { margin:8px 0; }
 
-.voffset100 {
-  height: 50px !important;
-}
+/* Schließe dropdown beim erneutem Klick handled in JS */
 
-.voffset90 {
-  height: 40px !important;
-}
+/* --- Social Media Buttons: YouTube Button style --- */
+.social-button { display:flex; align-items:center; gap:10px; padding:8px 12px; background:var(--rokko-brown); color:#fff; border-radius:6px; text-decoration:none; }
+.social-button img.icon { width:22px; height:22px; }
 
-.voffset80 {
-  height: 40px !important;
-}
+/* --- Hide Subscribe Block und Get Started Button --- */
+.subscribe-block, .subscribe-text, .get-started, .newsletter-form { display:none !important; }
 
-.voffset70 {
-  height: 35px !important;
+/* --- Mobile: weiter Abstände verringern --- */
+@media (max-width:900px){
+  :root{ --artist-img-max: 420px; }
+  header.site-header { padding:10px 8px !important; }
+  .site-header nav { margin-left:12px; }
+  .trenner { width:50%; max-width:210px; }
 }
 
-.voffset40 {
-  height: 20px !important;
+/* --- Desktop: Seitenränder in dunkelbraun, Content zentriert und schmaler --- */
+@media (min-width:1100px){
+  body { background: #201613; }
+  .site-shell { max-width: var(--main-width); margin: 0 auto; background: var(--content-bg); box-shadow:none; }
+  /* linke und rechte Rahmenbereiche */
+  .side-frame { position:fixed; top:0; bottom:0; width: calc((100% - var(--main-width))/2); background: var(--rokko-brown); z-index:5; }
+  .side-frame.left { left:0; }
+  .side-frame.right { right:0; }
 }
 
-/* Reduce spacing in disc player sections */
-.player-album .container {
-  padding-top: 20px !important;
-  padding-bottom: 20px !important;
-}
+/* --- kleine optische Fixes --- */
+r.section-divider { margin:8px 0; border:none; height:3px; background:#c98a6d; }
 
-.disc-tracklist {
-  margin-top: 0 !important;
-}
+/* ensure header doesn't overlay video intro (if intro video exists) */
+.intro-video, .intro-slider { margin-top:0 !important; }
+.video-wrap { position:relative; z-index:1; }
 
-.info-album {
-  margin-bottom: 20px !important;
-}
+/* remove heavy shadows on boxes that look like cards */
+.card, .box, .artist-frame { box-shadow: none !important; border: 2px solid rgba(0,0,0,0.06); }
 
-/* Tighten up featured artists section */
-.featured-artists {
-  padding-top: 40px !important;
-  padding-bottom: 40px !important;
-}
+/* Ensure text-buttons align inline with logo if markup present */
+.nav-text-buttons { display:inline-flex; gap:14px; align-items:center; }
 
-.section {
-  padding-top: 30px !important;
-  padding-bottom: 30px !important;
-}
+/* ensure welcome is visible on non-home pages - use body.page-welcome to hide on home if needed */
+body.home .btn-welcome { display:none !important; }
