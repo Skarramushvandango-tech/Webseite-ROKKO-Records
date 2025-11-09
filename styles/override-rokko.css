@@ -173,6 +173,17 @@ title { color: var(--rokko-accent) !important; }
   display: none !important;
 }
 
+/* Add top padding to artist detail section to account for fixed header */
+.artist-detail {
+  padding-top: 80px !important;
+}
+
+@media (max-width: 768px) {
+  .artist-detail {
+    padding-top: 70px !important;
+  }
+}
+
 /* Reduce top margin on intro-mini sections for artist pages */
 .intro.intro-mini .text-center {
   margin-top: 120px !important;
