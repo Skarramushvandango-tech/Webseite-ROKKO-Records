@@ -16,11 +16,11 @@
 
   <!-- Header -->
   <header class="site-header">
-    <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 10px; height: 100%;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 20px; padding: 0 10px; height: 100%;">
       <div class="logo" style="display: inline-block;">
         <a href="index.html"><img src="images/logo.png" alt="ROKKO" style="height: 44px;"></a>
       </div>
-      <div class="header-text" style="display: inline-block; margin-left: auto; color: #d9af6b; font-weight: 700; font-size: 1.1em;">
+      <div class="header-text" style="display: inline-block; color: #d9af6b; font-weight: 700; font-size: 1.1em;">
         Wir sind ROKKO!
       </div>
     </div>
@@ -33,14 +33,14 @@
         <source src="images/intro_movie.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
-      <button id="muteButton" style="position: absolute; bottom: 15px; right: 15px; padding: 8px 16px; background: rgba(32, 22, 19, 0.85); color: #d9af6b; border: 2px solid #d9af6b; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 0.9em; z-index: 10;">
+      <button id="muteButton" style="position: absolute; bottom: 10px; right: 10px; padding: 4px 8px; background: rgba(32, 22, 19, 0.85); color: #d9af6b; border: 1px solid #d9af6b; border-radius: 3px; cursor: pointer; font-weight: 600; font-size: 0.7em; z-index: 10;">
         UNMUTE
       </button>
     </section>
 
     <!-- Welcome Text Section -->
     <section class="welcome-text" style="padding: 40px 18px; text-align: center; background: var(--content-bg);">
-      <h1 style="margin-bottom: 20px; color: var(--rokko-brown);">Willkommen bei ROKKO Records</h1>
+      <h1 style="margin-bottom: 20px; color: var(--rokko-brown); font-size: 1.5em;">Willkommen bei ROKKO Records</h1>
       <p style="max-width: 800px; margin: 0 auto; line-height: 1.6; font-size: 1.1em;">
         Entdecke unsere einzigartigen Künstler und ihre Musik. ROKKO Records steht für Qualität, Kreativität und Innovation in der Musikproduktion. 
         Tauche ein in die Welt unserer Artists und erlebe ihre musikalische Vielfalt.
@@ -53,7 +53,7 @@
 
         <!-- Artists Section with Carousel -->
     <section class="artists-section" style="padding: 20px 18px; background: var(--content-bg);">
-      <h2 style="text-align: center; margin-bottom: 30px; color: var(--rokko-brown);">Unsere Artists</h2>
+      <h2 style="text-align: center; margin-bottom: 30px; color: var(--rokko-brown); font-size: 2.5em; font-weight: 700;">ROKKO! Artists</h2>
 
       <!-- Artist Carousel -->
       <div class="artist-carousel" style="margin-bottom: 30px;">
@@ -340,6 +340,30 @@
         <button class="page-btn" data-page="2" style="padding: 8px 12px; margin: 0 5px; background: #f3e2c9; color: var(--rokko-brown); border: 1px solid #d9af6b; border-radius: 4px; cursor: pointer; font-weight: 600;">2</button>
         <button class="page-btn" data-page="3" style="padding: 8px 12px; margin: 0 5px; background: #f3e2c9; color: var(--rokko-brown); border: 1px solid #d9af6b; border-radius: 4px; cursor: pointer; font-weight: 600;">3</button>
         <button class="page-btn" data-page="4" style="padding: 8px 12px; margin: 0 5px; background: #f3e2c9; color: var(--rokko-brown); border: 1px solid #d9af6b; border-radius: 4px; cursor: pointer; font-weight: 600;">4</button>
+      </div>
+    </section>
+
+    <div style="text-align: center; padding: 12px 0;">
+      <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px;">
+    </div>
+
+    <!-- Merch Shop Section -->
+    <section class="merch-section" style="padding: 40px 18px; background: var(--content-bg);">
+      <h2 style="text-align: center; margin-bottom: 30px; color: var(--rokko-brown); font-size: 2.5em; font-weight: 700;">ROKKO! MERCH</h2>
+      
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <div id="myShop">
+          <a href="https://rokko-records.myspreadshop.de">rokko-records</a>
+        </div>
+        <script>
+          var spread_shop_config = {
+            shopName: 'rokko-records',
+            locale: 'de_DE',
+            prefix: 'https://rokko-records.myspreadshop.de',
+            baseId: 'myShop'
+          };
+        </script>
+        <script type="text/javascript" src="https://rokko-records.myspreadshop.de/shopfiles/shopclient/shopclient.nocache.js"></script>
       </div>
     </section>
 

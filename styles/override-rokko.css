@@ -36,11 +36,19 @@ h1,h2,h3 { margin-top: 0.2rem; margin-bottom: 0.2rem; }
 p { margin: 0.3rem 0; }
 
 /* Intro video should not have any top margin or padding */
+/* Position it directly under the fixed header */
 .intro-video { 
   margin: 0 !important; 
-  padding: 0 !important; 
+  padding: 0 !important;
+  position: relative;
+  top: 0;
 }
-.intro-video video { margin: 0; padding: 0; display: block; }
+.intro-video video { 
+  margin: 0; 
+  padding: 0; 
+  display: block;
+  border: none;
+}
 
 /* --- Header: fixed position, stays at top while scrolling --- */
 /* Schmaler Balken, der oben klebt */
@@ -51,31 +59,42 @@ header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default
   right: 0 !important;
   width: 100% !important;
   height: auto !important;
-  min-height: 60px !important;
-  max-height: 60px !important;
-  padding: 8px 0 !important;
+  min-height: 45px !important;
+  max-height: 45px !important;
+  padding: 5px 0 !important;
   background: var(--rokko-brown) !important;
   z-index: 1000 !important;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   margin: 0 !important;
+  overflow: visible !important; /* Allow logo to overflow */
+}
+
+/* Ensure header container allows overflow for logo */
+header > div, header.site-header > div {
   overflow: visible !important;
 }
 
 /* Force header container to be compact */
 header > div, header.site-header > div {
   height: 100% !important;
-  max-height: 60px !important;
+  max-height: 45px !important;
 }
 
 /* Ensure main content doesn't overlap with fixed header on index page */
+/* Remove margin so intro video sits directly under header */
 body.home main {
-  margin-top: 60px !important;
+  margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
-/* Add padding to body for fixed header on all pages */
-body {
-  padding-top: 60px !important;
+/* Add padding to body for fixed header on all pages except home */
+body:not(.home) {
+  padding-top: 45px !important;
+}
+
+/* Home page: no padding, video goes directly under header */
+body.home {
+  padding-top: 45px !important;
 }
 
 /* Override any absolute positioning from main.css */
@@ -101,18 +120,20 @@ body {
 .navbar-nav-wrapper { display: inline-block; float: none !important; }
 .navbar-nav { margin: 0 !important; }
 
-/* Logo im Header - allow larger size and extend down */
+/* Logo im Header - allow larger size and extend beyond header bounds */
 .site-header .logo {
   position: relative;
   z-index: 1001;
+  overflow: visible !important;
 }
 
 .site-header .logo img, .navbar-brand img, header img {
-  max-height: 80px !important;
-  height: 80px !important;
+  max-height: 100px !important;
+  height: 100px !important;
   width: auto !important;
   position: relative;
-  margin-top: -10px;
+  margin-top: -25px !important; /* Allow logo to extend above header */
+  margin-bottom: -20px !important; /* Allow logo to extend below header */
 }
 
 /* Welcome-Button: ist sichtbar auf allen Seiten AUSSER Homepage */
@@ -210,22 +231,28 @@ section.inverse-color.contact .title-wrapper,
   header.site-header { padding:10px 8px !important; }
   .site-header nav { margin-left:12px; }
   .trenner { width:50%; max-width:210px; }
+  
+  /* Mobile: Reduce logo size and negative margins to prevent overflow */
+  .site-header .logo img, .navbar-brand img, header img {
+    max-height: 50px !important;
+    height: 50px !important;
+    margin-top: -5px !important;
+    margin-bottom: -5px !important;
+  }
 }
 
-/* --- Desktop: Elegante Schatten statt harter Rahmen, Content zentriert --- */
+/* --- Desktop: Simple border frames, Content zentriert --- */
 @media (min-width:1100px){
   body { 
-    background: linear-gradient(to bottom, #1a1410 0%, #0d0a08 100%);
+    background: var(--content-bg);
   }
   
   .site-shell { 
     max-width: var(--main-width); 
     margin: 0 auto; 
-    background: var(--content-bg); 
-    box-shadow: 
-      0 0 60px rgba(0, 0, 0, 0.5),
-      0 0 120px rgba(179, 41, 19, 0.15),
-      inset 0 0 0 1px rgba(179, 41, 19, 0.1);
+    background: var(--content-bg);
+    border-left: 2px solid var(--rokko-brown);
+    border-right: 2px solid var(--rokko-brown);
   }
   
   /* Header should span full width on desktop, not constrained by site-shell */
@@ -235,7 +262,7 @@ section.inverse-color.contact .title-wrapper,
     right: 0 !important;
   }
   
-  /* Alte side-frame verstecken - nicht mehr benötigt */
+  /* Hide old side-frame elements */
   .side-frame { 
     display: none;
   }
