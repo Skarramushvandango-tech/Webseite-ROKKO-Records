@@ -198,9 +198,61 @@ body.home .btn-welcome { display:none !important; }
 
 /* --- New Index Page Styles --- */
 
+/* Artist carousel styling */
+.artist-carousel {
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.artist-carousel .carousel-cell {
+  margin: 0 10px;
+}
+
+/* Flickity carousel buttons */
+.flickity-button {
+  background: rgba(32, 22, 19, 0.8);
+}
+
+.flickity-button:hover {
+  background: var(--rokko-brown);
+}
+
+.flickity-button-icon {
+  fill: #d9af6b;
+}
+
+.flickity-prev-next-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+/* Flickity dots */
+.flickity-page-dots .dot {
+  background: #d9af6b;
+  opacity: 0.4;
+}
+
+.flickity-page-dots .dot.is-selected {
+  opacity: 1;
+  background: var(--rokko-brown);
+}
+
 /* Artist dropdown styling */
 .artist-item {
   margin-bottom: 20px;
+}
+
+.artist-details {
+  display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  margin: 30px auto;
+  max-width: 900px;
+  padding: 20px;
+  background: #f3e2c9;
+  border-radius: 8px;
 }
 
 .artist-dropdown {
