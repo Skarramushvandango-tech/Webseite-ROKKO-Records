@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', function(){
   var muteBtn = document.getElementById('muteButton');
   
   if(video && muteBtn) {
-    // Start with sound
-    video.muted = false;
-    muteBtn.textContent = 'MUTE';
+    // Start muted (video starts without sound)
+    video.muted = true;
+    muteBtn.textContent = 'UNMUTE';
     
     muteBtn.addEventListener('click', function() {
       if(video.muted) {
@@ -52,25 +52,32 @@ document.addEventListener('DOMContentLoaded', function(){
       var detailsSection = document.getElementById('artist-' + artistId);
       
       if(detailsSection) {
+        var dropdown = detailsSection.querySelector('.artist-dropdown');
+        
         // Close all artist details first
         document.querySelectorAll('.artist-details').forEach(function(details){
+          var dd = details.querySelector('.artist-dropdown');
+          if(dd) {
+            dd.style.maxHeight = '0';
+          }
           details.style.display = 'none';
-          details.style.maxHeight = '0';
         });
         
-        // Open/toggle this one
-        if(detailsSection.style.display === 'block') {
-          detailsSection.style.display = 'none';
-          detailsSection.style.maxHeight = '0';
-        } else {
-          detailsSection.style.display = 'block';
-          detailsSection.style.maxHeight = detailsSection.scrollHeight + 'px';
+        // Open this one
+        detailsSection.style.display = 'block';
+        
+        // Use a timeout to ensure display:block is applied before calculating height
+        setTimeout(function() {
+          if(dropdown) {
+            // Set a very large max-height to ensure full content is visible
+            dropdown.style.maxHeight = '5000px';
+          }
           
           // Scroll to the details section smoothly
           setTimeout(function() {
             detailsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           }, 100);
-        }
+        }, 10);
       }
     });
   });
