@@ -42,12 +42,15 @@ p { margin: 0.3rem 0; }
   padding: 0 !important;
   position: relative;
   top: 0;
+  line-height: 0; /* Remove any line-height gaps */
 }
 .intro-video video { 
-  margin: 0; 
-  padding: 0; 
+  margin: 0 !important; 
+  padding: 0 !important; 
   display: block;
   border: none;
+  vertical-align: top; /* Prevent baseline gap */
+  line-height: 0; /* Remove any line-height gaps */
 }
 
 /* --- Header: fixed position, stays at top while scrolling --- */
@@ -83,6 +86,8 @@ header > div, header.site-header > div {
 /* Ensure main content doesn't overlap with fixed header on index page */
 /* Remove margin so intro video sits directly under header */
 body.home main {
+  margin: 0 !important;
+  padding: 0 !important;
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
@@ -92,9 +97,10 @@ body:not(.home) {
   padding-top: 45px !important;
 }
 
-/* Home page: no padding, video goes directly under header */
+/* Home page: header height as padding, then video directly below */
 body.home {
   padding-top: 45px !important;
+  margin: 0 !important;
 }
 
 /* Override any absolute positioning from main.css */
@@ -239,6 +245,27 @@ section.inverse-color.contact .title-wrapper,
     margin-top: -5px !important;
     margin-bottom: -5px !important;
   }
+  
+  /* Mobile: Ensure artist dropdowns can fully expand */
+  .artists-section {
+    overflow: visible !important;
+  }
+  
+  .artist-carousel,
+  .artist-carousel .flickity-viewport,
+  .artist-carousel .flickity-enabled {
+    overflow: visible !important;
+  }
+  
+  .artist-details {
+    overflow: visible !important;
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  
+  .artist-dropdown {
+    overflow: visible !important;
+  }
 }
 
 /* --- Desktop: Simple border frames, Content zentriert --- */
@@ -296,10 +323,25 @@ body.home .btn-welcome { display:none !important; }
   border: none;
   padding: 15px;
   border-radius: 8px;
+  overflow: visible !important; /* Allow dropdown to expand outside */
 }
 
 .artist-carousel .carousel-cell {
   margin: 0 10px;
+}
+
+/* Ensure artists section allows overflow for dropdowns */
+.artists-section {
+  overflow: visible !important;
+}
+
+/* Override Flickity's viewport overflow to allow dropdowns to expand */
+.artist-carousel .flickity-viewport {
+  overflow: visible !important;
+}
+
+.artist-carousel .flickity-enabled {
+  overflow: visible !important;
 }
 
 /* Flickity carousel buttons */
@@ -339,21 +381,22 @@ body.home .btn-welcome { display:none !important; }
 
 .artist-details {
   display: none;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease;
   margin: 30px auto;
   max-width: 900px;
-  padding: 20px;
-  background: #f3e2c9;
+  padding: 0;
+  background: transparent;
   border-radius: 8px;
   position: relative;
   z-index: 5;
+  overflow: visible !important; /* Allow full expansion */
 }
 
 .artist-dropdown {
   transition: max-height 0.5s ease;
-  overflow: hidden;
+  overflow: visible !important; /* Allow content to be fully visible */
+  background: #f3e2c9;
+  border-radius: 8px;
+  padding: 0 20px;
 }
 
 /* News section styling */
