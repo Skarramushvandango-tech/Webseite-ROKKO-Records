@@ -117,7 +117,8 @@ body.home .btn-welcome { display:none !important; }
 .disco-links a { color:var(--rokko-brown); text-decoration:none; padding:6px 10px; background:#f3e2c9; border-radius:4px; }
 
 /* Player-Liste untereinander */
-.track-player { margin:8px 0; }
+.track-player { margin:6px 0; }
+.track-player audio { width: 100%; max-width: 500px; }
 
 /* Schließe dropdown beim erneutem Klick handled in JS */
 
