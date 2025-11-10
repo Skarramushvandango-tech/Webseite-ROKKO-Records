@@ -351,19 +351,26 @@
     <section class="merch-section" style="padding: 40px 18px; background: var(--content-bg);">
       <h2 style="text-align: center; margin-bottom: 30px; color: var(--rokko-brown); font-size: 2.5em; font-weight: 700;">ROKKO! MERCH</h2>
       
-      <div style="max-width: 1200px; margin: 0 auto;">
-        <div id="myShop">
-          <a href="https://rokko-records.myspreadshop.de">rokko-records</a>
+      <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+        <p style="margin-bottom: 20px; line-height: 1.6;">
+          Besuche unseren offiziellen Merchandise-Shop für exklusive ROKKO Records Produkte, T-Shirts, Hoodies und mehr!
+        </p>
+        
+        <!-- Scrollable iframe container for shop preview -->
+        <div style="border: 3px solid var(--rokko-brown); border-radius: 8px; overflow: hidden; margin: 20px auto; max-width: 900px;">
+          <iframe src="https://rokko-records.myspreadshop.de" 
+                  style="width: 100%; height: 600px; border: none; display: block;"
+                  title="ROKKO Records Shop"
+                  loading="lazy">
+          </iframe>
         </div>
-        <script>
-          var spread_shop_config = {
-            shopName: 'rokko-records',
-            locale: 'de_DE',
-            prefix: 'https://rokko-records.myspreadshop.de',
-            baseId: 'myShop'
-          };
-        </script>
-        <script type="text/javascript" src="https://rokko-records.myspreadshop.de/shopfiles/shopclient/shopclient.nocache.js"></script>
+        
+        <a href="https://rokko-records.myspreadshop.de" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           style="display: inline-block; padding: 12px 24px; background: var(--rokko-brown); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 1.1em; margin-top: 10px; transition: opacity 0.2s;">
+          🛒 Zum vollständigen Shop
+        </a>
       </div>
     </section>
 

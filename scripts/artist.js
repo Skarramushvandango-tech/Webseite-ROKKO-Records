@@ -54,30 +54,43 @@ document.addEventListener('DOMContentLoaded', function(){
       if(detailsSection) {
         var dropdown = detailsSection.querySelector('.artist-dropdown');
         
+        // Check if this dropdown is already open
+        var isOpen = detailsSection.style.display === 'block' && dropdown && dropdown.style.maxHeight !== '0px';
+        
         // Close all artist details first
         document.querySelectorAll('.artist-details').forEach(function(details){
           var dd = details.querySelector('.artist-dropdown');
           if(dd) {
             dd.style.maxHeight = '0';
+            dd.style.overflow = 'hidden';
           }
           details.style.display = 'none';
         });
         
-        // Open this one
-        detailsSection.style.display = 'block';
-        
-        // Use a timeout to ensure display:block is applied before calculating height
-        setTimeout(function() {
-          if(dropdown) {
-            // Set a very large max-height to ensure full content is visible
-            dropdown.style.maxHeight = '5000px';
-          }
+        // If it wasn't open, open this one
+        if(!isOpen) {
+          detailsSection.style.display = 'block';
           
-          // Scroll to the details section smoothly
+          // Use a timeout to ensure display:block is applied before calculating height
           setTimeout(function() {
-            detailsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }, 100);
-        }, 10);
+            if(dropdown) {
+              // Calculate actual content height
+              var contentHeight = dropdown.scrollHeight;
+              // Set max-height to allow full expansion, then switch to visible overflow
+              dropdown.style.maxHeight = Math.max(contentHeight, 3000) + 'px';
+              
+              // After transition, allow overflow to be visible
+              setTimeout(function() {
+                dropdown.style.overflow = 'visible';
+              }, 500);
+            }
+            
+            // Scroll to the details section smoothly
+            setTimeout(function() {
+              detailsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+          }, 10);
+        }
       }
     });
   });
