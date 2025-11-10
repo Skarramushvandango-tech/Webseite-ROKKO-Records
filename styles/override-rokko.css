@@ -231,6 +231,14 @@ section.inverse-color.contact .title-wrapper,
   header.site-header { padding:10px 8px !important; }
   .site-header nav { margin-left:12px; }
   .trenner { width:50%; max-width:210px; }
+  
+  /* Mobile: Reduce logo size and negative margins to prevent overflow */
+  .site-header .logo img, .navbar-brand img, header img {
+    max-height: 50px !important;
+    height: 50px !important;
+    margin-top: -5px !important;
+    margin-bottom: -5px !important;
+  }
 }
 
 /* --- Desktop: Elegante Schatten statt harter Rahmen, Content zentriert --- */
