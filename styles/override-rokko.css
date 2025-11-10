@@ -228,6 +228,13 @@ section.inverse-color.contact .title-wrapper,
       inset 0 0 0 1px rgba(179, 41, 19, 0.1);
   }
   
+  /* Header should span full width on desktop, not constrained by site-shell */
+  header, header.site-header {
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+  
   /* Alte side-frame verstecken - nicht mehr benötigt */
   .side-frame { 
     display: none;
