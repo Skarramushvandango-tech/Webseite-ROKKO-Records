@@ -1,26 +1,103 @@
-// Händelt Diskografie Dropdowns und YouTube-Slider Thumbnails
+// Händelt Diskografie Dropdowns, Video Controls, News Pagination und Carousel
 document.addEventListener('DOMContentLoaded', function(){
-  // Toggle artist dropdown on index page
-  document.querySelectorAll('.artist-header').forEach(function(header){
-    header.addEventListener('click', function(){
-      var parent = header.closest('.artist-item');
-      var dropdown = parent.querySelector('.artist-dropdown');
-      
-      if(dropdown.style.maxHeight && dropdown.style.maxHeight !== '0px'){
-        // Close
-        dropdown.style.maxHeight = '0';
+  // Intro video mute/unmute control
+  var video = document.getElementById('introVideo');
+  var muteBtn = document.getElementById('muteButton');
+  
+  if(video && muteBtn) {
+    // Start with sound
+    video.muted = false;
+    muteBtn.textContent = 'MUTE';
+    
+    muteBtn.addEventListener('click', function() {
+      if(video.muted) {
+        video.muted = false;
+        muteBtn.textContent = 'MUTE';
       } else {
-        // Close all other artist dropdowns first
-        document.querySelectorAll('.artist-dropdown').forEach(function(dd){
-          dd.style.maxHeight = '0';
+        video.muted = true;
+        muteBtn.textContent = 'UNMUTE';
+      }
+    });
+  }
+
+  // Initialize Flickity carousel if element exists
+  var carouselElem = document.querySelector('.artist-carousel');
+  if(carouselElem && typeof Flickity !== 'undefined') {
+    var flkty = new Flickity(carouselElem, {
+      cellAlign: 'center',
+      contain: true,
+      wrapAround: true,
+      prevNextButtons: true,
+      pageDots: true,
+      draggable: true,
+      freeScroll: false,
+      friction: 0.6,
+      selectedAttraction: 0.1,
+      dragThreshold: 10
+    });
+
+    // Prevent page scroll when dragging carousel
+    carouselElem.addEventListener('touchstart', function() {
+      document.body.style.overflow = 'hidden';
+    });
+    carouselElem.addEventListener('touchend', function() {
+      document.body.style.overflow = '';
+    });
+  }
+
+  // Toggle artist details when clicking carousel images
+  document.querySelectorAll('.artist-header[data-artist]').forEach(function(header){
+    header.addEventListener('click', function(){
+      var artistId = this.dataset.artist;
+      var detailsSection = document.getElementById('artist-' + artistId);
+      
+      if(detailsSection) {
+        // Close all artist details first
+        document.querySelectorAll('.artist-details').forEach(function(details){
+          details.style.display = 'none';
+          details.style.maxHeight = '0';
         });
-        // Open this one
-        dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
+        
+        // Open/toggle this one
+        if(detailsSection.style.display === 'block') {
+          detailsSection.style.display = 'none';
+          detailsSection.style.maxHeight = '0';
+        } else {
+          detailsSection.style.display = 'block';
+          detailsSection.style.maxHeight = detailsSection.scrollHeight + 'px';
+          
+          // Scroll to the details section smoothly
+          setTimeout(function() {
+            detailsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 100);
+        }
       }
     });
   });
 
-  // Toggle disco dropdown
+  // Also handle old-style artist headers (for backward compatibility)
+  document.querySelectorAll('.artist-header:not([data-artist])').forEach(function(header){
+    header.addEventListener('click', function(){
+      var parent = header.closest('.artist-item');
+      var dropdown = parent.querySelector('.artist-dropdown');
+      
+      if(dropdown) {
+        if(dropdown.style.maxHeight && dropdown.style.maxHeight !== '0px'){
+          // Close
+          dropdown.style.maxHeight = '0';
+        } else {
+          // Close all other artist dropdowns first
+          document.querySelectorAll('.artist-dropdown').forEach(function(dd){
+            dd.style.maxHeight = '0';
+          });
+          // Open this one
+          dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
+        }
+      }
+    });
+  });
+
+  // Toggle disco dropdown - shows songs directly without nested large cover
   document.querySelectorAll('.disco-cover-small').forEach(function(el){
     el.addEventListener('click', function(e){
       e.stopPropagation(); // Prevent parent click
@@ -31,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function(){
         // Close
         dd.style.maxHeight = '0';
       } else {
-        // Close other open dropdowns in same artist section (optional)
+        // Close other open dropdowns in same artist section
         var artistSection = el.closest('.artist-item, .artist-wrapper');
         if(artistSection){
           artistSection.querySelectorAll('.disco-dropdown').forEach(function(o){ 
@@ -44,13 +121,39 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
 
-  // Toggle large cover click to close
-  document.querySelectorAll('.disco-cover-large').forEach(function(el){
-    el.addEventListener('click', function(){
-      var dd = el.closest('.disco-dropdown');
-      if(dd) dd.style.maxHeight = '0';
+  // News pagination
+  var pageButtons = document.querySelectorAll('.page-btn');
+  var newsItems = document.querySelectorAll('.news-item');
+  
+  if(pageButtons.length > 0 && newsItems.length > 0) {
+    pageButtons.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var page = this.dataset.page;
+        
+        // Hide all news items
+        newsItems.forEach(function(item) {
+          item.style.display = 'none';
+        });
+        
+        // Show selected page
+        var selectedItem = document.querySelector('.news-item[data-page="' + page + '"]');
+        if(selectedItem) {
+          selectedItem.style.display = 'block';
+        }
+        
+        // Update active button
+        pageButtons.forEach(function(b) {
+          b.classList.remove('active');
+          b.style.background = '#f3e2c9';
+          b.style.color = 'var(--rokko-brown)';
+        });
+        
+        this.classList.add('active');
+        this.style.background = 'var(--rokko-brown)';
+        this.style.color = '#fff';
+      });
     });
-  });
+  }
 
   // YouTube slider: set iframe src when thumb clicked (non-API solution)
   document.querySelectorAll('.yt-slider .yt-thumb').forEach(function(thumb){
