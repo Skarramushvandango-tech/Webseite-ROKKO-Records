@@ -1,381 +1,50 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ROKKO! Records</title>
-  <meta name="description" content="">
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
-
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic|Cousine:400,700|Montserrat:300,400,800|Anton" rel="stylesheet">
-
-  <link rel="stylesheet" href="styles/vendor/bootstrap.css">
-  <link rel="stylesheet" href="styles/vendor/font-awesome.min.css">
-  <link rel="stylesheet" href="styles/vendor/superslides.css">
-  <link rel="stylesheet" href="styles/vendor/owl.carousel.css">
-  <link rel="stylesheet" href="styles/vendor/owl.transitions.css">
-  <link rel="stylesheet" href="styles/vendor/flickity.min.css">
-  <link rel="stylesheet" href="styles/vendor/swipebox.min.css">
-  <link rel="stylesheet" href="styles/vendor/TimeCircles.css">
-
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/colors/color-rokko.css?v=2">
-  <link rel="stylesheet" href="styles/override-rokko.css">
-
-  <!-- Intro Slider -->
-  <link rel="stylesheet" href="styles/intro-slider.css">
-  <link rel="stylesheet" href="styles/intro-video.css">
-  <link rel="stylesheet" href="styles/vendor/animate.min.css">
-
-  <script src="scripts/vendor/modernizr.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ROKKO — Startseite</title>
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/override-rokko.css">
+  <script defer src="/scripts/artist.js"></script>
 </head>
+<body class="home site-shell">
+  <div class="side-frame left" aria-hidden="true"></div>
+  <div class="side-frame right" aria-hidden="true"></div>
 
-<body data-spy="scroll" data-target="#navbar-muziq" data-offset="80" class="record-label paletterokko">
-  <!-- LOADER -->
-  <div id="mask">
-    <div class="spinner">
-      <div class="bounce1"></div>
-      <div class="bounce2"></div>
-      <div class="bounce3"></div>
-    </div>
-  </div>
-
-  <!-- HEADER -->
-  <header id="jHeader">
-    <nav class="navbar navbar-default " role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo" class="site-logo"></a>
-        </div>
-
-        <div class="navbar-nav-wrapper">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="index.html">WELCOME</a></li>
-            <li><a href="news.html">NEWS</a></li>
-            <li><a href="artists.html">ARTISTS</a></li>
-            <li><a href="discography.html">DISKOGRAPHIE</a></li>
-            <li><a href="contact.html">KONTAKT</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  <header class="site-header">
+    <div class="logo"><a href="/"><img src="/img/logo.png" alt="ROKKO"></a></div>
+    <nav></nav>
+    <div class="nav-text-buttons"><a class="btn-welcome" href="/welcome.html">WELCOME</a></div>
   </header>
 
-  <!-- INTRO VIDEO - directly under header -->
-  <section class="intro full-width jIntro" id="anchor00">
-    <div class="intro-video-wrapper">
-      <video id="intro-landscape" class="intro-video" autoplay loop muted playsinline preload="metadata">
-        <source src="images/intro_movie.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </section>
+  <main>
+    <!-- Intro / Video section remains -->
 
-  <!-- ROKKO SLOGAN -->
-  <section class="section rokko-slogan">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h2 class="slogan-text">Wir sind ROKKO!<br>Und Du noch nicht.</h2>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- Kommentar-Formular auf Startseite (Formsubmit) -->
+    <section id="kontakt" class="site-comment" style="padding:28px 18px;">
+      <h2>Kontakt / Kommentar</h2>
+      <p>Hinterlasse hier eine Nachricht — sie wird an email_ilgner@gmx.de gesendet.</p>
 
-  <!-- PLAYER - Removed as per requirements: no default player on index page -->
-  <!-- 
-  <div class="player horizontal" style="display: none;">
-    <div class="container">
-      <div class="info-album-player">
-        <div class="album-cover" style="background: url('artists/skaramush_vandango/cover-player.jpg') no-repeat center" id="bg-image3"></div>
-        <p class="album-title">Selection</p>
-        <p class="artist-name">Skaramush Vandango</p>
-      </div>
-      <div class="player-content">
-        <audio preload></audio>
-        <ol class="playlist">
-          <li><a href="#" data-src="mp3/vandango/01.mp3">Track 1</a></li>
-          <li><a href="#" data-src="mp3/vandango/02.mp3">Track 2</a></li>
-          <li><a href="#" data-src="mp3/vandango/03.mp3">Track 3</a></li>
-        </ol>
-        <div class="nextprev">
-          <span class="prev">prev</span>
-          <span class="next">next</span>
-        </div>
-        <span class="btnloop">loop</span>
-      </div>
-    </div>
-  </div>
-  -->
+      <form action="https://formsubmit.co/email_ilgner@gmx.de" method="POST" class="comment-form">
+        <input type="hidden" name="_subject" value="Neue Website-Nachricht (Startseite)">
+        <input type="hidden" name="_captcha" value="false">
 
-  <!-- LATEST ALBUM -->
-  <section class="section featured-artists" id="anchor01">
-    <div class="container">
-      <div class="voffset70"></div>
-      <div class="divider-section">
-        <img src="images/trenner.png" alt="" class="section-divider">
-      </div>
-      <div class="voffset40"></div>
-      <div class="title-wrapper">
-        <h2 class="title">OUR ARTISTS</h2>
-      </div>
-      <div class="voffset80"></div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="voffset20"></div>
-          <div class="js-flickity" data-flickity-options='{ "cellAlign": "left", "wrapAround": true, "contain": true, "prevNextButtons": false }'>
+        <label for="cf-name">Name</label>
+        <input id="cf-name" name="name" type="text" required>
 
-            <div class="gallery-cell col-xs-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="featured-artist">
-                <div class="image" >
-                  <img src="artists/skaramush_vandango/skaramush.png" alt="Skaramush Vandango">
-                </div>
-                <div class="rollover">
-                  <ul class="social">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                  </ul>
-                  <div class="text">
-                    <h4 class="title-artist">Skaramush <br>Vandango</h4>
-                    <p><a href="artist-skaramush-vandango.html" style="color: inherit;">View Profile</a></p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <label for="cf-email">E‑Mail</label>
+        <input id="cf-email" name="email" type="email" required>
 
-            <div class="gallery-cell col-xs-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="featured-artist">
-                <div class="image" >
-                  <img src="artists/ska_schablonski/skank.png" alt="Ska Schablonski">
-                </div>
-                <div class="rollover">
-                  <ul class="social">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                  </ul>
-                  <div class="text">
-                    <h4 class="title-artist">Ska <br>Schablonski</h4>
-                    <p><a href="artist-ska-schablonski.html" style="color: inherit;">View Profile</a></p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <label for="cf-message">Dein Kommentar</label>
+        <textarea id="cf-message" name="message" rows="6" required></textarea>
 
-            <div class="gallery-cell col-xs-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="featured-artist">
-                <div class="image" >
-                  <img src="artists/henri_bellieu/henri.png" alt="Henri Bellieu">
-                </div>
-                <div class="rollover">
-                  <ul class="social">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                  </ul>
-                  <div class="text">
-                    <h4 class="title-artist">Henri <br>Bellieu</h4>
-                    <p><a href="artist-henri-bellieu.html" style="color: inherit;">View Profile</a></p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <button type="submit" class="btn-send">Senden</button>
+      </form>
+    </section>
 
-            <div class="gallery-cell col-xs-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="featured-artist">
-                <div class="image" >
-                  <img src="artists/fleuretbeunie/fleurbeunie.png" alt="Fleuret Beunie">
-                </div>
-                <div class="rollover">
-                  <ul class="social">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                  </ul>
-                  <div class="text">
-                    <h4 class="title-artist">Fleuret <br>Beunie</h4>
-                    <p><a href="artist-fleuret-beunie.html" style="color: inherit;">View Profile</a></p>
-                  </div>
-                </div>
-              </div>
-            </div>
+  </main>
 
-          </div>
-        </div>
-      </div>
-      <div class="voffset140"></div>
-    </div>
-  </section>
-
-  <!-- STAY IN TOUCH -->
-  <section class="section stay-in-touch inverse-color parallax-section" data-parallax-image="images/demo/stay-in-touch/bg-stay-in-touch.jpg" id="anchor02">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-md-6">
-          <div class="voffset190"></div>
-          <p class="titulo">Stay in<br> Touch</p>
-          <div class="voffset20"></div>
-          <p class="cousine subtitulo">Subscribe for free downloads and news updates.</p>
-          <div class="voffset30"></div>
-          <label for="stay-in-touch-email">YOUR EMAIL</label>
-          <form class="" action="index.html" method="post">
-            <div class="row">
-              <div class="col-xs-12 col-sm-8">
-                <input  id="stay-in-touch-email" type="text" name="stay-in-touch-email" value="">
-              </div>
-              <div class="col-xs-12 col-sm-4">
-                <input class="btn square stay-in-touch-submit" type="submit" name="button" value="GET STARTED">
-              </div>
-            </div>
-          </form>
-          <div class="voffset190"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DISCOGRAPHY -->
-  <section class="section discography" id="anchor03">
-    <div id="discography"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="voffset70"></div>
-          <div class="divider-section">
-            <img src="images/trenner.png" alt="" class="section-divider">
-          </div>
-          <div class="voffset40"></div>
-          <div class="title-wrapper">
-            <h2 class="title">Discography</h2>
-          </div>
-          <div class="voffset80"></div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <ul class="carousel-discography js-flickity" data-flickity-options="{&quot;cellAlign&quot;: &quot;center&quot;, &quot;wrapAround&quot;: false, &quot;contain&quot;: false, &quot;prevNextButtons&quot;: false, &quot;imagesLoaded&quot;: true}">
-          <li class="gallery-cell col-xs-12">
-
-            <div class="row">
-
-              <div class="col-xs-12 col-md-6 item-disc">
-                <div class="info-album">
-                  <div class="cover open-disc" data-url="discs/disc-01.html">
-                    <img src="artists/skaramush_vandango/cover.png" alt="Neurosis">
-                    <div class="rollover">
-                      <i class="plus"></i>
-                      <p>view album</p>
-                    </div>
-                  </div>
-                  <p class="album">Neurosis</p>
-                  <p class="artist">Skaramush Vandango</p>
-                </div>
-              </div>
-
-              <div class="col-xs-12 col-md-6 item-disc">
-                <div class="info-album">
-                  <div class="cover open-disc" data-url="discs/disc-02.html">
-                    <img src="artists/ska_schablonski/cover.png" alt="Kohle Raus">
-                    <div class="rollover">
-                      <i class="plus"></i>
-                      <p>view album</p>
-                    </div>
-                  </div>
-                  <p class="album">Kohle Raus</p>
-                  <p class="artist">Ska Schablonski</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12 col-md-6 item-disc">
-                <div class="info-album">
-                  <div class="cover open-disc" data-url="discs/disc-03.html">
-                    <img src="artists/henri_bellieu/cover.png" alt="Petite Colibri">
-                    <div class="rollover">
-                      <i class="plus"></i>
-                      <p>view album</p>
-                    </div>
-                  </div>
-                  <p class="album">Petite Colibri</p>
-                  <p class="artist">Henri Bellieu</p>
-                </div>
-              </div>
-              <div class="col-xs-12 col-md-6 item-disc">
-                <div class="info-album">
-                  <div class="cover open-disc" data-url="discs/disc-04.html">
-                    <img src="artists/fleuretbeunie/cover.png" alt="Feu Leger">
-                    <div class="rollover">
-                      <i class="plus"></i>
-                      <p>view album</p>
-                    </div>
-                  </div>
-                  <p class="album">Feu Leger</p>
-                  <p class="artist">Fleuret Beunie</p>
-                </div>
-              </div>
-            </div>
-
-          </li>
-
-          </ul>
-          <div class="voffset100"></div>
-        </div>
-      </div>
-    </div>
-    <!-- DETAILS DISCO -->
-    <div id="project-show"></div>
-    <div class="section player-album project-window">
-      <div class="project-content"></div><!-- AJAX Dinamic Content -->
-    </div>
-  </section>
-
-  <!-- rest of page unchanged -->
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="impressum">
-          <h4>Impressum</h4>
-          <p>Markus Ilgner</p>
-        </div>
-        <div class="copyright">
-          <p class="made-with">made with ❤️ im Ruhrpott</p>
-          <p class="rights">all rights reserved by MILG</p>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="scripts/vendor/jquery.js"></script>
-  <script src="scripts/vendor/jquery.superslides.min.js"></script>
-  <script src="scripts/vendor/flickity.pkgd.js"></script>
-  <script src="scripts/vendor/audio.min.js"></script>
-  <script src="scripts/vendor/twitterFetcher_min.js"></script>
-  <script src="scripts/vendor/isotope.pkgd.min.js"></script>
-  <script src="scripts/vendor/jquery.swipebox.min.js"></script>
-  <script src="scripts/vendor/TimeCircles.js"></script>
-  <script src="scripts/vendor/owl.carousel.min.js"></script>
-  <script src="scripts/vendor/jquery.parallax.min.js"></script>
-
-  <script src="scripts/discography.js"></script>
-  <script src="scripts/news.js"></script>
-  <script src="scripts/main.js"></script>
-
-  <script src="scripts/vendor/bootstrap.js"></script>
-
-  <!-- Intro Slider -->
-  <script src="scripts/intro-slider.js"></script>
-  <!-- Countdown Next Show -->
-  <script src="scripts/vendor/countdown.js"></script>
+  <footer></footer>
 </body>
 </html>
