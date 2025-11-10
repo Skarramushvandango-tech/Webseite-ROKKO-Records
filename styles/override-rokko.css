@@ -241,20 +241,18 @@ section.inverse-color.contact .title-wrapper,
   }
 }
 
-/* --- Desktop: Elegante Schatten statt harter Rahmen, Content zentriert --- */
+/* --- Desktop: Simple border frames, Content zentriert --- */
 @media (min-width:1100px){
   body { 
-    background: linear-gradient(to bottom, #1a1410 0%, #0d0a08 100%);
+    background: var(--content-bg);
   }
   
   .site-shell { 
     max-width: var(--main-width); 
     margin: 0 auto; 
-    background: var(--content-bg); 
-    box-shadow: 
-      0 0 60px rgba(0, 0, 0, 0.5),
-      0 0 120px rgba(179, 41, 19, 0.15),
-      inset 0 0 0 1px rgba(179, 41, 19, 0.1);
+    background: var(--content-bg);
+    border-left: 2px solid var(--rokko-brown);
+    border-right: 2px solid var(--rokko-brown);
   }
   
   /* Header should span full width on desktop, not constrained by site-shell */
@@ -264,7 +262,7 @@ section.inverse-color.contact .title-wrapper,
     right: 0 !important;
   }
   
-  /* Alte side-frame verstecken - nicht mehr benötigt */
+  /* Hide old side-frame elements */
   .side-frame { 
     display: none;
   }
