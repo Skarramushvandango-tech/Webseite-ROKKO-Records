@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/override-rokko.css">
   <link rel="stylesheet" href="styles/vendor/flickity.min.css">
-  <script defer src="scripts/vendor/flickity.pkgd.js"></script>
+  <script src="scripts/vendor/flickity.pkgd.js"></script>
   <script defer src="scripts/artist.js"></script>
 </head>
 <body class="home site-shell">
@@ -55,141 +55,13 @@
     <section class="artists-section" style="padding: 20px 18px; background: var(--content-bg);">
       <h2 style="text-align: center; margin-bottom: 30px; color: var(--rokko-brown);">Unsere Artists</h2>
 
-      <!-- Artist Carousel -->
-      <div class="artist-carousel" style="margin-bottom: 30px;">
-        <!-- Skaramush Vandango -->
-        <div class="carousel-cell" style="width: 100%; max-width: 400px; margin: 0 10px;">
-          <div class="artist-item">
-            <div class="artist-header" style="cursor: pointer;" data-artist="vandango">
-              <img src="artists/skaramush_vandango/skaramush.png" alt="Skaramush Vandango" 
-                   class="artist-main-image" 
-                   style="width: 100%; display: block; margin: 0 auto;">
-            </div>
-          </div>
+      <!-- Skaramush Vandango -->
+      <article class="artist-item" style="margin-bottom: 20px;">
+        <div class="artist-header" style="cursor: pointer; padding: 10px; border: 2px solid #d9af6b;">
+          <img src="artists/skaramush_vandango/skaramush.png" alt="Skaramush Vandango" 
+               class="artist-main-image" 
+               style="width: 100%; max-width: 400px; display: block; margin: 0 auto;">
         </div>
-
-        <!-- Ska Schablonski -->
-        <div class="carousel-cell" style="width: 100%; max-width: 400px; margin: 0 10px;">
-          <div class="artist-item">
-            <div class="artist-header" style="cursor: pointer;" data-artist="schablonski">
-              <img src="artists/ska_schablonski/skank.png" alt="Ska Schablonski" 
-                   class="artist-main-image" 
-                   style="width: 100%; display: block; margin: 0 auto;">
-            </div>
-          </div>
-        </div>
-
-        <!-- Henri Bellieu -->
-        <div class="carousel-cell" style="width: 100%; max-width: 400px; margin: 0 10px;">
-          <div class="artist-item">
-            <div class="artist-header" style="cursor: pointer;" data-artist="bellieu">
-              <img src="artists/henri_bellieu/henri.png" alt="Henri Bellieu" 
-                   class="artist-main-image" 
-                   style="width: 100%; display: block; margin: 0 auto;">
-            </div>
-          </div>
-        </div>
-
-        <!-- Fleuret Beunie -->
-        <div class="carousel-cell" style="width: 100%; max-width: 400px; margin: 0 10px;">
-          <div class="artist-item">
-            <div class="artist-header" style="cursor: pointer;" data-artist="beunie">
-              <img src="artists/fleuretbeunie/fleurbeunie.png" alt="Fleuret Beunie" 
-                   class="artist-main-image" 
-                   style="width: 100%; display: block; margin: 0 auto;">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Artist Dropdowns (shown below carousel when artist is clicked) -->
-      <!-- Skaramush Vandango Details -->
-      <article id="artist-vandango" class="artist-details" style="display: none; max-height: 0; overflow: hidden; transition: max-height 0.5s ease; padding: 0 10px;">
-        <div style="padding: 20px 0;">
-          <h3 style="margin-bottom: 15px;">BIOGRAFIE</h3>
-          <p style="line-height: 1.6; margin-bottom: 20px;">
-            Skaramush Vandango ist ein vielseitiger Künstler aus dem ROKKO Records Label. Mit seinem einzigartigen Stil verbindet er verschiedene Musikrichtungen zu einem unverwechselbaren Sound.
-          </p>
-          
-          <div style="text-align: center; padding: 12px 0;">
-            <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px;">
-          </div>
-
-          <h3 style="margin-bottom: 15px;">DISKOGRAPHIE</h3>
-          <div class="release" style="margin-bottom: 20px;">
-            <img class="disco-cover-small" src="mp3/vandango/cover.png" alt="Neurosis" 
-                 style="width: 180px; cursor: pointer; border-radius: 6px; margin-bottom: 10px;" />
-            <div class="disco-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
-              <div class="track-list" style="margin: 15px 0;">
-                <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/vandango/set_the_fire.m4a" style="width: 100%; max-width: 500px;">Set the Fire</audio></div>
-                <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/vandango/always_sunny.m4a" style="width: 100%; max-width: 500px;">Always Sunny</audio></div>
-                <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/vandango/borrowed_time.m4a" style="width: 100%; max-width: 500px;">Borrowed Time</audio></div>
-                <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/vandango/like_water.m4a" style="width: 100%; max-width: 500px;">Like Water</audio></div>
-              </div>
-              <div class="disco-links" style="margin-top: 15px; display: flex; gap: 8px; flex-wrap: wrap;">
-                <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Spotify</a>
-                <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Apple Music</a>
-                <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">SoundCloud</a>
-                <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Amazon Music</a>
-              </div>
-            </div>
-          </div>
-
-          <div style="text-align: center; padding: 12px 0;">
-            <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px;">
-          </div>
-
-          <h3 style="margin-bottom: 15px;">SOCIAL MEDIA</h3>
-          <a class="social-button" href="https://www.youtube.com/@skarramushvandango" target="_blank" 
-             style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--rokko-brown); color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600;">
-            <img src="img/youtube-icon.svg" alt="YouTube" style="width: 24px; height: 24px;"> Skaramush Vandango
-          </a>
-        </div>
-      </article>
-
-      <!-- Ska Schablonski Details -->
-      <article id="artist-schablonski" class="artist-details" style="display: none; max-height: 0; overflow: hidden; transition: max-height 0.5s ease; padding: 0 10px;">
-        <div style="padding: 20px 0;">
-          <h3 style="margin-bottom: 15px;">BIOGRAFIE</h3>
-          <p style="line-height: 1.6; margin-bottom: 20px;">
-            Ska Schablonski bringt energiegeladene Ska-Rhythmen und einzigartige Texte auf die Bühne. Ein fester Bestandteil des ROKKO Records Rosters.
-          </p>
-          
-          <div style="text-align: center; padding: 12px 0;">
-            <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px;">
-          </div>
-
-          <h3 style="margin-bottom: 15px;">DISKOGRAPHIE</h3>
-          <div class="release" style="margin-bottom: 20px;">
-            <img class="disco-cover-small" src="mp3/schablonski/kohle_raus_cover.png" alt="Kohle Raus" 
-                 style="width: 180px; cursor: pointer; border-radius: 6px; margin-bottom: 10px;" />
-            <div class="disco-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
-              <div class="track-list" style="margin: 15px 0;">
-                <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/schablonski/kohle_raus.m4a" style="width: 100%; max-width: 500px;">Kohle Raus</audio></div>
-                <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/schablonski/kohle_raus_rmx.m4a" style="width: 100%; max-width: 500px;">Kohle Raus (Remix)</audio></div>
-              </div>
-              <div class="disco-links" style="margin-top: 15px; display: flex; gap: 8px; flex-wrap: wrap;">
-                <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Spotify</a>
-                <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Apple Music</a>
-                <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">SoundCloud</a>
-                <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Amazon Music</a>
-              </div>
-            </div>
-          </div>
-
-          <div style="text-align: center; padding: 12px 0;">
-            <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px;">
-          </div>
-
-          <h3 style="margin-bottom: 15px;">SOCIAL MEDIA</h3>
-          <a class="social-button" href="https://www.youtube.com/@skaskablonski" target="_blank" 
-             style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--rokko-brown); color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600;">
-            <img src="img/youtube-icon.svg" alt="YouTube" style="width: 24px; height: 24px;"> Ska Schablonski
-          </a>
-        </div>
-      </article>
-
-      <!-- Henri Bellieu Details -->
         <div class="artist-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease; padding: 0 10px;">
           <div style="padding: 20px 0;">
             <h3 style="margin-bottom: 15px;">BIOGRAFIE</h3>
@@ -198,7 +70,7 @@
             </p>
             
             <div style="text-align: center; padding: 12px 0;">
-              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; class="trenner"">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 40%; max-width: 200px;">
             </div>
 
             <h3 style="margin-bottom: 15px;">DISKOGRAPHIE</h3>
@@ -224,7 +96,7 @@
             </div>
 
             <div style="text-align: center; padding: 12px 0;">
-              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; class="trenner"">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 40%; max-width: 200px;">
             </div>
 
             <h3 style="margin-bottom: 15px;">SOCIAL MEDIA</h3>
@@ -237,12 +109,12 @@
       </article>
 
       <div style="text-align: center; padding: 12px 0;">
-        <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px;">
+        <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 50%; max-width: 300px;">
       </div>
 
       <!-- Ska Schablonski -->
       <article class="artist-item" style="margin-bottom: 20px;">
-        <div class="artist-header" style="cursor: pointer;">
+        <div class="artist-header" style="cursor: pointer; padding: 10px; border: 2px solid #d9af6b;">
           <img src="artists/ska_schablonski/skank.png" alt="Ska Schablonski" 
                class="artist-main-image" 
                style="width: 100%; max-width: 400px; display: block; margin: 0 auto;">
@@ -255,7 +127,7 @@
             </p>
             
             <div style="text-align: center; padding: 12px 0;">
-              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; class="trenner"">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 40%; max-width: 200px;">
             </div>
 
             <h3 style="margin-bottom: 15px;">DISKOGRAPHIE</h3>
@@ -279,7 +151,7 @@
             </div>
 
             <div style="text-align: center; padding: 12px 0;">
-              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; class="trenner"">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 40%; max-width: 200px;">
             </div>
 
             <h3 style="margin-bottom: 15px;">SOCIAL MEDIA</h3>
@@ -292,12 +164,12 @@
       </article>
 
       <div style="text-align: center; padding: 12px 0;">
-        <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px;">
+        <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 50%; max-width: 300px;">
       </div>
 
       <!-- Henri Bellieu -->
       <article class="artist-item" style="margin-bottom: 20px;">
-        <div class="artist-header" style="cursor: pointer;">
+        <div class="artist-header" style="cursor: pointer; padding: 10px; border: 2px solid #d9af6b;">
           <img src="artists/henri_bellieu/henri.png" alt="Henri Bellieu" 
                class="artist-main-image" 
                style="width: 100%; max-width: 400px; display: block; margin: 0 auto;">
@@ -310,7 +182,7 @@
             </p>
             
             <div style="text-align: center; padding: 12px 0;">
-              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; class="trenner"">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 40%; max-width: 200px;">
             </div>
 
             <h3 style="margin-bottom: 15px;">DISKOGRAPHIE</h3>
@@ -335,7 +207,7 @@
             </div>
 
             <div style="text-align: center; padding: 12px 0;">
-              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; class="trenner"">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 40%; max-width: 200px;">
             </div>
 
             <h3 style="margin-bottom: 15px;">SOCIAL MEDIA</h3>
@@ -348,12 +220,12 @@
       </article>
 
       <div style="text-align: center; padding: 12px 0;">
-        <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px;">
+        <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 50%; max-width: 300px;">
       </div>
 
       <!-- Fleuret Beunie -->
       <article class="artist-item" style="margin-bottom: 20px;">
-        <div class="artist-header" style="cursor: pointer;">
+        <div class="artist-header" style="cursor: pointer; padding: 10px; border: 2px solid #d9af6b;">
           <img src="artists/fleuretbeunie/fleurbeunie.png" alt="Fleuret Beunie" 
                class="artist-main-image" 
                style="width: 100%; max-width: 400px; display: block; margin: 0 auto;">
@@ -366,7 +238,7 @@
             </p>
             
             <div style="text-align: center; padding: 12px 0;">
-              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; class="trenner"">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 40%; max-width: 200px;">
             </div>
 
             <h3 style="margin-bottom: 15px;">DISKOGRAPHIE</h3>
@@ -391,7 +263,7 @@
             </div>
 
             <div style="text-align: center; padding: 12px 0;">
-              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; class="trenner"">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 40%; max-width: 200px;">
             </div>
 
             <h3 style="margin-bottom: 15px;">SOCIAL MEDIA</h3>
@@ -405,7 +277,7 @@
     </section>
 
     <div style="text-align: center; padding: 12px 0;">
-      <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px;">
+      <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 50%; max-width: 300px;">
     </div>
 
     <!-- News Section -->
@@ -414,7 +286,7 @@
       
       <div class="news-feed" style="max-width: 900px; margin: 0 auto;">
         <!-- News Item 1 -->
-        <article class="news-item" data-page="1" style="margin-bottom: 30px; padding: 20px; background: #f3e2c9; border-radius: 8px; border-left: 4px solid #d9af6b;">
+        <article class="news-item" style="margin-bottom: 30px; padding: 20px; background: #f3e2c9; border-radius: 8px; border-left: 4px solid #d9af6b;">
           <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Neue Release: Skaramush Vandango - Neurosis</h3>
           <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">15. Oktober 2024</p>
           <p style="line-height: 1.6;">
@@ -424,7 +296,7 @@
         </article>
 
         <!-- News Item 2 -->
-        <article class="news-item" data-page="2" style="display: none; margin-bottom: 30px; padding: 20px; background: #f3e2c9; border-radius: 8px; border-left: 4px solid #d9af6b;">
+        <article class="news-item" style="margin-bottom: 30px; padding: 20px; background: #f3e2c9; border-radius: 8px; border-left: 4px solid #d9af6b;">
           <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Studio Session Highlights</h3>
           <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">08. Oktober 2024</p>
           <p style="line-height: 1.6;">
@@ -434,7 +306,7 @@
         </article>
 
         <!-- News Item 3 -->
-        <article class="news-item" data-page="3" style="display: none; margin-bottom: 30px; padding: 20px; background: #f3e2c9; border-radius: 8px; border-left: 4px solid #d9af6b;">
+        <article class="news-item" style="margin-bottom: 30px; padding: 20px; background: #f3e2c9; border-radius: 8px; border-left: 4px solid #d9af6b;">
           <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Kollaboration mit internationalen Artists</h3>
           <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">01. Oktober 2024</p>
           <p style="line-height: 1.6;">
@@ -444,7 +316,7 @@
         </article>
 
         <!-- News Item 4 -->
-        <article class="news-item" data-page="4" style="display: none; margin-bottom: 30px; padding: 20px; background: #f3e2c9; border-radius: 8px; border-left: 4px solid #d9af6b;">
+        <article class="news-item" style="margin-bottom: 30px; padding: 20px; background: #f3e2c9; border-radius: 8px; border-left: 4px solid #d9af6b;">
           <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Neues Label Signing</h3>
           <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">25. September 2024</p>
           <p style="line-height: 1.6;">
@@ -453,18 +325,10 @@
           </p>
         </article>
       </div>
-      
-      <!-- Pagination -->
-      <div class="news-pagination" style="text-align: center; margin-top: 30px;">
-        <button class="page-btn active" data-page="1" style="padding: 8px 12px; margin: 0 5px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">1</button>
-        <button class="page-btn" data-page="2" style="padding: 8px 12px; margin: 0 5px; background: #f3e2c9; color: var(--rokko-brown); border: 1px solid #d9af6b; border-radius: 4px; cursor: pointer; font-weight: 600;">2</button>
-        <button class="page-btn" data-page="3" style="padding: 8px 12px; margin: 0 5px; background: #f3e2c9; color: var(--rokko-brown); border: 1px solid #d9af6b; border-radius: 4px; cursor: pointer; font-weight: 600;">3</button>
-        <button class="page-btn" data-page="4" style="padding: 8px 12px; margin: 0 5px; background: #f3e2c9; color: var(--rokko-brown); border: 1px solid #d9af6b; border-radius: 4px; cursor: pointer; font-weight: 600;">4</button>
-      </div>
     </section>
 
     <div style="text-align: center; padding: 12px 0;">
-      <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px;">
+      <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 50%; max-width: 300px;">
     </div>
 
     <!-- Contact Form Section -->
@@ -495,59 +359,5 @@
   </main>
 
   <footer></footer>
-
-  <script>
-    // Intro video mute/unmute control
-    document.addEventListener('DOMContentLoaded', function() {
-      var video = document.getElementById('introVideo');
-      var muteBtn = document.getElementById('muteButton');
-      
-      // Start with sound
-      video.muted = false;
-      muteBtn.textContent = 'MUTE';
-      
-      muteBtn.addEventListener('click', function() {
-        if(video.muted) {
-          video.muted = false;
-          muteBtn.textContent = 'MUTE';
-        } else {
-          video.muted = true;
-          muteBtn.textContent = 'UNMUTE';
-        }
-      });
-
-      // News pagination
-      var pageButtons = document.querySelectorAll('.page-btn');
-      var newsItems = document.querySelectorAll('.news-item');
-      
-      pageButtons.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          var page = this.dataset.page;
-          
-          // Hide all news items
-          newsItems.forEach(function(item) {
-            item.style.display = 'none';
-          });
-          
-          // Show selected page
-          var selectedItem = document.querySelector('.news-item[data-page="' + page + '"]');
-          if(selectedItem) {
-            selectedItem.style.display = 'block';
-          }
-          
-          // Update active button
-          pageButtons.forEach(function(b) {
-            b.classList.remove('active');
-            b.style.background = '#f3e2c9';
-            b.style.color = 'var(--rokko-brown)';
-          });
-          
-          this.classList.add('active');
-          this.style.background = 'var(--rokko-brown)';
-          this.style.color = '#fff';
-        });
-      });
-    });
-  </script>
 </body>
 </html>
