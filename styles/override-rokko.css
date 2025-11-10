@@ -83,8 +83,8 @@ header.site-header, .topbar, #header, #jHeader, .navbar {
 }
 body.home .btn-welcome { display:none !important; }
 
-/* --- Artist-Foto: KEIN Shadow (explizit entfernt), kompakter Rahmen --- */
-.artist-card img, .artist-photo, .artist-image img, img.artist-photo {
+/* --- Artist-Foto: KEIN Shadow (explizit entfernt), kompakter Rahmen mit Orange outline --- */
+.artist-card img, .artist-photo, .artist-image img, img.artist-photo, .artist-main-image {
   box-shadow: none !important;
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
@@ -92,6 +92,16 @@ body.home .btn-welcome { display:none !important; }
   max-width: var(--artist-img-max);
   width:100%;
   display:block;
+}
+
+/* Orange outline for artist images on index page */
+.artist-header {
+  border: 2px solid #d9af6b !important;
+  transition: border-color 0.3s ease;
+}
+
+.artist-header:hover {
+  border-color: #e6a857 !important;
 }
 
 /* Abstand unter dem Artist Bild verringern */
@@ -183,3 +193,75 @@ body { padding-top: 0 !important; margin-top: 0 !important; }
 
 /* ensure welcome is visible on non-home pages - use body.page-welcome to hide on home if needed */
 body.home .btn-welcome { display:none !important; }
+
+/* --- New Index Page Styles --- */
+
+/* Artist dropdown styling */
+.artist-item {
+  margin-bottom: 20px;
+}
+
+.artist-dropdown {
+  transition: max-height 0.5s ease;
+  overflow: hidden;
+}
+
+/* News section styling */
+.news-feed .news-item {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #f3e2c9;
+  border-radius: 8px;
+  border-left: 4px solid #d9af6b;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.news-feed .news-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Centered trenner styling */
+.section-divider,
+img[src*="trenner.png"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 300px;
+}
+
+/* Welcome section */
+.welcome-text {
+  background: var(--content-bg);
+}
+
+.welcome-text h1 {
+  color: var(--rokko-brown);
+  font-size: 2em;
+}
+
+/* Contact form styling improvements */
+.comment-form input,
+.comment-form textarea {
+  font-family: inherit;
+  font-size: 1em;
+}
+
+.btn-send:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+/* Social button hover effect */
+.social-button:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+}
+
+/* Disco links hover effect */
+.disco-links a:hover {
+  background: #e6cfab;
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+}
