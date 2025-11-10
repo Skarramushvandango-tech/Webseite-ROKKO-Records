@@ -192,46 +192,26 @@ section.inverse-color.contact .title-wrapper,
   .trenner { width:50%; max-width:210px; }
 }
 
-/* --- Desktop: Seitenränder in dunkelbraun, Content zentriert und schmaler --- */
+/* --- Desktop: Elegante Schatten statt harter Rahmen, Content zentriert --- */
 @media (min-width:1100px){
   body { 
-    background: var(--rokko-brown); 
+    background: linear-gradient(to bottom, #1a1410 0%, #0d0a08 100%);
   }
-  
-  /* Alle Body-Tags bekommen brown side borders - nicht nur .site-shell */
-  body::before,
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    width: calc((100% - var(--main-width)) / 2);
-    background: var(--rokko-brown);
-    z-index: 5;
-    pointer-events: none;
-  }
-  
-  body::before { left: 0; }
-  body::after { right: 0; }
   
   .site-shell { 
     max-width: var(--main-width); 
     margin: 0 auto; 
     background: var(--content-bg); 
-    box-shadow: none; 
+    box-shadow: 
+      0 0 60px rgba(0, 0, 0, 0.5),
+      0 0 120px rgba(179, 41, 19, 0.15),
+      inset 0 0 0 1px rgba(179, 41, 19, 0.1);
   }
   
-  /* Alte side-frame behalten für Kompatibilität mit index.html */
+  /* Alte side-frame verstecken - nicht mehr benötigt */
   .side-frame { 
-    position: fixed; 
-    top: 0; 
-    bottom: 0; 
-    width: calc((100% - var(--main-width))/2); 
-    background: var(--rokko-brown); 
-    z-index: 5; 
+    display: none;
   }
-  .side-frame.left { left: 0; }
-  .side-frame.right { right: 0; }
 }
 
 /* --- kleine optische Fixes --- */
