@@ -147,7 +147,9 @@ body.home .btn-welcome { display:none !important; }
 .artist-bio { text-align:left; margin: 6px 0 18px 0; line-height:1.45; }
 
 /* Diskographie-Section: Cover verkleinert; dropdown-Stil */
-.disco-cover-small { width: 180px; height: auto; cursor:pointer; border-radius:6px; }
+.release { position: relative; margin-bottom: 15px; }
+.disco-cover-small { width: 180px; height: auto; cursor:pointer; border-radius:6px; position: relative; z-index: 10; transition: transform 0.2s ease; }
+.disco-cover-small:hover { transform: scale(1.05); }
 .disco-dropdown { max-height:0; overflow:hidden; transition: max-height 0.35s ease; }
 .disco-dropdown.open { max-height: 900px; /* ausreichend für Cover + players */ }
 .disco-cover-large { width: 320px; display:block; margin: 12px 0; }
@@ -294,6 +296,8 @@ body.home .btn-welcome { display:none !important; }
   padding: 20px;
   background: #f3e2c9;
   border-radius: 8px;
+  position: relative;
+  z-index: 5;
 }
 
 .artist-dropdown {
