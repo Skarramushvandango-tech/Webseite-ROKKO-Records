@@ -19,20 +19,27 @@ body, html {
   -webkit-font-smoothing:antialiased;
 }
 
-/* Enge Ränder für Sections - WEITER REDUZIERT */
+/* Enge Ränder für Sections - STARK REDUZIERT */
 section, .container, main {
-  padding-top: 8px !important;
-  padding-bottom: 8px !important;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
 }
-.section { padding: 12px 0 !important; }
+.section { padding: 6px 0 !important; }
 .voffset70, .voffset100, .voffset80, .voffset50, .voffset40 { 
-  height: 8px !important; 
-  margin: 8px 0 !important; 
+  height: 4px !important; 
+  margin: 4px 0 !important; 
 }
 
 /* Headline-Abstände kleiner */
-h1,h2,h3 { margin-top: 0.25rem; margin-bottom: 0.25rem; }
-p { margin: 0.35rem 0; }
+h1,h2,h3 { margin-top: 0.2rem; margin-bottom: 0.2rem; }
+p { margin: 0.3rem 0; }
+
+/* Intro video should not have any top margin or padding */
+.intro-video { 
+  margin: 0 !important; 
+  padding: 0 !important; 
+}
+.intro-video video { margin: 0; padding: 0; display: block; }
 
 /* --- Header: zurück zur natürlichen Höhe, NICHT über Video gelegt --- */
 header.site-header, .topbar, #header, #jHeader, .navbar {
@@ -115,8 +122,20 @@ body.home .btn-welcome { display:none !important; }
 /* Schließe dropdown beim erneutem Klick handled in JS */
 
 /* --- Social Media Buttons: YouTube Button style --- */
-.social-button { display:flex; align-items:center; gap:10px; padding:8px 12px; background:var(--rokko-brown); color:#fff; border-radius:6px; text-decoration:none; }
-.social-button img.icon { width:22px; height:22px; }
+.social-button { 
+  display:inline-flex; 
+  align-items:center; 
+  gap:10px; 
+  padding:10px 16px; 
+  background:var(--rokko-brown); 
+  color:#fff; 
+  border-radius:6px; 
+  text-decoration:none; 
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+.social-button:hover { opacity: 0.85; color: #fff; }
+.social-button img.icon { width:24px; height:24px; }
 
 /* --- Hide Subscribe Block, Get Started Button und Orange Bar --- */
 .subscribe-block, .subscribe-text, .get-started, .newsletter-form, 
