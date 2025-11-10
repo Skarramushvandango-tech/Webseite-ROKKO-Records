@@ -19,54 +19,76 @@ body, html {
   -webkit-font-smoothing:antialiased;
 }
 
-/* Enge Ränder für Sections */
+/* Enge Ränder für Sections - WEITER REDUZIERT */
 section, .container, main {
-  padding-top: 18px !important;
-  padding-bottom: 18px !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+.section { padding: 12px 0 !important; }
+.voffset70, .voffset100, .voffset80, .voffset50, .voffset40 { 
+  height: 8px !important; 
+  margin: 8px 0 !important; 
 }
 
 /* Headline-Abstände kleiner */
-h1,h2,h3 { margin-top: 0.35rem; margin-bottom: 0.35rem; }
+h1,h2,h3 { margin-top: 0.25rem; margin-bottom: 0.25rem; }
+p { margin: 0.35rem 0; }
 
-/* --- Header: zurück zur natürlichen Höhe (nicht fixed/overlay) --- */
-header.site-header, .topbar, #header {
+/* --- Header: zurück zur natürlichen Höhe, NICHT über Video gelegt --- */
+header.site-header, .topbar, #header, #jHeader, .navbar {
   position: relative !important;
   height: auto !important;
-  padding: 12px 0 !important;
+  min-height: auto !important;
+  padding: 8px 0 !important;
   background: var(--rokko-brown) !important;
   z-index: 10;
   box-shadow: none;
+  margin: 0 !important;
 }
 
-/* Menü inline mit Logo - reduziert Platz */
-.site-header .logo, .site-header nav {
+/* Header darf nicht fixed sein */
+.navbar-fixed-top, .navbar-default {
+  position: relative !important;
+  top: auto !important;
+}
+
+/* Menü inline mit Logo in einer Reihe - reduziert Platz */
+.site-header .logo, .site-header nav, .navbar-brand {
   display: inline-block;
   vertical-align: middle;
+  margin: 0 8px;
 }
-.site-header nav { margin-left: 24px; }
+.site-header nav { margin-left: 12px; }
+.navbar-header { float: none !important; display: inline-block; }
+.navbar-nav-wrapper { display: inline-block; float: none !important; }
+.navbar-nav { margin: 0 !important; }
 
-/* Welcome-Button: ist sichtbar auf allen Seiten (kann per page-class auf index aufgehoben werden) */
+/* Welcome-Button: ist sichtbar auf allen Seiten AUSSER Homepage */
 .btn-welcome { 
   display:inline-block;
   margin-left:16px;
-  padding:6px 12px;
+  padding:4px 10px;
   background:transparent;
   border:1px solid rgba(255,255,255,0.07);
   color:#d9af6b;
   font-weight:600;
+  text-decoration: none;
 }
+body.home .btn-welcome { display:none !important; }
 
-/* --- Artist-Foto: kein Shadow, kompakter Rahmen --- */
-.artist-card img, .artist-photo {
+/* --- Artist-Foto: KEIN Shadow (explizit entfernt), kompakter Rahmen --- */
+.artist-card img, .artist-photo, .artist-image img, img.artist-photo {
   box-shadow: none !important;
-  border-radius: 10px;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  border-radius: 0;
   max-width: var(--artist-img-max);
   width:100%;
   display:block;
 }
 
 /* Abstand unter dem Artist Bild verringern */
-.artist-card, .artist-wrapper { margin-bottom: 12px !important; padding-bottom: 6px !important; }
+.artist-card, .artist-wrapper { margin-bottom: 6px !important; padding-bottom: 3px !important; }
 
 /* Trenner halb so lang wie das Artist-Bild: klassisch mit img src=images/trenner.png */
 .trenner {
@@ -96,8 +118,13 @@ header.site-header, .topbar, #header {
 .social-button { display:flex; align-items:center; gap:10px; padding:8px 12px; background:var(--rokko-brown); color:#fff; border-radius:6px; text-decoration:none; }
 .social-button img.icon { width:22px; height:22px; }
 
-/* --- Hide Subscribe Block und Get Started Button --- */
-.subscribe-block, .subscribe-text, .get-started, .newsletter-form { display:none !important; }
+/* --- Hide Subscribe Block, Get Started Button und Orange Bar --- */
+.subscribe-block, .subscribe-text, .get-started, .newsletter-form, 
+.btn-get-started, .subscription-cta, .cta-bar, .orange-bar,
+section.inverse-color.contact .title-wrapper,
+.section.inverse-color .voffset100 { 
+  display:none !important; 
+}
 
 /* --- Mobile: weiter Abstände verringern --- */
 @media (max-width:900px){
@@ -118,11 +145,15 @@ header.site-header, .topbar, #header {
 }
 
 /* --- kleine optische Fixes --- */
-r.section-divider { margin:8px 0; border:none; height:3px; background:#c98a6d; }
+.section-divider { margin:4px 0; border:none; height:2px; background:#c98a6d; }
 
 /* ensure header doesn't overlay video intro (if intro video exists) */
-.intro-video, .intro-slider { margin-top:0 !important; }
+.intro-video, .intro-slider, .intro, section.intro { 
+  margin-top:0 !important; 
+  padding-top: 0 !important;
+}
 .video-wrap { position:relative; z-index:1; }
+body { padding-top: 0 !important; margin-top: 0 !important; }
 
 /* remove heavy shadows on boxes that look like cards */
 .card, .box, .artist-frame { box-shadow: none !important; border: 2px solid rgba(0,0,0,0.06); }
