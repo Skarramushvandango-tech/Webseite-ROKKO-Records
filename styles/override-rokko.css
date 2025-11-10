@@ -4,8 +4,9 @@
 :root{
   --rokko-brown: #201613; /* dunkles Braun, an Header angelehnt */
   --main-width: 1000px; /* Breite der Inhalte auf Desktop (zentriert) */
-  --content-bg: #e6cfab; /* beiges Content-Hintergrund (falls gebraucht) */
+  --content-bg: #E0C290; /* beiges Content-Hintergrund - korrigierte Farbe */
   --artist-img-max: 520px;
+  --carousel-outline: #B32913; /* orange Outline für Karussell */
 }
 
 /* --- globale Abstände reduzieren --- */
@@ -52,6 +53,12 @@ header.site-header, .topbar, #header, #jHeader, .navbar {
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   margin: 0 !important;
+}
+
+/* Ensure main content doesn't overlap with sticky header on index page */
+body.home main {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 /* Header stays fixed */
@@ -168,12 +175,44 @@ section.inverse-color.contact .title-wrapper,
 
 /* --- Desktop: Seitenränder in dunkelbraun, Content zentriert und schmaler --- */
 @media (min-width:1100px){
-  body { background: #201613; }
-  .site-shell { max-width: var(--main-width); margin: 0 auto; background: var(--content-bg); box-shadow:none; }
-  /* linke und rechte Rahmenbereiche */
-  .side-frame { position:fixed; top:0; bottom:0; width: calc((100% - var(--main-width))/2); background: var(--rokko-brown); z-index:5; }
-  .side-frame.left { left:0; }
-  .side-frame.right { right:0; }
+  body { 
+    background: var(--rokko-brown); 
+  }
+  
+  /* Alle Body-Tags bekommen brown side borders - nicht nur .site-shell */
+  body::before,
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: calc((100% - var(--main-width)) / 2);
+    background: var(--rokko-brown);
+    z-index: 5;
+    pointer-events: none;
+  }
+  
+  body::before { left: 0; }
+  body::after { right: 0; }
+  
+  .site-shell { 
+    max-width: var(--main-width); 
+    margin: 0 auto; 
+    background: var(--content-bg); 
+    box-shadow: none; 
+  }
+  
+  /* Alte side-frame behalten für Kompatibilität mit index.html */
+  .side-frame { 
+    position: fixed; 
+    top: 0; 
+    bottom: 0; 
+    width: calc((100% - var(--main-width))/2); 
+    background: var(--rokko-brown); 
+    z-index: 5; 
+  }
+  .side-frame.left { left: 0; }
+  .side-frame.right { right: 0; }
 }
 
 /* --- kleine optische Fixes --- */
@@ -202,6 +241,9 @@ body.home .btn-welcome { display:none !important; }
 .artist-carousel {
   margin: 0 auto;
   max-width: 100%;
+  border: 3px solid var(--carousel-outline);
+  padding: 15px;
+  border-radius: 8px;
 }
 
 .artist-carousel .carousel-cell {
@@ -315,7 +357,7 @@ img[src*="trenner.png"] {
 
 /* Disco links hover effect */
 .disco-links a:hover {
-  background: #e6cfab;
+  background: var(--content-bg);
   transform: scale(1.05);
   transition: all 0.2s ease;
 }

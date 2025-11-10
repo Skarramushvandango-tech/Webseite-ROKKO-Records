@@ -1,10 +1,10 @@
 /* ROKKO! Records palette (from logo) */
 :root{
-  --rokko-sand:#DEC191;
+  --rokko-sand:#E0C290;
   --rokko-dark:#1A1A1A;
   --rokko-orange:#DB770B;
   --rokko-red:#AD1A27;
-  --rokko-sand-alpha:rgba(222,193,145,0.9);
+  --rokko-sand-alpha:rgba(224,194,144,0.9);
 }
 
 .paletterokko .navbar-default .navbar-nav>li.active>a,
