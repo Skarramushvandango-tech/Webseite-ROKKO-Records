@@ -13,40 +13,51 @@
   <div class="side-frame right" aria-hidden="true"></div>
 
   <header class="site-header">
-    <div class="logo"><a href="/"><img src="/img/logo.png" alt="ROKKO"></a></div>
-    <nav></nav>
-    <div class="nav-text-buttons"><a class="btn-welcome" href="/welcome.html">WELCOME</a></div>
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap;">
+      <div class="logo" style="display: inline-block;">
+        <a href="/index.html"><img src="/images/logo.png" alt="ROKKO" style="height: 50px;"></a>
+      </div>
+      <nav style="display: inline-block; flex: 1; text-align: center;">
+        <a href="index.html" class="btn-welcome" style="margin: 0 12px; color: #d9af6b; text-decoration: none; font-weight: 600;">WELCOME</a>
+        <a href="news.html" style="margin: 0 12px; color: #d9af6b; text-decoration: none; font-weight: 600;">NEWS</a>
+        <a href="artists.html" style="margin: 0 12px; color: #d9af6b; text-decoration: none; font-weight: 600;">ARTISTS</a>
+        <a href="discography.html" style="margin: 0 12px; color: #d9af6b; text-decoration: none; font-weight: 600;">DISKOGRAPHIE</a>
+        <a href="contact.html" style="margin: 0 12px; color: #d9af6b; text-decoration: none; font-weight: 600;">KONTAKT</a>
+      </nav>
+    </div>
   </header>
 
   <main>
     <article class="artist-wrapper">
-      <div style="text-align:right;">
-        <img class="artist-photo" src="/images/artist-henri-bellieu.jpg" alt="Henri Bellieu">
+      <div style="text-align:right; padding: 12px 18px;">
+        <img class="artist-photo" src="/artists/henri_bellieu/henri.png" alt="Henri Bellieu">
       </div>
 
       <img class="trenner" src="/images/trenner.png" alt="trenner">
 
-      <section class="artist-bio">
+      <section class="artist-bio" style="padding: 0 18px;">
         <h2>BIOGRAFIE</h2>
-        <p>Biografie – linksbündig. (Platzhalter)</p>
+        <p>Henri Bellieu ist bekannt für seine melodischen und gefühlvollen Kompositionen. Seine Musik berührt die Herzen der Zuhörer weltweit.</p>
       </section>
 
       <img class="trenner" src="/images/trenner.png" alt="trenner">
 
-      <section class="artist-disco">
+      <section class="artist-disco" style="padding: 0 18px;">
         <h3>Diskographie</h3>
         <div class="release">
-          <img class="disco-cover-small" src="/discs/cover-small-hb-01.jpg" alt="Release 1" />
+          <img class="disco-cover-small" src="/mp3/bellieu/cover.png" alt="Petite Colibri" />
           <div class="disco-dropdown">
-            <img class="disco-cover-large" src="/discs/cover-large-hb-01.jpg" alt="großes Cover">
+            <img class="disco-cover-large" src="/mp3/bellieu/cover.png" alt="Petite Colibri - großes Cover">
             <div class="disco-links">
               <a href="#" target="_blank">Spotify</a>
               <a href="#" target="_blank">Apple Music</a>
-              <a href="#" target="_blank">Amazon</a>
+              <a href="#" target="_blank">Amazon Music</a>
               <a href="#" target="_blank">SoundCloud</a>
             </div>
             <div class="track-list">
-              <div class="track-player"><audio controls src="/mp3/hb-track01.mp3"></audio></div>
+              <div class="track-player"><audio controls src="/mp3/bellieu/petite_colibri.m4a">Petite Colibri</audio></div>
+              <div class="track-player"><audio controls src="/mp3/bellieu/petite_colibri_ennio_mix.m4a">Petite Colibri (Ennio Mix)</audio></div>
+              <div class="track-player"><audio controls src="/mp3/bellieu/petite_colibri_nocturne_mix.m4a">Petite Colibri (Nocturne Mix)</audio></div>
             </div>
           </div>
         </div>
@@ -54,19 +65,11 @@
 
       <img class="trenner" src="/images/trenner.png" alt="trenner">
 
-      <section class="artist-social">
+      <section class="artist-social" style="padding: 0 18px;">
         <h3>Social Media</h3>
-        <a class="social-button" href="https://www.youtube.com/channel/DEIN_CHANNEL" target="_blank">
-          <img class="icon" src="/img/youtube-icon.svg" alt="YouTube"> Henri Bellieu
+        <a class="social-button" href="https://www.youtube.com/@henribellieu" target="_blank">
+          <img class="icon" src="/img/youtube-icon.svg" alt="YouTube" style="width:24px;height:24px;"> Henri Bellieu
         </a>
-        <div class="yt-slider-wrapper">
-          <div class="yt-slider" style="display:flex; gap:8px; overflow:auto; padding-top:8px;">
-            <img class="yt-thumb" data-video-id="VIDEOID_HB_1" src="/images/yt-hb-1.jpg" alt="Video 1" style="width:140px;cursor:pointer;">
-          </div>
-          <div style="margin-top:8px;">
-            <iframe class="yt-player" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-        </div>
       </section>
 
     </article>

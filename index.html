@@ -13,33 +13,48 @@
   <div class="side-frame right" aria-hidden="true"></div>
 
   <header class="site-header">
-    <div class="logo"><a href="/"><img src="/img/logo.png" alt="ROKKO"></a></div>
-    <nav></nav>
-    <div class="nav-text-buttons"><a class="btn-welcome" href="/welcome.html">WELCOME</a></div>
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap;">
+      <div class="logo" style="display: inline-block;">
+        <a href="/index.html"><img src="/images/logo.png" alt="ROKKO" style="height: 50px;"></a>
+      </div>
+      <nav style="display: inline-block; flex: 1; text-align: center;">
+        <a href="news.html" style="margin: 0 12px; color: #d9af6b; text-decoration: none; font-weight: 600;">NEWS</a>
+        <a href="artists.html" style="margin: 0 12px; color: #d9af6b; text-decoration: none; font-weight: 600;">ARTISTS</a>
+        <a href="discography.html" style="margin: 0 12px; color: #d9af6b; text-decoration: none; font-weight: 600;">DISKOGRAPHIE</a>
+        <a href="contact.html" style="margin: 0 12px; color: #d9af6b; text-decoration: none; font-weight: 600;">KONTAKT</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <!-- Intro / Video section remains -->
+    <!-- Intro Video Section -->
+    <section class="intro-video" style="position: relative; width: 100%; padding: 0; margin: 0;">
+      <video autoplay muted loop playsinline style="width: 100%; height: auto; display: block;">
+        <source src="/images/intro_movie.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </section>
 
-    <!-- Kommentar-Formular auf Startseite (Formsubmit) -->
-    <section id="kontakt" class="site-comment" style="padding:28px 18px;">
-      <h2>Kontakt / Kommentar</h2>
-      <p>Hinterlasse hier eine Nachricht — sie wird an email_ilgner@gmx.de gesendet.</p>
+    <!-- Kommentar-Formular auf Startseite (Stay in Touch / Email Integration) -->
+    <section id="kontakt" class="site-comment" style="padding:20px 18px; background: var(--content-bg);">
+      <h2 style="margin-bottom: 12px;">Stay in Touch</h2>
+      <p style="margin-bottom: 16px;">Hinterlasse hier eine Nachricht — wir freuen uns auf deine Kontaktaufnahme!</p>
 
-      <form action="https://formsubmit.co/email_ilgner@gmx.de" method="POST" class="comment-form">
-        <input type="hidden" name="_subject" value="Neue Website-Nachricht (Startseite)">
+      <form action="https://formsubmit.co/email_ilgner@gmx.de" method="POST" class="comment-form" style="max-width: 600px; margin: 0 auto;">
+        <input type="hidden" name="_subject" value="Neue Nachricht von ROKKO Website">
         <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://skarramushvandango-tech.github.io/Webseite-ROKKO-Records/">
 
-        <label for="cf-name">Name</label>
-        <input id="cf-name" name="name" type="text" required>
+        <label for="cf-name" style="display: block; margin-top: 10px; font-weight: 600;">Name</label>
+        <input id="cf-name" name="name" type="text" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
 
-        <label for="cf-email">E‑Mail</label>
-        <input id="cf-email" name="email" type="email" required>
+        <label for="cf-email" style="display: block; margin-top: 10px; font-weight: 600;">E-Mail</label>
+        <input id="cf-email" name="email" type="email" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
 
-        <label for="cf-message">Dein Kommentar</label>
-        <textarea id="cf-message" name="message" rows="6" required></textarea>
+        <label for="cf-message" style="display: block; margin-top: 10px; font-weight: 600;">Deine Nachricht</label>
+        <textarea id="cf-message" name="message" rows="6" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
 
-        <button type="submit" class="btn-send">Senden</button>
+        <button type="submit" class="btn-send" style="margin-top: 15px; padding: 10px 24px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">Senden</button>
       </form>
     </section>
 
