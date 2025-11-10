@@ -12,15 +12,14 @@
   <div class="side-frame left" aria-hidden="true"></div>
   <div class="side-frame right" aria-hidden="true"></div>
 
+  <!-- Header -->
   <header class="site-header">
     <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-wrap: wrap;">
       <div class="logo" style="display: inline-block;">
         <a href="index.html"><img src="images/logo.png" alt="ROKKO" style="height: 50px;"></a>
       </div>
-      <nav style="display: inline-block; flex: 1; text-align: center;">
+      <nav style="display: inline-block; margin-left: auto;">
         <a href="news.html" style="margin: 0 12px; color: #d9af6b; text-decoration: none; font-weight: 600;">NEWS</a>
-        <a href="artists.html" style="margin: 0 12px; color: #d9af6b; text-decoration: none; font-weight: 600;">ARTISTS</a>
-        <a href="discography.html" style="margin: 0 12px; color: #d9af6b; text-decoration: none; font-weight: 600;">DISKOGRAPHIE</a>
         <a href="contact.html" style="margin: 0 12px; color: #d9af6b; text-decoration: none; font-weight: 600;">KONTAKT</a>
       </nav>
     </div>
@@ -35,10 +34,305 @@
       </video>
     </section>
 
-    <!-- Kommentar-Formular auf Startseite (Stay in Touch / Email Integration) -->
-    <section id="kontakt" class="site-comment" style="padding:20px 18px; background: var(--content-bg);">
-      <h2 style="margin-bottom: 12px;">Stay in Touch</h2>
-      <p style="margin-bottom: 16px;">Hinterlasse hier eine Nachricht — wir freuen uns auf deine Kontaktaufnahme!</p>
+    <!-- Welcome Text Section -->
+    <section class="welcome-text" style="padding: 40px 18px; text-align: center; background: var(--content-bg);">
+      <h1 style="margin-bottom: 20px; color: var(--rokko-brown);">Willkommen bei ROKKO Records</h1>
+      <p style="max-width: 800px; margin: 0 auto; line-height: 1.6; font-size: 1.1em;">
+        Entdecke unsere einzigartigen Künstler und ihre Musik. ROKKO Records steht für Qualität, Kreativität und Innovation in der Musikproduktion. 
+        Tauche ein in die Welt unserer Artists und erlebe ihre musikalische Vielfalt.
+      </p>
+    </section>
+
+    <div style="text-align: center; padding: 12px 0;">
+      <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 50%; max-width: 300px;">
+    </div>
+
+    <!-- Artists Section with Dropdowns -->
+    <section class="artists-section" style="padding: 20px 18px; background: var(--content-bg);">
+      <h2 style="text-align: center; margin-bottom: 30px; color: var(--rokko-brown);">Unsere Artists</h2>
+
+      <!-- Skaramush Vandango -->
+      <article class="artist-item" style="margin-bottom: 20px;">
+        <div class="artist-header" style="cursor: pointer; padding: 10px; border: 2px solid #d9af6b;">
+          <img src="artists/skaramush_vandango/skaramush.png" alt="Skaramush Vandango" 
+               class="artist-main-image" 
+               style="width: 100%; max-width: 400px; display: block; margin: 0 auto;">
+        </div>
+        <div class="artist-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease; padding: 0 10px;">
+          <div style="padding: 20px 0;">
+            <h3 style="margin-bottom: 15px;">BIOGRAFIE</h3>
+            <p style="line-height: 1.6; margin-bottom: 20px;">
+              Skaramush Vandango ist ein vielseitiger Künstler aus dem ROKKO Records Label. Mit seinem einzigartigen Stil verbindet er verschiedene Musikrichtungen zu einem unverwechselbaren Sound.
+            </p>
+            
+            <div style="text-align: center; padding: 12px 0;">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 40%; max-width: 200px;">
+            </div>
+
+            <h3 style="margin-bottom: 15px;">DISKOGRAPHIE</h3>
+            <div class="release" style="margin-bottom: 20px;">
+              <img class="disco-cover-small" src="mp3/vandango/cover.png" alt="Neurosis" 
+                   style="width: 180px; cursor: pointer; border-radius: 6px; margin-bottom: 10px;" />
+              <div class="disco-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
+                <img class="disco-cover-large" src="mp3/vandango/cover.png" alt="Neurosis - großes Cover" 
+                     style="width: 100%; max-width: 320px; display: block; margin: 12px 0;">
+                <div class="track-list" style="margin: 15px 0;">
+                  <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/vandango/set_the_fire.m4a" style="width: 100%; max-width: 500px;">Set the Fire</audio></div>
+                  <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/vandango/always_sunny.m4a" style="width: 100%; max-width: 500px;">Always Sunny</audio></div>
+                  <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/vandango/borrowed_time.m4a" style="width: 100%; max-width: 500px;">Borrowed Time</audio></div>
+                  <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/vandango/like_water.m4a" style="width: 100%; max-width: 500px;">Like Water</audio></div>
+                </div>
+                <div class="disco-links" style="margin-top: 15px; display: flex; gap: 8px; flex-wrap: wrap;">
+                  <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Spotify</a>
+                  <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Apple Music</a>
+                  <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">SoundCloud</a>
+                  <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Amazon Music</a>
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align: center; padding: 12px 0;">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 40%; max-width: 200px;">
+            </div>
+
+            <h3 style="margin-bottom: 15px;">SOCIAL MEDIA</h3>
+            <a class="social-button" href="https://www.youtube.com/@skarramushvandango" target="_blank" 
+               style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--rokko-brown); color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600;">
+              <img src="img/youtube-icon.svg" alt="YouTube" style="width: 24px; height: 24px;"> Skaramush Vandango
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <div style="text-align: center; padding: 12px 0;">
+        <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 50%; max-width: 300px;">
+      </div>
+
+      <!-- Ska Schablonski -->
+      <article class="artist-item" style="margin-bottom: 20px;">
+        <div class="artist-header" style="cursor: pointer; padding: 10px; border: 2px solid #d9af6b;">
+          <img src="artists/ska_schablonski/skank.png" alt="Ska Schablonski" 
+               class="artist-main-image" 
+               style="width: 100%; max-width: 400px; display: block; margin: 0 auto;">
+        </div>
+        <div class="artist-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease; padding: 0 10px;">
+          <div style="padding: 20px 0;">
+            <h3 style="margin-bottom: 15px;">BIOGRAFIE</h3>
+            <p style="line-height: 1.6; margin-bottom: 20px;">
+              Ska Schablonski bringt energiegeladene Ska-Rhythmen und einzigartige Texte auf die Bühne. Ein fester Bestandteil des ROKKO Records Rosters.
+            </p>
+            
+            <div style="text-align: center; padding: 12px 0;">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 40%; max-width: 200px;">
+            </div>
+
+            <h3 style="margin-bottom: 15px;">DISKOGRAPHIE</h3>
+            <div class="release" style="margin-bottom: 20px;">
+              <img class="disco-cover-small" src="mp3/schablonski/kohle_raus_cover.png" alt="Kohle Raus" 
+                   style="width: 180px; cursor: pointer; border-radius: 6px; margin-bottom: 10px;" />
+              <div class="disco-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
+                <img class="disco-cover-large" src="mp3/schablonski/kohle_raus_cover.png" alt="Kohle Raus - großes Cover" 
+                     style="width: 100%; max-width: 320px; display: block; margin: 12px 0;">
+                <div class="track-list" style="margin: 15px 0;">
+                  <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/schablonski/kohle_raus.m4a" style="width: 100%; max-width: 500px;">Kohle Raus</audio></div>
+                  <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/schablonski/kohle_raus_rmx.m4a" style="width: 100%; max-width: 500px;">Kohle Raus (Remix)</audio></div>
+                </div>
+                <div class="disco-links" style="margin-top: 15px; display: flex; gap: 8px; flex-wrap: wrap;">
+                  <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Spotify</a>
+                  <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Apple Music</a>
+                  <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">SoundCloud</a>
+                  <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Amazon Music</a>
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align: center; padding: 12px 0;">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 40%; max-width: 200px;">
+            </div>
+
+            <h3 style="margin-bottom: 15px;">SOCIAL MEDIA</h3>
+            <a class="social-button" href="https://www.youtube.com/@skaskablonski" target="_blank" 
+               style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--rokko-brown); color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600;">
+              <img src="img/youtube-icon.svg" alt="YouTube" style="width: 24px; height: 24px;"> Ska Schablonski
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <div style="text-align: center; padding: 12px 0;">
+        <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 50%; max-width: 300px;">
+      </div>
+
+      <!-- Henri Bellieu -->
+      <article class="artist-item" style="margin-bottom: 20px;">
+        <div class="artist-header" style="cursor: pointer; padding: 10px; border: 2px solid #d9af6b;">
+          <img src="artists/henri_bellieu/henri.png" alt="Henri Bellieu" 
+               class="artist-main-image" 
+               style="width: 100%; max-width: 400px; display: block; margin: 0 auto;">
+        </div>
+        <div class="artist-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease; padding: 0 10px;">
+          <div style="padding: 20px 0;">
+            <h3 style="margin-bottom: 15px;">BIOGRAFIE</h3>
+            <p style="line-height: 1.6; margin-bottom: 20px;">
+              Henri Bellieu ist bekannt für seine melodischen und gefühlvollen Kompositionen. Seine Musik berührt die Herzen der Zuhörer weltweit.
+            </p>
+            
+            <div style="text-align: center; padding: 12px 0;">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 40%; max-width: 200px;">
+            </div>
+
+            <h3 style="margin-bottom: 15px;">DISKOGRAPHIE</h3>
+            <div class="release" style="margin-bottom: 20px;">
+              <img class="disco-cover-small" src="mp3/bellieu/cover.png" alt="Petite Colibri" 
+                   style="width: 180px; cursor: pointer; border-radius: 6px; margin-bottom: 10px;" />
+              <div class="disco-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
+                <img class="disco-cover-large" src="mp3/bellieu/cover.png" alt="Petite Colibri - großes Cover" 
+                     style="width: 100%; max-width: 320px; display: block; margin: 12px 0;">
+                <div class="track-list" style="margin: 15px 0;">
+                  <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/bellieu/petite_colibri.m4a" style="width: 100%; max-width: 500px;">Petite Colibri</audio></div>
+                  <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/bellieu/petite_colibri_ennio_mix.m4a" style="width: 100%; max-width: 500px;">Petite Colibri (Ennio Mix)</audio></div>
+                  <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/bellieu/petite_colibri_nocturne_mix.m4a" style="width: 100%; max-width: 500px;">Petite Colibri (Nocturne Mix)</audio></div>
+                </div>
+                <div class="disco-links" style="margin-top: 15px; display: flex; gap: 8px; flex-wrap: wrap;">
+                  <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Spotify</a>
+                  <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Apple Music</a>
+                  <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">SoundCloud</a>
+                  <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Amazon Music</a>
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align: center; padding: 12px 0;">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 40%; max-width: 200px;">
+            </div>
+
+            <h3 style="margin-bottom: 15px;">SOCIAL MEDIA</h3>
+            <a class="social-button" href="https://www.youtube.com/@henribellieu" target="_blank" 
+               style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--rokko-brown); color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600;">
+              <img src="img/youtube-icon.svg" alt="YouTube" style="width: 24px; height: 24px;"> Henri Bellieu
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <div style="text-align: center; padding: 12px 0;">
+        <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 50%; max-width: 300px;">
+      </div>
+
+      <!-- Fleuret Beunie -->
+      <article class="artist-item" style="margin-bottom: 20px;">
+        <div class="artist-header" style="cursor: pointer; padding: 10px; border: 2px solid #d9af6b;">
+          <img src="artists/fleuretbeunie/fleurbeunie.png" alt="Fleuret Beunie" 
+               class="artist-main-image" 
+               style="width: 100%; max-width: 400px; display: block; margin: 0 auto;">
+        </div>
+        <div class="artist-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease; padding: 0 10px;">
+          <div style="padding: 20px 0;">
+            <h3 style="margin-bottom: 15px;">BIOGRAFIE</h3>
+            <p style="line-height: 1.6; margin-bottom: 20px;">
+              Fleuret Beunie verzaubert mit einer einzigartigen Mischung aus elektronischen und akustischen Klängen. Ein Künstler, der Grenzen überschreitet.
+            </p>
+            
+            <div style="text-align: center; padding: 12px 0;">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 40%; max-width: 200px;">
+            </div>
+
+            <h3 style="margin-bottom: 15px;">DISKOGRAPHIE</h3>
+            <div class="release" style="margin-bottom: 20px;">
+              <img class="disco-cover-small" src="mp3/fleurbeunie/feu_leger_cover.png" alt="Feu Leger" 
+                   style="width: 180px; cursor: pointer; border-radius: 6px; margin-bottom: 10px;" />
+              <div class="disco-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
+                <img class="disco-cover-large" src="mp3/fleurbeunie/feu_leger_cover.png" alt="Feu Leger - großes Cover" 
+                     style="width: 100%; max-width: 320px; display: block; margin: 12px 0;">
+                <div class="track-list" style="margin: 15px 0;">
+                  <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/fleurbeunie/feuleger_main.m4a" style="width: 100%; max-width: 500px;">Feu Leger (Main)</audio></div>
+                  <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/fleurbeunie/feuleger_house.m4a" style="width: 100%; max-width: 500px;">Feu Leger (House)</audio></div>
+                  <div class="track-player" style="margin: 6px 0;"><audio controls src="mp3/fleurbeunie/feuleger_sundown.m4a" style="width: 100%; max-width: 500px;">Feu Leger (Sundown)</audio></div>
+                </div>
+                <div class="disco-links" style="margin-top: 15px; display: flex; gap: 8px; flex-wrap: wrap;">
+                  <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Spotify</a>
+                  <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Apple Music</a>
+                  <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">SoundCloud</a>
+                  <a href="#" target="_blank" style="color: var(--rokko-brown); text-decoration: none; padding: 8px 12px; background: #f3e2c9; border-radius: 4px;">Amazon Music</a>
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align: center; padding: 12px 0;">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 40%; max-width: 200px;">
+            </div>
+
+            <h3 style="margin-bottom: 15px;">SOCIAL MEDIA</h3>
+            <a class="social-button" href="https://www.youtube.com/@fleuretbeunie" target="_blank" 
+               style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--rokko-brown); color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600;">
+              <img src="img/youtube-icon.svg" alt="YouTube" style="width: 24px; height: 24px;"> Fleuret Beunie
+            </a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <div style="text-align: center; padding: 12px 0;">
+      <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 50%; max-width: 300px;">
+    </div>
+
+    <!-- News Section -->
+    <section class="news-section" style="padding: 40px 18px; background: var(--content-bg);">
+      <h2 style="text-align: center; margin-bottom: 30px; color: var(--rokko-brown);">News & Neuigkeiten</h2>
+      
+      <div class="news-feed" style="max-width: 900px; margin: 0 auto;">
+        <!-- News Item 1 -->
+        <article class="news-item" style="margin-bottom: 30px; padding: 20px; background: #f3e2c9; border-radius: 8px; border-left: 4px solid #d9af6b;">
+          <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Neue Release: Skaramush Vandango - Neurosis</h3>
+          <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">15. Oktober 2024</p>
+          <p style="line-height: 1.6;">
+            Das neue Album "Neurosis" von Skaramush Vandango ist jetzt verfügbar! Mit kraftvollen Tracks wie "Set the Fire" und "Always Sunny" 
+            setzt der Künstler neue Maßstäbe in der Musikszene. Hör dir die Songs direkt hier auf unserer Website an!
+          </p>
+        </article>
+
+        <!-- News Item 2 -->
+        <article class="news-item" style="margin-bottom: 30px; padding: 20px; background: #f3e2c9; border-radius: 8px; border-left: 4px solid #d9af6b;">
+          <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Studio Session Highlights</h3>
+          <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">08. Oktober 2024</p>
+          <p style="line-height: 1.6;">
+            Exklusive Einblicke in unsere aktuellen Studio Sessions! Unsere Artists arbeiten an spannenden neuen Projekten. 
+            Bleibt gespannt auf weitere Updates und neue Releases in den kommenden Monaten.
+          </p>
+        </article>
+
+        <!-- News Item 3 -->
+        <article class="news-item" style="margin-bottom: 30px; padding: 20px; background: #f3e2c9; border-radius: 8px; border-left: 4px solid #d9af6b;">
+          <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Kollaboration mit internationalen Artists</h3>
+          <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">01. Oktober 2024</p>
+          <p style="line-height: 1.6;">
+            ROKKO Records freut sich, eine neue internationale Zusammenarbeit ankündigen zu können. 
+            Unsere Artists werden mit renommierten Produzenten aus verschiedenen Ländern zusammenarbeiten, um einzigartige Sounds zu kreieren.
+          </p>
+        </article>
+
+        <!-- News Item 4 -->
+        <article class="news-item" style="margin-bottom: 30px; padding: 20px; background: #f3e2c9; border-radius: 8px; border-left: 4px solid #d9af6b;">
+          <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Neues Label Signing</h3>
+          <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">25. September 2024</p>
+          <p style="line-height: 1.6;">
+            Wir sind stolz, unsere neuesten Artists im ROKKO Records Roster willkommen zu heißen! 
+            Mit frischen Talenten und innovativen Sounds erweitern wir unser musikalisches Portfolio kontinuierlich.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <div style="text-align: center; padding: 12px 0;">
+      <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 50%; max-width: 300px;">
+    </div>
+
+    <!-- Contact Form Section -->
+    <section id="kontakt" class="site-comment" style="padding: 40px 18px; background: var(--content-bg);">
+      <h2 style="text-align: center; margin-bottom: 20px; color: var(--rokko-brown);">Kontakt</h2>
+      <p style="text-align: center; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        Hinterlasse hier eine Nachricht — wir freuen uns auf deine Kontaktaufnahme!
+      </p>
 
       <form action="https://formsubmit.co/email_ilgner@gmx.de" method="POST" class="comment-form" style="max-width: 600px; margin: 0 auto;">
         <input type="hidden" name="_subject" value="Neue Nachricht von ROKKO Website">
