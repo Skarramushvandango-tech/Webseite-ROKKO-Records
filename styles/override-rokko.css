@@ -41,22 +41,23 @@ p { margin: 0.3rem 0; }
 }
 .intro-video video { margin: 0; padding: 0; display: block; }
 
-/* --- Header: zurück zur natürlichen Höhe, NICHT über Video gelegt --- */
+/* --- Header: sticky position, stays at top while scrolling --- */
 header.site-header, .topbar, #header, #jHeader, .navbar {
-  position: relative !important;
+  position: sticky !important;
+  top: 0 !important;
   height: auto !important;
   min-height: auto !important;
-  padding: 8px 0 !important;
+  padding: 12px 0 !important;
   background: var(--rokko-brown) !important;
-  z-index: 10;
-  box-shadow: none;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   margin: 0 !important;
 }
 
-/* Header darf nicht fixed sein */
+/* Header stays fixed */
 .navbar-fixed-top, .navbar-default {
-  position: relative !important;
-  top: auto !important;
+  position: sticky !important;
+  top: 0 !important;
 }
 
 /* Menü inline mit Logo in einer Reihe - reduziert Platz */
@@ -94,24 +95,25 @@ body.home .btn-welcome { display:none !important; }
   display:block;
 }
 
-/* Orange outline for artist images on index page */
+/* Remove borders from artist images */
 .artist-header {
-  border: 2px solid #d9af6b !important;
-  transition: border-color 0.3s ease;
+  border: none !important;
+  padding: 0 !important;
+  transition: opacity 0.3s ease;
 }
 
 .artist-header:hover {
-  border-color: #e6a857 !important;
+  opacity: 0.9;
 }
 
 /* Abstand unter dem Artist Bild verringern */
 .artist-card, .artist-wrapper { margin-bottom: 6px !important; padding-bottom: 3px !important; }
 
-/* Trenner halb so lang wie das Artist-Bild: klassisch mit img src=images/trenner.png */
+/* Trenner same width as artist images */
 .trenner {
   display:block;
-  width:50%;
-  max-width: calc(var(--artist-img-max) / 2);
+  width:100%;
+  max-width: var(--artist-img-max);
   margin: 8px 0 12px 0;
 }
 
