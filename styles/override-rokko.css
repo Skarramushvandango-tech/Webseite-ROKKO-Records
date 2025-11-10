@@ -59,9 +59,9 @@ header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default
   right: 0 !important;
   width: 100% !important;
   height: auto !important;
-  min-height: 60px !important;
-  max-height: 60px !important;
-  padding: 8px 0 !important;
+  min-height: 45px !important;
+  max-height: 45px !important;
+  padding: 5px 0 !important;
   background: var(--rokko-brown) !important;
   z-index: 1000 !important;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
@@ -77,7 +77,7 @@ header > div, header.site-header > div {
 /* Force header container to be compact */
 header > div, header.site-header > div {
   height: 100% !important;
-  max-height: 60px !important;
+  max-height: 45px !important;
 }
 
 /* Ensure main content doesn't overlap with fixed header on index page */
@@ -89,12 +89,12 @@ body.home main {
 
 /* Add padding to body for fixed header on all pages except home */
 body:not(.home) {
-  padding-top: 60px !important;
+  padding-top: 45px !important;
 }
 
 /* Home page: no padding, video goes directly under header */
 body.home {
-  padding-top: 60px !important;
+  padding-top: 45px !important;
 }
 
 /* Override any absolute positioning from main.css */
