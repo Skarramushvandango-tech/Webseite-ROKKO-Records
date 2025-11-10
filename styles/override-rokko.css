@@ -43,16 +43,25 @@ p { margin: 0.3rem 0; }
 .intro-video video { margin: 0; padding: 0; display: block; }
 
 /* --- Header: sticky position, stays at top while scrolling --- */
-header.site-header, .topbar, #header, #jHeader, .navbar {
+/* Schmaler Balken, der oben klebt */
+header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default {
   position: sticky !important;
   top: 0 !important;
   height: auto !important;
-  min-height: auto !important;
-  padding: 12px 0 !important;
+  min-height: 60px !important;
+  max-height: 60px !important;
+  padding: 8px 0 !important;
   background: var(--rokko-brown) !important;
-  z-index: 100;
+  z-index: 1000 !important;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   margin: 0 !important;
+  overflow: visible !important;
+}
+
+/* Force header container to be compact */
+header > div, header.site-header > div {
+  height: 100% !important;
+  max-height: 60px !important;
 }
 
 /* Ensure main content doesn't overlap with sticky header on index page */
@@ -61,10 +70,13 @@ body.home main {
   padding-top: 0 !important;
 }
 
-/* Header stays fixed */
-.navbar-fixed-top, .navbar-default {
-  position: sticky !important;
-  top: 0 !important;
+/* Override any absolute positioning from main.css */
+@media (min-width: 992px) {
+  header, header.site-header {
+    position: sticky !important;
+    top: 0 !important;
+    background-color: var(--rokko-brown) !important;
+  }
 }
 
 /* Menü inline mit Logo in einer Reihe - reduziert Platz */
@@ -77,6 +89,13 @@ body.home main {
 .navbar-header { float: none !important; display: inline-block; }
 .navbar-nav-wrapper { display: inline-block; float: none !important; }
 .navbar-nav { margin: 0 !important; }
+
+/* Logo im Header kompakt halten */
+.site-header .logo img, .navbar-brand img, header img {
+  max-height: 44px !important;
+  height: 44px !important;
+  width: auto !important;
+}
 
 /* Welcome-Button: ist sichtbar auf allen Seiten AUSSER Homepage */
 .btn-welcome { 
