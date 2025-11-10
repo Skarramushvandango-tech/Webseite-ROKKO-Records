@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function(){
         var dropdown = detailsSection.querySelector('.artist-dropdown');
         
         // Check if this dropdown is already open
-        var isOpen = detailsSection.style.display === 'block' && dropdown && dropdown.style.maxHeight !== '0px';
+        var isOpen = detailsSection.style.display === 'block' && dropdown && dropdown.style.maxHeight !== '0px' && dropdown.style.maxHeight !== '';
         
         // Close all artist details first
         document.querySelectorAll('.artist-details').forEach(function(details){
@@ -71,25 +71,37 @@ document.addEventListener('DOMContentLoaded', function(){
         if(!isOpen) {
           detailsSection.style.display = 'block';
           
-          // Use a timeout to ensure display:block is applied before calculating height
-          setTimeout(function() {
-            if(dropdown) {
-              // Calculate actual content height
-              var contentHeight = dropdown.scrollHeight;
-              // Set max-height to allow full expansion, then switch to visible overflow
-              dropdown.style.maxHeight = Math.max(contentHeight, 3000) + 'px';
-              
-              // After transition, allow overflow to be visible
-              setTimeout(function() {
-                dropdown.style.overflow = 'visible';
-              }, 500);
-            }
+          // Force a reflow to ensure display:block is applied
+          void detailsSection.offsetHeight;
+          
+          if(dropdown) {
+            // Start with hidden overflow for smooth animation
+            dropdown.style.overflow = 'hidden';
             
-            // Scroll to the details section smoothly
+            // Use requestAnimationFrame for smoother rendering
+            requestAnimationFrame(function() {
+              // Calculate actual content height - temporarily set to auto to get real height
+              dropdown.style.maxHeight = 'none';
+              var contentHeight = dropdown.scrollHeight;
+              dropdown.style.maxHeight = '0';
+              
+              // Now animate to full height
+              requestAnimationFrame(function() {
+                dropdown.style.maxHeight = contentHeight + 'px';
+                
+                // After transition completes, set to auto and visible overflow for full flexibility
+                setTimeout(function() {
+                  dropdown.style.maxHeight = 'none';
+                  dropdown.style.overflow = 'visible';
+                }, 550); // Slightly longer than 0.5s transition
+              });
+            });
+            
+            // Scroll to the details section smoothly after a short delay
             setTimeout(function() {
               detailsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 100);
-          }, 10);
+            }, 200);
+          }
         }
       }
     });

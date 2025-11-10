@@ -245,6 +245,27 @@ section.inverse-color.contact .title-wrapper,
     margin-top: -5px !important;
     margin-bottom: -5px !important;
   }
+  
+  /* Mobile: Ensure artist dropdowns can fully expand */
+  .artists-section {
+    overflow: visible !important;
+  }
+  
+  .artist-carousel,
+  .artist-carousel .flickity-viewport,
+  .artist-carousel .flickity-enabled {
+    overflow: visible !important;
+  }
+  
+  .artist-details {
+    overflow: visible !important;
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  
+  .artist-dropdown {
+    overflow: visible !important;
+  }
 }
 
 /* --- Desktop: Simple border frames, Content zentriert --- */
@@ -311,6 +332,15 @@ body.home .btn-welcome { display:none !important; }
 
 /* Ensure artists section allows overflow for dropdowns */
 .artists-section {
+  overflow: visible !important;
+}
+
+/* Override Flickity's viewport overflow to allow dropdowns to expand */
+.artist-carousel .flickity-viewport {
+  overflow: visible !important;
+}
+
+.artist-carousel .flickity-enabled {
   overflow: visible !important;
 }
 
