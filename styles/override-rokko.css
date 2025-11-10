@@ -36,11 +36,19 @@ h1,h2,h3 { margin-top: 0.2rem; margin-bottom: 0.2rem; }
 p { margin: 0.3rem 0; }
 
 /* Intro video should not have any top margin or padding */
+/* Position it directly under the fixed header */
 .intro-video { 
   margin: 0 !important; 
-  padding: 0 !important; 
+  padding: 0 !important;
+  position: relative;
+  top: 0;
 }
-.intro-video video { margin: 0; padding: 0; display: block; }
+.intro-video video { 
+  margin: 0; 
+  padding: 0; 
+  display: block;
+  border: none;
+}
 
 /* --- Header: fixed position, stays at top while scrolling --- */
 /* Schmaler Balken, der oben klebt */
@@ -58,6 +66,11 @@ header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default
   z-index: 1000 !important;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   margin: 0 !important;
+  overflow: visible !important; /* Allow logo to overflow */
+}
+
+/* Ensure header container allows overflow for logo */
+header > div, header.site-header > div {
   overflow: visible !important;
 }
 
@@ -68,13 +81,19 @@ header > div, header.site-header > div {
 }
 
 /* Ensure main content doesn't overlap with fixed header on index page */
+/* Remove margin so intro video sits directly under header */
 body.home main {
-  margin-top: 60px !important;
+  margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
-/* Add padding to body for fixed header on all pages */
-body {
+/* Add padding to body for fixed header on all pages except home */
+body:not(.home) {
+  padding-top: 60px !important;
+}
+
+/* Home page: no padding, video goes directly under header */
+body.home {
   padding-top: 60px !important;
 }
 
@@ -101,18 +120,20 @@ body {
 .navbar-nav-wrapper { display: inline-block; float: none !important; }
 .navbar-nav { margin: 0 !important; }
 
-/* Logo im Header - allow larger size and extend down */
+/* Logo im Header - allow larger size and extend beyond header bounds */
 .site-header .logo {
   position: relative;
   z-index: 1001;
+  overflow: visible !important;
 }
 
 .site-header .logo img, .navbar-brand img, header img {
-  max-height: 80px !important;
-  height: 80px !important;
+  max-height: 100px !important;
+  height: 100px !important;
   width: auto !important;
   position: relative;
-  margin-top: -10px;
+  margin-top: -25px !important; /* Allow logo to extend above header */
+  margin-bottom: -20px !important; /* Allow logo to extend below header */
 }
 
 /* Welcome-Button: ist sichtbar auf allen Seiten AUSSER Homepage */
