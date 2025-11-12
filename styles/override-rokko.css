@@ -134,12 +134,12 @@ body.home {
 }
 
 .site-header .logo img, .navbar-brand img, header img {
-  max-height: 100px !important;
-  height: 100px !important;
+  max-height: 120px !important;
+  height: 120px !important;
   width: auto !important;
   position: relative;
-  margin-top: -25px !important; /* Allow logo to extend above header */
-  margin-bottom: -20px !important; /* Allow logo to extend below header */
+  margin-top: -35px !important; /* Allow logo to extend above header */
+  margin-bottom: -30px !important; /* Allow logo to extend below header */
 }
 
 /* Welcome-Button: ist sichtbar auf allen Seiten AUSSER Homepage */
@@ -326,12 +326,13 @@ section.inverse-color.contact .title-wrapper,
   
   /* Desktop: Center header content at exactly 1/3 screen width */
   header.site-header > div, header > div {
-    max-width: 33.333vw !important;
+    max-width: 100% !important;
     margin: 0 auto !important;
     display: flex !important;
-    justify-content: center !important;
+    justify-content: space-between !important;
     align-items: center !important;
     gap: 20px !important;
+    padding: 0 20px !important;
   }
   
   /* Hide old side-frame elements */
@@ -502,4 +503,50 @@ img[src*="trenner.png"] {
   background: var(--content-bg);
   transform: scale(1.05);
   transition: all 0.2s ease;
+}
+
+/* Music platform buttons styling */
+.music-btn {
+  transition: all 0.2s ease;
+}
+
+.music-btn:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+}
+
+.music-btn-spotify:hover {
+  background: #1DB954 !important;
+  color: #fff !important;
+}
+
+.music-btn-apple:hover {
+  background: #FA243C !important;
+  color: #fff !important;
+}
+
+.music-btn-soundcloud:hover {
+  background: #FF5500 !important;
+  color: #fff !important;
+}
+
+.music-btn-amazon:hover {
+  background: #FF9900 !important;
+  color: #000 !important;
+}
+
+/* Merch button hover effect */
+.merch-section a[href*="spreadshop"]:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* News section container styling */
+.news-feed-container {
+  transition: all 0.3s ease;
+}
+
+.news-feed .news-item {
+  transition: opacity 0.3s ease;
 }
