@@ -33,8 +33,14 @@ document.addEventListener('DOMContentLoaded', function(){
       freeScroll: false,
       friction: 0.6,
       selectedAttraction: 0.1,
-      dragThreshold: 10
+      dragThreshold: 10,
+      setGallerySize: false  // Don't let Flickity set the carousel height
     });
+    
+    // Force resize after initialization to ensure cells have proper width
+    setTimeout(function() {
+      flkty.resize();
+    }, 100);
 
     // Prevent page scroll when dragging carousel
     carouselElem.addEventListener('touchstart', function() {
