@@ -397,6 +397,7 @@ body.home .btn-welcome { display:none !important; }
 }
 
 .artist-carousel .carousel-cell {
+  width: 420px !important; /* Fixed width - percentage doesn't work with Flickity absolute positioning */
   margin: 0 10px;
 }
 
