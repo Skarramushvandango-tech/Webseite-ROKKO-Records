@@ -388,7 +388,7 @@ body.home .btn-welcome { display:none !important; }
 /* Artist carousel styling */
 .artist-carousel {
   margin: 0 auto;
-  width: 100% !important; /* Force full width */
+  width: 100%;
   max-width: 100%;
   border: none;
   padding: 15px;
@@ -397,8 +397,6 @@ body.home .btn-welcome { display:none !important; }
 }
 
 .artist-carousel .carousel-cell {
-  width: 420px !important; /* Fixed width for Flickity to work properly - use !important to override Flickity inline styles */
-  max-width: 90% !important; /* Allow responsive shrinking on small screens */
   margin: 0 10px;
 }
 
@@ -558,6 +556,11 @@ img[src*="trenner.png"] {
 
 .music-btn-amazon:hover {
   background: #FF9900 !important;
+  color: #000 !important;
+}
+
+.music-btn-beatport:hover {
+  background: #00FF95 !important;
   color: #000 !important;
 }
 
