@@ -29,7 +29,7 @@
   <main>
     <!-- Intro Video Section -->
     <section class="intro-video" style="position: relative; width: 100%; padding: 0; margin: 0;">
-      <video id="introVideo" autoplay loop muted playsinline style="width: 100%; height: auto; display: block;">
+      <video id="introVideo" autoplay loop muted playsinline preload="metadata" style="width: 100%; height: auto; display: block;">
         <source src="images/intro_movie.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -39,7 +39,7 @@
     </section>
 
     <!-- Welcome Text Section -->
-    <section class="welcome-text" style="padding: 40px 18px; text-align: center; background: var(--content-bg);">
+    <section class="welcome-text section-fullscreen" style="padding: 40px 18px; text-align: center; background: var(--content-bg); display: flex; flex-direction: column; justify-content: center; align-items: center;">
       <h1 style="margin-bottom: 20px; color: var(--rokko-brown); font-size: 1.5em;">Willkommen bei ROKKO Records</h1>
       <p style="max-width: 800px; margin: 0 auto; line-height: 1.6; font-size: 1.1em;">
         Entdecke unsere einzigartigen Künstler und ihre Musik. ROKKO Records steht für Qualität, Kreativität und Innovation in der Musikproduktion. 
@@ -52,10 +52,15 @@
     </div>
 
         <!-- Artists Section with Carousel -->
-    <section class="artists-section" style="padding: 20px 18px; background: var(--content-bg);">
+    <section class="artists-section section-fullscreen" style="padding: 20px 18px; background: var(--content-bg); display: flex; flex-direction: column; justify-content: center;">
       <div style="text-align: center; margin-bottom: 30px;">
         <img src="images/crew.png" alt="ROKKO! Artists" style="display: inline-block; width: 100%; max-width: 600px;">
       </div>
+
+      <!-- Instruction Text -->
+      <p style="text-align: center; margin-bottom: 20px; font-weight: 600; font-size: 1.1em; color: var(--rokko-brown);">
+        Klicke auf einen Artist für mehr Infos
+      </p>
 
       <!-- Artist Carousel -->
       <div class="artist-carousel" style="margin-bottom: 30px;">
@@ -354,7 +359,7 @@
     </div>
 
     <!-- Merch Shop Section -->
-    <section class="merch-section" style="padding: 40px 18px; background: var(--content-bg);">
+    <section class="merch-section section-fullscreen" style="padding: 40px 18px; background: var(--content-bg); display: flex; flex-direction: column; justify-content: center; align-items: center;">
       <div style="text-align: center; margin-bottom: 30px;">
         <img src="images/merch.png" alt="ROKKO! Merchandise" style="display: inline-block; width: 100%; max-width: 600px;">
       </div>
@@ -378,7 +383,7 @@
     </div>
 
     <!-- Contact Form Section -->
-    <section id="kontakt" class="site-comment" style="padding: 40px 18px; background: var(--content-bg);">
+    <section id="kontakt" class="site-comment section-fullscreen" style="padding: 40px 18px; background: var(--content-bg); display: flex; flex-direction: column; justify-content: center;">
       <div style="text-align: center; margin-bottom: 20px;">
         <img src="images/kontakt.png" alt="ROKKO! Kontakt" style="display: inline-block; width: 100%; max-width: 600px;">
       </div>

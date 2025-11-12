@@ -344,6 +344,29 @@ section.inverse-color.contact .title-wrapper,
 /* --- kleine optische Fixes --- */
 .section-divider { margin:4px 0; border:none; height:2px; background:#c98a6d; }
 
+/* Full-screen sections for mobile - smooth scrolling experience */
+@media (max-width: 900px) {
+  .section-fullscreen {
+    min-height: 100vh;
+    min-height: 100svh; /* Use small viewport height for better mobile support */
+  }
+  
+  /* Intro video section should also be full height */
+  .intro-video {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .intro-video video {
+    max-height: 100vh;
+    max-height: 100svh;
+    object-fit: cover;
+  }
+}
+
 /* ensure header doesn't overlay video intro (if intro video exists) */
 .intro-video, .intro-slider, .intro, section.intro { 
   margin-top:0 !important; 
