@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function(){
         // Check if this dropdown is already open
         var isOpen = detailsSection.style.display === 'block' && dropdown && dropdown.style.maxHeight !== '0px' && dropdown.style.maxHeight !== '';
         
-        // Close all artist details first
+        // Always close all artist details first (this ensures proper switching)
         document.querySelectorAll('.artist-details').forEach(function(details){
           var dd = details.querySelector('.artist-dropdown');
           if(dd) {
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function(){
           }
         });
         
-        // If it wasn't open, open this one
+        // If it wasn't open, open this one (if it was already open, keep it closed for toggle behavior)
         if(!isOpen) {
           detailsSection.style.display = 'block';
           
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function(){
         // Update active button
         pageButtons.forEach(function(b) {
           b.classList.remove('active');
-          b.style.background = '#f3e2c9';
+          b.style.background = '#fff';
           b.style.color = 'var(--rokko-brown)';
         });
         
