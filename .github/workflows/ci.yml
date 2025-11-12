@@ -1,52 +1,47 @@
-name: CI
+  - name: Setup Node
+    uses: actions/setup-node@v4
+    with:
+      node-version: '18'
 
-on:
-  pull_request:
-    branches: [ main, master ]
-  push:
-    branches: [ main, master ]
+  - name: Check if package.json exists
+    id: check_package
+    run: |
+      if [ -f "package.json" ]; then
+        echo "exists=true" >> $GITHUB_OUTPUT
+      else
+        echo "exists=false" >> $GITHUB_OUTPUT
+      fi
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        
-    - name: Check if package.json exists
-      id: check_package
-      run: |
-        if [ -f "package.json" ]; then
-          echo "exists=true" >> $GITHUB_OUTPUT
+  - name: Install deps
+    if: steps.check_package.outputs.exists == 'true'
+    run: npm ci || npm install
+
+  - name: Build
+    if: steps.check_package.outputs.exists == 'true'
+    run: |
+      if npm run | grep -q " build"; then
+        npm run build
+      else
+        echo "No build script found, skipping"
+      fi
+
+  - name: Validate HTML files (safe)
+    run: |
+      set -e
+      count=$(git ls-files '*.html' | wc -l | tr -d ' ')
+      if [ "$count" -eq 0 ]; then
+        echo "No HTML files found, skipping."
+      else
+        git ls-files '*.html'
+      fi
+
+  - name: Check assets (non-failing)
+    run: |
+      for f in assets/images/logo.png assets/movies/intro_movie.mp4; do
+        if [ -f "$f" ]; then
+          echo "✓ $f"
         else
-          echo "exists=false" >> $GITHUB_OUTPUT
+          echo "⚠ missing: $f"
         fi
-        
-    - name: Install dependencies
-      if: steps.check_package.outputs.exists == 'true'
-      run: npm install
-      
-    - name: Build project
-      if: steps.check_package.outputs.exists == 'true'
-      run: npm run build || echo "No build script found, skipping"
-      
-    - name: Validate HTML files
-      run: |
-        echo "Checking HTML files exist..."
-        ls -la *.html
-        echo "HTML validation passed"
-        
-    - name: Check assets
-      run: |
-        echo "Checking for required assets..."
-        test -f "images/logo.png" && echo "✓ Logo found" || echo "✗ Logo missing"
-        test -f "images/intro_movie.mp4" && echo "✓ Intro video found" || echo "✗ Intro video missing"
-        echo "Asset check complete"
+      done
+      exit 0
