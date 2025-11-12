@@ -67,6 +67,13 @@ document.addEventListener('DOMContentLoaded', function(){
           details.style.display = 'none';
         });
         
+        // Pause all playing audio tracks when switching artists
+        document.querySelectorAll('audio').forEach(function(audio) {
+          if(!audio.paused) {
+            audio.pause();
+          }
+        });
+        
         // If it wasn't open, open this one
         if(!isOpen) {
           detailsSection.style.display = 'block';
@@ -196,6 +203,18 @@ document.addEventListener('DOMContentLoaded', function(){
         // load embed - use privacy-enhanced URL
         iframe.src = 'https://www.youtube-nocookie.com/embed/' + videoId + '?rel=0&autoplay=1';
       }
+    });
+  });
+
+  // Audio playback control: only one track plays at a time
+  document.querySelectorAll('audio').forEach(function(audio) {
+    audio.addEventListener('play', function() {
+      // Pause all other audio elements when this one starts playing
+      document.querySelectorAll('audio').forEach(function(otherAudio) {
+        if (otherAudio !== audio && !otherAudio.paused) {
+          otherAudio.pause();
+        }
+      });
     });
   });
 });
