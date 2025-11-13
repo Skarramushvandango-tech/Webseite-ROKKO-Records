@@ -561,3 +561,41 @@ img[src*="trenner.png"] {
 .news-feed .news-item {
   transition: opacity 0.3s ease;
 }
+
+/* Artist Modal Overlay */
+.artist-modal {
+  -webkit-overflow-scrolling: touch;
+}
+
+.artist-modal::-webkit-scrollbar {
+  width: 10px;
+}
+
+.artist-modal::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.3);
+}
+
+.artist-modal::-webkit-scrollbar-thumb {
+  background: var(--rokko-brown);
+  border-radius: 5px;
+}
+
+.artist-modal::-webkit-scrollbar-thumb:hover {
+  background: #2d1f1b;
+}
+
+#closeArtistModal:hover {
+  background: #2d1f1b;
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+}
+
+/* Ensure modal content elements are properly styled */
+#artistModalContent h3 {
+  color: var(--rokko-brown);
+}
+
+#artistModalContent .disco-cover-small:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}

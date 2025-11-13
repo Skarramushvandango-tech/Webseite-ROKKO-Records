@@ -53,73 +53,92 @@ document.addEventListener('DOMContentLoaded', function(){
     }, { passive: false });
   }
 
-  // Toggle artist details when clicking carousel images
+  // Toggle artist details when clicking carousel images - FULL PAGE MODAL
   document.querySelectorAll('.artist-header[data-artist]').forEach(function(header){
     header.addEventListener('click', function(){
       var artistId = this.dataset.artist;
       var detailsSection = document.getElementById('artist-' + artistId);
       
       if(detailsSection) {
-        var dropdown = detailsSection.querySelector('.artist-dropdown');
+        // Get the modal and content container
+        var modal = document.getElementById('artistModal');
+        var modalContent = document.getElementById('artistModalContent');
         
-        // Check if this dropdown is already open
-        var isOpen = detailsSection.style.display === 'block' && dropdown && dropdown.style.maxHeight !== '0px' && dropdown.style.maxHeight !== '';
-        
-        // Always close all artist details first (this ensures proper switching)
-        document.querySelectorAll('.artist-details').forEach(function(details){
-          var dd = details.querySelector('.artist-dropdown');
-          if(dd) {
-            dd.style.maxHeight = '0';
-            dd.style.overflow = 'hidden';
+        if(modal && modalContent) {
+          // Get artist image from the clicked header
+          var artistImg = this.querySelector('img.artist-main-image');
+          var artistImgSrc = artistImg ? artistImg.src : '';
+          
+          // Get the content from the details section
+          var detailsHTML = detailsSection.querySelector('.artist-dropdown').innerHTML;
+          
+          // Build modal content with artist image at top
+          var fullContent = '';
+          if(artistImgSrc) {
+            fullContent += '<div style="text-align: center; margin-bottom: 30px;"><img src="' + artistImgSrc + '" alt="Artist" style="max-width: 100%; border-radius: 8px;"></div>';
           }
-          details.style.display = 'none';
-        });
+          fullContent += detailsHTML;
+          
+          // Insert content
+          modalContent.innerHTML = fullContent;
+          
+          // Show modal
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden'; // Prevent background scrolling
+          
+          // Pause all playing audio tracks
+          document.querySelectorAll('audio').forEach(function(audio) {
+            if(!audio.paused) {
+              audio.pause();
+            }
+          });
+          
+          // Scroll to top of modal
+          modal.scrollTop = 0;
+        }
+      }
+    });
+  });
+  
+  // Close modal button handler
+  var closeModalBtn = document.getElementById('closeArtistModal');
+  if(closeModalBtn) {
+    closeModalBtn.addEventListener('click', function() {
+      var modal = document.getElementById('artistModal');
+      if(modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; // Restore scrolling
         
-        // Pause all playing audio tracks when switching artists
-        document.querySelectorAll('audio').forEach(function(audio) {
+        // Pause all audio in modal
+        document.querySelectorAll('#artistModal audio').forEach(function(audio) {
           if(!audio.paused) {
             audio.pause();
           }
         });
-        
-        // If it wasn't open, open this one (if it was already open, keep it closed for toggle behavior)
-        if(!isOpen) {
-          detailsSection.style.display = 'block';
-          
-          // Force a reflow to ensure display:block is applied
-          void detailsSection.offsetHeight;
-          
-          if(dropdown) {
-            // Start with hidden overflow for smooth animation
-            dropdown.style.overflow = 'hidden';
-            
-            // Use requestAnimationFrame for smoother rendering
-            requestAnimationFrame(function() {
-              // Calculate actual content height - temporarily set to auto to get real height
-              dropdown.style.maxHeight = 'none';
-              var contentHeight = dropdown.scrollHeight;
-              dropdown.style.maxHeight = '0';
-              
-              // Now animate to full height
-              requestAnimationFrame(function() {
-                dropdown.style.maxHeight = contentHeight + 'px';
-                
-                // After transition completes, set to auto and visible overflow for full flexibility
-                setTimeout(function() {
-                  dropdown.style.maxHeight = 'none';
-                  dropdown.style.overflow = 'visible';
-                }, 550); // Slightly longer than 0.5s transition
-              });
-            });
-            
-            // Scroll to the details section smoothly after a short delay
-            setTimeout(function() {
-              detailsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 200);
-          }
-        }
       }
     });
+  }
+  
+  // Close modal when clicking outside content
+  var artistModal = document.getElementById('artistModal');
+  if(artistModal) {
+    artistModal.addEventListener('click', function(e) {
+      if(e.target === artistModal) {
+        var closeBtn = document.getElementById('closeArtistModal');
+        if(closeBtn) closeBtn.click();
+      }
+    });
+  }
+  
+  // Close modal on ESC key
+  document.addEventListener('keydown', function(e) {
+    if(e.key === 'Escape') {
+      var modal = document.getElementById('artistModal');
+      if(modal && modal.style.display === 'block') {
+        var closeBtn = document.getElementById('closeArtistModal');
+        if(closeBtn) closeBtn.click();
+      }
+    }
   });
 
   // Also handle old-style artist headers (for backward compatibility)
@@ -145,18 +164,26 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 
   // Toggle disco dropdown - shows songs directly without nested large cover
-  document.querySelectorAll('.disco-cover-small').forEach(function(el){
-    el.addEventListener('click', function(e){
+  // Use event delegation to work with dynamically added content in modal
+  document.body.addEventListener('click', function(e) {
+    var target = e.target;
+    
+    // Check if clicked element is a disco cover
+    if(target.classList && target.classList.contains('disco-cover-small')) {
       e.stopPropagation(); // Prevent parent click
-      var parent = el.closest('.release');
+      
+      var parent = target.closest('.release');
+      if(!parent) return;
+      
       var dd = parent.querySelector('.disco-dropdown');
+      if(!dd) return;
       
       if(dd.style.maxHeight && dd.style.maxHeight !== '0px'){
         // Close
         dd.style.maxHeight = '0';
       } else {
         // Close other open dropdowns in same artist section
-        var artistSection = el.closest('.artist-item, .artist-wrapper');
+        var artistSection = target.closest('.artist-item, .artist-wrapper, #artistModalContent');
         if(artistSection){
           artistSection.querySelectorAll('.disco-dropdown').forEach(function(o){ 
             o.style.maxHeight = '0';
@@ -165,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function(){
         // Open this one
         dd.style.maxHeight = dd.scrollHeight + 'px';
       }
-    });
+    }
   });
 
   // News pagination
