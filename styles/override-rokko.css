@@ -307,24 +307,38 @@ section.inverse-color.contact .title-wrapper,
     background: #C9A375; /* Darker sand tone for side areas */
   }
   
-  .site-shell { 
-    max-width: var(--main-width); 
-    margin: 0 auto; 
+  body.site-shell { 
+    max-width: 100%; /* Body should span full width */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Create centered container effect */
+  body.site-shell > main,
+  body.site-shell > header {
+    max-width: var(--main-width);
+    margin-left: auto;
+    margin-right: auto;
     background: var(--content-bg);
+  }
+  
+  body.site-shell > main {
     border-left: 2px solid var(--rokko-brown);
     border-right: 2px solid var(--rokko-brown);
   }
   
-  /* Header should span full width on desktop, not constrained by site-shell */
+  /* Header should span full width on desktop, not constrained */
   header, header.site-header {
     max-width: 100% !important;
     left: 0 !important;
     right: 0 !important;
+    position: fixed !important;
+    background: var(--rokko-brown) !important;
   }
   
-  /* Desktop: Center header content at exactly 1/3 screen width */
+  /* Desktop: Center header content within max-width */
   header.site-header > div, header > div {
-    max-width: 100% !important;
+    max-width: var(--main-width) !important;
     margin: 0 auto !important;
     display: flex !important;
     justify-content: space-between !important;
