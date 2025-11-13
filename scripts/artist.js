@@ -67,34 +67,49 @@ document.addEventListener('DOMContentLoaded', function(){
         if(modal && modalContent) {
           // Get artist image from the clicked header
           var artistImg = this.querySelector('img.artist-main-image');
-          var artistImgSrc = artistImg ? artistImg.src : '';
-          
-          // Get the content from the details section
-          var detailsHTML = detailsSection.querySelector('.artist-dropdown').innerHTML;
           
           // Build modal content with artist image at top
-          var fullContent = '';
-          if(artistImgSrc) {
-            fullContent += '<div style="text-align: center; margin-bottom: 30px;"><img src="' + artistImgSrc + '" alt="Artist" style="max-width: 100%; border-radius: 8px;"></div>';
-          }
-          fullContent += detailsHTML;
+          // Get the content from the details section
+          var detailsDropdown = detailsSection.querySelector('.artist-dropdown');
           
-          // Insert content
-          modalContent.innerHTML = fullContent;
-          
-          // Show modal
-          modal.style.display = 'block';
-          document.body.style.overflow = 'hidden'; // Prevent background scrolling
-          
-          // Pause all playing audio tracks
-          document.querySelectorAll('audio').forEach(function(audio) {
-            if(!audio.paused) {
-              audio.pause();
+          if(modal && modalContent && detailsDropdown) {
+            // Clear previous content
+            modalContent.innerHTML = '';
+            
+            // Add artist image at top if available
+            if(artistImg) {
+              var imgContainer = document.createElement('div');
+              imgContainer.style.textAlign = 'center';
+              imgContainer.style.marginBottom = '30px';
+              
+              var clonedImg = artistImg.cloneNode(true);
+              clonedImg.style.maxWidth = '100%';
+              clonedImg.style.borderRadius = '8px';
+              clonedImg.alt = 'Artist';
+              
+              imgContainer.appendChild(clonedImg);
+              modalContent.appendChild(imgContainer);
             }
-          });
-          
-          // Scroll to top of modal
-          modal.scrollTop = 0;
+            
+            // Clone and append the details content
+            var contentWrapper = document.createElement('div');
+            contentWrapper.innerHTML = detailsDropdown.innerHTML;
+            modalContent.appendChild(contentWrapper);
+            
+            // Show modal
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Pause all playing audio tracks
+            document.querySelectorAll('audio').forEach(function(audio) {
+              if(!audio.paused) {
+                audio.pause();
+              }
+            });
+            
+            // Scroll to top of modal
+            modal.scrollTop = 0;
+          }
         }
       }
     });
