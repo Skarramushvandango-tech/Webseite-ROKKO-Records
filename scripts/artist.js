@@ -35,14 +35,22 @@ document.addEventListener('DOMContentLoaded', function(){
       selectedAttraction: 0.1,
       dragThreshold: 10
     });
-
-    // Prevent page scroll when dragging carousel
-    carouselElem.addEventListener('touchstart', function() {
-      document.body.style.overflow = 'hidden';
+    // Prevent page scroll when dragging carousel - improved handling
+    var touchStartY = 0;
+    carouselElem.addEventListener('touchstart', function(e) {
+      touchStartY = e.touches[0].clientY;
     });
-    carouselElem.addEventListener('touchend', function() {
-      document.body.style.overflow = '';
-    });
+    
+    carouselElem.addEventListener('touchmove', function(e) {
+      // Only prevent scroll if moving horizontally (carousel drag)
+      var touchMoveY = e.touches[0].clientY;
+      var deltaY = Math.abs(touchMoveY - touchStartY);
+      
+      // If horizontal movement is significant, prevent vertical scroll
+      if (deltaY < 10) {
+        e.preventDefault();
+      }
+    }, { passive: false });
   }
 
   // Toggle artist details when clicking carousel images
