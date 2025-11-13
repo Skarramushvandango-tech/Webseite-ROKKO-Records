@@ -244,11 +244,15 @@ section.inverse-color.contact .title-wrapper,
     max-width: 100vw !important;
   }
   
-  /* Mobile: Allow carousel to scroll horizontally */
+  /* Mobile: Allow carousel viewport to work properly */
   .artist-carousel {
-    overflow-x: auto !important;
-    overflow-y: visible !important;
+    overflow: visible !important; /* Allow dropdowns to expand outside */
     -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Mobile: Flickity viewport MUST have hidden overflow for carousel to display */
+  .artist-carousel .flickity-viewport {
+    overflow: hidden !important; /* Required for Flickity to display cells properly */
   }
   
   /* Mobile: Header layout - logo left, text right */
@@ -283,12 +287,6 @@ section.inverse-color.contact .title-wrapper,
   
   /* Mobile: Ensure artist dropdowns can fully expand */
   .artists-section {
-    overflow: visible !important;
-  }
-  
-  .artist-carousel,
-  .artist-carousel .flickity-viewport,
-  .artist-carousel .flickity-enabled {
     overflow: visible !important;
   }
   
@@ -397,8 +395,16 @@ body.home .btn-welcome { display:none !important; }
 }
 
 .artist-carousel .carousel-cell {
-  width: 420px !important; /* Fixed width - percentage doesn't work with Flickity absolute positioning */
+  width: 85% !important; /* Responsive width for mobile */
+  max-width: 420px !important; /* Cap at 420px on larger screens */
   margin: 0 10px;
+}
+
+/* Desktop: use fixed width for carousel cells */
+@media (min-width: 768px) {
+  .artist-carousel .carousel-cell {
+    width: 420px !important;
+  }
 }
 
 /* Ensure artists section allows overflow for dropdowns */
@@ -406,13 +412,9 @@ body.home .btn-welcome { display:none !important; }
   overflow: visible !important;
 }
 
-/* Override Flickity's viewport overflow to allow dropdowns to expand */
+/* Override Flickity's viewport overflow - MUST be hidden for carousel to work */
 .artist-carousel .flickity-viewport {
-  overflow: visible !important;
-}
-
-.artist-carousel .flickity-enabled {
-  overflow: visible !important;
+  overflow: hidden !important;
 }
 
 /* Flickity carousel buttons */
