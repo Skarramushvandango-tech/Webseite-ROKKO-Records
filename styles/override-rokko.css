@@ -599,3 +599,12 @@ img[src*="trenner.png"] {
   transform: scale(1.05);
   transition: transform 0.2s ease;
 }
+
+/* Artist image in modal is clickable to close */
+#artistModalContent > div:first-child {
+  transition: opacity 0.2s ease;
+}
+
+#artistModalContent > div:first-child:hover {
+  opacity: 0.9;
+}

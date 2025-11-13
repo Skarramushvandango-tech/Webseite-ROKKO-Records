@@ -81,6 +81,8 @@ document.addEventListener('DOMContentLoaded', function(){
               var imgContainer = document.createElement('div');
               imgContainer.style.textAlign = 'center';
               imgContainer.style.marginBottom = '30px';
+              imgContainer.style.cursor = 'pointer';
+              imgContainer.title = 'Klicken zum Schließen';
               
               var clonedImg = artistImg.cloneNode(true);
               clonedImg.style.maxWidth = '100%';
@@ -88,6 +90,13 @@ document.addEventListener('DOMContentLoaded', function(){
               clonedImg.alt = 'Artist';
               
               imgContainer.appendChild(clonedImg);
+              
+              // Add click handler to close modal when clicking artist image
+              imgContainer.addEventListener('click', function() {
+                var closeBtn = document.getElementById('closeArtistModal');
+                if(closeBtn) closeBtn.click();
+              });
+              
               modalContent.appendChild(imgContainer);
             }
             
