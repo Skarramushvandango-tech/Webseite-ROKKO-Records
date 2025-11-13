@@ -535,36 +535,15 @@ img[src*="trenner.png"] {
 /* Music platform buttons styling */
 .music-btn {
   transition: all 0.2s ease;
+  background: #201613 !important;
+  color: #E0C290 !important;
 }
 
 .music-btn:hover {
   opacity: 0.85;
   transform: scale(1.05);
-}
-
-.music-btn-spotify:hover {
-  background: #1DB954 !important;
-  color: #fff !important;
-}
-
-.music-btn-apple:hover {
-  background: #FA243C !important;
-  color: #fff !important;
-}
-
-.music-btn-soundcloud:hover {
-  background: #FF5500 !important;
-  color: #fff !important;
-}
-
-.music-btn-amazon:hover {
-  background: #FF9900 !important;
-  color: #000 !important;
-}
-
-.music-btn-beatport:hover {
-  background: #00FF95 !important;
-  color: #000 !important;
+  background: #2d1f1b !important;
+  color: #E0C290 !important;
 }
 
 /* Merch button hover effect */
