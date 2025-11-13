@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function(){
             
             // Show modal
             modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
             
             // Pause all playing audio tracks
@@ -131,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function(){
       var modal = document.getElementById('artistModal');
       if(modal) {
         modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = ''; // Restore scrolling
         
         // Pause all audio in modal
