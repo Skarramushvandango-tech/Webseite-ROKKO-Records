@@ -22,17 +22,17 @@ body, html {
 
 /* Enge Ränder für Sections - STARK REDUZIERT */
 section, .container, main {
-  padding-top: 4px !important;
-  padding-bottom: 4px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
-.section { padding: 6px 0 !important; }
+.section { padding: 0 !important; }
 .voffset70, .voffset100, .voffset80, .voffset50, .voffset40 { 
-  height: 4px !important; 
-  margin: 4px 0 !important; 
+  height: 0 !important; 
+  margin: 0 !important; 
 }
 
 /* Headline-Abstände kleiner */
-h1,h2,h3 { margin-top: 0.2rem; margin-bottom: 0.2rem; }
+h1,h2,h3 { margin-top: 0; margin-bottom: 0.5rem; }
 p { margin: 0.3rem 0; }
 
 /* Intro video should not have any top margin or padding */
@@ -185,7 +185,8 @@ body.home .btn-welcome { display:none !important; }
   display:block;
   width:100%;
   max-width: var(--artist-img-max);
-  margin: 8px 0 12px 0;
+  margin: 0;
+  padding: 0;
 }
 
 /* Biografie linksbündig, kompakter Textfluss */
