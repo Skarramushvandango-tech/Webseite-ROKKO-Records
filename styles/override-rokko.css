@@ -53,6 +53,14 @@ p { margin: 0.3rem 0; }
   line-height: 0; /* Remove any line-height gaps */
 }
 
+/* Mute button positioning at bottom of video */
+#muteButton {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
 /* --- Header: fixed position, stays at top while scrolling --- */
 /* Schmaler Balken, der oben klebt */
 header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default {
@@ -622,4 +630,26 @@ img[src*="trenner.png"] {
 
 #artistModalContent > div:first-child:hover {
   opacity: 0.9;
+}
+
+/* Track item styling */
+.track-item {
+  padding: 8px 12px;
+  margin: 4px 0;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #d9af6b;
+  transition: all 0.2s ease;
+}
+
+.track-item:hover {
+  background: #f3e2c9;
+  transform: translateX(5px);
+  border-width: 2px;
+}
+
+.track-item.active {
+  background: #f3e2c9;
+  border-width: 2px;
 }

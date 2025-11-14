@@ -278,4 +278,43 @@ document.addEventListener('DOMContentLoaded', function(){
       });
     });
   });
+
+  // Track item click handler - load track into player and play
+  document.body.addEventListener('click', function(e) {
+    var target = e.target;
+    
+    // Check if clicked element is a track-item or its child
+    var trackItem = target.closest('.track-item');
+    if(trackItem) {
+      e.stopPropagation();
+      
+      var trackSrc = trackItem.getAttribute('data-src');
+      var playerId = trackItem.getAttribute('data-player');
+      
+      if(trackSrc && playerId) {
+        var player = document.getElementById(playerId);
+        if(player) {
+          // Update player source
+          player.src = trackSrc;
+          player.load();
+          
+          // Play the track
+          player.play().catch(function(error) {
+            console.log('Playback failed:', error);
+          });
+          
+          // Remove active class from all tracks in this player's group
+          var allTracks = document.querySelectorAll('[data-player="' + playerId + '"]');
+          allTracks.forEach(function(track) {
+            track.style.background = '#fff';
+            track.style.borderWidth = '1px';
+          });
+          
+          // Highlight the selected track
+          trackItem.style.background = '#f3e2c9';
+          trackItem.style.borderWidth = '2px';
+        }
+      }
+    }
+  });
 });
