@@ -15,8 +15,11 @@
   <!-- Header -->
   <header class="site-header">
     <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 0 10px; height: 100%; max-width: 100%;">
-      <div class="logo" style="display: inline-block;">
+      <div class="logo desktop-logo" style="display: inline-block;">
         <a href="index.html"><img src="images/logo.png" alt="ROKKO" style="height: 44px;"></a>
+      </div>
+      <div class="logo mobile-logo" style="display: none;">
+        <a href="index.html"><img src="images/header.png" alt="ROKKO" style="height: 44px; width: auto;"></a>
       </div>
       <div class="header-text" style="display: inline-block; color: #d9af6b; font-weight: 700; font-size: 1.1em; text-align: right;">
         Wir sind ROKKO!
@@ -25,19 +28,25 @@
   </header>
 
   <main>
+    <!-- Separator above intro video -->
+    <img src="images/trenner.png" alt="trenner" class="trenner" style="display: block; width: 100%; max-width: 520px; margin: 0 auto; padding: 0;">
+
     <!-- Intro Video Section -->
-    <section class="intro-video" style="position: relative; width: 100%; padding: 0; margin: 0;">
-      <video id="introVideo" autoplay muted playsinline preload="metadata" style="width: 100%; height: auto; display: block; margin: 0; padding: 0;">
+    <section class="intro-video" style="position: relative; width: 100%; padding: 10px 18px; margin: 0; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px;">
+      <video id="introVideo" autoplay muted playsinline preload="metadata" style="width: 100%; height: auto; display: block; margin: 0; padding: 0; border-radius: 5px;">
         <source src="images/intro_movie.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
-      <button id="muteButton" style="position: absolute; bottom: 20px; right: 20px; padding: 6px 12px; background: rgba(32, 22, 19, 0.85); color: #d9af6b; border: 1px solid #d9af6b; border-radius: 3px; cursor: pointer; font-weight: 600; font-size: 0.9em; z-index: 10;">
+      <button id="muteButton" style="position: absolute; bottom: 30px; right: 30px; padding: 6px 12px; background: rgba(32, 22, 19, 0.85); color: #d9af6b; border: 1px solid #d9af6b; border-radius: 3px; cursor: pointer; font-weight: 600; font-size: 0.9em; z-index: 10;">
         UNMUTE
       </button>
     </section>
 
+    <!-- Separator below intro video -->
+    <img src="images/trenner.png" alt="trenner" class="trenner" style="display: block; width: 100%; max-width: 520px; margin: 0 auto; padding: 0;">
+
     <!-- Welcome Text Section -->
-    <section class="welcome-text" style="padding: 10px 18px; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
+    <section class="welcome-text" style="padding: 10px 18px; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px; margin: 0;">
       <h1 style="margin-bottom: 10px; color: var(--rokko-brown); font-size: 1.5em;">Wir sind ROKKO!<br>Und Du noch nicht…</h1>
       <p style="max-width: 800px; margin: 0 0 10px 0; line-height: 1.6; font-size: 1.1em;">
         Du hast Dich erfolgreich auf unsere Homepage verlaufen, Gratulation. Jetzt hoffen wir, dass Du Dir vorher ordentlich die Ohren gewaschen hast.<br><br>
@@ -46,14 +55,12 @@
       <img src="images/studio.png" alt="ROKKO Studio" style="max-width: 600px; width: 100%; margin: 0;">
     </section>
 
-    <div style="text-align: center; padding: 0; margin: 0;">
-      <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0; padding: 0;">
-    </div>
+    <img src="images/trenner.png" alt="trenner" class="trenner" style="display: block; width: 100%; max-width: 520px; margin: 0 auto; padding: 0;">
 
     <!-- Artists Section with Grid Layout -->
-    <section class="artists-section" style="padding: 10px 18px; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
+    <section class="artists-section" style="padding: 10px 18px; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px; margin: 0;">
       <div style="margin-bottom: 5px;">
-        <img src="images/crew.png" alt="ROKKO! Artists" style="width: 100%; max-width: 600px; margin: 0;">
+        <img src="images/crew.png" alt="ROKKO! Artists" style="width: 100%; max-width: 600px; margin: 0; border-radius: 5px 5px 0 0;">
       </div>
 
       <!-- Instruction Text -->
@@ -110,7 +117,7 @@
             </p>
             
             <div style="text-align: center; padding: 5px 0;">
-              <img src="images/trenner_hell.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0;">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0;">
             </div>
 
             <h3 style="margin-bottom: 10px;">DISKOGRAPHIE</h3>
@@ -181,7 +188,7 @@
             </div>
 
             <div style="text-align: center; padding: 5px 0;">
-              <img src="images/trenner_hell.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0;">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0;">
             </div>
 
             <h3 style="margin-bottom: 10px;">SOCIAL MEDIA</h3>
@@ -203,7 +210,7 @@
             </p>
             
             <div style="text-align: center; padding: 5px 0;">
-              <img src="images/trenner_hell.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0;">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0;">
             </div>
 
             <h3 style="margin-bottom: 10px;">DISKOGRAPHIE</h3>
@@ -238,7 +245,7 @@
             </div>
 
             <div style="text-align: center; padding: 5px 0;">
-              <img src="images/trenner_hell.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0;">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0;">
             </div>
 
             <h3 style="margin-bottom: 10px;">SOCIAL MEDIA</h3>
@@ -260,7 +267,7 @@
             </p>
             
             <div style="text-align: center; padding: 5px 0;">
-              <img src="images/trenner_hell.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0;">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0;">
             </div>
 
             <h3 style="margin-bottom: 10px;">DISKOGRAPHIE</h3>
@@ -298,7 +305,7 @@
             </div>
 
             <div style="text-align: center; padding: 5px 0;">
-              <img src="images/trenner_hell.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0;">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0;">
             </div>
 
             <h3 style="margin-bottom: 10px;">SOCIAL MEDIA</h3>
@@ -320,7 +327,7 @@
             </p>
             
             <div style="text-align: center; padding: 5px 0;">
-              <img src="images/trenner_hell.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0;">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0;">
             </div>
 
             <h3 style="margin-bottom: 10px;">DISKOGRAPHIE</h3>
@@ -358,7 +365,7 @@
             </div>
 
             <div style="text-align: center; padding: 5px 0;">
-              <img src="images/trenner_hell.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0;">
+              <img src="images/trenner.png" alt="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0;">
             </div>
 
             <h3 style="margin-bottom: 10px;">SOCIAL MEDIA</h3>
@@ -372,53 +379,51 @@
       </article>
     </section>
 
-    <div style="text-align: center; padding: 0; margin: 0;">
-      <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0; padding: 0;">
-    </div>
+    <img src="images/trenner.png" alt="trenner" class="trenner" style="display: block; width: 100%; max-width: 520px; margin: 0 auto; padding: 0;">
 
     <!-- News Section -->
-    <section class="news-section" style="padding: 10px 18px; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
+    <section class="news-section" style="padding: 10px 18px; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px; margin: 0;">
       <div style="margin-bottom: 5px;">
-        <img src="images/news.png" alt="ROKKO! News" style="width: 100%; max-width: 600px; margin: 0;">
+        <img src="images/news.png" alt="ROKKO! News" style="width: 100%; max-width: 600px; margin: 0; border-radius: 5px 5px 0 0;">
       </div>
       
-      <div class="news-feed-container" style="max-width: 900px; margin: 0 auto; padding: 20px; height: 500px; display: flex; flex-direction: column;">
-        <div class="news-feed" style="flex: 1; overflow-y: auto; padding-right: 10px;">
+      <div class="news-feed-container" style="max-width: 900px; margin: 0 auto; padding: 10px 0; height: 500px; display: flex; flex-direction: column; background: var(--content-bg);">
+        <div class="news-feed" style="flex: 1; overflow-y: auto; padding: 10px; background: var(--content-bg);">
           <!-- News Item 1 -->
-          <article class="news-item" data-page="1" style="margin-bottom: 20px; padding: 20px; border-radius: 8px; border-left: 4px solid #d9af6b;">
+          <article class="news-item" data-page="1" style="margin-bottom: 20px; padding: 15px; border-radius: 6px; background: var(--content-bg);">
             <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Neue Release: Skaramush Vandango - Neurosis</h3>
             <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">15. Oktober 2024</p>
-            <p style="line-height: 1.6;">
+            <p style="line-height: 1.6; color: var(--rokko-brown);">
               Das neue Album "Neurosis" von Skaramush Vandango ist jetzt verfügbar! Mit kraftvollen Tracks wie "Set the Fire" und "Always Sunny" 
               setzt der Künstler neue Maßstäbe in der Musikszene. Hör dir die Songs direkt hier auf unserer Website an!
             </p>
           </article>
 
           <!-- News Item 2 -->
-          <article class="news-item" data-page="2" style="display: none; margin-bottom: 20px; padding: 20px; border-radius: 8px; border-left: 4px solid #d9af6b;">
+          <article class="news-item" data-page="2" style="display: none; margin-bottom: 20px; padding: 15px; border-radius: 6px; background: var(--content-bg);">
             <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Studio Session Highlights</h3>
             <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">08. Oktober 2024</p>
-            <p style="line-height: 1.6;">
+            <p style="line-height: 1.6; color: var(--rokko-brown);">
               Exklusive Einblicke in unsere aktuellen Studio Sessions! Unsere Artists arbeiten an spannenden neuen Projekten. 
               Bleibt gespannt auf weitere Updates und neue Releases in den kommenden Monaten.
             </p>
           </article>
 
           <!-- News Item 3 -->
-          <article class="news-item" data-page="3" style="display: none; margin-bottom: 20px; padding: 20px; border-radius: 8px; border-left: 4px solid #d9af6b;">
+          <article class="news-item" data-page="3" style="display: none; margin-bottom: 20px; padding: 15px; border-radius: 6px; background: var(--content-bg);">
             <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Kollaboration mit internationalen Artists</h3>
             <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">01. Oktober 2024</p>
-            <p style="line-height: 1.6;">
+            <p style="line-height: 1.6; color: var(--rokko-brown);">
               ROKKO Records freut sich, eine neue internationale Zusammenarbeit ankündigen zu können. 
               Unsere Artists werden mit renommierten Produzenten aus verschiedenen Ländern zusammenarbeiten, um einzigartige Sounds zu kreieren.
             </p>
           </article>
 
           <!-- News Item 4 -->
-          <article class="news-item" data-page="4" style="display: none; margin-bottom: 20px; padding: 20px; border-radius: 8px; border-left: 4px solid #d9af6b;">
+          <article class="news-item" data-page="4" style="display: none; margin-bottom: 20px; padding: 15px; border-radius: 6px; background: var(--content-bg);">
             <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Neues Label Signing</h3>
             <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">25. September 2024</p>
-            <p style="line-height: 1.6;">
+            <p style="line-height: 1.6; color: var(--rokko-brown);">
               Wir sind stolz, unsere neuesten Artists im ROKKO Records Roster willkommen zu heißen! 
               Mit frischen Talenten und innovativen Sounds erweitern wir unser musikalisches Portfolio kontinuierlich.
             </p>
@@ -426,22 +431,20 @@
         </div>
 
         <!-- News Pagination -->
-        <div class="news-pagination" style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 2px solid #d9af6b; display: flex; justify-content: center; align-items: center; gap: 20px;">
-          <button class="page-btn-prev" style="padding: 10px 16px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 1.2em;">←</button>
+        <div class="news-pagination" style="text-align: center; margin-top: 10px; padding: 10px 0; display: flex; justify-content: center; align-items: center; gap: 20px; background: var(--content-bg);">
+          <button class="page-btn-prev" style="padding: 8px 14px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 1.2em;">←</button>
           <span class="page-indicator" style="font-weight: 600; color: var(--rokko-brown);">1 / 4</span>
-          <button class="page-btn-next" style="padding: 10px 16px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 1.2em;">→</button>
+          <button class="page-btn-next" style="padding: 8px 14px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 1.2em;">→</button>
         </div>
       </div>
     </section>
 
-    <div style="text-align: center; padding: 0; margin: 0;">
-      <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0; padding: 0;">
-    </div>
+    <img src="images/trenner.png" alt="trenner" class="trenner" style="display: block; width: 100%; max-width: 520px; margin: 0 auto; padding: 0;">
 
     <!-- Merch Shop Section -->
-    <section class="merch-section" style="padding: 10px 18px; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
+    <section class="merch-section" style="padding: 10px 18px; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px; margin: 0;">
       <div style="margin-bottom: 5px;">
-        <img src="images/merch.png" alt="ROKKO! Merchandise" style="width: 100%; max-width: 600px; margin: 0;">
+        <img src="images/merch.png" alt="ROKKO! Merchandise" style="width: 100%; max-width: 600px; margin: 0; border-radius: 5px 5px 0 0;">
       </div>
       
       <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
@@ -463,14 +466,12 @@
       </div>
     </section>
 
-    <div style="text-align: center; padding: 0; margin: 0;">
-      <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0; padding: 0;">
-    </div>
+    <img src="images/trenner.png" alt="trenner" class="trenner" style="display: block; width: 100%; max-width: 520px; margin: 0 auto; padding: 0;">
 
     <!-- Contact Form Section -->
-    <section id="kontakt" class="site-comment" style="padding: 10px 18px; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
+    <section id="kontakt" class="site-comment" style="padding: 10px 18px; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px; margin: 0;">
       <div style="margin-bottom: 5px;">
-        <img src="images/kontakt.png" alt="ROKKO! Kontakt" style="width: 100%; max-width: 600px; margin: 0;">
+        <img src="images/kontakt.png" alt="ROKKO! Kontakt" style="width: 100%; max-width: 600px; margin: 0; border-radius: 5px 5px 0 0;">
       </div>
       <p style="margin-bottom: 15px; max-width: 600px;">
         Hinterlasse hier eine Nachricht — wir freuen uns auf deine Kontaktaufnahme!
@@ -490,7 +491,7 @@
         <label for="cf-message" style="display: block; margin-top: 10px; font-weight: 600;">Deine Nachricht</label>
         <textarea id="cf-message" name="message" rows="6" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: #ffffff;"></textarea>
 
-        <button type="submit" class="btn-send" style="margin-top: 15px; padding: 10px 24px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">Senden</button>
+        <button type="submit" class="btn-send" style="margin-top: 15px; margin-bottom: 5px; padding: 10px 24px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">Senden</button>
       </form>
     </section>
 
