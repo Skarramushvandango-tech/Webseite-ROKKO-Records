@@ -24,8 +24,14 @@ body, html {
 section, .container, main {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
 }
-.section { padding: 0 !important; }
+.section { 
+  padding: 0 !important; 
+  min-height: 0 !important;
+  height: auto !important;
+}
 .voffset70, .voffset100, .voffset80, .voffset50, .voffset40 { 
   height: 0 !important; 
   margin: 0 !important; 
@@ -43,6 +49,8 @@ p { margin: 0.3rem 0; }
   position: relative;
   top: 0;
   line-height: 0; /* Remove any line-height gaps */
+  min-height: 0 !important;
+  height: auto !important;
 }
 .intro-video video { 
   margin: 0 !important; 
@@ -51,6 +59,10 @@ p { margin: 0.3rem 0; }
   border: none;
   vertical-align: top; /* Prevent baseline gap */
   line-height: 0; /* Remove any line-height gaps */
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
 }
 
 /* Mute button positioning at bottom of video */
@@ -247,21 +259,16 @@ section.inverse-color.contact .title-wrapper,
   .site-header nav { margin-left:12px; }
   .trenner { width:50%; max-width:210px; }
   
-  /* Mobile: Prevent horizontal page scroll, only carousel scrolls horizontally */
+  /* Mobile: Prevent horizontal page scroll */
   body, html {
     overflow-x: hidden !important;
     max-width: 100vw !important;
   }
   
-  /* Mobile: Allow carousel viewport to work properly */
-  .artist-carousel {
-    overflow: visible !important; /* Allow dropdowns to expand outside */
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  /* Mobile: Flickity viewport MUST have hidden overflow for carousel to display */
-  .artist-carousel .flickity-viewport {
-    overflow: hidden !important; /* Required for Flickity to display cells properly */
+  /* Mobile: Remove any min-heights that create empty space */
+  section, .section {
+    min-height: 0 !important;
+    height: auto !important;
   }
   
   /* Mobile: Header layout - logo left, text right */
@@ -294,9 +301,10 @@ section.inverse-color.contact .title-wrapper,
     margin-bottom: -5px !important;
   }
   
-  /* Mobile: Ensure artist dropdowns can fully expand */
+  /* Mobile: Ensure artist sections don't have empty space */
   .artists-section {
     overflow: visible !important;
+    min-height: 0 !important;
   }
   
   .artist-details {
@@ -307,6 +315,12 @@ section.inverse-color.contact .title-wrapper,
   
   .artist-dropdown {
     overflow: visible !important;
+  }
+  
+  /* Mobile: All content sections should be compact */
+  .welcome-text, .news-section, .merch-section, .site-comment {
+    min-height: 0 !important;
+    height: auto !important;
   }
 }
 
