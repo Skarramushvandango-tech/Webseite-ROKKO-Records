@@ -365,28 +365,7 @@ section.inverse-color.contact .title-wrapper,
 /* --- kleine optische Fixes --- */
 .section-divider { margin:4px 0; border:none; height:2px; background:#c98a6d; }
 
-/* Full-screen sections for mobile - smooth scrolling experience */
-@media (max-width: 900px) {
-  .section-fullscreen {
-    min-height: 100vh;
-    min-height: 100svh; /* Use small viewport height for better mobile support */
-  }
-  
-  /* Intro video section should also be full height */
-  .intro-video {
-    min-height: 100vh;
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .intro-video video {
-    max-height: 100vh;
-    max-height: 100svh;
-    object-fit: cover;
-  }
-}
+/* Remove fullscreen sections - content should be top-aligned, not centered */
 
 /* ensure header doesn't overlay video intro (if intro video exists) */
 .intro-video, .intro-slider, .intro, section.intro { 
@@ -406,68 +385,24 @@ body.home .btn-welcome { display:none !important; }
 
 /* --- New Index Page Styles --- */
 
-/* Artist carousel styling */
-.artist-carousel {
+/* Artist grid styling - replaces carousel */
+.artist-grid {
   margin: 0 auto;
   width: 100%;
   max-width: 100%;
-  border: none !important;
-  padding: 15px;
-  border-radius: 8px;
-  overflow: visible !important; /* Allow dropdown to expand outside */
 }
 
-.artist-carousel .carousel-cell {
-  width: 85% !important; /* Responsive width for mobile */
-  max-width: 420px !important; /* Cap at 420px on larger screens */
-  margin: 0 10px;
-}
-
-/* Desktop: use fixed width for carousel cells */
+/* Desktop: 2 columns side by side */
 @media (min-width: 768px) {
-  .artist-carousel .carousel-cell {
-    width: 420px !important;
+  .artist-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
   }
 }
 
 /* Ensure artists section allows overflow for dropdowns */
 .artists-section {
   overflow: visible !important;
-}
-
-/* Override Flickity's viewport overflow - MUST be hidden for carousel to work */
-.artist-carousel .flickity-viewport {
-  overflow: hidden !important;
-}
-
-/* Flickity carousel buttons */
-.flickity-button {
-  background: rgba(32, 22, 19, 0.8);
-}
-
-.flickity-button:hover {
-  background: var(--rokko-brown);
-}
-
-.flickity-button-icon {
-  fill: #d9af6b;
-}
-
-.flickity-prev-next-button {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-}
-
-/* Flickity dots */
-.flickity-page-dots .dot {
-  background: #d9af6b;
-  opacity: 0.4;
-}
-
-.flickity-page-dots .dot.is-selected {
-  opacity: 1;
-  background: var(--rokko-brown);
 }
 
 /* Artist dropdown styling */

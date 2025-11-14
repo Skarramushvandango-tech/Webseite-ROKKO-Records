@@ -20,40 +20,7 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
 
-  // Initialize Flickity carousel if element exists
-  var carouselElem = document.querySelector('.artist-carousel');
-  if(carouselElem && typeof Flickity !== 'undefined') {
-    var flkty = new Flickity(carouselElem, {
-      cellAlign: 'center',
-      contain: true,
-      wrapAround: true,
-      prevNextButtons: true,
-      pageDots: true,
-      draggable: true,
-      freeScroll: false,
-      friction: 0.6,
-      selectedAttraction: 0.1,
-      dragThreshold: 10
-    });
-    // Prevent page scroll when dragging carousel - improved handling
-    var touchStartY = 0;
-    carouselElem.addEventListener('touchstart', function(e) {
-      touchStartY = e.touches[0].clientY;
-    });
-    
-    carouselElem.addEventListener('touchmove', function(e) {
-      // Only prevent scroll if moving horizontally (carousel drag)
-      var touchMoveY = e.touches[0].clientY;
-      var deltaY = Math.abs(touchMoveY - touchStartY);
-      
-      // If horizontal movement is significant, prevent vertical scroll
-      if (deltaY < 10) {
-        e.preventDefault();
-      }
-    }, { passive: false });
-  }
-
-  // Toggle artist details when clicking carousel images - FULL PAGE MODAL
+  // Toggle artist details when clicking grid images - FULL PAGE MODAL
   document.querySelectorAll('.artist-header[data-artist]').forEach(function(header){
     header.addEventListener('click', function(){
       var artistId = this.dataset.artist;
