@@ -200,13 +200,19 @@ body.home .btn-welcome { display:none !important; }
 /* Abstand unter dem Artist Bild verringern */
 .artist-card, .artist-wrapper { margin-bottom: 6px !important; padding-bottom: 3px !important; }
 
-/* Trenner same width as artist images */
+/* Trenner same width as artist images - reduced spacing */
 .trenner {
   display:block;
   width:100%;
   max-width: var(--artist-img-max);
   margin: 0;
   padding: 0;
+}
+
+/* Reduce spacing around trenner containers */
+div:has(> .trenner) {
+  padding: 5px 0 !important;
+  margin: 0 !important;
 }
 
 /* Biografie linksbündig, kompakter Textfluss */
@@ -258,6 +264,10 @@ section.inverse-color.contact .title-wrapper,
   header.site-header { padding:10px 8px !important; }
   .site-header nav { margin-left:12px; }
   .trenner { width:50%; max-width:210px; }
+  
+  /* Mobile: Use header.png instead of logo.png */
+  .desktop-logo { display: none !important; }
+  .mobile-logo { display: inline-block !important; }
   
   /* Mobile: Prevent horizontal page scroll */
   body, html {
@@ -444,19 +454,34 @@ body.home .btn-welcome { display:none !important; }
   padding: 0 20px;
 }
 
-/* News section styling */
+/* News section styling - keep completely sand-colored */
+.news-section {
+  background: var(--content-bg) !important;
+}
+
+.news-feed-container {
+  background: var(--content-bg) !important;
+}
+
+.news-feed {
+  background: var(--content-bg) !important;
+}
+
 .news-feed .news-item {
-  margin-bottom: 30px;
-  padding: 20px;
-  background: #f3e2c9;
-  border-radius: 8px;
-  border-left: 4px solid #d9af6b;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: var(--content-bg) !important;
+  border-radius: 6px;
+  border: none;
+  transition: transform 0.2s ease;
 }
 
 .news-feed .news-item:hover {
-  transform: translateX(5px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transform: translateX(3px);
+}
+
+.news-pagination {
+  background: var(--content-bg) !important;
 }
 
 /* Centered trenner styling */
@@ -581,24 +606,55 @@ img[src*="trenner.png"] {
   opacity: 0.9;
 }
 
-/* Track item styling */
+/* Track item styling - improved UI */
 .track-item {
-  padding: 8px 12px;
-  margin: 4px 0;
-  background: #fff;
-  border-radius: 4px;
+  padding: 12px 16px;
+  margin: 6px 0;
+  background: linear-gradient(135deg, #ffffff 0%, #f9f5f0 100%);
+  border-radius: 6px;
   cursor: pointer;
-  border: 1px solid #d9af6b;
-  transition: all 0.2s ease;
+  border: 2px solid #d9af6b;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.track-item::before {
+  content: '▶';
+  position: absolute;
+  left: -25px;
+  color: #d9af6b;
+  font-size: 0.8em;
+  transition: left 0.3s ease;
 }
 
 .track-item:hover {
-  background: #f3e2c9;
-  transform: translateX(5px);
-  border-width: 2px;
+  background: linear-gradient(135deg, #f3e2c9 0%, #e8dcc7 100%);
+  transform: translateX(8px);
+  border-color: var(--rokko-brown);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.track-item:hover::before {
+  left: 8px;
 }
 
 .track-item.active {
-  background: #f3e2c9;
-  border-width: 2px;
+  background: linear-gradient(135deg, #d9af6b 0%, #c99d5a 100%);
+  border-color: var(--rokko-brown);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transform: translateX(5px);
+}
+
+.track-item.active::before {
+  left: 8px;
+  color: #fff;
+}
+
+.track-item strong {
+  font-weight: 700;
+  display: inline-block;
+  margin-right: 8px;
 }
