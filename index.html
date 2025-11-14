@@ -6,8 +6,6 @@
   <title>ROKKO — Startseite</title>
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/override-rokko.css">
-  <link rel="stylesheet" href="styles/vendor/flickity.min.css">
-  <script src="scripts/vendor/flickity.pkgd.js"></script>
   <script defer src="scripts/artist.js"></script>
 </head>
 <body class="home site-shell">
@@ -39,9 +37,9 @@
     </section>
 
     <!-- Welcome Text Section -->
-    <section class="welcome-text section-fullscreen" style="padding: 10px 18px; text-align: center; background: var(--content-bg); display: flex; flex-direction: column; justify-content: center; align-items: center; border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
+    <section class="welcome-text" style="padding: 10px 18px; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
       <h1 style="margin-bottom: 10px; color: var(--rokko-brown); font-size: 1.5em;">Wir sind ROKKO!<br>Und Du noch nicht…</h1>
-      <p style="max-width: 800px; margin: 0 auto 10px auto; line-height: 1.6; font-size: 1.1em;">
+      <p style="max-width: 800px; margin: 0 0 10px 0; line-height: 1.6; font-size: 1.1em;">
         Du hast Dich erfolgreich auf unsere Homepage verlaufen, Gratulation. Jetzt hoffen wir, dass Du Dir vorher ordentlich die Ohren gewaschen hast.<br><br>
         Denn bei ROKKO! RECORDS gibt es ne Menge Lauschlappen Propaganda.
       </p>
@@ -52,63 +50,52 @@
       <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0; padding: 0;">
     </div>
 
-    <!-- Empty line after trenner -->
-    <div style="height: 10px;"></div>
-
-        <!-- Artists Section with Carousel -->
-    <section class="artists-section section-fullscreen" style="padding: 10px 18px; background: var(--content-bg); display: flex; flex-direction: column; justify-content: center; border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
-      <div style="text-align: center; margin-bottom: 5px;">
-        <img src="images/crew.png" alt="ROKKO! Artists" style="display: inline-block; width: 100%; max-width: 600px; margin: 0;">
+    <!-- Artists Section with Grid Layout -->
+    <section class="artists-section" style="padding: 10px 18px; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
+      <div style="margin-bottom: 5px;">
+        <img src="images/crew.png" alt="ROKKO! Artists" style="width: 100%; max-width: 600px; margin: 0;">
       </div>
 
       <!-- Instruction Text -->
-      <p style="text-align: center; margin-bottom: 10px; font-weight: 600; font-size: 1.1em; color: var(--rokko-brown);">
+      <p style="margin-bottom: 10px; font-weight: 600; font-size: 1.1em; color: var(--rokko-brown);">
         Klicke auf einen Artist für mehr Infos
       </p>
 
-      <!-- Artist Carousel -->
-      <div class="artist-carousel" style="margin-bottom: 10px; border: none;">
+      <!-- Artist Grid -->
+      <div class="artist-grid" style="display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 10px;">
         <!-- Skaramush Vandango -->
-        <div class="carousel-cell">
-          <div class="artist-item">
-            <div class="artist-header" style="cursor: pointer;" data-artist="vandango">
-              <img src="artists/skaramush_vandango/skaramush.png" alt="Skaramush Vandango" 
-                   class="artist-main-image" 
-                   style="width: 100%; display: block; margin: 0 auto;">
-            </div>
+        <div class="artist-item">
+          <div class="artist-header" style="cursor: pointer;" data-artist="vandango">
+            <img src="artists/skaramush_vandango/skaramush.png" alt="Skaramush Vandango" 
+                 class="artist-main-image" 
+                 style="width: 100%; display: block; margin: 0;">
           </div>
         </div>
 
         <!-- Ska Schablonski -->
-        <div class="carousel-cell">
-          <div class="artist-item">
-            <div class="artist-header" style="cursor: pointer;" data-artist="schablonski">
-              <img src="artists/ska_schablonski/skank.png" alt="Ska Schablonski" 
-                   class="artist-main-image" 
-                   style="width: 100%; display: block; margin: 0 auto;">
-            </div>
+        <div class="artist-item">
+          <div class="artist-header" style="cursor: pointer;" data-artist="schablonski">
+            <img src="artists/ska_schablonski/skank.png" alt="Ska Schablonski" 
+                 class="artist-main-image" 
+                 style="width: 100%; display: block; margin: 0;">
           </div>
         </div>
 
         <!-- Henri Bellieu -->
-        <div class="carousel-cell">
-          <div class="artist-item">
-            <div class="artist-header" style="cursor: pointer;" data-artist="bellieu">
-              <img src="artists/henri_bellieu/henri.png" alt="Henri Bellieu" 
-                   class="artist-main-image" 
-                   style="width: 100%; display: block; margin: 0 auto;">
-            </div>
+        <div class="artist-item">
+          <div class="artist-header" style="cursor: pointer;" data-artist="bellieu">
+            <img src="artists/henri_bellieu/henri.png" alt="Henri Bellieu" 
+                 class="artist-main-image" 
+                 style="width: 100%; display: block; margin: 0;">
           </div>
         </div>
 
         <!-- Fleuret Beunie -->
-        <div class="carousel-cell">
-          <div class="artist-item">
-            <div class="artist-header" style="cursor: pointer;" data-artist="beunie">
-              <img src="artists/fleuretbeunie/fleurbeunie.png" alt="Fleuret Beunie" 
-                   class="artist-main-image" 
-                   style="width: 100%; display: block; margin: 0 auto;">
-            </div>
+        <div class="artist-item">
+          <div class="artist-header" style="cursor: pointer;" data-artist="beunie">
+            <img src="artists/fleuretbeunie/fleurbeunie.png" alt="Fleuret Beunie" 
+                 class="artist-main-image" 
+                 style="width: 100%; display: block; margin: 0;">
           </div>
         </div>
       </div>
@@ -389,13 +376,10 @@
       <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0; padding: 0;">
     </div>
 
-    <!-- Empty line after trenner -->
-    <div style="height: 10px;"></div>
-
-<!-- News Section -->
+    <!-- News Section -->
     <section class="news-section" style="padding: 10px 18px; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
-      <div style="text-align: center; margin-bottom: 5px;">
-        <img src="images/news.png" alt="ROKKO! News" style="display: inline-block; width: 100%; max-width: 600px; margin: 0;">
+      <div style="margin-bottom: 5px;">
+        <img src="images/news.png" alt="ROKKO! News" style="width: 100%; max-width: 600px; margin: 0;">
       </div>
       
       <div class="news-feed-container" style="max-width: 900px; margin: 0 auto; padding: 20px; height: 500px; display: flex; flex-direction: column;">
@@ -454,13 +438,10 @@
       <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0; padding: 0;">
     </div>
 
-    <!-- Empty line after trenner -->
-    <div style="height: 10px;"></div>
-
     <!-- Merch Shop Section -->
-    <section class="merch-section section-fullscreen" style="padding: 10px 18px; background: var(--content-bg); display: flex; flex-direction: column; justify-content: center; align-items: center; border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
-      <div style="text-align: center; margin-bottom: 5px;">
-        <img src="images/merch.png" alt="ROKKO! Merchandise" style="display: inline-block; width: 100%; max-width: 600px; margin: 0;">
+    <section class="merch-section" style="padding: 10px 18px; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
+      <div style="margin-bottom: 5px;">
+        <img src="images/merch.png" alt="ROKKO! Merchandise" style="width: 100%; max-width: 600px; margin: 0;">
       </div>
       
       <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
@@ -486,15 +467,12 @@
       <img src="images/trenner.png" alt="trenner" class="trenner" style="display: inline-block; width: 100%; max-width: 520px; margin: 0; padding: 0;">
     </div>
 
-    <!-- Empty line after trenner -->
-    <div style="height: 10px;"></div>
-
     <!-- Contact Form Section -->
-    <section id="kontakt" class="site-comment section-fullscreen" style="padding: 10px 18px; background: var(--content-bg); display: flex; flex-direction: column; justify-content: center; border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
-      <div style="text-align: center; margin-bottom: 5px;">
-        <img src="images/kontakt.png" alt="ROKKO! Kontakt" style="display: inline-block; width: 100%; max-width: 600px; margin: 0;">
+    <section id="kontakt" class="site-comment" style="padding: 10px 18px; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
+      <div style="margin-bottom: 5px;">
+        <img src="images/kontakt.png" alt="ROKKO! Kontakt" style="width: 100%; max-width: 600px; margin: 0;">
       </div>
-      <p style="text-align: center; margin-bottom: 15px; max-width: 600px; margin-left: auto; margin-right: auto;">
+      <p style="margin-bottom: 15px; max-width: 600px;">
         Hinterlasse hier eine Nachricht — wir freuen uns auf deine Kontaktaufnahme!
       </p>
 

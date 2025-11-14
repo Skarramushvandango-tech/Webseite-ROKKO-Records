@@ -24,8 +24,14 @@ body, html {
 section, .container, main {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
 }
-.section { padding: 0 !important; }
+.section { 
+  padding: 0 !important; 
+  min-height: 0 !important;
+  height: auto !important;
+}
 .voffset70, .voffset100, .voffset80, .voffset50, .voffset40 { 
   height: 0 !important; 
   margin: 0 !important; 
@@ -43,6 +49,8 @@ p { margin: 0.3rem 0; }
   position: relative;
   top: 0;
   line-height: 0; /* Remove any line-height gaps */
+  min-height: 0 !important;
+  height: auto !important;
 }
 .intro-video video { 
   margin: 0 !important; 
@@ -51,6 +59,10 @@ p { margin: 0.3rem 0; }
   border: none;
   vertical-align: top; /* Prevent baseline gap */
   line-height: 0; /* Remove any line-height gaps */
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
 }
 
 /* Mute button positioning at bottom of video */
@@ -247,21 +259,16 @@ section.inverse-color.contact .title-wrapper,
   .site-header nav { margin-left:12px; }
   .trenner { width:50%; max-width:210px; }
   
-  /* Mobile: Prevent horizontal page scroll, only carousel scrolls horizontally */
+  /* Mobile: Prevent horizontal page scroll */
   body, html {
     overflow-x: hidden !important;
     max-width: 100vw !important;
   }
   
-  /* Mobile: Allow carousel viewport to work properly */
-  .artist-carousel {
-    overflow: visible !important; /* Allow dropdowns to expand outside */
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  /* Mobile: Flickity viewport MUST have hidden overflow for carousel to display */
-  .artist-carousel .flickity-viewport {
-    overflow: hidden !important; /* Required for Flickity to display cells properly */
+  /* Mobile: Remove any min-heights that create empty space */
+  section, .section {
+    min-height: 0 !important;
+    height: auto !important;
   }
   
   /* Mobile: Header layout - logo left, text right */
@@ -294,9 +301,10 @@ section.inverse-color.contact .title-wrapper,
     margin-bottom: -5px !important;
   }
   
-  /* Mobile: Ensure artist dropdowns can fully expand */
+  /* Mobile: Ensure artist sections don't have empty space */
   .artists-section {
     overflow: visible !important;
+    min-height: 0 !important;
   }
   
   .artist-details {
@@ -307,6 +315,12 @@ section.inverse-color.contact .title-wrapper,
   
   .artist-dropdown {
     overflow: visible !important;
+  }
+  
+  /* Mobile: All content sections should be compact */
+  .welcome-text, .news-section, .merch-section, .site-comment {
+    min-height: 0 !important;
+    height: auto !important;
   }
 }
 
@@ -365,28 +379,7 @@ section.inverse-color.contact .title-wrapper,
 /* --- kleine optische Fixes --- */
 .section-divider { margin:4px 0; border:none; height:2px; background:#c98a6d; }
 
-/* Full-screen sections for mobile - smooth scrolling experience */
-@media (max-width: 900px) {
-  .section-fullscreen {
-    min-height: 100vh;
-    min-height: 100svh; /* Use small viewport height for better mobile support */
-  }
-  
-  /* Intro video section should also be full height */
-  .intro-video {
-    min-height: 100vh;
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .intro-video video {
-    max-height: 100vh;
-    max-height: 100svh;
-    object-fit: cover;
-  }
-}
+/* Remove fullscreen sections - content should be top-aligned, not centered */
 
 /* ensure header doesn't overlay video intro (if intro video exists) */
 .intro-video, .intro-slider, .intro, section.intro { 
@@ -406,68 +399,24 @@ body.home .btn-welcome { display:none !important; }
 
 /* --- New Index Page Styles --- */
 
-/* Artist carousel styling */
-.artist-carousel {
+/* Artist grid styling - replaces carousel */
+.artist-grid {
   margin: 0 auto;
   width: 100%;
   max-width: 100%;
-  border: none !important;
-  padding: 15px;
-  border-radius: 8px;
-  overflow: visible !important; /* Allow dropdown to expand outside */
 }
 
-.artist-carousel .carousel-cell {
-  width: 85% !important; /* Responsive width for mobile */
-  max-width: 420px !important; /* Cap at 420px on larger screens */
-  margin: 0 10px;
-}
-
-/* Desktop: use fixed width for carousel cells */
+/* Desktop: 2 columns side by side */
 @media (min-width: 768px) {
-  .artist-carousel .carousel-cell {
-    width: 420px !important;
+  .artist-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
   }
 }
 
 /* Ensure artists section allows overflow for dropdowns */
 .artists-section {
   overflow: visible !important;
-}
-
-/* Override Flickity's viewport overflow - MUST be hidden for carousel to work */
-.artist-carousel .flickity-viewport {
-  overflow: hidden !important;
-}
-
-/* Flickity carousel buttons */
-.flickity-button {
-  background: rgba(32, 22, 19, 0.8);
-}
-
-.flickity-button:hover {
-  background: var(--rokko-brown);
-}
-
-.flickity-button-icon {
-  fill: #d9af6b;
-}
-
-.flickity-prev-next-button {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-}
-
-/* Flickity dots */
-.flickity-page-dots .dot {
-  background: #d9af6b;
-  opacity: 0.4;
-}
-
-.flickity-page-dots .dot.is-selected {
-  opacity: 1;
-  background: var(--rokko-brown);
 }
 
 /* Artist dropdown styling */
