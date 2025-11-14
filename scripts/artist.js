@@ -221,37 +221,60 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 
-  // News pagination
-  var pageButtons = document.querySelectorAll('.page-btn');
+  // News pagination with arrow buttons
+  var prevBtn = document.querySelector('.page-btn-prev');
+  var nextBtn = document.querySelector('.page-btn-next');
+  var pageIndicator = document.querySelector('.page-indicator');
   var newsItems = document.querySelectorAll('.news-item');
+  var currentPage = 1;
+  var totalPages = newsItems.length;
   
-  if(pageButtons.length > 0 && newsItems.length > 0) {
-    pageButtons.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var page = this.dataset.page;
-        
-        // Hide all news items
-        newsItems.forEach(function(item) {
-          item.style.display = 'none';
-        });
-        
-        // Show selected page
-        var selectedItem = document.querySelector('.news-item[data-page="' + page + '"]');
-        if(selectedItem) {
-          selectedItem.style.display = 'block';
-        }
-        
-        // Update active button
-        pageButtons.forEach(function(b) {
-          b.classList.remove('active');
-          b.style.background = '#fff';
-          b.style.color = 'var(--rokko-brown)';
-        });
-        
-        this.classList.add('active');
-        this.style.background = 'var(--rokko-brown)';
-        this.style.color = '#fff';
-      });
+  function showNewsPage(page) {
+    // Hide all news items
+    newsItems.forEach(function(item) {
+      item.style.display = 'none';
+    });
+    
+    // Show selected page
+    var selectedItem = document.querySelector('.news-item[data-page="' + page + '"]');
+    if(selectedItem) {
+      selectedItem.style.display = 'block';
+    }
+    
+    // Update page indicator
+    if(pageIndicator) {
+      pageIndicator.textContent = page + ' / ' + totalPages;
+    }
+    
+    // Disable/enable buttons at boundaries
+    if(prevBtn) {
+      prevBtn.disabled = (page === 1);
+      prevBtn.style.opacity = (page === 1) ? '0.5' : '1';
+      prevBtn.style.cursor = (page === 1) ? 'not-allowed' : 'pointer';
+    }
+    if(nextBtn) {
+      nextBtn.disabled = (page === totalPages);
+      nextBtn.style.opacity = (page === totalPages) ? '0.5' : '1';
+      nextBtn.style.cursor = (page === totalPages) ? 'not-allowed' : 'pointer';
+    }
+  }
+  
+  if(prevBtn && nextBtn && newsItems.length > 0) {
+    // Show first page initially
+    showNewsPage(currentPage);
+    
+    prevBtn.addEventListener('click', function() {
+      if(currentPage > 1) {
+        currentPage--;
+        showNewsPage(currentPage);
+      }
+    });
+    
+    nextBtn.addEventListener('click', function() {
+      if(currentPage < totalPages) {
+        currentPage++;
+        showNewsPage(currentPage);
+      }
     });
   }
 
@@ -279,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
 
-  // Track item click handler - load track into player and play
+  // Track item click handler - load track into player and play/pause
   document.body.addEventListener('click', function(e) {
     var target = e.target;
     
@@ -294,25 +317,47 @@ document.addEventListener('DOMContentLoaded', function(){
       if(trackSrc && playerId) {
         var player = document.getElementById(playerId);
         if(player) {
-          // Update player source
-          player.src = trackSrc;
-          player.load();
+          // Check if this track is currently playing
+          var isCurrentTrack = (player.src.indexOf(trackSrc) !== -1);
+          var isPlaying = !player.paused;
           
-          // Play the track
-          player.play().catch(function(error) {
-            console.log('Playback failed:', error);
-          });
-          
-          // Remove active class from all tracks in this player's group
-          var allTracks = document.querySelectorAll('[data-player="' + playerId + '"]');
-          allTracks.forEach(function(track) {
-            track.style.background = '#fff';
-            track.style.borderWidth = '1px';
-          });
-          
-          // Highlight the selected track
-          trackItem.style.background = '#f3e2c9';
-          trackItem.style.borderWidth = '2px';
+          if(isCurrentTrack && isPlaying) {
+            // Pause if currently playing this track
+            player.pause();
+            
+            // Update visual state - remove highlight
+            trackItem.style.background = '#fff';
+            trackItem.style.borderWidth = '1px';
+          } else {
+            // Stop all other players first
+            document.querySelectorAll('audio').forEach(function(audio) {
+              if(!audio.paused) {
+                audio.pause();
+              }
+            });
+            
+            // If it's a different track, load and play it
+            if(!isCurrentTrack) {
+              player.src = trackSrc;
+              player.load();
+            }
+            
+            // Play the track
+            player.play().catch(function(error) {
+              console.log('Playback failed:', error);
+            });
+            
+            // Remove active class from all tracks in this player's group
+            var allTracks = document.querySelectorAll('[data-player="' + playerId + '"]');
+            allTracks.forEach(function(track) {
+              track.style.background = '#fff';
+              track.style.borderWidth = '1px';
+            });
+            
+            // Highlight the selected track
+            trackItem.style.background = '#f3e2c9';
+            trackItem.style.borderWidth = '2px';
+          }
         }
       }
     }

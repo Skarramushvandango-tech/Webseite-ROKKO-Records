@@ -39,7 +39,7 @@
     </section>
 
     <!-- Welcome Text Section -->
-    <section class="welcome-text section-fullscreen" style="padding: 10px 18px; text-align: center; background: var(--content-bg); display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <section class="welcome-text section-fullscreen" style="padding: 10px 18px; text-align: center; background: var(--content-bg); display: flex; flex-direction: column; justify-content: center; align-items: center; border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
       <h1 style="margin-bottom: 10px; color: var(--rokko-brown); font-size: 1.5em;">Wir sind ROKKO!<br>Und Du noch nicht…</h1>
       <p style="max-width: 800px; margin: 0 auto 10px auto; line-height: 1.6; font-size: 1.1em;">
         Du hast Dich erfolgreich auf unsere Homepage verlaufen, Gratulation. Jetzt hoffen wir, dass Du Dir vorher ordentlich die Ohren gewaschen hast.<br><br>
@@ -53,11 +53,11 @@
     </div>
 
     <!-- Empty line after trenner -->
-    <div style="height: 20px;"></div>
+    <div style="height: 10px;"></div>
 
         <!-- Artists Section with Carousel -->
     <section class="artists-section section-fullscreen" style="padding: 10px 18px; background: var(--content-bg); display: flex; flex-direction: column; justify-content: center; border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
-      <div style="text-align: center; margin-bottom: 15px;">
+      <div style="text-align: center; margin-bottom: 5px;">
         <img src="images/crew.png" alt="ROKKO! Artists" style="display: inline-block; width: 100%; max-width: 600px; margin: 0;">
       </div>
 
@@ -67,7 +67,7 @@
       </p>
 
       <!-- Artist Carousel -->
-      <div class="artist-carousel" style="margin-bottom: 10px;">
+      <div class="artist-carousel" style="margin-bottom: 10px; border: none;">
         <!-- Skaramush Vandango -->
         <div class="carousel-cell">
           <div class="artist-item">
@@ -131,15 +131,14 @@
               <img class="disco-cover-small" src="mp3/vandango/cover.png" alt="Neurosis" 
                    style="width: 180px; cursor: pointer; border-radius: 6px; margin-bottom: 10px;" />
               <div class="disco-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
-                <!-- Single Audio Player -->
-                <div style="margin: 15px 0;">
-                  <audio id="player-vandango" controls style="width: 100%; max-width: 500px;">
-                    <source src="mp3/vandango/set_the_fire.m4a" type="audio/mp4">
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
+                <!-- Hidden Audio Player -->
+                <audio id="player-vandango" style="display: none;">
+                  <source src="mp3/vandango/set_the_fire.m4a" type="audio/mp4">
+                  Your browser does not support the audio element.
+                </audio>
                 
                 <!-- Track List -->
+                <p style="font-size: 0.9em; color: #666; margin: 10px 0 5px 0; font-style: italic;">Press to play</p>
                 <div class="track-list" style="margin: 15px 0;">
                   <div class="track-item" data-src="mp3/vandango/set_the_fire.m4a" data-player="player-vandango" style="padding: 8px 12px; margin: 4px 0; background: #fff; border-radius: 4px; cursor: pointer; border: 1px solid #d9af6b; transition: all 0.2s ease;">
                     <strong>Skaramush Vandango</strong> – Set the Fire
@@ -185,12 +184,11 @@
                   </div>
                 </div>
                 
-                <div class="disco-links" style="margin-top: 15px; display: flex; gap: 8px; flex-wrap: wrap;">
-                  <a href="#" target="_blank" class="music-btn music-btn-spotify" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">Spotify</a>
-                  <a href="#" target="_blank" class="music-btn music-btn-apple" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">Apple Music</a>
-                  <a href="#" target="_blank" class="music-btn music-btn-soundcloud" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">SoundCloud</a>
-                  <a href="#" target="_blank" class="music-btn music-btn-amazon" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">Amazon Music</a>
-                  <a href="#" target="_blank" class="music-btn music-btn-beatport" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">Beatport</a>
+                <div class="disco-links" style="margin-top: 15px; display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;">
+                  <a href="#" target="_blank" class="music-btn music-btn-spotify" style="color: #E0C290; text-decoration: none; padding: 6px 10px; background: #201613; border-radius: 4px; font-weight: 600; font-size: 0.85em;">Spotify</a>
+                  <a href="#" target="_blank" class="music-btn music-btn-apple" style="color: #E0C290; text-decoration: none; padding: 6px 10px; background: #201613; border-radius: 4px; font-weight: 600; font-size: 0.85em;">Apple Music</a>
+                  <a href="#" target="_blank" class="music-btn music-btn-soundcloud" style="color: #E0C290; text-decoration: none; padding: 6px 10px; background: #201613; border-radius: 4px; font-weight: 600; font-size: 0.85em;">SoundCloud</a>
+                  <a href="#" target="_blank" class="music-btn music-btn-beatport" style="color: #E0C290; text-decoration: none; padding: 6px 10px; background: #201613; border-radius: 4px; font-weight: 600; font-size: 0.85em;">Beatport</a>
                 </div>
               </div>
             </div>
@@ -226,15 +224,14 @@
               <img class="disco-cover-small" src="mp3/schablonski/kohle_raus_cover.png" alt="Kohle Raus" 
                    style="width: 180px; cursor: pointer; border-radius: 6px; margin-bottom: 10px;" />
               <div class="disco-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
-                <!-- Single Audio Player -->
-                <div style="margin: 15px 0;">
-                  <audio id="player-schablonski" controls style="width: 100%; max-width: 500px;">
-                    <source src="mp3/schablonski/kohle_raus.m4a" type="audio/mp4">
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
+                <!-- Hidden Audio Player -->
+                <audio id="player-schablonski" style="display: none;">
+                  <source src="mp3/schablonski/kohle_raus.m4a" type="audio/mp4">
+                  Your browser does not support the audio element.
+                </audio>
                 
                 <!-- Track List -->
+                <p style="font-size: 0.9em; color: #666; margin: 10px 0 5px 0; font-style: italic;">Press to play</p>
                 <div class="track-list" style="margin: 15px 0;">
                   <div class="track-item" data-src="mp3/schablonski/kohle_raus.m4a" data-player="player-schablonski" style="padding: 8px 12px; margin: 4px 0; background: #fff; border-radius: 4px; cursor: pointer; border: 1px solid #d9af6b; transition: all 0.2s ease;">
                     <strong>Ska Schablonski</strong> – Kohle Raus
@@ -244,12 +241,11 @@
                   </div>
                 </div>
                 
-                <div class="disco-links" style="margin-top: 15px; display: flex; gap: 8px; flex-wrap: wrap;">
-                  <a href="#" target="_blank" class="music-btn music-btn-spotify" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">Spotify</a>
-                  <a href="#" target="_blank" class="music-btn music-btn-apple" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">Apple Music</a>
-                  <a href="#" target="_blank" class="music-btn music-btn-soundcloud" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">SoundCloud</a>
-                  <a href="#" target="_blank" class="music-btn music-btn-amazon" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">Amazon Music</a>
-                  <a href="#" target="_blank" class="music-btn music-btn-beatport" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">Beatport</a>
+                <div class="disco-links" style="margin-top: 15px; display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;">
+                  <a href="#" target="_blank" class="music-btn music-btn-spotify" style="color: #E0C290; text-decoration: none; padding: 6px 10px; background: #201613; border-radius: 4px; font-weight: 600; font-size: 0.85em;">Spotify</a>
+                  <a href="#" target="_blank" class="music-btn music-btn-apple" style="color: #E0C290; text-decoration: none; padding: 6px 10px; background: #201613; border-radius: 4px; font-weight: 600; font-size: 0.85em;">Apple Music</a>
+                  <a href="#" target="_blank" class="music-btn music-btn-soundcloud" style="color: #E0C290; text-decoration: none; padding: 6px 10px; background: #201613; border-radius: 4px; font-weight: 600; font-size: 0.85em;">SoundCloud</a>
+                  <a href="#" target="_blank" class="music-btn music-btn-beatport" style="color: #E0C290; text-decoration: none; padding: 6px 10px; background: #201613; border-radius: 4px; font-weight: 600; font-size: 0.85em;">Beatport</a>
                 </div>
               </div>
             </div>
@@ -282,18 +278,17 @@
 
             <h3 style="margin-bottom: 10px;">DISKOGRAPHIE</h3>
             <div class="release" style="margin-bottom: 20px;">
-              <img class="disco-cover-small" src="mp3/bellieu/cover.png" alt="Petite Colibri" 
+              <img class="disco-cover-small" src="mp3/bellieu/petite_colibri.png" alt="Petite Colibri" 
                    style="width: 180px; cursor: pointer; border-radius: 6px; margin-bottom: 10px;" />
               <div class="disco-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
-                <!-- Single Audio Player -->
-                <div style="margin: 15px 0;">
-                  <audio id="player-bellieu" controls style="width: 100%; max-width: 500px;">
-                    <source src="mp3/bellieu/petite_colibri.m4a" type="audio/mp4">
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
+                <!-- Hidden Audio Player -->
+                <audio id="player-bellieu" style="display: none;">
+                  <source src="mp3/bellieu/petite_colibri.m4a" type="audio/mp4">
+                  Your browser does not support the audio element.
+                </audio>
                 
                 <!-- Track List -->
+                <p style="font-size: 0.9em; color: #666; margin: 10px 0 5px 0; font-style: italic;">Press to play</p>
                 <div class="track-list" style="margin: 15px 0;">
                   <div class="track-item" data-src="mp3/bellieu/petite_colibri.m4a" data-player="player-bellieu" style="padding: 8px 12px; margin: 4px 0; background: #fff; border-radius: 4px; cursor: pointer; border: 1px solid #d9af6b; transition: all 0.2s ease;">
                     <strong>Henri Bellieu</strong> – Petite Colibri
@@ -306,12 +301,11 @@
                   </div>
                 </div>
                 
-                <div class="disco-links" style="margin-top: 15px; display: flex; gap: 8px; flex-wrap: wrap;">
-                  <a href="#" target="_blank" class="music-btn music-btn-spotify" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">Spotify</a>
-                  <a href="#" target="_blank" class="music-btn music-btn-apple" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">Apple Music</a>
-                  <a href="#" target="_blank" class="music-btn music-btn-soundcloud" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">SoundCloud</a>
-                  <a href="#" target="_blank" class="music-btn music-btn-amazon" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">Amazon Music</a>
-                  <a href="#" target="_blank" class="music-btn music-btn-beatport" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">Beatport</a>
+                <div class="disco-links" style="margin-top: 15px; display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;">
+                  <a href="#" target="_blank" class="music-btn music-btn-spotify" style="color: #E0C290; text-decoration: none; padding: 6px 10px; background: #201613; border-radius: 4px; font-weight: 600; font-size: 0.85em;">Spotify</a>
+                  <a href="#" target="_blank" class="music-btn music-btn-apple" style="color: #E0C290; text-decoration: none; padding: 6px 10px; background: #201613; border-radius: 4px; font-weight: 600; font-size: 0.85em;">Apple Music</a>
+                  <a href="#" target="_blank" class="music-btn music-btn-soundcloud" style="color: #E0C290; text-decoration: none; padding: 6px 10px; background: #201613; border-radius: 4px; font-weight: 600; font-size: 0.85em;">SoundCloud</a>
+                  <a href="#" target="_blank" class="music-btn music-btn-beatport" style="color: #E0C290; text-decoration: none; padding: 6px 10px; background: #201613; border-radius: 4px; font-weight: 600; font-size: 0.85em;">Beatport</a>
                 </div>
               </div>
             </div>
@@ -347,15 +341,14 @@
               <img class="disco-cover-small" src="mp3/fleurbeunie/feu_leger_cover.png" alt="Feu Leger" 
                    style="width: 180px; cursor: pointer; border-radius: 6px; margin-bottom: 10px;" />
               <div class="disco-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease;">
-                <!-- Single Audio Player -->
-                <div style="margin: 15px 0;">
-                  <audio id="player-beunie" controls style="width: 100%; max-width: 500px;">
-                    <source src="mp3/fleurbeunie/feuleger_main.m4a" type="audio/mp4">
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
+                <!-- Hidden Audio Player -->
+                <audio id="player-beunie" style="display: none;">
+                  <source src="mp3/fleurbeunie/feuleger_main.m4a" type="audio/mp4">
+                  Your browser does not support the audio element.
+                </audio>
                 
                 <!-- Track List -->
+                <p style="font-size: 0.9em; color: #666; margin: 10px 0 5px 0; font-style: italic;">Press to play</p>
                 <div class="track-list" style="margin: 15px 0;">
                   <div class="track-item" data-src="mp3/fleurbeunie/feuleger_main.m4a" data-player="player-beunie" style="padding: 8px 12px; margin: 4px 0; background: #fff; border-radius: 4px; cursor: pointer; border: 1px solid #d9af6b; transition: all 0.2s ease;">
                     <strong>Fleuret Beunie</strong> – Feu Leger (Main)
@@ -368,12 +361,11 @@
                   </div>
                 </div>
                 
-                <div class="disco-links" style="margin-top: 15px; display: flex; gap: 8px; flex-wrap: wrap;">
-                  <a href="#" target="_blank" class="music-btn music-btn-spotify" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">Spotify</a>
-                  <a href="#" target="_blank" class="music-btn music-btn-apple" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">Apple Music</a>
-                  <a href="#" target="_blank" class="music-btn music-btn-soundcloud" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">SoundCloud</a>
-                  <a href="#" target="_blank" class="music-btn music-btn-amazon" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">Amazon Music</a>
-                  <a href="#" target="_blank" class="music-btn music-btn-beatport" style="color: #E0C290; text-decoration: none; padding: 8px 12px; background: #201613; border-radius: 4px; font-weight: 600;">Beatport</a>
+                <div class="disco-links" style="margin-top: 15px; display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;">
+                  <a href="#" target="_blank" class="music-btn music-btn-spotify" style="color: #E0C290; text-decoration: none; padding: 6px 10px; background: #201613; border-radius: 4px; font-weight: 600; font-size: 0.85em;">Spotify</a>
+                  <a href="#" target="_blank" class="music-btn music-btn-apple" style="color: #E0C290; text-decoration: none; padding: 6px 10px; background: #201613; border-radius: 4px; font-weight: 600; font-size: 0.85em;">Apple Music</a>
+                  <a href="#" target="_blank" class="music-btn music-btn-soundcloud" style="color: #E0C290; text-decoration: none; padding: 6px 10px; background: #201613; border-radius: 4px; font-weight: 600; font-size: 0.85em;">SoundCloud</a>
+                  <a href="#" target="_blank" class="music-btn music-btn-beatport" style="color: #E0C290; text-decoration: none; padding: 6px 10px; background: #201613; border-radius: 4px; font-weight: 600; font-size: 0.85em;">Beatport</a>
                 </div>
               </div>
             </div>
@@ -398,18 +390,18 @@
     </div>
 
     <!-- Empty line after trenner -->
-    <div style="height: 20px;"></div>
+    <div style="height: 10px;"></div>
 
 <!-- News Section -->
     <section class="news-section" style="padding: 10px 18px; background: var(--content-bg); border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
-      <div style="text-align: center; margin-bottom: 15px;">
+      <div style="text-align: center; margin-bottom: 5px;">
         <img src="images/news.png" alt="ROKKO! News" style="display: inline-block; width: 100%; max-width: 600px; margin: 0;">
       </div>
       
-      <div class="news-feed-container" style="max-width: 900px; margin: 0 auto; border: 3px solid #B85C00; border-radius: 8px; padding: 20px; background: #f3e2c9; height: 500px; display: flex; flex-direction: column;">
+      <div class="news-feed-container" style="max-width: 900px; margin: 0 auto; padding: 20px; height: 500px; display: flex; flex-direction: column;">
         <div class="news-feed" style="flex: 1; overflow-y: auto; padding-right: 10px;">
           <!-- News Item 1 -->
-          <article class="news-item" data-page="1" style="margin-bottom: 20px; padding: 20px; background: #fff; border-radius: 8px; border-left: 4px solid #d9af6b;">
+          <article class="news-item" data-page="1" style="margin-bottom: 20px; padding: 20px; border-radius: 8px; border-left: 4px solid #d9af6b;">
             <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Neue Release: Skaramush Vandango - Neurosis</h3>
             <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">15. Oktober 2024</p>
             <p style="line-height: 1.6;">
@@ -419,7 +411,7 @@
           </article>
 
           <!-- News Item 2 -->
-          <article class="news-item" data-page="2" style="display: none; margin-bottom: 20px; padding: 20px; background: #fff; border-radius: 8px; border-left: 4px solid #d9af6b;">
+          <article class="news-item" data-page="2" style="display: none; margin-bottom: 20px; padding: 20px; border-radius: 8px; border-left: 4px solid #d9af6b;">
             <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Studio Session Highlights</h3>
             <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">08. Oktober 2024</p>
             <p style="line-height: 1.6;">
@@ -429,7 +421,7 @@
           </article>
 
           <!-- News Item 3 -->
-          <article class="news-item" data-page="3" style="display: none; margin-bottom: 20px; padding: 20px; background: #fff; border-radius: 8px; border-left: 4px solid #d9af6b;">
+          <article class="news-item" data-page="3" style="display: none; margin-bottom: 20px; padding: 20px; border-radius: 8px; border-left: 4px solid #d9af6b;">
             <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Kollaboration mit internationalen Artists</h3>
             <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">01. Oktober 2024</p>
             <p style="line-height: 1.6;">
@@ -439,7 +431,7 @@
           </article>
 
           <!-- News Item 4 -->
-          <article class="news-item" data-page="4" style="display: none; margin-bottom: 20px; padding: 20px; background: #fff; border-radius: 8px; border-left: 4px solid #d9af6b;">
+          <article class="news-item" data-page="4" style="display: none; margin-bottom: 20px; padding: 20px; border-radius: 8px; border-left: 4px solid #d9af6b;">
             <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Neues Label Signing</h3>
             <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">25. September 2024</p>
             <p style="line-height: 1.6;">
@@ -450,11 +442,10 @@
         </div>
 
         <!-- News Pagination -->
-        <div class="news-pagination" style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 2px solid #d9af6b;">
-          <button class="page-btn active" data-page="1" style="padding: 8px 12px; margin: 0 5px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">1</button>
-          <button class="page-btn" data-page="2" style="padding: 8px 12px; margin: 0 5px; background: #fff; color: var(--rokko-brown); border: 1px solid #d9af6b; border-radius: 4px; cursor: pointer; font-weight: 600;">2</button>
-          <button class="page-btn" data-page="3" style="padding: 8px 12px; margin: 0 5px; background: #fff; color: var(--rokko-brown); border: 1px solid #d9af6b; border-radius: 4px; cursor: pointer; font-weight: 600;">3</button>
-          <button class="page-btn" data-page="4" style="padding: 8px 12px; margin: 0 5px; background: #fff; color: var(--rokko-brown); border: 1px solid #d9af6b; border-radius: 4px; cursor: pointer; font-weight: 600;">4</button>
+        <div class="news-pagination" style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 2px solid #d9af6b; display: flex; justify-content: center; align-items: center; gap: 20px;">
+          <button class="page-btn-prev" style="padding: 10px 16px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 1.2em;">←</button>
+          <span class="page-indicator" style="font-weight: 600; color: var(--rokko-brown);">1 / 4</span>
+          <button class="page-btn-next" style="padding: 10px 16px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 1.2em;">→</button>
         </div>
       </div>
     </section>
@@ -464,11 +455,11 @@
     </div>
 
     <!-- Empty line after trenner -->
-    <div style="height: 20px;"></div>
+    <div style="height: 10px;"></div>
 
     <!-- Merch Shop Section -->
     <section class="merch-section section-fullscreen" style="padding: 10px 18px; background: var(--content-bg); display: flex; flex-direction: column; justify-content: center; align-items: center; border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
-      <div style="text-align: center; margin-bottom: 15px;">
+      <div style="text-align: center; margin-bottom: 5px;">
         <img src="images/merch.png" alt="ROKKO! Merchandise" style="display: inline-block; width: 100%; max-width: 600px; margin: 0;">
       </div>
       
@@ -496,11 +487,11 @@
     </div>
 
     <!-- Empty line after trenner -->
-    <div style="height: 20px;"></div>
+    <div style="height: 10px;"></div>
 
     <!-- Contact Form Section -->
     <section id="kontakt" class="site-comment section-fullscreen" style="padding: 10px 18px; background: var(--content-bg); display: flex; flex-direction: column; justify-content: center; border: 3px solid #B85C00; border-radius: 8px; margin: 0 10px;">
-      <div style="text-align: center; margin-bottom: 10px;">
+      <div style="text-align: center; margin-bottom: 5px;">
         <img src="images/kontakt.png" alt="ROKKO! Kontakt" style="display: inline-block; width: 100%; max-width: 600px; margin: 0;">
       </div>
       <p style="text-align: center; margin-bottom: 15px; max-width: 600px; margin-left: auto; margin-right: auto;">
