@@ -132,7 +132,7 @@ body.home {
 }
 
 /* Sections should be centered with max-width */
-.intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .site-comment {
+.intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .social-section, .site-comment {
   width: 100% !important;
   max-width: var(--main-width) !important;
   margin: 8px auto !important;
