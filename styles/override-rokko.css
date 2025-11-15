@@ -143,9 +143,9 @@ body.home {
   margin: 0 !important;
 }
 
-/* Sections should be centered with max-width - frames fit intro video exactly */
+/* Sections should be centered with max-width - frames narrower than full width */
 .intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .social-section, .site-comment {
-  width: 100% !important;
+  width: 85% !important; /* Narrower than full width to show space on sides */
   max-width: var(--main-width) !important;
   margin: 8px auto !important;
   padding-left: 18px !important;
@@ -299,13 +299,13 @@ section.inverse-color.contact .title-wrapper,
     height: auto !important;
   }
   
-  /* Mobile: Center sections properly */
+  /* Mobile: Center sections properly - narrower than full width */
   .intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .social-section, .site-comment {
     margin-left: auto !important;
     margin-right: auto !important;
     margin-top: 8px !important;
     margin-bottom: 8px !important;
-    width: 100% !important;
+    width: 90% !important; /* Narrower on mobile to show space on sides */
     max-width: 100% !important;
   }
   
