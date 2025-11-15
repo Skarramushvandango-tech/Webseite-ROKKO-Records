@@ -5,8 +5,9 @@
   --rokko-brown: #201613; /* dunkles Braun, an Header angelehnt */
   --main-width: 600px; /* Breite der Inhalte auf Desktop (zentriert) - passt zu headline images */
   --content-bg: #E0C290; /* beiges Content-Hintergrund - korrigierte Farbe */
-  --artist-img-max: 520px;
-  --carousel-outline: #B32913; /* orange Outline für Karussell */
+  --artist-img-max: 468px; /* Reduced by 10% from 520px */
+  --carousel-outline: #B22911; /* orange Outline für Karussell - corrected color */
+  --frame-color: #B22911; /* Exact orange color for all frames */
 }
 
 /* --- globale Abstände reduzieren --- */
@@ -73,7 +74,7 @@ p { margin: 0.3rem 0; }
   z-index: 10;
 }
 
-/* --- Header: full-width image --- */
+/* --- Header: centered logo at top --- */
 header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default {
   position: relative !important;
   top: 0 !important;
@@ -83,22 +84,25 @@ header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default
   height: auto !important;
   min-height: 0 !important;
   max-height: none !important;
-  padding: 0 !important;
-  background: transparent !important;
+  padding: 20px 0 !important;
+  background: var(--content-bg) !important;
   z-index: 1000 !important;
   margin: 0 !important;
   overflow: visible !important;
   box-shadow: none !important;
+  text-align: center !important;
 }
 
-/* Full-width header image */
-.site-header-image {
-  width: 100% !important;
+/* Logo should be centered and can extend above header */
+.site-header img {
+  max-width: 300px !important;
+  width: 90% !important;
   height: auto !important;
   display: block !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
   padding: 0 !important;
-  line-height: 0 !important;
+  position: relative !important;
+  z-index: 1001 !important;
 }
 
 /* Ensure header container allows overflow for logo */
@@ -131,10 +135,10 @@ body.home {
   margin: 0 !important;
 }
 
-/* Sections should be centered with max-width */
+/* Sections should be centered with max-width and spacing from edges */
 .intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .social-section, .site-comment {
-  width: 100% !important;
-  max-width: var(--main-width) !important;
+  width: calc(100% - 40px) !important; /* Add 20px spacing on each side */
+  max-width: calc(var(--main-width) - 40px) !important;
   margin: 8px auto !important;
   padding-left: 18px !important;
   padding-right: 18px !important;
@@ -212,7 +216,7 @@ body.home .btn-welcome { display:none !important; }
   width: 66.666% !important; /* 2/3 of page width */
   max-width: 400px !important;
   height: 3px !important;
-  background-color: #B85C00 !important; /* Orange color matching border */
+  background-color: var(--frame-color) !important; /* Orange color matching border */
   margin: 20px auto !important; /* Vertical spacing above and below */
   padding: 0 !important;
   border: none !important;
@@ -289,10 +293,11 @@ section.inverse-color.contact .title-wrapper,
   
   /* Mobile: Add margins to sections with orange borders so they don't touch edges */
   .intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .social-section, .site-comment {
-    margin-left: 10px !important;
-    margin-right: 10px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     margin-top: 8px !important;
     margin-bottom: 8px !important;
+    width: calc(100% - 20px) !important; /* Center with 10px spacing on each side */
   }
   
   /* Mobile: Header layout - logo left, text right */
@@ -492,7 +497,7 @@ body.home .btn-welcome { display:none !important; }
   width: 66.666%;
   max-width: 400px;
   height: 3px;
-  background-color: #B85C00;
+  background-color: var(--frame-color);
   border: none;
 }
 
@@ -547,6 +552,11 @@ body.home .btn-welcome { display:none !important; }
 }
 
 /* Merch button hover effect */
+.merch-section a[href*="spreadshop"] {
+  margin-top: 20px !important; /* Add spacing above button */
+  margin-bottom: 20px !important; /* Add spacing below button to orange frame */
+}
+
 .merch-section a[href*="spreadshop"]:hover {
   opacity: 0.9;
   transform: scale(1.05);
@@ -662,9 +672,24 @@ body.home .btn-welcome { display:none !important; }
   margin-right: 8px;
 }
 
-/* Social Media Section Buttons */
+/* Social Media Section Buttons - All same size */
+.social-section a {
+  min-width: 160px !important;
+  padding: 12px 24px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+}
+
 .social-section a:hover {
   opacity: 0.85;
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.social-section svg {
+  width: 24px !important;
+  height: 24px !important;
+  flex-shrink: 0 !important;
 }
