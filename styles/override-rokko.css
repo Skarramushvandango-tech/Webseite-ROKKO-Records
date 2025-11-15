@@ -274,10 +274,12 @@ section.inverse-color.contact .title-wrapper,
   .desktop-logo { display: none !important; }
   .mobile-logo { display: inline-block !important; }
   
-  /* Mobile: Prevent horizontal page scroll */
+  /* Mobile: Prevent horizontal page scroll and fix height */
   body, html {
     overflow-x: hidden !important;
     max-width: 100vw !important;
+    height: auto !important;
+    min-height: 100% !important;
   }
   
   /* Mobile: Remove any min-heights that create empty space */
