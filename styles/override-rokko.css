@@ -3,7 +3,7 @@
 
 :root{
   --rokko-brown: #201613; /* dunkles Braun, an Header angelehnt */
-  --main-width: 600px; /* Breite der Inhalte auf Desktop (zentriert) - passt zu headline images */
+  --main-width: 900px; /* Breite der Inhalte auf Desktop (zentriert) - increased for better centering visibility */
   --content-bg: #E0C290; /* beiges Content-Hintergrund - korrigierte Farbe */
   --artist-img-max: 468px; /* Reduced by 10% from 520px */
   --carousel-outline: #3D2817; /* Dark brown for frames */
