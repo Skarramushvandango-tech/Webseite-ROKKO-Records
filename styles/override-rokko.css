@@ -92,12 +92,11 @@ header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default
   box-shadow: none !important;
 }
 
-/* Header image - display without distortion */
+/* Header image - mobile: full width, desktop: 33% centered */
 .site-header > img {
-  width: 100% !important;
   height: auto !important;
   display: block !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
   padding: 0 !important;
   object-fit: contain !important;
 }
@@ -279,6 +278,12 @@ section.inverse-color.contact .title-wrapper,
   .site-header nav { margin-left:12px; }
   .trenner { width:50%; max-width:210px; }
   
+  /* Mobile: header.png full width */
+  .site-header > img {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
   /* Mobile: Use header.png instead of logo.png */
   .desktop-logo { display: none !important; }
   .mobile-logo { display: inline-block !important; }
@@ -381,6 +386,12 @@ section.inverse-color.contact .title-wrapper,
     max-width: 100%; /* Body should span full width */
     margin: 0;
     padding: 0;
+  }
+  
+  /* Desktop: header.png 33% width, centered */
+  .site-header > img {
+    width: 33.333% !important;
+    max-width: 33.333% !important;
   }
   
   /* Main content centered with visible margins */
