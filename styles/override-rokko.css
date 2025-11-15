@@ -278,6 +278,7 @@ section.inverse-color.contact .title-wrapper,
     max-width: 100vw !important;
     height: auto !important;
     min-height: 100% !important;
+    background: #9A7A4A !important; /* Darker sand tone for mobile background */
   }
   
   /* Mobile: Remove any min-heights that create empty space */
@@ -287,7 +288,7 @@ section.inverse-color.contact .title-wrapper,
   }
   
   /* Mobile: Add margins to sections with orange borders so they don't touch edges */
-  .intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .site-comment {
+  .intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .social-section, .site-comment {
     margin-left: 10px !important;
     margin-right: 10px !important;
     margin-top: 8px !important;
@@ -341,7 +342,7 @@ section.inverse-color.contact .title-wrapper,
   }
   
   /* Mobile: All content sections should be compact */
-  .welcome-text, .news-section, .merch-section, .site-comment {
+  .welcome-text, .news-section, .merch-section, .social-section, .site-comment {
     min-height: 0 !important;
     height: auto !important;
   }
@@ -350,7 +351,7 @@ section.inverse-color.contact .title-wrapper,
 /* --- Desktop: Simple border frames, Content zentriert --- */
 @media (min-width:1100px){
   body { 
-    background: #A88858; /* Darker sand tone for side areas - made even darker */
+    background: #9A7A4A; /* Much darker sand tone for side areas - increased contrast */
   }
   
   body.site-shell { 
@@ -374,7 +375,7 @@ section.inverse-color.contact .title-wrapper,
   }
   
   /* Sections with borders have spacing from edges */
-  .intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .site-comment {
+  .intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .social-section, .site-comment {
     margin-left: auto !important;
     margin-right: auto !important;
   }
