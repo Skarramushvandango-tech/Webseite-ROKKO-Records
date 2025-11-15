@@ -288,6 +288,14 @@ section.inverse-color.contact .title-wrapper,
     height: auto !important;
   }
   
+  /* Mobile: Add margins to sections with orange borders so they don't touch edges */
+  .intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .site-comment {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+  }
+  
   /* Mobile: Header layout - logo left, text right */
   header.site-header > div, header > div {
     display: flex !important;
