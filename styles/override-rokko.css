@@ -148,9 +148,13 @@ body.home {
   width: 85% !important; /* Narrower than full width to show space on sides */
   max-width: var(--main-width) !important;
   margin: 8px auto !important;
-  padding-left: 18px !important;
-  padding-right: 18px !important;
   box-sizing: border-box !important;
+}
+
+/* Intro video has no padding - frame wraps tightly around video */
+.intro-video {
+  padding: 0 !important;
+  overflow: hidden !important;
 }
 
 /* Menü inline mit Logo in einer Reihe - reduziert Platz */
