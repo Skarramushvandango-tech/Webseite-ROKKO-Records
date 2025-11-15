@@ -6,8 +6,8 @@
   --main-width: 600px; /* Breite der Inhalte auf Desktop (zentriert) - passt zu headline images */
   --content-bg: #E0C290; /* beiges Content-Hintergrund - korrigierte Farbe */
   --artist-img-max: 468px; /* Reduced by 10% from 520px */
-  --carousel-outline: #B22911; /* orange Outline für Karussell - corrected color */
-  --frame-color: #B22911; /* Exact orange color for all frames */
+  --carousel-outline: #3D2817; /* Dark brown for frames */
+  --frame-color: #3D2817; /* Dark brown color for all frames */
 }
 
 /* --- globale Abstände reduzieren --- */
@@ -74,7 +74,7 @@ p { margin: 0.3rem 0; }
   z-index: 10;
 }
 
-/* --- Header: centered logo at top --- */
+/* --- Header: with overlaid logo --- */
 header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default {
   position: relative !important;
   top: 0 !important;
@@ -84,25 +84,33 @@ header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default
   height: auto !important;
   min-height: 0 !important;
   max-height: none !important;
-  padding: 20px 0 !important;
-  background: var(--content-bg) !important;
+  padding: 0 !important;
+  background: transparent !important;
   z-index: 1000 !important;
   margin: 0 !important;
   overflow: visible !important;
   box-shadow: none !important;
-  text-align: center !important;
 }
 
-/* Logo should be centered and can extend above header */
-.site-header img {
-  max-width: 300px !important;
-  width: 90% !important;
+/* Header background image */
+.site-header > img:first-child {
+  width: 100% !important;
   height: auto !important;
   display: block !important;
-  margin: 0 auto !important;
+  margin: 0 !important;
   padding: 0 !important;
-  position: relative !important;
-  z-index: 1001 !important;
+}
+
+/* Logo overlaid on header - centered, can extend above */
+.site-header > img:nth-child(2) {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  max-width: 250px !important;
+  width: 40% !important;
+  height: auto !important;
+  z-index: 10 !important;
 }
 
 /* Ensure header container allows overflow for logo */
@@ -135,10 +143,10 @@ body.home {
   margin: 0 !important;
 }
 
-/* Sections should be centered with max-width and spacing from edges */
+/* Sections should be centered with max-width - frames fit intro video exactly */
 .intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .social-section, .site-comment {
-  width: calc(100% - 40px) !important; /* Add 20px spacing on each side */
-  max-width: calc(var(--main-width) - 40px) !important;
+  width: 100% !important;
+  max-width: var(--main-width) !important;
   margin: 8px auto !important;
   padding-left: 18px !important;
   padding-right: 18px !important;
@@ -291,13 +299,24 @@ section.inverse-color.contact .title-wrapper,
     height: auto !important;
   }
   
-  /* Mobile: Add margins to sections with orange borders so they don't touch edges */
+  /* Mobile: Center sections properly */
   .intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .social-section, .site-comment {
     margin-left: auto !important;
     margin-right: auto !important;
     margin-top: 8px !important;
     margin-bottom: 8px !important;
-    width: calc(100% - 20px) !important; /* Center with 10px spacing on each side */
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Mobile: Ensure body is properly centered */
+  body, html {
+    text-align: center !important;
+  }
+  
+  main {
+    text-align: left !important;
+    margin: 0 auto !important;
   }
   
   /* Mobile: Header layout - logo left, text right */
@@ -479,6 +498,9 @@ body.home .btn-welcome { display:none !important; }
   border-radius: 6px;
   border: none;
   transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Bottom-align content */
 }
 
 .news-feed .news-item:hover {
