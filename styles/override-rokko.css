@@ -169,7 +169,8 @@ body.home {
   overflow: visible !important;
 }
 
-.site-header .logo img, .navbar-brand img, header img {
+/* Note: This rule should NOT affect header > img (the main header.png) */
+.site-header .logo img, .navbar-brand img {
   max-height: 120px !important;
   height: 120px !important;
   width: auto !important;
@@ -346,7 +347,8 @@ section.inverse-color.contact .title-wrapper,
   }
   
   /* Mobile: Reduce logo size and negative margins to prevent overflow */
-  .site-header .logo img, .navbar-brand img, header img {
+  /* Note: This rule should NOT affect header > img (the main header.png) */
+  .site-header .logo img, .navbar-brand img {
     max-height: 50px !important;
     height: 50px !important;
     margin-top: -5px !important;
