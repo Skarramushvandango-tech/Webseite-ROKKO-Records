@@ -23,11 +23,20 @@
 
     <!-- Intro Video Section -->
     <section class="intro-video" style="position: relative; width: 100%; padding: 0; background: var(--content-bg); border: 6px solid #3D2817; border-radius: 8px; overflow: hidden;">
-      <video id="introVideo" autoplay muted playsinline preload="metadata" style="width: 100%; height: auto; display: block; margin: 0; padding: 0; border-radius: 5px;">
+      <!-- Video Preloader -->
+      <div id="videoPreloader" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 20;">
+        <img src="images/header.png" alt="ROKKO Logo" style="width: 200px; margin-bottom: 30px; opacity: 0.9;">
+        <div style="width: 200px; height: 4px; background: rgba(224, 194, 144, 0.2); border-radius: 2px; overflow: hidden;">
+          <div id="loadingBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #E0C290, #d9af6b); border-radius: 2px; transition: width 0.3s ease;"></div>
+        </div>
+        <p style="color: #E0C290; margin-top: 15px; font-size: 0.9em; opacity: 0.8;">Lädt...</p>
+      </div>
+      
+      <video id="introVideo" autoplay muted playsinline preload="auto" style="width: 100%; height: auto; display: block; margin: 0; padding: 0; border-radius: 5px;">
         <source src="images/intro_movie.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
-      <button id="muteButton" style="position: absolute; bottom: 30px; right: 30px; padding: 6px 12px; background: rgba(32, 22, 19, 0.85); color: #d9af6b; border: 1px solid #d9af6b; border-radius: 3px; cursor: pointer; font-weight: 600; font-size: 0.9em; z-index: 10;">
+      <button id="muteButton" style="position: absolute; bottom: 10px; right: 10px; padding: 4px 8px; background: rgba(32, 22, 19, 0.85); color: #d9af6b; border: 1px solid #d9af6b; border-radius: 3px; cursor: pointer; font-weight: 600; font-size: 0.7em; z-index: 10;">
         UNMUTE
       </button>
     </section>
@@ -37,29 +46,32 @@
 
     <!-- Welcome Text Section -->
     <section class="welcome-text" style="padding: 10px; background: var(--content-bg); border: 6px solid #3D2817; border-radius: 8px;">
-      <h2 style="margin: 0 0 15px 0; font-size: 1.8em; font-weight: 700; color: var(--rokko-brown); text-align: center;">Wir sind ROKKO! Und du noch nicht!</h2>
-      <p style="max-width: 800px; margin: 0 0 10px 0; line-height: 1.6; font-size: 1em;">
-        Du hast Dich erfolgreich auf unsere Homepage verlaufen, Gratulation. Jetzt hoffen wir, dass Du Dir vorher ordentlich die Ohren gewaschen hast.<br><br>
-        Denn bei ROKKO! RECORDS gibt es ne Menge Lauschlappen Propaganda.
-      </p>
-      <img src="images/studio.png" alt="ROKKO Studio" style="max-width: 600px; width: 100%; margin: 0 auto; display: block;">
+      <div style="padding: 15px;">
+        <h2 style="margin: 0 0 10px 0; font-size: 1.4em; font-weight: 700; color: var(--rokko-brown); text-align: center;">Wir sind ROKKO! Und du noch nicht!</h2>
+        <p style="max-width: 800px; margin: 0 0 10px 0; line-height: 1.5; font-size: 0.9em;">
+          Du hast Dich erfolgreich auf unsere Homepage verlaufen, Gratulation. Jetzt hoffen wir, dass Du Dir vorher ordentlich die Ohren gewaschen hast.<br><br>
+          Denn bei ROKKO! RECORDS gibt es ne Menge Lauschlappen Propaganda.
+        </p>
+        <img src="images/studio.png" alt="ROKKO Studio" style="max-width: 600px; width: 100%; margin: 0 auto; display: block;">
+      </div>
     </section>
 
     <div class="trenner"></div>
 
     <!-- Artists Section with Grid Layout -->
     <section class="artists-section" style="padding: 10px; background: var(--content-bg); border: 6px solid #3D2817; border-radius: 8px;">
-      <div style="margin-bottom: 5px;">
-        <img src="images/crew.png" alt="ROKKO! Artists" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
-      </div>
+      <div style="padding: 15px;">
+        <div style="margin-bottom: 5px;">
+          <img src="images/crew.png" alt="ROKKO! Artists" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
+        </div>
 
-      <!-- Instruction Text -->
-      <p style="margin-bottom: 10px; font-weight: 600; font-size: 1.1em; color: var(--rokko-brown);">
-        Klicke auf einen Artist für mehr Infos
-      </p>
+        <!-- Instruction Text -->
+        <p style="margin-bottom: 10px; font-weight: 600; font-size: 0.95em; color: var(--rokko-brown);">
+          Klicke auf einen Artist für mehr Infos
+        </p>
 
-      <!-- Artist Grid -->
-      <div class="artist-grid" style="display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 10px;">
+        <!-- Artist Grid -->
+        <div class="artist-grid" style="display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 10px;">
         <!-- Skaramush Vandango -->
         <div class="artist-item">
           <div class="artist-header" style="cursor: pointer;" data-artist="vandango">
@@ -95,14 +107,14 @@
                  style="width: 90%; display: block; margin: 0 auto;">
           </div>
         </div>
-      </div>
+        </div>
 
-      <!-- Artist Details shown below carousel -->
-      <article id="artist-vandango" class="artist-details">
+        <!-- Artist Details shown below carousel -->
+        <article id="artist-vandango" class="artist-details">
         <div class="artist-dropdown" style="max-height: 0; transition: max-height 0.5s ease; padding: 0 10px;">
-          <div style="padding: 10px 0;">
-            <h3 style="margin-bottom: 10px;">BIOGRAFIE</h3>
-            <p style="line-height: 1.6; margin-bottom: 10px;">
+          <div style="padding: 15px;">
+            <h3 style="margin-bottom: 8px; font-size: 1.1em;">BIOGRAFIE</h3>
+            <p style="line-height: 1.5; margin-bottom: 10px; font-size: 0.9em;">
               Skaramush Vandango ist ein vielseitiger Künstler aus dem ROKKO Records Label. Mit seinem einzigartigen Stil verbindet er verschiedene Musikrichtungen zu einem unverwechselbaren Sound.
             </p>
             
@@ -110,7 +122,7 @@
               <div class="trenner"></div>
             </div>
 
-            <h3 style="margin-bottom: 10px;">DISKOGRAPHIE</h3>
+            <h3 style="margin-bottom: 8px; font-size: 1.1em;">DISKOGRAPHIE</h3>
             <div class="release" style="margin-bottom: 20px;">
               <img class="disco-cover-small" src="mp3/vandango/cover.png" alt="Neurosis" 
                    style="width: 180px; cursor: pointer; border-radius: 6px; margin-bottom: 10px;" />
@@ -181,7 +193,7 @@
               <div class="trenner"></div>
             </div>
 
-            <h3 style="margin-bottom: 10px;">SOCIAL MEDIA</h3>
+            <h3 style="margin-bottom: 8px; font-size: 1.1em;">SOCIAL MEDIA</h3>
             <a class="social-button" href="https://www.youtube.com/@skarramushvandango" target="_blank" 
                style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--rokko-brown); color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600;">
               <img src="img/youtube-icon.svg" alt="YouTube" style="width: 24px; height: 24px;"> Skaramush Vandango
@@ -193,9 +205,9 @@
 
       <article id="artist-schablonski" class="artist-details">
         <div class="artist-dropdown" style="max-height: 0; transition: max-height 0.5s ease; padding: 0 10px;">
-          <div style="padding: 10px 0;">
-            <h3 style="margin-bottom: 10px;">BIOGRAFIE</h3>
-            <p style="line-height: 1.6; margin-bottom: 10px;">
+          <div style="padding: 15px;">
+            <h3 style="margin-bottom: 8px; font-size: 1.1em;">BIOGRAFIE</h3>
+            <p style="line-height: 1.5; margin-bottom: 10px; font-size: 0.9em;">
               Ska Schablonski bringt energiegeladene Ska-Rhythmen und einzigartige Texte auf die Bühne. Ein fester Bestandteil des ROKKO Records Rosters.
             </p>
             
@@ -203,7 +215,7 @@
               <div class="trenner"></div>
             </div>
 
-            <h3 style="margin-bottom: 10px;">DISKOGRAPHIE</h3>
+            <h3 style="margin-bottom: 8px; font-size: 1.1em;">DISKOGRAPHIE</h3>
             <div class="release" style="margin-bottom: 20px;">
               <img class="disco-cover-small" src="mp3/schablonski/kohle_raus_cover.png" alt="Kohle Raus" 
                    style="width: 180px; cursor: pointer; border-radius: 6px; margin-bottom: 10px;" />
@@ -238,7 +250,7 @@
               <div class="trenner"></div>
             </div>
 
-            <h3 style="margin-bottom: 10px;">SOCIAL MEDIA</h3>
+            <h3 style="margin-bottom: 8px; font-size: 1.1em;">SOCIAL MEDIA</h3>
             <a class="social-button" href="https://www.youtube.com/@skaskablonski" target="_blank" 
                style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--rokko-brown); color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600;">
               <img src="img/youtube-icon.svg" alt="YouTube" style="width: 24px; height: 24px;"> Ska Schablonski
@@ -250,9 +262,9 @@
 
       <article id="artist-bellieu" class="artist-details">
         <div class="artist-dropdown" style="max-height: 0; transition: max-height 0.5s ease; padding: 0 10px;">
-          <div style="padding: 10px 0;">
-            <h3 style="margin-bottom: 10px;">BIOGRAFIE</h3>
-            <p style="line-height: 1.6; margin-bottom: 10px;">
+          <div style="padding: 15px;">
+            <h3 style="margin-bottom: 8px; font-size: 1.1em;">BIOGRAFIE</h3>
+            <p style="line-height: 1.5; margin-bottom: 10px; font-size: 0.9em;">
               Henri Bellieu ist bekannt für seine melodischen und gefühlvollen Kompositionen. Seine Musik berührt die Herzen der Zuhörer weltweit.
             </p>
             
@@ -260,7 +272,7 @@
               <div class="trenner"></div>
             </div>
 
-            <h3 style="margin-bottom: 10px;">DISKOGRAPHIE</h3>
+            <h3 style="margin-bottom: 8px; font-size: 1.1em;">DISKOGRAPHIE</h3>
             <div class="release" style="margin-bottom: 20px;">
               <img class="disco-cover-small" src="mp3/bellieu/petite_colibri.png" alt="Petite Colibri" 
                    style="width: 180px; cursor: pointer; border-radius: 6px; margin-bottom: 10px;" />
@@ -298,7 +310,7 @@
               <div class="trenner"></div>
             </div>
 
-            <h3 style="margin-bottom: 10px;">SOCIAL MEDIA</h3>
+            <h3 style="margin-bottom: 8px; font-size: 1.1em;">SOCIAL MEDIA</h3>
             <a class="social-button" href="https://www.youtube.com/@henribellieu" target="_blank" 
                style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--rokko-brown); color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600;">
               <img src="img/youtube-icon.svg" alt="YouTube" style="width: 24px; height: 24px;"> Henri Bellieu
@@ -310,9 +322,9 @@
 
       <article id="artist-beunie" class="artist-details">
         <div class="artist-dropdown" style="max-height: 0; transition: max-height 0.5s ease; padding: 0 10px;">
-          <div style="padding: 10px 0;">
-            <h3 style="margin-bottom: 10px;">BIOGRAFIE</h3>
-            <p style="line-height: 1.6; margin-bottom: 10px;">
+          <div style="padding: 15px;">
+            <h3 style="margin-bottom: 8px; font-size: 1.1em;">BIOGRAFIE</h3>
+            <p style="line-height: 1.5; margin-bottom: 10px; font-size: 0.9em;">
               Fleuret Beunie verzaubert mit einer einzigartigen Mischung aus elektronischen und akustischen Klängen. Ein Künstler, der Grenzen überschreitet.
             </p>
             
@@ -320,7 +332,7 @@
               <div class="trenner"></div>
             </div>
 
-            <h3 style="margin-bottom: 10px;">DISKOGRAPHIE</h3>
+            <h3 style="margin-bottom: 8px; font-size: 1.1em;">DISKOGRAPHIE</h3>
             <div class="release" style="margin-bottom: 20px;">
               <img class="disco-cover-small" src="mp3/fleurbeunie/feu_leger_cover.png" alt="Feu Leger" 
                    style="width: 180px; cursor: pointer; border-radius: 6px; margin-bottom: 10px;" />
@@ -358,7 +370,7 @@
               <div class="trenner"></div>
             </div>
 
-            <h3 style="margin-bottom: 10px;">SOCIAL MEDIA</h3>
+            <h3 style="margin-bottom: 8px; font-size: 1.1em;">SOCIAL MEDIA</h3>
             <a class="social-button" href="https://www.youtube.com/@fleuretbeunie" target="_blank" 
                style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--rokko-brown); color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600;">
               <img src="img/youtube-icon.svg" alt="YouTube" style="width: 24px; height: 24px;"> Fleuret Beunie
@@ -367,64 +379,67 @@
         </div>
       
       </article>
+      </div>
     </section>
 
     <div class="trenner"></div>
 
     <!-- News Section -->
     <section class="news-section" style="padding: 10px; background: var(--content-bg); border: 6px solid #3D2817; border-radius: 8px;">
-      <div style="margin-bottom: 5px;">
-        <img src="images/news.png" alt="ROKKO! News" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
-      </div>
-      
-      <div class="news-feed-container" style="max-width: 900px; margin: 0 auto; padding: 10px 0; height: 500px; display: flex; flex-direction: column; background: var(--content-bg);">
-        <div class="news-feed" style="flex: 1; overflow-y: auto; padding: 10px; background: var(--content-bg);">
-          <!-- News Item 1 -->
-          <article class="news-item" data-page="1" style="margin-bottom: 20px; padding: 15px; border-radius: 6px; background: var(--content-bg);">
-            <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Neue Release: Skaramush Vandango - Neurosis</h3>
-            <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">15. Oktober 2024</p>
-            <p style="line-height: 1.6; color: var(--rokko-brown);">
-              Das neue Album "Neurosis" von Skaramush Vandango ist jetzt verfügbar! Mit kraftvollen Tracks wie "Set the Fire" und "Always Sunny" 
-              setzt der Künstler neue Maßstäbe in der Musikszene. Hör dir die Songs direkt hier auf unserer Website an!
-            </p>
-          </article>
-
-          <!-- News Item 2 -->
-          <article class="news-item" data-page="2" style="display: none; margin-bottom: 20px; padding: 15px; border-radius: 6px; background: var(--content-bg);">
-            <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Studio Session Highlights</h3>
-            <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">08. Oktober 2024</p>
-            <p style="line-height: 1.6; color: var(--rokko-brown);">
-              Exklusive Einblicke in unsere aktuellen Studio Sessions! Unsere Artists arbeiten an spannenden neuen Projekten. 
-              Bleibt gespannt auf weitere Updates und neue Releases in den kommenden Monaten.
-            </p>
-          </article>
-
-          <!-- News Item 3 -->
-          <article class="news-item" data-page="3" style="display: none; margin-bottom: 20px; padding: 15px; border-radius: 6px; background: var(--content-bg);">
-            <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Kollaboration mit internationalen Artists</h3>
-            <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">01. Oktober 2024</p>
-            <p style="line-height: 1.6; color: var(--rokko-brown);">
-              ROKKO Records freut sich, eine neue internationale Zusammenarbeit ankündigen zu können. 
-              Unsere Artists werden mit renommierten Produzenten aus verschiedenen Ländern zusammenarbeiten, um einzigartige Sounds zu kreieren.
-            </p>
-          </article>
-
-          <!-- News Item 4 -->
-          <article class="news-item" data-page="4" style="display: none; margin-bottom: 20px; padding: 15px; border-radius: 6px; background: var(--content-bg);">
-            <h3 style="margin-bottom: 8px; color: var(--rokko-brown);">Neues Label Signing</h3>
-            <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">25. September 2024</p>
-            <p style="line-height: 1.6; color: var(--rokko-brown);">
-              Wir sind stolz, unsere neuesten Artists im ROKKO Records Roster willkommen zu heißen! 
-              Mit frischen Talenten und innovativen Sounds erweitern wir unser musikalisches Portfolio kontinuierlich.
-            </p>
-          </article>
+      <div style="padding: 15px;">
+        <div style="margin-bottom: 5px;">
+          <img src="images/news.png" alt="ROKKO! News" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
         </div>
+        
+        <div class="news-feed-container" style="max-width: 900px; margin: 0 auto; padding: 10px 0; height: 500px; display: flex; flex-direction: column; background: var(--content-bg);">
+          <div class="news-feed" style="flex: 1; overflow-y: auto; padding: 10px; background: var(--content-bg);">
+            <!-- News Item 1 -->
+            <article class="news-item" data-page="1" style="margin-bottom: 15px; padding: 12px; border-radius: 6px; background: var(--content-bg);">
+              <h3 style="margin-bottom: 6px; font-size: 1.1em; color: var(--rokko-brown);">Neue Release: Skaramush Vandango - Neurosis</h3>
+              <p style="font-size: 0.75em; color: #666; margin-bottom: 8px;">15. Oktober 2024</p>
+              <p style="line-height: 1.5; font-size: 0.85em; color: var(--rokko-brown);">
+                Das neue Album "Neurosis" von Skaramush Vandango ist jetzt verfügbar! Mit kraftvollen Tracks wie "Set the Fire" und "Always Sunny" 
+                setzt der Künstler neue Maßstäbe in der Musikszene. Hör dir die Songs direkt hier auf unserer Website an!
+              </p>
+            </article>
 
-        <!-- News Pagination -->
-        <div class="news-pagination" style="text-align: center; margin-top: 10px; padding: 10px 0; display: flex; justify-content: center; align-items: center; gap: 20px; background: var(--content-bg);">
-          <button class="page-btn-prev" style="padding: 8px 14px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 1.2em;">←</button>
-          <span class="page-indicator" style="font-weight: 600; color: var(--rokko-brown);">1 / 4</span>
-          <button class="page-btn-next" style="padding: 8px 14px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 1.2em;">→</button>
+            <!-- News Item 2 -->
+            <article class="news-item" data-page="2" style="display: none; margin-bottom: 15px; padding: 12px; border-radius: 6px; background: var(--content-bg);">
+              <h3 style="margin-bottom: 6px; font-size: 1.1em; color: var(--rokko-brown);">Studio Session Highlights</h3>
+              <p style="font-size: 0.75em; color: #666; margin-bottom: 8px;">08. Oktober 2024</p>
+              <p style="line-height: 1.5; font-size: 0.85em; color: var(--rokko-brown);">
+                Exklusive Einblicke in unsere aktuellen Studio Sessions! Unsere Artists arbeiten an spannenden neuen Projekten. 
+                Bleibt gespannt auf weitere Updates und neue Releases in den kommenden Monaten.
+              </p>
+            </article>
+
+            <!-- News Item 3 -->
+            <article class="news-item" data-page="3" style="display: none; margin-bottom: 15px; padding: 12px; border-radius: 6px; background: var(--content-bg);">
+              <h3 style="margin-bottom: 6px; font-size: 1.1em; color: var(--rokko-brown);">Kollaboration mit internationalen Artists</h3>
+              <p style="font-size: 0.75em; color: #666; margin-bottom: 8px;">01. Oktober 2024</p>
+              <p style="line-height: 1.5; font-size: 0.85em; color: var(--rokko-brown);">
+                ROKKO Records freut sich, eine neue internationale Zusammenarbeit ankündigen zu können. 
+                Unsere Artists werden mit renommierten Produzenten aus verschiedenen Ländern zusammenarbeiten, um einzigartige Sounds zu kreieren.
+              </p>
+            </article>
+
+            <!-- News Item 4 -->
+            <article class="news-item" data-page="4" style="display: none; margin-bottom: 15px; padding: 12px; border-radius: 6px; background: var(--content-bg);">
+              <h3 style="margin-bottom: 6px; font-size: 1.1em; color: var(--rokko-brown);">Neues Label Signing</h3>
+              <p style="font-size: 0.75em; color: #666; margin-bottom: 8px;">25. September 2024</p>
+              <p style="line-height: 1.5; font-size: 0.85em; color: var(--rokko-brown);">
+                Wir sind stolz, unsere neuesten Artists im ROKKO Records Roster willkommen zu heißen! 
+                Mit frischen Talenten und innovativen Sounds erweitern wir unser musikalisches Portfolio kontinuierlich.
+              </p>
+            </article>
+          </div>
+
+          <!-- News Pagination -->
+          <div class="news-pagination" style="text-align: center; margin-top: 10px; padding: 10px 0; display: flex; justify-content: center; align-items: center; gap: 20px; background: var(--content-bg);">
+            <button class="page-btn-prev" style="padding: 6px 12px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 1em;">←</button>
+            <span class="page-indicator" style="font-weight: 600; font-size: 0.9em; color: var(--rokko-brown);">1 / 4</span>
+            <button class="page-btn-next" style="padding: 6px 12px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 1em;">→</button>
+          </div>
         </div>
       </div>
     </section>
@@ -433,26 +448,28 @@
 
     <!-- Merch Shop Section -->
     <section class="merch-section" style="padding: 10px; background: var(--content-bg); border: 6px solid #3D2817; border-radius: 8px;">
-      <div style="margin-bottom: 5px;">
-        <img src="images/merch.png" alt="ROKKO! Merchandise" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
-      </div>
-      
-      <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-        <p style="margin-bottom: 15px; line-height: 1.6; font-size: 1.1em;">
-          Besuche unseren offiziellen Merchandise-Shop für exklusive ROKKO Records Produkte, T-Shirts, Hoodies und mehr!
-        </p>
+      <div style="padding: 15px;">
+        <div style="margin-bottom: 5px;">
+          <img src="images/merch.png" alt="ROKKO! Merchandise" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
+        </div>
+        
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+          <p style="margin-bottom: 15px; line-height: 1.5; font-size: 0.95em;">
+            Besuche unseren offiziellen Merchandise-Shop für exklusive ROKKO Records Produkte, T-Shirts, Hoodies und mehr!
+          </p>
         
         <!-- Ladenlokal Image -->
         <div style="margin-bottom: 15px;">
           <img src="images/ladenlokal.png" alt="ROKKO Ladenlokal" style="max-width: 600px; width: 100%; height: auto; margin: 0 auto; display: block; border-radius: 8px;">
         </div>
         
-        <a href="https://rokko-records.myspreadshop.de" 
-           target="_blank" 
-           rel="noopener noreferrer"
-           style="display: inline-block; padding: 16px 32px; background: var(--rokko-brown); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 700; font-size: 1.2em; margin: 0; transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-          🛒 Zum ROKKO! Merch
-        </a>
+          <a href="https://rokko-records.myspreadshop.de" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             style="display: inline-block; padding: 12px 24px; background: var(--rokko-brown); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 700; font-size: 1em; margin: 0; transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            🛒 Zum ROKKO! Merch
+          </a>
+        </div>
       </div>
     </section>
 
@@ -460,48 +477,50 @@
 
     <!-- Social Media Section -->
     <section class="social-section" style="padding: 10px; background: var(--content-bg); border: 6px solid #3D2817; border-radius: 8px;">
-      <div style="margin-bottom: 5px;">
-        <img src="images/social.png" alt="ROKKO! Social Media" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
-      </div>
-      
-      <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-        <p style="margin-bottom: 15px; line-height: 1.6; font-size: 1.1em;">
-          Folge ROKKO! Records auf unseren Social Media Kanälen für aktuelle Updates, neue Releases und exklusive Inhalte!
-        </p>
+      <div style="padding: 15px;">
+        <div style="margin-bottom: 5px;">
+          <img src="images/social.png" alt="ROKKO! Social Media" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
+        </div>
         
-        <!-- Social Media Buttons -->
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin: 20px 0;">
-          <a href="#" target="_blank" rel="noopener noreferrer" 
-             style="display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; background: var(--rokko-brown); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; transition: all 0.3s ease;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-            </svg>
-            YouTube
-          </a>
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+          <p style="margin-bottom: 15px; line-height: 1.5; font-size: 0.95em;">
+            Folge ROKKO! Records auf unseren Social Media Kanälen für aktuelle Updates, neue Releases und exklusive Inhalte!
+          </p>
+        
+          <!-- Social Media Buttons - 2x2 Grid Layout -->
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 400px; margin: 20px auto;">
+            <a href="#" target="_blank" rel="noopener noreferrer" 
+               style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px; background: var(--rokko-brown); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.85em; transition: all 0.3s ease; min-height: 48px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+              YouTube
+            </a>
           
-          <a href="#" target="_blank" rel="noopener noreferrer"
-             style="display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; background: var(--rokko-brown); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; transition: all 0.3s ease;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M7 10c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM17 10c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM24 4H0v4h24V4z"/>
-            </svg>
-            SoundCloud
-          </a>
-          
-          <a href="#" target="_blank" rel="noopener noreferrer"
-             style="display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; background: var(--rokko-brown); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; transition: all 0.3s ease;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-            </svg>
-            TikTok
-          </a>
-          
-          <a href="#" target="_blank" rel="noopener noreferrer"
-             style="display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; background: var(--rokko-brown); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; transition: all 0.3s ease;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-            Instagram
-          </a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+               style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px; background: var(--rokko-brown); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.85em; transition: all 0.3s ease; min-height: 48px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 10c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM17 10c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM24 4H0v4h24V4z"/>
+              </svg>
+              SoundCloud
+            </a>
+            
+            <a href="#" target="_blank" rel="noopener noreferrer"
+               style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px; background: var(--rokko-brown); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.85em; transition: all 0.3s ease; min-height: 48px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+              </svg>
+              TikTok
+            </a>
+            
+            <a href="#" target="_blank" rel="noopener noreferrer"
+               style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px; background: var(--rokko-brown); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.85em; transition: all 0.3s ease; min-height: 48px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              Instagram
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -510,29 +529,31 @@
 
     <!-- Contact Form Section -->
     <section id="kontakt" class="site-comment" style="padding: 10px; background: var(--content-bg); border: 6px solid #3D2817; border-radius: 8px;">
-      <div style="margin-bottom: 5px;">
-        <img src="images/kontakt.png" alt="ROKKO! Kontakt" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
+      <div style="padding: 15px;">
+        <div style="margin-bottom: 5px;">
+          <img src="images/kontakt.png" alt="ROKKO! Kontakt" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
+        </div>
+        <p style="margin-bottom: 15px; max-width: 600px; font-size: 0.9em; line-height: 1.5;">
+          Hinterlasse hier eine Nachricht — wir freuen uns auf deine Kontaktaufnahme!
+        </p>
+
+        <form action="https://formsubmit.co/email_ilgner@gmx.de" method="POST" class="comment-form" style="max-width: 600px; margin: 0 auto;">
+          <input type="hidden" name="_subject" value="Neue Nachricht von ROKKO Website">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://skarramushvandango-tech.github.io/Webseite-ROKKO-Records/">
+
+          <label for="cf-name" style="display: block; margin-top: 10px; font-weight: 600; font-size: 0.9em;">Name</label>
+          <input id="cf-name" name="name" type="text" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: #ffffff; font-size: 0.9em;">
+
+          <label for="cf-email" style="display: block; margin-top: 10px; font-weight: 600; font-size: 0.9em;">E-Mail</label>
+          <input id="cf-email" name="email" type="email" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: #ffffff; font-size: 0.9em;">
+
+          <label for="cf-message" style="display: block; margin-top: 10px; font-weight: 600; font-size: 0.9em;">Deine Nachricht</label>
+          <textarea id="cf-message" name="message" rows="6" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: #ffffff; font-size: 0.9em;"></textarea>
+
+          <button type="submit" class="btn-send" style="margin-top: 15px; margin-bottom: 5px; padding: 10px 24px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 0.95em;">Senden</button>
+        </form>
       </div>
-      <p style="margin-bottom: 15px; max-width: 600px;">
-        Hinterlasse hier eine Nachricht — wir freuen uns auf deine Kontaktaufnahme!
-      </p>
-
-      <form action="https://formsubmit.co/email_ilgner@gmx.de" method="POST" class="comment-form" style="max-width: 600px; margin: 0 auto;">
-        <input type="hidden" name="_subject" value="Neue Nachricht von ROKKO Website">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://skarramushvandango-tech.github.io/Webseite-ROKKO-Records/">
-
-        <label for="cf-name" style="display: block; margin-top: 10px; font-weight: 600;">Name</label>
-        <input id="cf-name" name="name" type="text" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: #ffffff;">
-
-        <label for="cf-email" style="display: block; margin-top: 10px; font-weight: 600;">E-Mail</label>
-        <input id="cf-email" name="email" type="email" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: #ffffff;">
-
-        <label for="cf-message" style="display: block; margin-top: 10px; font-weight: 600;">Deine Nachricht</label>
-        <textarea id="cf-message" name="message" rows="6" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: #ffffff;"></textarea>
-
-        <button type="submit" class="btn-send" style="margin-top: 15px; margin-bottom: 5px; padding: 10px 24px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">Senden</button>
-      </form>
     </section>
 
   </main>

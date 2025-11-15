@@ -3,7 +3,7 @@
 
 :root{
   --rokko-brown: #201613; /* dunkles Braun, an Header angelehnt */
-  --main-width: 600px; /* Breite der Inhalte auf Desktop (zentriert) - passt zu headline images */
+  --main-width: 900px; /* Breite der Inhalte auf Desktop (zentriert) - increased for better centering visibility */
   --content-bg: #E0C290; /* beiges Content-Hintergrund - korrigierte Farbe */
   --artist-img-max: 468px; /* Reduced by 10% from 520px */
   --carousel-outline: #3D2817; /* Dark brown for frames */
@@ -92,12 +92,11 @@ header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default
   box-shadow: none !important;
 }
 
-/* Header image - display without distortion */
+/* Header image - mobile: full width, desktop: 33% centered */
 .site-header > img {
-  width: 100% !important;
   height: auto !important;
   display: block !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
   padding: 0 !important;
   object-fit: contain !important;
 }
@@ -170,7 +169,8 @@ body.home {
   overflow: visible !important;
 }
 
-.site-header .logo img, .navbar-brand img, header img {
+/* Note: This rule should NOT affect header > img (the main header.png) */
+.site-header .logo img, .navbar-brand img {
   max-height: 120px !important;
   height: 120px !important;
   width: auto !important;
@@ -279,6 +279,12 @@ section.inverse-color.contact .title-wrapper,
   .site-header nav { margin-left:12px; }
   .trenner { width:50%; max-width:210px; }
   
+  /* Mobile: header.png full width */
+  .site-header > img {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
   /* Mobile: Use header.png instead of logo.png */
   .desktop-logo { display: none !important; }
   .mobile-logo { display: inline-block !important; }
@@ -341,7 +347,8 @@ section.inverse-color.contact .title-wrapper,
   }
   
   /* Mobile: Reduce logo size and negative margins to prevent overflow */
-  .site-header .logo img, .navbar-brand img, header img {
+  /* Note: This rule should NOT affect header > img (the main header.png) */
+  .site-header .logo img, .navbar-brand img {
     max-height: 50px !important;
     height: 50px !important;
     margin-top: -5px !important;
@@ -381,6 +388,18 @@ section.inverse-color.contact .title-wrapper,
     max-width: 100%; /* Body should span full width */
     margin: 0;
     padding: 0;
+  }
+  
+  /* Desktop: header.png 33% width, centered */
+  .site-header {
+    text-align: center !important;
+  }
+  
+  .site-header > img {
+    width: 33.333% !important;
+    max-width: 33.333% !important;
+    margin: 0 auto !important;
+    display: block !important;
   }
   
   /* Main content centered with visible margins */
@@ -640,46 +659,53 @@ body.home .btn-welcome { display:none !important; }
   opacity: 0.9;
 }
 
-/* Track item styling - improved UI */
+/* Track item styling - improved UI with better colors */
 .track-item {
   padding: 12px 16px;
   margin: 6px 0;
-  background: linear-gradient(135deg, #ffffff 0%, #f9f5f0 100%);
-  border-radius: 6px;
+  background: linear-gradient(135deg, #E0C290 0%, #D4B584 100%);
+  border-radius: 8px;
   cursor: pointer;
-  border: 2px solid #d9af6b;
+  border: 2px solid #B8935F;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 6px rgba(61, 40, 23, 0.15);
   position: relative;
   overflow: hidden;
+  color: var(--rokko-brown);
 }
 
 .track-item::before {
   content: '▶';
   position: absolute;
   left: -25px;
-  color: #d9af6b;
-  font-size: 0.8em;
+  color: var(--rokko-brown);
+  font-size: 0.9em;
   transition: left 0.3s ease;
 }
 
 .track-item:hover {
-  background: linear-gradient(135deg, #f3e2c9 0%, #e8dcc7 100%);
+  background: linear-gradient(135deg, #C9A66F 0%, #B8935F 100%);
   transform: translateX(8px);
   border-color: var(--rokko-brown);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 5px 12px rgba(61, 40, 23, 0.25);
+  color: #fff;
 }
 
 .track-item:hover::before {
   left: 8px;
+  color: #fff;
 }
 
 .track-item.active {
-  background: linear-gradient(135deg, #d9af6b 0%, #c99d5a 100%);
-  border-color: var(--rokko-brown);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  background: linear-gradient(135deg, var(--rokko-brown) 0%, #2d1f1b 100%);
+  border-color: #1a0f0d;
+  color: #E0C290;
+  box-shadow: 0 6px 16px rgba(61, 40, 23, 0.35);
   transform: translateX(5px);
+}
+
+.track-item.active::before {
+  color: #E0C290;
 }
 
 .track-item.active::before {
