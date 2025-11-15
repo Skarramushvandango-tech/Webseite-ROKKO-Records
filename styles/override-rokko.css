@@ -206,15 +206,18 @@ body.home .btn-welcome { display:none !important; }
 /* Abstand unter dem Artist Bild verringern */
 .artist-card, .artist-wrapper { margin-bottom: 6px !important; padding-bottom: 3px !important; }
 
-/* Trenner: centered, no extra spacing */
+/* Trenner: centered, no extra spacing, thin horizontal line */
 .trenner, img.trenner, .section-divider {
   display: block !important;
   width: 100% !important;
   max-width: 520px !important;
+  height: auto !important;
+  max-height: 50px !important;
   margin: 0 auto !important;
   padding: 0 !important;
   line-height: 0 !important;
   box-sizing: border-box !important;
+  object-fit: contain !important;
 }
 
 /* Biografie linksbündig, kompakter Textfluss */
