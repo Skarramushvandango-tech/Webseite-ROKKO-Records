@@ -1,7 +1,47 @@
 // Händelt Diskografie Dropdowns, Video Controls, News Pagination und Carousel
 document.addEventListener('DOMContentLoaded', function(){
-  // Intro video mute/unmute control
+  // Video preloader handling
   var video = document.getElementById('introVideo');
+  var preloader = document.getElementById('videoPreloader');
+  var loadingBar = document.getElementById('loadingBar');
+  
+  if(video && preloader && loadingBar) {
+    // Update loading bar as video loads
+    video.addEventListener('progress', function() {
+      if(video.buffered.length > 0) {
+        var bufferedEnd = video.buffered.end(video.buffered.length - 1);
+        var duration = video.duration;
+        if(duration > 0) {
+          var percentLoaded = (bufferedEnd / duration) * 100;
+          loadingBar.style.width = percentLoaded + '%';
+        }
+      }
+    });
+    
+    // Hide preloader when video can play
+    video.addEventListener('canplaythrough', function() {
+      setTimeout(function() {
+        preloader.style.opacity = '0';
+        preloader.style.transition = 'opacity 0.5s ease';
+        setTimeout(function() {
+          preloader.style.display = 'none';
+        }, 500);
+      }, 300);
+    });
+    
+    // Fallback: hide preloader after 3 seconds even if not fully loaded
+    setTimeout(function() {
+      if(preloader.style.display !== 'none') {
+        preloader.style.opacity = '0';
+        preloader.style.transition = 'opacity 0.5s ease';
+        setTimeout(function() {
+          preloader.style.display = 'none';
+        }, 500);
+      }
+    }, 3000);
+  }
+  
+  // Intro video mute/unmute control
   var muteBtn = document.getElementById('muteButton');
   
   if(video && muteBtn) {
