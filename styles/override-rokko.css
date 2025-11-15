@@ -73,23 +73,32 @@ p { margin: 0.3rem 0; }
   z-index: 10;
 }
 
-/* --- Header: fixed position, stays at top while scrolling --- */
-/* Schmaler Balken, der oben klebt */
+/* --- Header: full-width image --- */
 header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default {
-  position: fixed !important;
+  position: relative !important;
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
   width: 100% !important;
   height: auto !important;
-  min-height: 45px !important;
-  max-height: 45px !important;
-  padding: 5px 0 !important;
-  background: var(--rokko-brown) !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  padding: 0 !important;
+  background: transparent !important;
   z-index: 1000 !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   margin: 0 !important;
-  overflow: visible !important; /* Allow logo to overflow */
+  overflow: visible !important;
+  box-shadow: none !important;
+}
+
+/* Full-width header image */
+.site-header-image {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0 !important;
 }
 
 /* Ensure header container allows overflow for logo */
@@ -103,8 +112,7 @@ header > div, header.site-header > div {
   max-height: 45px !important;
 }
 
-/* Ensure main content doesn't overlap with fixed header on index page */
-/* Remove margin so intro video sits directly under header */
+/* Main content flows naturally after header */
 body.home main {
   margin: 0 !important;
   padding: 0 !important;
@@ -112,27 +120,25 @@ body.home main {
   padding-top: 0 !important;
 }
 
-/* Add padding to body for fixed header on all pages except home */
+/* No padding needed since header is not fixed */
 body:not(.home) {
-  padding-top: 45px !important;
+  padding-top: 0 !important;
 }
 
-/* Home page: header height as padding, then video directly below */
+/* Home page: no padding needed */
 body.home {
-  padding-top: 45px !important;
+  padding-top: 0 !important;
   margin: 0 !important;
 }
 
-/* Override any absolute positioning from main.css */
-@media (min-width: 992px) {
-  header, header.site-header {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    background-color: var(--rokko-brown) !important;
-  }
+/* Sections should be centered with max-width */
+.intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .site-comment {
+  width: 100% !important;
+  max-width: var(--main-width) !important;
+  margin: 8px auto !important;
+  padding-left: 18px !important;
+  padding-right: 18px !important;
+  box-sizing: border-box !important;
 }
 
 /* Menü inline mit Logo in einer Reihe - reduziert Platz */
@@ -200,13 +206,18 @@ body.home .btn-welcome { display:none !important; }
 /* Abstand unter dem Artist Bild verringern */
 .artist-card, .artist-wrapper { margin-bottom: 6px !important; padding-bottom: 3px !important; }
 
-/* Trenner same width as artist images */
-.trenner {
-  display:block;
-  width:100%;
-  max-width: var(--artist-img-max);
-  margin: 0;
-  padding: 0;
+/* Trenner: centered, no extra spacing, thin horizontal line */
+.trenner, img.trenner, .section-divider {
+  display: block !important;
+  width: 100% !important;
+  max-width: 520px !important;
+  height: auto !important;
+  max-height: 50px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  line-height: 0 !important;
+  box-sizing: border-box !important;
+  object-fit: contain !important;
 }
 
 /* Biografie linksbündig, kompakter Textfluss */
@@ -263,16 +274,26 @@ section.inverse-color.contact .title-wrapper,
   .desktop-logo { display: none !important; }
   .mobile-logo { display: inline-block !important; }
   
-  /* Mobile: Prevent horizontal page scroll */
+  /* Mobile: Prevent horizontal page scroll and fix height */
   body, html {
     overflow-x: hidden !important;
     max-width: 100vw !important;
+    height: auto !important;
+    min-height: 100% !important;
   }
   
   /* Mobile: Remove any min-heights that create empty space */
   section, .section {
     min-height: 0 !important;
     height: auto !important;
+  }
+  
+  /* Mobile: Add margins to sections with orange borders so they don't touch edges */
+  .intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .site-comment {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
   }
   
   /* Mobile: Header layout - logo left, text right */
@@ -340,38 +361,24 @@ section.inverse-color.contact .title-wrapper,
     padding: 0;
   }
   
-  /* Create centered container effect */
-  body.site-shell > main,
-  body.site-shell > header {
+  /* Main content centered with visible margins */
+  body.site-shell > main {
     max-width: var(--main-width);
     margin-left: auto;
     margin-right: auto;
     background: var(--content-bg);
   }
   
-  body.site-shell > main {
-    border-left: 2px solid var(--rokko-brown);
-    border-right: 2px solid var(--rokko-brown);
-  }
-  
-  /* Header should span full width on desktop, not constrained */
-  header, header.site-header {
+  /* Header full-width */
+  body.site-shell > header {
     max-width: 100% !important;
-    left: 0 !important;
-    right: 0 !important;
-    position: fixed !important;
-    background: var(--rokko-brown) !important;
+    background: transparent;
   }
   
-  /* Desktop: Center header content within max-width */
-  header.site-header > div, header > div {
-    max-width: var(--main-width) !important;
-    margin: 0 auto !important;
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    gap: 20px !important;
-    padding: 0 20px !important;
+  /* Sections with borders have spacing from edges */
+  .intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .site-comment {
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
   
   /* Hide old side-frame elements */
