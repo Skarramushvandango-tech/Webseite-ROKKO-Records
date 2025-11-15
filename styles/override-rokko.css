@@ -206,18 +206,16 @@ body.home .btn-welcome { display:none !important; }
 /* Abstand unter dem Artist Bild verringern */
 .artist-card, .artist-wrapper { margin-bottom: 6px !important; padding-bottom: 3px !important; }
 
-/* Trenner: centered, no extra spacing, thin horizontal line */
-.trenner, img.trenner, .section-divider {
+/* Trenner: centered orange divider line, ~2/3 page width with spacing above and below */
+.trenner, .section-divider {
   display: block !important;
-  width: 100% !important;
-  max-width: 520px !important;
-  height: auto !important;
-  max-height: 50px !important;
-  margin: 0 auto !important;
+  width: 66.666% !important; /* 2/3 of page width */
+  max-width: 400px !important;
+  height: 3px !important;
+  background-color: #B85C00 !important; /* Orange color matching border */
+  margin: 20px auto !important; /* Vertical spacing above and below */
   padding: 0 !important;
-  line-height: 0 !important;
-  box-sizing: border-box !important;
-  object-fit: contain !important;
+  border: none !important;
 }
 
 /* Biografie linksbündig, kompakter Textfluss */
@@ -352,7 +350,7 @@ section.inverse-color.contact .title-wrapper,
 /* --- Desktop: Simple border frames, Content zentriert --- */
 @media (min-width:1100px){
   body { 
-    background: #B89968; /* Darker sand tone for side areas */
+    background: #A88858; /* Darker sand tone for side areas - made even darker */
   }
   
   body.site-shell { 
@@ -485,13 +483,16 @@ body.home .btn-welcome { display:none !important; }
   background: var(--content-bg) !important;
 }
 
-/* Centered trenner styling */
-.section-divider,
-img[src*="trenner.png"] {
+/* Centered trenner styling - updated for new divider line */
+.section-divider {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  max-width: 300px;
+  width: 66.666%;
+  max-width: 400px;
+  height: 3px;
+  background-color: #B85C00;
+  border: none;
 }
 
 /* Welcome section */
@@ -658,4 +659,11 @@ img[src*="trenner.png"] {
   font-weight: 700;
   display: inline-block;
   margin-right: 8px;
+}
+
+/* Social Media Section Buttons */
+.social-section a:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
