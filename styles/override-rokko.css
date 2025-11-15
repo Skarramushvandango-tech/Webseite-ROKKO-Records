@@ -92,25 +92,14 @@ header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default
   box-shadow: none !important;
 }
 
-/* Header background image */
-.site-header > img:first-child {
+/* Header image - display without distortion */
+.site-header > img {
   width: 100% !important;
   height: auto !important;
   display: block !important;
   margin: 0 !important;
   padding: 0 !important;
-}
-
-/* Logo overlaid on header - centered, can extend above */
-.site-header > img:nth-child(2) {
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  max-width: 250px !important;
-  width: 40% !important;
-  height: auto !important;
-  z-index: 10 !important;
+  object-fit: contain !important;
 }
 
 /* Ensure header container allows overflow for logo */
@@ -143,18 +132,24 @@ body.home {
   margin: 0 !important;
 }
 
-/* Sections should be centered with max-width - frames narrower than full width */
+/* Sections should be centered with max-width - frames fit tightly around content */
 .intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .social-section, .site-comment {
-  width: 85% !important; /* Narrower than full width to show space on sides */
+  width: 100% !important;
   max-width: var(--main-width) !important;
   margin: 8px auto !important;
   box-sizing: border-box !important;
+  padding: 0 !important;
 }
 
 /* Intro video has no padding - frame wraps tightly around video */
 .intro-video {
   padding: 0 !important;
   overflow: hidden !important;
+}
+
+/* Sections with padding should have minimal internal padding */
+.welcome-text, .artists-section, .news-section, .merch-section, .social-section, .site-comment {
+  padding: 10px !important;
 }
 
 /* Menü inline mit Logo in einer Reihe - reduziert Platz */
