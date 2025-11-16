@@ -915,3 +915,41 @@ audio::-moz-range-thumb {
     padding: 20px !important;
   }
 }
+
+/* Horizontal Album Carousel Styling */
+#album-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+#album-carousel::-webkit-scrollbar-track {
+  background: rgba(61, 40, 23, 0.2);
+  border-radius: 4px;
+}
+
+#album-carousel::-webkit-scrollbar-thumb {
+  background: #3D2817;
+  border-radius: 4px;
+}
+
+#album-carousel::-webkit-scrollbar-thumb:hover {
+  background: #4a3527;
+}
+
+/* Artist Player Dropdown Song List Scrollbar */
+#artist-song-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+#artist-song-list::-webkit-scrollbar-track {
+  background: rgba(224, 194, 144, 0.1);
+  border-radius: 3px;
+}
+
+#artist-song-list::-webkit-scrollbar-thumb {
+  background: rgba(224, 194, 144, 0.3);
+  border-radius: 3px;
+}
+
+#artist-song-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(224, 194, 144, 0.5);
+}
