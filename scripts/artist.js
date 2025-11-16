@@ -504,7 +504,7 @@ document.addEventListener('DOMContentLoaded', function(){
         { src: 'mp3/vandango/among_the_crowd.m4a', title: 'Among the Crowd' }
       ]
     },
-    'Ska Schablonski': {
+    'Skank Schablonski': {
       cover: 'mp3/schablonski/kohle_raus_cover.png',
       albumName: 'Kohle Raus',
       tracks: [
@@ -521,7 +521,7 @@ document.addEventListener('DOMContentLoaded', function(){
         { src: 'mp3/bellieu/petite_colibri_nocturne_mix.m4a', title: 'Petite Colibri (Nocturne Mix)' }
       ]
     },
-    'Fleuret Beunie': {
+    'Fléur et Beunié': {
       cover: 'mp3/fleurbeunie/feu_leger_cover.png',
       albumName: 'Feu Leger',
       tracks: [
@@ -566,8 +566,7 @@ document.addEventListener('DOMContentLoaded', function(){
         '<img src="' + album.cover + '" alt="' + artistName + '" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease;">' +
         '</div>' +
         '<div style="text-align: center; margin-top: 8px; width: 100%;">' +
-        '<div style="color: #E0C290; font-size: 0.7em; font-weight: 600; line-height: 1.2;">' + artistName + '</div>' +
-        '<div style="color: #E0C290; font-size: 0.65em; font-weight: 400; line-height: 1.2; margin-top: 2px;">' + album.albumName + '</div>' +
+        '<div style="color: #E0C290; font-size: 0.55em; font-weight: 600; line-height: 1.3;">' + artistName + ' – ' + album.albumName + '</div>' +
         '</div>';
       
       // Hover effects
