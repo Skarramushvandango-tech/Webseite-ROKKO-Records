@@ -393,6 +393,9 @@ section.inverse-color.contact .title-wrapper,
   /* Desktop: header.png 33% width, centered */
   .site-header {
     text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
   
   .site-header > img {
@@ -400,6 +403,7 @@ section.inverse-color.contact .title-wrapper,
     max-width: 33.333% !important;
     margin: 0 auto !important;
     display: block !important;
+    text-align: center !important;
   }
   
   /* Main content centered with visible margins */
@@ -793,4 +797,120 @@ body.home .btn-welcome { display:none !important; }
 
 .audio-player-widget > div:last-child::-webkit-scrollbar-thumb:hover {
   background: #3D2817;
+}
+
+/* Music Productions Carousel Styling */
+.music-productions-section {
+  background: var(--content-bg) !important;
+}
+
+.music-carousel-container {
+  width: 100%;
+}
+
+.carousel-player-display {
+  position: relative;
+}
+
+.carousel-track-grid {
+  scrollbar-width: thin;
+  scrollbar-color: #201613 #E0C290;
+}
+
+.carousel-track-grid::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.carousel-track-grid::-webkit-scrollbar-track {
+  background: #D4B584;
+  border-radius: 5px;
+}
+
+.carousel-track-grid::-webkit-scrollbar-thumb {
+  background: #201613;
+  border-radius: 5px;
+}
+
+.carousel-track-grid::-webkit-scrollbar-thumb:hover {
+  background: #3D2817;
+}
+
+/* Improved Audio Player Styling - Modern Design */
+audio {
+  width: 100%;
+  height: 50px;
+  border-radius: 25px !important;
+  background: linear-gradient(135deg, #E0C290 0%, #D4B584 100%) !important;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+  outline: none !important;
+}
+
+audio::-webkit-media-controls-panel {
+  background: linear-gradient(135deg, #E0C290 0%, #D4B584 100%) !important;
+  border-radius: 25px !important;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-pause-button {
+  background-color: #201613 !important;
+  border-radius: 50% !important;
+  margin: 0 8px !important;
+}
+
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+  color: #201613 !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+}
+
+audio::-webkit-media-controls-timeline {
+  background: rgba(32, 22, 19, 0.2) !important;
+  border-radius: 10px !important;
+  margin: 0 10px !important;
+}
+
+audio::-webkit-media-controls-volume-slider {
+  background: rgba(32, 22, 19, 0.2) !important;
+  border-radius: 10px !important;
+}
+
+/* Firefox audio player styling */
+audio::-moz-range-track {
+  background: rgba(32, 22, 19, 0.2) !important;
+  border-radius: 10px !important;
+}
+
+audio::-moz-range-thumb {
+  background: #201613 !important;
+  border-radius: 50% !important;
+}
+
+/* Ensure all audio players have consistent modern styling */
+.audio-player-widget audio,
+#carousel-player,
+#player-vandango,
+#player-schablonski,
+#player-bellieu,
+#player-beunie {
+  font-family: inherit !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Mobile responsiveness for carousel */
+@media (max-width: 768px) {
+  .carousel-track-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
+    gap: 10px !important;
+  }
+  
+  #carousel-cover {
+    max-width: 250px !important;
+  }
+  
+  .carousel-player-display {
+    padding: 20px !important;
+  }
 }
