@@ -14,7 +14,7 @@
 
   <!-- Header -->
   <header class="site-header">
-    <img src="images/header.png" alt="ROKKO Header" style="width: 100%; max-width: 100%; border: none; border-radius: 8px;">
+    <img src="images/header.png" alt="ROKKO Header" style="width: 100%; max-width: 100%; height: 470px; object-fit: cover; border: none; border-radius: 0;">
   </header>
 
   <main>
@@ -22,9 +22,9 @@
     <div class="trenner"></div>
 
     <!-- Intro Video Section -->
-    <section class="intro-video" style="position: relative; width: 100%; padding: 0; background: #E0C290; border: 6px solid #3D2817; border-radius: 8px; overflow: hidden;">
+    <section class="intro-video" style="position: relative; width: 100%; padding: 0; background: #000; border: 6px solid #3D2817; border-radius: 8px; overflow: hidden;">
       <!-- Bunnyfloor overlay at bottom center of video frame -->
-      <img src="images/bunnyfloor.png" alt="" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); height: 80px; width: auto; z-index: 15; pointer-events: none;">
+      <img src="images/bunnyfloor.png" alt="" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); height: 80px; width: auto; z-index: 15; pointer-events: none;">
       <!-- Video Preloader -->
       <div id="videoPreloader" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 20;">
         <img src="images/logo.png" alt="ROKKO Logo" style="width: 200px; margin-bottom: 30px; opacity: 0.9;">
@@ -34,7 +34,7 @@
         <p style="color: #E0C290; margin-top: 15px; font-size: 0.9em; opacity: 0.8;">Lädt...</p>
       </div>
       
-      <video id="introVideo" muted playsinline preload="auto" style="width: 100%; height: auto; display: block; margin: 0; padding: 0; border-radius: 5px;">
+      <video id="introVideo" muted playsinline preload="auto" style="width: 100%; height: auto; display: block; margin: 0; padding: 0; border-radius: 5px; background: #000;">
         <source src="images/intro_movie.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -614,8 +614,8 @@
           <img src="images/beats.png" alt="ROKKO! Music Productions" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
         </div>
         
-        <p style="margin-bottom: 20px; text-align: center; font-size: 0.7em; line-height: 1.5; color: var(--rokko-brown); font-style: italic; text-decoration: underline;">
-          willst du mit dem Kopfe nicken, musse auffe Bildas klicken
+        <p style="margin-bottom: 20px; text-align: center; font-size: 0.6em; line-height: 1.3; color: var(--rokko-brown); font-style: italic; text-decoration: underline;">
+          Willst du mit dem Kopfe nicken,<br>musse auffe Bilder klicken
         </p>
 
         <!-- Horizontal Scrollable Album Carousel -->
@@ -684,7 +684,7 @@
               <h3 style="margin-bottom: 6px; font-size: 0.95em; color: var(--rokko-brown);">SkaRamush Vandango - Neurocentric</h3>
               <p style="font-size: 0.65em; color: #666; margin-bottom: 8px;">16. November 2024</p>
               <div style="position: relative;">
-                <img src="mp3/vandango/cover.png" alt="Neurocentric Album Cover" style="float: right; width: 100px; height: 100px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin: 0 0 10px 15px;">
+                <img src="mp3/vandango/cover.png" alt="Neurocentric Album Cover" style="float: right; width: 80px; height: 80px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin: 0 0 0 10px; vertical-align: bottom;">
                 <p style="line-height: 1.5; font-size: 0.8em; color: var(--rokko-brown); text-align: justify;">
                   Das Album spiegelt das Leben die Liebe und dass Leid eines Autisten und greift dabei auf Erlebnisse aus dem waren Leben zurück. House music mit Message und einer Portion Selbstironie.
                   <br><br>
@@ -698,7 +698,7 @@
               <h3 style="margin-bottom: 6px; font-size: 0.95em; color: var(--rokko-brown);">Studio Session Highlights</h3>
               <p style="font-size: 0.65em; color: #666; margin-bottom: 8px;">08. Oktober 2024</p>
               <div style="position: relative;">
-                <div style="float: right; width: 100px; height: 100px; background: #D4B584; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--rokko-brown); font-size: 0.7em; text-align: center; padding: 8px; margin: 0 0 10px 15px;">Foto Platzhalter</div>
+                <div style="float: right; width: 80px; height: 80px; background: #D4B584; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--rokko-brown); font-size: 0.7em; text-align: center; padding: 8px; margin: 0 0 0 10px; vertical-align: bottom;">Foto Platzhalter</div>
                 <p style="line-height: 1.5; font-size: 0.8em; color: var(--rokko-brown);">
                   Exklusive Einblicke in unsere aktuellen Studio Sessions! Unsere Artists arbeiten an spannenden neuen Projekten. 
                   Bleibt gespannt auf weitere Updates und neue Releases in den kommenden Monaten.
@@ -711,7 +711,7 @@
               <h3 style="margin-bottom: 6px; font-size: 0.95em; color: var(--rokko-brown);">Kollaboration mit internationalen Artists</h3>
               <p style="font-size: 0.65em; color: #666; margin-bottom: 8px;">01. Oktober 2024</p>
               <div style="position: relative;">
-                <div style="float: right; width: 100px; height: 100px; background: #D4B584; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--rokko-brown); font-size: 0.7em; text-align: center; padding: 8px; margin: 0 0 10px 15px;">Foto Platzhalter</div>
+                <div style="float: right; width: 80px; height: 80px; background: #D4B584; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--rokko-brown); font-size: 0.7em; text-align: center; padding: 8px; margin: 0 0 0 10px; vertical-align: bottom;">Foto Platzhalter</div>
                 <p style="line-height: 1.5; font-size: 0.8em; color: var(--rokko-brown);">
                   ROKKO Records freut sich, eine neue internationale Zusammenarbeit ankündigen zu können. 
                   Unsere Artists werden mit renommierten Produzenten aus verschiedenen Ländern zusammenarbeiten, um einzigartige Sounds zu kreieren.
@@ -724,7 +724,7 @@
               <h3 style="margin-bottom: 6px; font-size: 0.95em; color: var(--rokko-brown);">Neues Label Signing</h3>
               <p style="font-size: 0.65em; color: #666; margin-bottom: 8px;">25. September 2024</p>
               <div style="position: relative;">
-                <div style="float: right; width: 100px; height: 100px; background: #D4B584; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--rokko-brown); font-size: 0.7em; text-align: center; padding: 8px; margin: 0 0 10px 15px;">Foto Platzhalter</div>
+                <div style="float: right; width: 80px; height: 80px; background: #D4B584; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--rokko-brown); font-size: 0.7em; text-align: center; padding: 8px; margin: 0 0 0 10px; vertical-align: bottom;">Foto Platzhalter</div>
                 <p style="line-height: 1.5; font-size: 0.8em; color: var(--rokko-brown);">
                   Wir sind stolz, unsere neuesten Artists im ROKKO Records Roster willkommen zu heißen! 
                   Mit frischen Talenten und innovativen Sounds erweitern wir unser musikalisches Portfolio kontinuierlich.
