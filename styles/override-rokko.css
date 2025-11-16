@@ -398,7 +398,7 @@ section.inverse-color.contact .title-wrapper,
   }
 }
 
-/* --- Desktop: Full-width content like mobile --- */
+/* --- Desktop: Centered content at 1/3 width --- */
 @media (min-width:1100px){
   body { 
     background: var(--content-bg); /* Same light sand tone as mobile for consistent appearance */
@@ -410,44 +410,47 @@ section.inverse-color.contact .title-wrapper,
     padding: 0;
   }
   
-  /* Desktop: header.png 40% width, centered */
+  /* Desktop: header centered at 1/3 screen width */
   .site-header {
     text-align: center !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    padding: 5px 0 !important; /* Minimal padding to reduce whitespace */
+    padding: 5px 0 !important;
+    background: var(--content-bg) !important;
   }
   
   .site-header > img {
-    width: 40% !important;
-    max-width: 40% !important;
+    width: 33.333vw !important; /* 1/3 of viewport width */
+    max-width: 33.333vw !important;
     margin: 0 auto !important;
     display: block !important;
     text-align: center !important;
   }
   
-  /* Main content full-width on desktop like mobile */
+  /* Main content centered at 1/3 screen width with proportional frames */
   body.site-shell > main {
-    max-width: 100% !important;
-    width: 100% !important;
-    margin: 0 !important;
+    width: 33.333vw !important; /* 1/3 of viewport width */
+    max-width: 33.333vw !important;
+    margin: 0 auto !important;
     padding: 0 !important;
     background: var(--content-bg);
   }
   
-  /* Header full-width */
+  /* Header centered */
   body.site-shell > header {
-    max-width: 100% !important;
+    width: 100% !important;
     background: var(--content-bg);
+    display: flex;
+    justify-content: center;
   }
   
-  /* Sections full-width on desktop */
+  /* Sections at 1/3 width, centered, with proportional frames */
   .intro-video, .welcome-text, .artists-section, .music-productions-section, .news-section, .merch-section, .social-section, .site-comment {
-    max-width: 100% !important;
     width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
   
   /* Hide old side-frame elements */
