@@ -486,6 +486,7 @@ document.addEventListener('DOMContentLoaded', function(){
   var artistAlbums = {
     'Skaramush Vandango': {
       cover: 'mp3/vandango/cover.png',
+      albumName: 'Neurocentric',
       tracks: [
         { src: 'mp3/vandango/set_the_fire.m4a', title: 'Set the Fire' },
         { src: 'mp3/vandango/set_the_fire_remix.m4a', title: 'Set the Fire (Remix)' },
@@ -505,6 +506,7 @@ document.addEventListener('DOMContentLoaded', function(){
     },
     'Ska Schablonski': {
       cover: 'mp3/schablonski/kohle_raus_cover.png',
+      albumName: 'Kohle Raus',
       tracks: [
         { src: 'mp3/schablonski/kohle_raus.m4a', title: 'Kohle Raus' },
         { src: 'mp3/schablonski/kohle_raus_rmx.m4a', title: 'Kohle Raus (Remix)' }
@@ -512,6 +514,7 @@ document.addEventListener('DOMContentLoaded', function(){
     },
     'Henri Bellieu': {
       cover: 'mp3/bellieu/petite_colibri.png',
+      albumName: 'Petite Colibri',
       tracks: [
         { src: 'mp3/bellieu/petite_colibri.m4a', title: 'Petite Colibri' },
         { src: 'mp3/bellieu/petite_colibri_ennio_mix.m4a', title: 'Petite Colibri (Ennio Mix)' },
@@ -520,6 +523,7 @@ document.addEventListener('DOMContentLoaded', function(){
     },
     'Fleuret Beunie': {
       cover: 'mp3/fleurbeunie/feu_leger_cover.png',
+      albumName: 'Feu Leger',
       tracks: [
         { src: 'mp3/fleurbeunie/feuleger_main.m4a', title: 'Feu Leger (Main)' },
         { src: 'mp3/fleurbeunie/feuleger_house.m4a', title: 'Feu Leger (House)' },
@@ -555,31 +559,30 @@ document.addEventListener('DOMContentLoaded', function(){
       var albumCard = document.createElement('div');
       albumCard.className = 'album-card';
       albumCard.setAttribute('data-artist', artistName);
-      albumCard.style.cssText = 'min-width: 160px; cursor: pointer; transition: all 0.3s ease; position: relative; flex-shrink: 0;';
+      albumCard.style.cssText = 'min-width: 160px; cursor: pointer; transition: all 0.3s ease; position: relative; flex-shrink: 0; background: #E0C290; padding: 10px; border-radius: 8px;';
       
       albumCard.innerHTML = 
-        '<div style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); transition: all 0.3s ease;">' +
+        '<div style="position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); transition: all 0.3s ease;">' +
         '<img src="' + album.cover + '" alt="' + artistName + '" style="width: 160px; height: 160px; object-fit: cover; display: block; transition: transform 0.3s ease;">' +
-        '<div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(32,22,19,0.95), transparent); padding: 12px 10px 8px; opacity: 0; transition: opacity 0.3s ease;">' +
-        '<div style="color: #E0C290; font-size: 0.75em; font-weight: 700; text-align: center;">' + artistName + '</div>' +
         '</div>' +
+        '<div style="text-align: center; margin-top: 8px;">' +
+        '<div style="color: #201613; font-size: 0.7em; font-weight: 600; line-height: 1.2;">' + artistName + '</div>' +
+        '<div style="color: #201613; font-size: 0.65em; font-weight: 400; line-height: 1.2; margin-top: 2px;">' + album.albumName + '</div>' +
         '</div>';
       
       // Hover effects
       albumCard.addEventListener('mouseenter', function() {
         var img = this.querySelector('img');
-        var overlay = this.querySelector('div > div:last-child');
-        img.style.transform = 'scale(1.08)';
-        overlay.style.opacity = '1';
+        img.style.transform = 'scale(1.05)';
         this.style.transform = 'translateY(-5px)';
+        this.style.boxShadow = '0 6px 16px rgba(0,0,0,0.3)';
       });
       
       albumCard.addEventListener('mouseleave', function() {
         var img = this.querySelector('img');
-        var overlay = this.querySelector('div > div:last-child');
         img.style.transform = 'scale(1)';
-        overlay.style.opacity = '0';
         this.style.transform = 'translateY(0)';
+        this.style.boxShadow = 'none';
       });
       
       // Click to load artist
@@ -636,6 +639,7 @@ document.addEventListener('DOMContentLoaded', function(){
     // Build song list (elegant, minimalist)
     if(artistSongList) {
       artistSongList.innerHTML = '';
+      var coverUrl = artistAlbums[artistName].cover;
       
       currentTracks.forEach(function(track, index) {
         var songItem = document.createElement('div');
@@ -644,19 +648,17 @@ document.addEventListener('DOMContentLoaded', function(){
         songItem.style.cssText = 'padding: 8px 12px; cursor: pointer; transition: all 0.2s ease; border-radius: 4px; display: flex; align-items: center; gap: 10px;';
         
         songItem.innerHTML = 
+          '<img src="' + coverUrl + '" alt="Cover" style="width: 32px; height: 32px; object-fit: cover; border-radius: 4px; flex-shrink: 0;">' +
           '<span style="color: rgba(224, 194, 144, 0.5); font-size: 0.8em; min-width: 25px;">' + (index + 1) + '.</span>' +
-          '<span style="color: #E0C290; font-size: 0.9em; flex: 1; font-weight: 400; letter-spacing: 0.3px;">' + track.title + '</span>' +
-          '<span class="play-icon" style="color: rgba(224, 194, 144, 0.6); font-size: 0.75em; opacity: 0; transition: opacity 0.2s;">▶</span>';
+          '<span style="color: #E0C290; font-size: 0.9em; flex: 1; font-weight: 400; letter-spacing: 0.3px;">' + track.title + '</span>';
         
         songItem.addEventListener('mouseenter', function() {
           this.style.background = 'rgba(224, 194, 144, 0.12)';
-          this.querySelector('.play-icon').style.opacity = '1';
         });
         
         songItem.addEventListener('mouseleave', function() {
           if(parseInt(this.getAttribute('data-index')) !== currentTrackIndex) {
             this.style.background = 'transparent';
-            this.querySelector('.play-icon').style.opacity = '0';
           }
         });
         
@@ -705,7 +707,7 @@ document.addEventListener('DOMContentLoaded', function(){
     
     // Update play/pause button
     if(artistPlayPauseBtn) {
-      artistPlayPauseBtn.textContent = '▶ Play';
+      artistPlayPauseBtn.textContent = 'Abspielen';
     }
     
     // Highlight active song
@@ -719,13 +721,11 @@ document.addEventListener('DOMContentLoaded', function(){
     var songItems = artistSongList.querySelectorAll('.song-item');
     songItems.forEach(function(item, i) {
       if(i === currentTrackIndex) {
-        item.style.background = 'rgba(224, 194, 144, 0.15)';
-        item.querySelector('.play-icon').style.opacity = '1';
+        item.style.background = 'rgba(128, 128, 128, 0.3)';
         item.querySelector('span:first-child').style.color = '#E0C290';
         item.querySelector('span:nth-child(2)').style.fontWeight = '600';
       } else {
         item.style.background = 'transparent';
-        item.querySelector('.play-icon').style.opacity = '0';
         item.querySelector('span:first-child').style.color = 'rgba(224, 194, 144, 0.5)';
         item.querySelector('span:nth-child(2)').style.fontWeight = '400';
       }
@@ -783,10 +783,10 @@ document.addEventListener('DOMContentLoaded', function(){
       
       if(artistPlayer.paused) {
         artistPlayer.play().catch(function(e) { console.log(e); });
-        this.textContent = '❚❚ Pause';
+        this.textContent = 'Pause';
       } else {
         artistPlayer.pause();
-        this.textContent = '▶ Play';
+        this.textContent = 'Abspielen';
       }
     });
     
@@ -805,14 +805,14 @@ document.addEventListener('DOMContentLoaded', function(){
   if(artistPlayer) {
     artistPlayer.addEventListener('play', function() {
       if(artistPlayPauseBtn) {
-        artistPlayPauseBtn.textContent = '❚❚ Pause';
+        artistPlayPauseBtn.textContent = 'Pause';
       }
       updateSongListHighlight();
     });
     
     artistPlayer.addEventListener('pause', function() {
       if(artistPlayPauseBtn) {
-        artistPlayPauseBtn.textContent = '▶ Play';
+        artistPlayPauseBtn.textContent = 'Abspielen';
       }
     });
     
