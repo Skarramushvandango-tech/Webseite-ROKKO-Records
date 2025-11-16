@@ -133,7 +133,7 @@ body.home main {
   margin: 0 !important;
   padding: 0 !important;
   margin-top: 0 !important;
-  padding-top: 150px !important; /* Add space for fixed header so intro video has room */
+  padding-top: 200px !important; /* Add space for fixed header so intro video has room */
 }
 
 /* No padding needed since header is not fixed */
@@ -342,7 +342,7 @@ section.inverse-color.contact .title-wrapper,
   
   /* Mobile: Adjust main padding for smaller header */
   body.home main {
-    padding-top: 120px !important;
+    padding-top: 150px !important;
   }
   
   /* Mobile: Header layout - logo left, text right */
