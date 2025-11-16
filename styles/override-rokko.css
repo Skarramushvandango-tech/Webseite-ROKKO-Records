@@ -89,7 +89,8 @@ header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default
   z-index: 1000 !important;
   margin: 0 !important;
   overflow: visible !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+  box-shadow: none !important;
+  border-bottom: 3px solid #3D2817 !important;
 }
 
 /* Header image - mobile: full width, desktop: 40% centered */
@@ -99,8 +100,8 @@ header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default
   margin: 0 auto !important;
   padding: 0 !important;
   object-fit: contain !important;
-  border: 6px solid var(--frame-color) !important;
-  border-radius: 8px !important;
+  border: none !important;
+  border-radius: 0 !important;
 }
 
 /* Header background fill - extends below header if needed */
