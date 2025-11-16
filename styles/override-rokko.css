@@ -294,10 +294,10 @@ section.inverse-color.contact .title-wrapper,
   .site-header nav { margin-left:12px; }
   .trenner { width:50%; max-width:210px; }
   
-  /* Mobile: header.png 80% width like desktop */
+  /* Mobile: header.png 100% width */
   .site-header > img {
-    width: 80% !important;
-    max-width: 80% !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   
   /* Mobile: Use header.png instead of logo.png */
@@ -410,7 +410,7 @@ section.inverse-color.contact .title-wrapper,
     padding: 0;
   }
   
-  /* Desktop: header.png 33% width, centered */
+  /* Desktop: header.png 40% width, centered */
   .site-header {
     text-align: center !important;
     display: flex !important;
@@ -420,8 +420,8 @@ section.inverse-color.contact .title-wrapper,
   }
   
   .site-header > img {
-    width: 26.67% !important; /* 80% of 33.333% = 26.67% */
-    max-width: 26.67% !important;
+    width: 40% !important;
+    max-width: 40% !important;
     margin: 0 auto !important;
     display: block !important;
     text-align: center !important;

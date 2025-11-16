@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', function(){
       // Video stops at the end, do nothing
     });
     
+    // Force video load on page load
+    video.load();
+    
     // Fallback: hide preloader after 3 seconds even if not fully loaded
     setTimeout(function() {
       if(preloader.style.display !== 'none') {
@@ -818,6 +821,39 @@ document.addEventListener('DOMContentLoaded', function(){
       if(newIndex >= currentTracks.length) newIndex = 0;
       loadTrack(newIndex);
       artistPlayer.play().catch(function(e) { console.log(e); });
+    });
+  }
+  
+  // Scroll to Top Button functionality
+  var scrollToTopBtn = document.getElementById('scrollToTop');
+  
+  if(scrollToTopBtn) {
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.style.display = 'block';
+      } else {
+        scrollToTopBtn.style.display = 'none';
+      }
+    });
+    
+    // Smooth scroll to top when clicked
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Hover effect
+    scrollToTopBtn.addEventListener('mouseenter', function() {
+      this.style.background = '#2d1f1b';
+      this.style.transform = 'scale(1.1)';
+    });
+    
+    scrollToTopBtn.addEventListener('mouseleave', function() {
+      this.style.background = 'var(--rokko-brown)';
+      this.style.transform = 'scale(1)';
     });
   }
 });
