@@ -740,3 +740,57 @@ body.home .btn-welcome { display:none !important; }
   height: 24px !important;
   flex-shrink: 0 !important;
 }
+
+/* Audio Player Widget Styling */
+.audio-player-widget {
+  background: #201613 !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  margin: 20px 0 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+.audio-player-widget audio {
+  width: 100% !important;
+  background: #E0C290 !important;
+  border-radius: 8px !important;
+  padding: 5px !important;
+}
+
+.audio-player-widget .track-item-widget {
+  transition: all 0.2s ease !important;
+}
+
+.audio-player-widget .track-item-widget:hover {
+  background: #f3e2c9 !important;
+  transform: translateX(3px) !important;
+}
+
+.audio-player-widget a[href]:hover {
+  background: #4a3527 !important;
+  transform: scale(1.05) !important;
+}
+
+/* Custom scrollbar for track list */
+.audio-player-widget > div:last-child {
+  scrollbar-width: thin;
+  scrollbar-color: #201613 #E0C290;
+}
+
+.audio-player-widget > div:last-child::-webkit-scrollbar {
+  width: 8px;
+}
+
+.audio-player-widget > div:last-child::-webkit-scrollbar-track {
+  background: #D4B584;
+  border-radius: 4px;
+}
+
+.audio-player-widget > div:last-child::-webkit-scrollbar-thumb {
+  background: #201613;
+  border-radius: 4px;
+}
+
+.audio-player-widget > div:last-child::-webkit-scrollbar-thumb:hover {
+  background: #3D2817;
+}
