@@ -132,7 +132,7 @@ body.home main {
   margin: 0 !important;
   padding: 0 !important;
   margin-top: 0 !important;
-  padding-top: 120px !important; /* Add space for fixed header */
+  padding-top: 100px !important; /* Add space for fixed header (reduced from 120px) */
 }
 
 /* No padding needed since header is not fixed */
@@ -294,10 +294,10 @@ section.inverse-color.contact .title-wrapper,
   .site-header nav { margin-left:12px; }
   .trenner { width:50%; max-width:210px; }
   
-  /* Mobile: header.png full width */
+  /* Mobile: header.png 80% width like desktop */
   .site-header > img {
-    width: 100% !important;
-    max-width: 100% !important;
+    width: 80% !important;
+    max-width: 80% !important;
   }
   
   /* Mobile: Use header.png instead of logo.png */
@@ -337,6 +337,11 @@ section.inverse-color.contact .title-wrapper,
   main {
     text-align: left !important;
     margin: 0 auto !important;
+  }
+  
+  /* Mobile: Adjust main padding for smaller header */
+  body.home main {
+    padding-top: 80px !important;
   }
   
   /* Mobile: Header layout - logo left, text right */
