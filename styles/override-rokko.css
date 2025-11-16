@@ -99,6 +99,21 @@ header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default
   margin: 0 auto !important;
   padding: 0 !important;
   object-fit: contain !important;
+  outline: none !important;
+  border: none !important;
+}
+
+/* Header background fill - extends below header if needed */
+.site-header::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--content-bg);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 /* Ensure header container allows overflow for logo */
@@ -132,7 +147,7 @@ body.home {
 }
 
 /* Sections should be centered with max-width - frames fit tightly around content */
-.intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .social-section, .site-comment {
+.intro-video, .welcome-text, .artists-section, .music-productions-section, .news-section, .merch-section, .social-section, .site-comment {
   width: 100% !important;
   max-width: var(--main-width) !important;
   margin: 8px auto !important;
@@ -147,7 +162,7 @@ body.home {
 }
 
 /* Sections with padding should have minimal internal padding */
-.welcome-text, .artists-section, .news-section, .merch-section, .social-section, .site-comment {
+.welcome-text, .artists-section, .music-productions-section, .news-section, .merch-section, .social-section, .site-comment {
   padding: 10px !important;
 }
 
@@ -305,7 +320,7 @@ section.inverse-color.contact .title-wrapper,
   }
   
   /* Mobile: Center sections properly - narrower than full width */
-  .intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .social-section, .site-comment {
+  .intro-video, .welcome-text, .artists-section, .music-productions-section, .news-section, .merch-section, .social-section, .site-comment {
     margin-left: auto !important;
     margin-right: auto !important;
     margin-top: 8px !important;
@@ -400,8 +415,8 @@ section.inverse-color.contact .title-wrapper,
   }
   
   .site-header > img {
-    width: 33.333% !important;
-    max-width: 33.333% !important;
+    width: 26.67% !important; /* 80% of 33.333% = 26.67% */
+    max-width: 26.67% !important;
     margin: 0 auto !important;
     display: block !important;
     text-align: center !important;
@@ -422,7 +437,7 @@ section.inverse-color.contact .title-wrapper,
   }
   
   /* Sections with borders have spacing from edges */
-  .intro-video, .welcome-text, .artists-section, .news-section, .merch-section, .social-section, .site-comment {
+  .intro-video, .welcome-text, .artists-section, .music-productions-section, .news-section, .merch-section, .social-section, .site-comment {
     margin-left: auto !important;
     margin-right: auto !important;
   }

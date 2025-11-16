@@ -25,8 +25,15 @@ document.addEventListener('DOMContentLoaded', function(){
         preloader.style.transition = 'opacity 0.5s ease';
         setTimeout(function() {
           preloader.style.display = 'none';
+          // Autoplay video once after preloader is hidden
+          video.play().catch(function(e) { console.log('Autoplay failed:', e); });
         }, 500);
       }, 300);
+    });
+    
+    // Video plays once and stops at end (no loop, no repeat)
+    video.addEventListener('ended', function() {
+      // Video stops at the end, do nothing
     });
     
     // Fallback: hide preloader after 3 seconds even if not fully loaded
@@ -36,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function(){
         preloader.style.transition = 'opacity 0.5s ease';
         setTimeout(function() {
           preloader.style.display = 'none';
+          video.play().catch(function(e) { console.log('Autoplay failed:', e); });
         }, 500);
       }
     }, 3000);
@@ -534,20 +542,23 @@ document.addEventListener('DOMContentLoaded', function(){
   var currentTrackIndex = 0;
   var currentTracks = [];
   
-  // Build horizontal album carousel
+  // Build horizontal album carousel with infinite loop
   if(albumCarousel) {
-    Object.keys(artistAlbums).forEach(function(artistName) {
+    var artistNames = Object.keys(artistAlbums);
+    
+    // Create cards for each artist (we'll duplicate them for infinite scroll effect)
+    var createCard = function(artistName) {
       var album = artistAlbums[artistName];
       var albumCard = document.createElement('div');
       albumCard.className = 'album-card';
       albumCard.setAttribute('data-artist', artistName);
-      albumCard.style.cssText = 'min-width: 200px; cursor: pointer; transition: all 0.3s ease; position: relative;';
+      albumCard.style.cssText = 'min-width: 160px; cursor: pointer; transition: all 0.3s ease; position: relative; flex-shrink: 0;';
       
       albumCard.innerHTML = 
         '<div style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); transition: all 0.3s ease;">' +
-        '<img src="' + album.cover + '" alt="' + artistName + '" style="width: 200px; height: 200px; object-fit: cover; display: block; transition: transform 0.3s ease;">' +
+        '<img src="' + album.cover + '" alt="' + artistName + '" style="width: 160px; height: 160px; object-fit: cover; display: block; transition: transform 0.3s ease;">' +
         '<div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(32,22,19,0.95), transparent); padding: 12px 10px 8px; opacity: 0; transition: opacity 0.3s ease;">' +
-        '<div style="color: #E0C290; font-size: 0.85em; font-weight: 700; text-align: center;">' + artistName + '</div>' +
+        '<div style="color: #E0C290; font-size: 0.75em; font-weight: 700; text-align: center;">' + artistName + '</div>' +
         '</div>' +
         '</div>';
       
@@ -573,7 +584,31 @@ document.addEventListener('DOMContentLoaded', function(){
         loadArtist(artistName);
       });
       
-      albumCarousel.appendChild(albumCard);
+      return albumCard;
+    };
+    
+    // Add cards multiple times for infinite scroll effect
+    for(var i = 0; i < 3; i++) {
+      artistNames.forEach(function(artistName) {
+        albumCarousel.appendChild(createCard(artistName));
+      });
+    }
+    
+    // Enable infinite scrolling by duplicating content when reaching end
+    albumCarousel.addEventListener('scroll', function() {
+      var scrollLeft = this.scrollLeft;
+      var scrollWidth = this.scrollWidth;
+      var clientWidth = this.clientWidth;
+      
+      // If near the end, jump back to beginning (seamless loop)
+      if (scrollLeft + clientWidth >= scrollWidth - 10) {
+        this.scrollLeft = scrollLeft - (scrollWidth / 3);
+      }
+      
+      // If near the beginning (scrolled back), jump to end portion
+      if (scrollLeft <= 10) {
+        this.scrollLeft = scrollLeft + (scrollWidth / 3);
+      }
     });
   }
   
