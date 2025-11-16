@@ -368,5 +368,106 @@ document.addEventListener('DOMContentLoaded', function(){
         }
       }
     }
+    
+    // Check if clicked element is a track-item-widget or its child
+    var trackItemWidget = target.closest('.track-item-widget');
+    if(trackItemWidget) {
+      e.stopPropagation();
+      
+      var trackSrc = trackItemWidget.getAttribute('data-src');
+      var playerId = trackItemWidget.getAttribute('data-player');
+      var trackTitle = trackItemWidget.getAttribute('data-title');
+      
+      if(trackSrc && playerId) {
+        var player = document.getElementById(playerId);
+        var currentTrackDisplay = document.getElementById('current-track-' + playerId.replace('player-', ''));
+        
+        if(player) {
+          // Check if this track is currently playing
+          var isCurrentTrack = (player.src.indexOf(trackSrc) !== -1);
+          var isPlaying = !player.paused;
+          
+          if(isCurrentTrack && isPlaying) {
+            // Pause if currently playing this track
+            player.pause();
+          } else {
+            // Stop all other players first
+            document.querySelectorAll('audio').forEach(function(audio) {
+              if(!audio.paused) {
+                audio.pause();
+              }
+            });
+            
+            // If it's a different track, load and play it
+            if(!isCurrentTrack) {
+              player.src = trackSrc;
+              player.load();
+              
+              // Update current track display
+              if(currentTrackDisplay && trackTitle) {
+                currentTrackDisplay.textContent = trackTitle;
+              }
+            }
+            
+            // Play the track
+            player.play().catch(function(error) {
+              console.log('Playback failed:', error);
+            });
+            
+            // Remove active class from all tracks in this player's group
+            var allWidgetTracks = document.querySelectorAll('.track-item-widget[data-player="' + playerId + '"]');
+            allWidgetTracks.forEach(function(track) {
+              track.style.background = '#fff';
+              var playIndicator = track.querySelector('.play-indicator');
+              if(playIndicator) {
+                playIndicator.style.display = 'none';
+              }
+            });
+            
+            // Highlight the selected track and show play indicator
+            trackItemWidget.style.background = '#f3e2c9';
+            var playIndicator = trackItemWidget.querySelector('.play-indicator');
+            if(playIndicator) {
+              playIndicator.style.display = 'block';
+            }
+          }
+        }
+      }
+    }
+  });
+  
+  // Handle audio pause event to hide play indicators
+  document.querySelectorAll('audio').forEach(function(player) {
+    player.addEventListener('pause', function() {
+      var playerId = player.id;
+      var allWidgetTracks = document.querySelectorAll('.track-item-widget[data-player="' + playerId + '"]');
+      allWidgetTracks.forEach(function(track) {
+        var playIndicator = track.querySelector('.play-indicator');
+        if(playIndicator) {
+          playIndicator.style.display = 'none';
+        }
+      });
+    });
+    
+    player.addEventListener('play', function() {
+      var playerId = player.id;
+      var currentSrc = player.src;
+      
+      // Find and show play indicator for current track
+      var allWidgetTracks = document.querySelectorAll('.track-item-widget[data-player="' + playerId + '"]');
+      allWidgetTracks.forEach(function(track) {
+        var trackSrc = track.getAttribute('data-src');
+        var playIndicator = track.querySelector('.play-indicator');
+        if(playIndicator) {
+          if(currentSrc.indexOf(trackSrc) !== -1) {
+            playIndicator.style.display = 'block';
+            track.style.background = '#f3e2c9';
+          } else {
+            playIndicator.style.display = 'none';
+            track.style.background = '#fff';
+          }
+        }
+      });
+    });
   });
 });
