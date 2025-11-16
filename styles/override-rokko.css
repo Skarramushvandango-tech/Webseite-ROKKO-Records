@@ -81,25 +81,25 @@ header, header.site-header, .topbar, #header, #jHeader, .navbar, .navbar-default
   left: 0 !important;
   right: 0 !important;
   width: 100% !important;
-  height: auto !important;
-  min-height: 0 !important;
-  max-height: none !important;
+  height: 470px !important;
+  min-height: 470px !important;
+  max-height: 470px !important;
   padding: 0 !important;
   background: var(--content-bg) !important;
   z-index: 1000 !important;
   margin: 0 !important;
-  overflow: visible !important;
+  overflow: hidden !important;
   box-shadow: none !important;
   border-bottom: 3px solid #3D2817 !important;
 }
 
 /* Header image - mobile: full width, desktop: 40% centered */
 .site-header > img {
-  height: auto !important;
+  height: 470px !important;
   display: block !important;
   margin: 0 auto !important;
   padding: 0 !important;
-  object-fit: contain !important;
+  object-fit: cover !important;
   border: none !important;
   border-radius: 0 !important;
 }
@@ -133,7 +133,7 @@ body.home main {
   margin: 0 !important;
   padding: 0 !important;
   margin-top: 0 !important;
-  padding-top: 200px !important; /* Add space for fixed header so intro video has room */
+  padding-top: 473px !important; /* Add space for fixed header (470px + 3px border) so intro video has room */
 }
 
 /* No padding needed since header is not fixed */
@@ -340,9 +340,16 @@ section.inverse-color.contact .title-wrapper,
     margin: 0 auto !important;
   }
   
-  /* Mobile: Adjust main padding for smaller header */
+  /* Mobile: Adjust main padding for header */
   body.home main {
-    padding-top: 150px !important;
+    padding-top: 473px !important;
+  }
+  
+  /* Mobile: header should also be 470px */
+  header, header.site-header {
+    height: 470px !important;
+    min-height: 470px !important;
+    max-height: 470px !important;
   }
   
   /* Mobile: Header layout - logo left, text right */
@@ -417,13 +424,15 @@ section.inverse-color.contact .title-wrapper,
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    padding: 5px 0 !important;
+    padding: 0 !important;
     background: var(--content-bg) !important;
+    height: 470px !important;
   }
   
   .site-header > img {
     width: 33.333vw !important; /* 1/3 of viewport width */
     max-width: 33.333vw !important;
+    height: 470px !important;
     margin: 0 auto !important;
     display: block !important;
     text-align: center !important;
@@ -798,20 +807,20 @@ body.home .btn-welcome { display:none !important; }
   flex-shrink: 0 !important;
 }
 
-/* Audio Player Widget Styling with enhanced animations */
+/* Audio Player Widget Styling - Minimalist Design */
 .audio-player-widget {
   background: linear-gradient(135deg, #201613 0%, #2d1f1b 100%) !important;
-  border-radius: 16px !important;
-  padding: 24px !important;
-  margin: 24px 0 !important;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(224, 194, 144, 0.1) !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  margin: 20px 0 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(224, 194, 144, 0.08) !important;
   transition: all 0.3s ease !important;
 }
 
 .audio-player-widget:hover {
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 14px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  transform: translateY(-1px) !important;
 }
 
 .audio-player-widget audio {
@@ -983,101 +992,101 @@ body.home .btn-welcome { display:none !important; }
   50% { transform: translateY(-8px); }
 }
 
-/* Improved Audio Player Styling - Modern Design with Animations */
+/* Improved Audio Player Styling - Minimalist, Elegant Design */
 audio {
   width: 100%;
-  height: 54px;
-  border-radius: 27px !important;
-  background: linear-gradient(135deg, #E0C290 0%, #D4B584 50%, #C9A66F 100%) !important;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.25), inset 0 2px 4px rgba(255,255,255,0.3) !important;
+  height: 40px;
+  border-radius: 20px !important;
+  background: linear-gradient(135deg, #E0C290 0%, #D4B584 100%) !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15), inset 0 1px 2px rgba(255,255,255,0.2) !important;
   outline: none !important;
   transition: all 0.3s ease !important;
-  border: 2px solid rgba(61, 40, 23, 0.2) !important;
+  border: 1px solid rgba(61, 40, 23, 0.15) !important;
 }
 
 audio:hover {
-  box-shadow: 0 8px 16px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.4) !important;
-  transform: scale(1.01) !important;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,255,0.3) !important;
+  transform: translateY(-1px) !important;
 }
 
 audio::-webkit-media-controls-panel {
-  background: linear-gradient(135deg, #E0C290 0%, #D4B584 50%, #C9A66F 100%) !important;
-  border-radius: 27px !important;
+  background: linear-gradient(135deg, #E0C290 0%, #D4B584 100%) !important;
+  border-radius: 20px !important;
 }
 
 audio::-webkit-media-controls-play-button,
 audio::-webkit-media-controls-pause-button {
   background-color: #201613 !important;
   border-radius: 50% !important;
-  margin: 0 10px !important;
-  width: 40px !important;
-  height: 40px !important;
+  margin: 0 8px !important;
+  width: 32px !important;
+  height: 32px !important;
   transition: all 0.2s ease !important;
 }
 
 audio::-webkit-media-controls-play-button:hover,
 audio::-webkit-media-controls-pause-button:hover {
   background-color: #3D2817 !important;
-  transform: scale(1.1) !important;
+  transform: scale(1.05) !important;
 }
 
 audio::-webkit-media-controls-current-time-display,
 audio::-webkit-media-controls-time-remaining-display {
   color: #201613 !important;
-  font-weight: 700 !important;
-  text-shadow: 0 1px 2px rgba(255,255,255,0.5) !important;
-  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+  font-size: 11px !important;
 }
 
 audio::-webkit-media-controls-timeline {
-  background: rgba(32, 22, 19, 0.25) !important;
-  border-radius: 12px !important;
-  margin: 0 12px !important;
-  height: 6px !important;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2) !important;
+  background: rgba(32, 22, 19, 0.2) !important;
+  border-radius: 10px !important;
+  margin: 0 10px !important;
+  height: 4px !important;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.15) !important;
 }
 
 audio::-webkit-media-controls-timeline::-webkit-slider-thumb {
   background: #201613 !important;
   border-radius: 50% !important;
-  width: 16px !important;
-  height: 16px !important;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+  width: 12px !important;
+  height: 12px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25) !important;
   transition: all 0.2s ease !important;
 }
 
 audio::-webkit-media-controls-timeline::-webkit-slider-thumb:hover {
   background: #3D2817 !important;
-  transform: scale(1.2) !important;
+  transform: scale(1.15) !important;
 }
 
 audio::-webkit-media-controls-volume-slider {
-  background: rgba(32, 22, 19, 0.25) !important;
-  border-radius: 12px !important;
-  height: 6px !important;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2) !important;
+  background: rgba(32, 22, 19, 0.2) !important;
+  border-radius: 10px !important;
+  height: 4px !important;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.15) !important;
 }
 
 /* Firefox audio player styling */
 audio::-moz-range-track {
-  background: rgba(32, 22, 19, 0.25) !important;
-  border-radius: 12px !important;
-  height: 6px !important;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2) !important;
+  background: rgba(32, 22, 19, 0.2) !important;
+  border-radius: 10px !important;
+  height: 4px !important;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.15) !important;
 }
 
 audio::-moz-range-thumb {
   background: #201613 !important;
   border-radius: 50% !important;
-  width: 16px !important;
-  height: 16px !important;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+  width: 12px !important;
+  height: 12px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25) !important;
   transition: all 0.2s ease !important;
 }
 
 audio::-moz-range-thumb:hover {
   background: #3D2817 !important;
-  transform: scale(1.2) !important;
+  transform: scale(1.15) !important;
 }
 
 /* Ensure all audio players have consistent modern styling */
@@ -1093,49 +1102,33 @@ audio::-moz-range-thumb:hover {
   appearance: none !important;
 }
 
-/* Add playing animation for audio elements */
+/* Subtle playing animation for audio elements */
 @keyframes pulse {
   0%, 100% {
-    box-shadow: 0 6px 12px rgba(0,0,0,0.25), inset 0 2px 4px rgba(255,255,255,0.3);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15), inset 0 1px 2px rgba(255,255,255,0.2);
   }
   50% {
-    box-shadow: 0 8px 16px rgba(224, 194, 144, 0.4), inset 0 2px 4px rgba(255,255,255,0.4);
+    box-shadow: 0 3px 8px rgba(224, 194, 144, 0.3), inset 0 1px 2px rgba(255,255,255,0.3);
   }
 }
 
 audio:not([paused]) {
-  animation: pulse 2s ease-in-out infinite !important;
+  animation: pulse 3s ease-in-out infinite !important;
 }
 
-/* Enhanced button styling for music player controls */
+/* Minimalist button styling for music player controls */
 #artist-prev,
 #artist-next,
 #artist-play-pause {
   position: relative;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all 0.2s ease !important;
 }
 
-#artist-prev::after,
-#artist-next::after,
-#artist-play-pause::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transform: translate(-50%, -50%);
-  transition: width 0.4s ease, height 0.4s ease;
-}
-
-#artist-prev:active::after,
-#artist-next:active::after,
-#artist-play-pause:active::after {
-  width: 100px;
-  height: 100px;
+#artist-prev:active,
+#artist-next:active,
+#artist-play-pause:active {
+  transform: scale(0.98) !important;
 }
 
 #artist-play-pause {
@@ -1144,16 +1137,7 @@ audio:not([paused]) {
 }
 
 #artist-play-pause:hover {
-  animation: playButtonPulse 1s ease-in-out infinite;
-}
-
-@keyframes playButtonPulse {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(224, 194, 144, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 10px rgba(224, 194, 144, 0);
-  }
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2) !important;
 }
 
 /* Mobile responsiveness for carousel */

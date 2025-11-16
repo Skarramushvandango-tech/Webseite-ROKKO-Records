@@ -559,15 +559,15 @@ document.addEventListener('DOMContentLoaded', function(){
       var albumCard = document.createElement('div');
       albumCard.className = 'album-card';
       albumCard.setAttribute('data-artist', artistName);
-      albumCard.style.cssText = 'min-width: 160px; cursor: pointer; transition: all 0.3s ease; position: relative; flex-shrink: 0; background: #E0C290; padding: 10px; border-radius: 8px;';
+      albumCard.style.cssText = 'min-width: 180px; max-width: 180px; cursor: pointer; transition: all 0.3s ease; position: relative; flex-shrink: 0; background: #997A4B; padding: 12px; border-radius: 8px; display: flex; flex-direction: column; align-items: center;';
       
       albumCard.innerHTML = 
-        '<div style="position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); transition: all 0.3s ease;">' +
-        '<img src="' + album.cover + '" alt="' + artistName + '" style="width: 160px; height: 160px; object-fit: cover; display: block; transition: transform 0.3s ease;">' +
+        '<div style="width: 160px; height: 160px; position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); transition: all 0.3s ease; flex-shrink: 0;">' +
+        '<img src="' + album.cover + '" alt="' + artistName + '" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease;">' +
         '</div>' +
-        '<div style="text-align: center; margin-top: 8px;">' +
-        '<div style="color: #201613; font-size: 0.7em; font-weight: 600; line-height: 1.2;">' + artistName + '</div>' +
-        '<div style="color: #201613; font-size: 0.65em; font-weight: 400; line-height: 1.2; margin-top: 2px;">' + album.albumName + '</div>' +
+        '<div style="text-align: center; margin-top: 8px; width: 100%;">' +
+        '<div style="color: #E0C290; font-size: 0.7em; font-weight: 600; line-height: 1.2;">' + artistName + '</div>' +
+        '<div style="color: #E0C290; font-size: 0.65em; font-weight: 400; line-height: 1.2; margin-top: 2px;">' + album.albumName + '</div>' +
         '</div>';
       
       // Hover effects
@@ -593,27 +593,39 @@ document.addEventListener('DOMContentLoaded', function(){
       return albumCard;
     };
     
-    // Add cards multiple times for infinite scroll effect
-    for(var i = 0; i < 3; i++) {
+    // Add cards multiple times for infinite scroll effect (more duplicates for smoother loop)
+    for(var i = 0; i < 5; i++) {
       artistNames.forEach(function(artistName) {
         albumCarousel.appendChild(createCard(artistName));
       });
     }
     
-    // Enable infinite scrolling by duplicating content when reaching end
+    // Set initial scroll position to middle set to enable seamless scrolling in both directions
+    var singleSetWidth = (artistNames.length * 195); // 180px width + 15px gap
+    albumCarousel.scrollLeft = singleSetWidth * 2; // Start at middle
+    
+    // Enable infinite scrolling by repositioning when reaching boundaries
+    var isScrolling = false;
     albumCarousel.addEventListener('scroll', function() {
+      if(isScrolling) return;
+      
       var scrollLeft = this.scrollLeft;
       var scrollWidth = this.scrollWidth;
       var clientWidth = this.clientWidth;
+      var singleSetWidth = (artistNames.length * 195);
       
-      // If near the end, jump back to beginning (seamless loop)
-      if (scrollLeft + clientWidth >= scrollWidth - 10) {
-        this.scrollLeft = scrollLeft - (scrollWidth / 3);
+      // If scrolled too far right, jump back seamlessly
+      if (scrollLeft >= singleSetWidth * 4) {
+        isScrolling = true;
+        this.scrollLeft = scrollLeft - singleSetWidth;
+        setTimeout(function() { isScrolling = false; }, 50);
       }
       
-      // If near the beginning (scrolled back), jump to end portion
-      if (scrollLeft <= 10) {
-        this.scrollLeft = scrollLeft + (scrollWidth / 3);
+      // If scrolled too far left, jump forward seamlessly
+      if (scrollLeft <= singleSetWidth) {
+        isScrolling = true;
+        this.scrollLeft = scrollLeft + singleSetWidth;
+        setTimeout(function() { isScrolling = false; }, 50);
       }
     });
   }
@@ -721,13 +733,17 @@ document.addEventListener('DOMContentLoaded', function(){
     var songItems = artistSongList.querySelectorAll('.song-item');
     songItems.forEach(function(item, i) {
       if(i === currentTrackIndex) {
-        item.style.background = 'rgba(128, 128, 128, 0.3)';
-        item.querySelector('span:first-child').style.color = '#E0C290';
-        item.querySelector('span:nth-child(2)').style.fontWeight = '600';
+        item.style.background = 'rgba(169, 169, 169, 0.4)';
+        var numSpan = item.querySelector('span:first-child');
+        var titleSpan = item.querySelector('span:last-child');
+        if(numSpan) numSpan.style.color = '#E0C290';
+        if(titleSpan) titleSpan.style.fontWeight = '600';
       } else {
         item.style.background = 'transparent';
-        item.querySelector('span:first-child').style.color = 'rgba(224, 194, 144, 0.5)';
-        item.querySelector('span:nth-child(2)').style.fontWeight = '400';
+        var numSpan = item.querySelector('span:first-child');
+        var titleSpan = item.querySelector('span:last-child');
+        if(numSpan) numSpan.style.color = 'rgba(224, 194, 144, 0.5)';
+        if(titleSpan) titleSpan.style.fontWeight = '400';
       }
     });
   }
