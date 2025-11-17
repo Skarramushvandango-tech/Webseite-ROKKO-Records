@@ -663,6 +663,29 @@ document.addEventListener('DOMContentLoaded', function(){
         setTimeout(function() { isScrolling = false; }, 50);
       }
     });
+    
+    // Add carousel navigation arrows
+    var carouselWrapper = document.getElementById('album-carousel-wrapper');
+    if(carouselWrapper && !carouselWrapper.querySelector('.carousel-arrow')) {
+      // Create left arrow
+      var leftArrow = document.createElement('button');
+      leftArrow.className = 'carousel-arrow left';
+      leftArrow.setAttribute('aria-label', 'Scroll left');
+      leftArrow.addEventListener('click', function() {
+        albumCarousel.scrollBy({ left: -400, behavior: 'smooth' });
+      });
+      
+      // Create right arrow
+      var rightArrow = document.createElement('button');
+      rightArrow.className = 'carousel-arrow right';
+      rightArrow.setAttribute('aria-label', 'Scroll right');
+      rightArrow.addEventListener('click', function() {
+        albumCarousel.scrollBy({ left: 400, behavior: 'smooth' });
+      });
+      
+      carouselWrapper.appendChild(leftArrow);
+      carouselWrapper.appendChild(rightArrow);
+    }
   }
   
   // Load artist and show dropdown

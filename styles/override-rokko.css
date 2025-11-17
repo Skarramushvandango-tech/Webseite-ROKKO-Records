@@ -2,12 +2,22 @@
    stellt Header-Höhe wieder her, Desktop-Rahmen, trenner-Regel, versteckt Subscribe-Block */
 
 :root{
-  --rokko-brown: #201613; /* dunkles Braun, an Header angelehnt */
+  /* Primary Color Palette */
+  --rokko-sand: #E0C290; /* Light sand color for inner surfaces */
+  --rokko-brown: #201613; /* Dark brown for text and accents */
+  --rokko-brown-dark: #3D2817; /* Dark brown for frames/borders */
+  --rokko-accent: #d9af6b; /* Gold accent color */
+  
+  /* Layout Variables */
   --main-width: 900px; /* Breite der Inhalte auf Desktop (zentriert) - increased for better centering visibility */
   --content-bg: #997A4B; /* darker sand/brown background */
   --artist-img-max: 468px; /* Reduced by 10% from 520px */
-  --carousel-outline: #3D2817; /* Dark brown for frames */
+  
+  /* Frame Variables */
   --frame-color: #3D2817; /* Dark brown color for all frames */
+  --frame-border-width: 6px; /* Standard frame border width */
+  --frame-border-radius: 8px; /* Standard border radius */
+  --inner-bg: #E0C290; /* Light sand for inner surfaces */
 }
 
 /* --- globale Abstände reduzieren --- */
@@ -1192,4 +1202,271 @@ audio:not([paused]) {
 
 #artist-song-list::-webkit-scrollbar-thumb:hover {
   background: rgba(224, 194, 144, 0.5);
+}
+/* ========================================
+   ROKKO FRAME & STYLING SYSTEM
+   Updated to match screenshot design
+   ======================================== */
+
+/* --- Frame System: Dark brown border with light sand interior --- */
+.rokko-frame {
+  border: var(--frame-border-width) solid var(--frame-color);
+  border-radius: var(--frame-border-radius);
+  background: var(--frame-color);
+  padding: 10px;
+}
+
+.rokko-frame .inner {
+  background: var(--inner-bg);
+  border-radius: calc(var(--frame-border-radius) - 2px);
+  padding: 15px;
+}
+
+/* --- Headline Images (beats.png, news.png, etc.) --- */
+.headline-img,
+.headline-banner {
+  width: 95%; /* Wider display, less margin */
+  max-width: 800px;
+  margin: 0 auto 10px;
+  display: block;
+  border-radius: 5px;
+  border: 3px solid var(--frame-color);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Apply to images in sections */
+section img[src*="beats.png"],
+section img[src*="news.png"],
+section img[src*="crew.png"],
+section img[src*="merch.png"],
+section img[src*="kontakt.png"],
+section img[src*="ladenlokal.png"],
+section img[src*="social.png"] {
+  width: 95% !important;
+  max-width: 800px !important;
+  margin: 0 auto 10px !important;
+  border-radius: 5px !important;
+  border: 3px solid var(--frame-color) !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* --- Artist Carousel Styling --- */
+.artist-carousel {
+  position: relative;
+  background: var(--inner-bg);
+  border: var(--frame-border-width) solid var(--frame-color);
+  border-radius: var(--frame-border-radius);
+  padding: 25px 15px;
+  margin: 20px 0;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 5px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--frame-color) var(--inner-bg);
+}
+
+.carousel-track::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel-track::-webkit-scrollbar-track {
+  background: rgba(61, 40, 23, 0.1);
+  border-radius: 4px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+  background: var(--frame-color);
+  border-radius: 4px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb:hover {
+  background: var(--rokko-brown);
+}
+
+/* Carousel Cover Styling - Rounded with Shadow */
+.carousel-track .cover,
+.album-card .cover-image {
+  min-width: 180px;
+  max-width: 180px;
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid var(--frame-color);
+}
+
+.carousel-track .cover:hover,
+.album-card .cover-image:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.carousel-track .cover img,
+.album-card .cover-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- Carousel Arrow Buttons --- */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid var(--inner-bg);
+  background: var(--frame-color);
+  color: var(--inner-bg);
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-arrow:hover {
+  background: var(--rokko-brown);
+  border-color: var(--rokko-accent);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-arrow.left {
+  left: -25px;
+}
+
+.carousel-arrow.right {
+  right: -25px;
+}
+
+.carousel-arrow::before {
+  content: '‹';
+}
+
+.carousel-arrow.right::before {
+  content: '›';
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+  
+  .carousel-arrow.left {
+    left: 5px;
+  }
+  
+  .carousel-arrow.right {
+    right: 5px;
+  }
+  
+  .headline-img,
+  .headline-banner {
+    width: 98%;
+  }
+}
+
+/* --- Audio Player Enhancements --- */
+.audio-player-widget {
+  background: var(--inner-bg) !important;
+  border: 3px solid var(--frame-color) !important;
+  border-radius: 15px !important;
+  padding: 25px !important;
+  margin: 20px 0 !important;
+  box-shadow: 0 6px 20px rgba(61, 40, 23, 0.4) !important;
+}
+
+.audio-player-widget audio {
+  border-radius: 25px !important;
+  height: 48px !important;
+}
+
+/* Cover images in audio player */
+.audio-player-widget img[alt*="Cover"],
+.audio-player-widget img[src*="cover"] {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3) !important;
+  border: 2px solid var(--frame-color) !important;
+}
+
+/* --- Album Carousel Wrapper Enhancement --- */
+#album-carousel-wrapper {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto 30px;
+  background: var(--inner-bg);
+  border: var(--frame-border-width) solid var(--frame-color);
+  border-radius: var(--frame-border-radius);
+  padding: 30px 50px;
+}
+
+#album-carousel {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--frame-color) var(--inner-bg);
+}
+
+#album-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+#album-carousel::-webkit-scrollbar-track {
+  background: rgba(61, 40, 23, 0.1);
+  border-radius: 4px;
+}
+
+#album-carousel::-webkit-scrollbar-thumb {
+  background: var(--frame-color);
+  border-radius: 4px;
+}
+
+#album-carousel::-webkit-scrollbar-thumb:hover {
+  background: var(--rokko-brown);
+}
+
+/* Album card enhancements */
+.album-card {
+  min-width: 180px !important;
+  max-width: 180px !important;
+  background: rgba(61, 40, 23, 0.3) !important;
+  border-radius: 12px !important;
+  padding: 15px !important;
+  transition: all 0.3s ease !important;
+}
+
+.album-card:hover {
+  background: rgba(61, 40, 23, 0.5) !important;
+  transform: translateY(-5px) !important;
+}
+
+/* Album card cover images */
+.album-card img {
+  border-radius: 12px !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3) !important;
+  border: 2px solid var(--frame-color) !important;
 }

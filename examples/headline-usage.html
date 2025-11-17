@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROKKO - Style Demo: Headlines & Carousel</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/override-rokko.css">
+  <style>
+    body {
+      padding: 20px;
+      background: var(--content-bg);
+    }
+    
+    .demo-section {
+      max-width: 900px;
+      margin: 30px auto;
+      background: var(--inner-bg);
+      border: var(--frame-border-width) solid var(--frame-color);
+      border-radius: var(--frame-border-radius);
+      padding: 20px;
+    }
+    
+    .demo-title {
+      color: var(--rokko-brown);
+      font-size: 1.4em;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .demo-description {
+      color: var(--rokko-brown);
+      font-size: 0.9em;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="demo-section">
+    <h1 class="demo-title">ROKKO Style System - Demo Page</h1>
+    <p class="demo-description">
+      Diese Seite demonstriert die neuen Styling-Klassen für das ROKKO Records Layout basierend auf dem Screenshot-Design.
+      Alle Komponenten verwenden eine zentrale Farbpalette mit dunklen Rahmen und heller sandfarbener Innenfläche.
+    </p>
+  </div>
+
+  <!-- Headline Images Demo -->
+  <div class="demo-section">
+    <h2 class="demo-title">Headline Images</h2>
+    <p class="demo-description">
+      Headline-Bilder (z.B. beats.png, news.png) werden breiter angezeigt mit weniger Abstand zum Rahmen.
+      Sie haben einen abgerundeten Rahmen und Schatten für mehr Tiefe.
+    </p>
+    
+    <img src="../images/beats.png" alt="ROKKO Beats" class="headline-img">
+    
+    <div style="height: 20px;"></div>
+    
+    <img src="../images/news.png" alt="ROKKO News" class="headline-img">
+  </div>
+
+  <!-- Rokko Frame Demo -->
+  <div class="demo-section">
+    <h2 class="demo-title">Frame System</h2>
+    <p class="demo-description">
+      Das Frame-System verwendet einen dunklen braunen Außenrahmen mit einer hellen sandfarbenen Innenfläche.
+    </p>
+    
+    <div class="rokko-frame">
+      <div class="inner">
+        <h3 style="color: var(--rokko-brown); margin-top: 0;">Beispiel Frame</h3>
+        <p style="color: var(--rokko-brown); margin: 0;">
+          Dieser Container demonstriert das Frame-System: Ein dunkler brauner Rahmen (--rokko-brown-dark / #3D2817) 
+          mit einer hellen sandfarbenen Innenfläche (--rokko-sand / #E0C290).
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Artist Carousel Demo -->
+  <div class="demo-section">
+    <h2 class="demo-title">Artist Carousel</h2>
+    <p class="demo-description">
+      Das Artist-Karussell hat eine sandfarbene Innenfläche, abgerundete Cover mit Schatten und runde Pfeil-Buttons an den Seiten.
+    </p>
+    
+    <div class="artist-carousel">
+      <button class="carousel-arrow left" onclick="scrollCarousel(-1)"></button>
+      <button class="carousel-arrow right" onclick="scrollCarousel(1)"></button>
+      
+      <div class="carousel-track" id="demo-carousel">
+        <!-- Demo covers -->
+        <div class="cover">
+          <img src="../mp3/vandango/cover.png" alt="Skaramush Vandango">
+        </div>
+        <div class="cover">
+          <img src="../mp3/schablonski/cover.png" alt="Skank Schablonski">
+        </div>
+        <div class="cover">
+          <img src="../mp3/bellieu/petite_colibri.png" alt="Henri Bellieu">
+        </div>
+        <div class="cover">
+          <img src="../mp3/fleurbeunie/feu_leger_cover.png" alt="Fléur et Beunié">
+        </div>
+        <div class="cover">
+          <img src="../mp3/vandango/cover.png" alt="Skaramush Vandango">
+        </div>
+        <div class="cover">
+          <img src="../mp3/schablonski/cover.png" alt="Skank Schablonski">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Color Palette Reference -->
+  <div class="demo-section">
+    <h2 class="demo-title">Farbpalette</h2>
+    <p class="demo-description">
+      Alle Farben sind als CSS-Variablen definiert für einfache Anpassungen:
+    </p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+      <div style="background: var(--rokko-sand); padding: 20px; border-radius: 8px; text-align: center; border: 2px solid var(--frame-color);">
+        <div style="color: var(--rokko-brown); font-weight: 700;">--rokko-sand</div>
+        <div style="color: var(--rokko-brown); font-size: 0.8em;">#E0C290</div>
+      </div>
+      
+      <div style="background: var(--rokko-brown); padding: 20px; border-radius: 8px; text-align: center; border: 2px solid var(--frame-color);">
+        <div style="color: var(--rokko-sand); font-weight: 700;">--rokko-brown</div>
+        <div style="color: var(--rokko-sand); font-size: 0.8em;">#201613</div>
+      </div>
+      
+      <div style="background: var(--rokko-brown-dark); padding: 20px; border-radius: 8px; text-align: center; border: 2px solid var(--rokko-sand);">
+        <div style="color: var(--rokko-sand); font-weight: 700;">--rokko-brown-dark</div>
+        <div style="color: var(--rokko-sand); font-size: 0.8em;">#3D2817</div>
+      </div>
+      
+      <div style="background: var(--rokko-accent); padding: 20px; border-radius: 8px; text-align: center; border: 2px solid var(--frame-color);">
+        <div style="color: var(--rokko-brown); font-weight: 700;">--rokko-accent</div>
+        <div style="color: var(--rokko-brown); font-size: 0.8em;">#d9af6b</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Player Demo -->
+  <div class="demo-section">
+    <h2 class="demo-title">Audio Player Widget</h2>
+    <p class="demo-description">
+      Der Audio-Player verwendet das gleiche Frame-System mit sandfarbener Innenfläche und dunklem Rahmen.
+    </p>
+    
+    <div class="audio-player-widget">
+      <div style="text-align: center; margin-bottom: 20px;">
+        <img src="../mp3/vandango/cover.png" alt="Album Cover" style="width: 100%; max-width: 260px;">
+      </div>
+      
+      <div style="margin-bottom: 25px; background: rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 15px; backdrop-filter: blur(10px);">
+        <audio controls style="width: 100%;">
+          <source src="../mp3/vandango/set_the_fire.m4a" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+        <div style="text-align: center; color: #201613; margin-top: 12px; font-size: 1em; font-weight: 700;">
+          Demo Track
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function scrollCarousel(direction) {
+      const carousel = document.getElementById('demo-carousel');
+      const scrollAmount = 300;
+      carousel.scrollBy({ 
+        left: direction * scrollAmount, 
+        behavior: 'smooth' 
+      });
+    }
+  </script>
+
+</body>
+</html>
