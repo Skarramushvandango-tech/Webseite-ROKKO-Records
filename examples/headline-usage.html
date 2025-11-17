@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROKKO Player Theme - Usage Example</title>
+  <link rel="stylesheet" href="../assets/css/player-theme.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #997A4B;
+      font-family: Arial, sans-serif;
+    }
+    .demo-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .section-title {
+      color: #e9d8b8;
+      margin: 30px 0 15px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <h1>ROKKO Player Theme - Demo</h1>
+    
+    <h2 class="section-title">1. Frame mit Headline-Image</h2>
+    <div class="rokko-frame">
+      <div class="inner">
+        <img src="../images/beats.png" alt="ROKKO! Beats" class="headline-img">
+        <p>Dies ist ein Beispiel für einen braunen Rahmen mit sandfarbenem Inneren und einem Headline-Bild oben.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">2. Artist Carousel</h2>
+    <div class="rokko-frame">
+      <div class="inner">
+        <img src="../images/beats.png" alt="ROKKO! Beats" class="headline-img">
+
+        <div class="carousel-caption">Zum kopfnicken Cover klicken</div>
+
+        <div class="artist-carousel" id="artistCarousel">
+          <button class="carousel-arrow left" aria-label="Vorheriges">◀</button>
+
+          <div class="carousel-track">
+            <div class="cover" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+            <div class="cover" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+            <div class="cover" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+            <div class="cover" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+            <div class="cover" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+            <div class="cover" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);"></div>
+          </div>
+
+          <button class="carousel-arrow right" aria-label="Nächstes">▶</button>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">3. Headline Banner (alternative zu img)</h2>
+    <div class="rokko-frame">
+      <div class="inner">
+        <div class="headline-banner" style="background-image: url('../images/beats.png');"></div>
+        <p>Dies ist ein Beispiel mit headline-banner statt headline-img (falls man ein Hintergrundbild bevorzugt).</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">4. Nur Text im Frame</h2>
+    <div class="rokko-frame">
+      <div class="inner">
+        <h3>Überschrift</h3>
+        <p>Dies ist ein einfacher Textbereich im neuen Frame-Design mit sandfarbenem Hintergrund und braunem Rahmen.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/carousel-simple.js"></script>
+</body>
+</html>
