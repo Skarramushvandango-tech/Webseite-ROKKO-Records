@@ -70,6 +70,42 @@ document.addEventListener('DOMContentLoaded', function(){
       }
     });
   }
+  
+  // Intro video play/stop control
+  var playStopBtn = document.getElementById('playStopButton');
+  
+  if(video && playStopBtn) {
+    var isPlaying = false;
+    
+    // Update button state when video plays/pauses
+    video.addEventListener('play', function() {
+      isPlaying = true;
+      playStopBtn.textContent = 'STOP';
+    });
+    
+    video.addEventListener('pause', function() {
+      isPlaying = false;
+      playStopBtn.textContent = 'PLAY';
+    });
+    
+    video.addEventListener('ended', function() {
+      isPlaying = false;
+      playStopBtn.textContent = 'PLAY';
+    });
+    
+    playStopBtn.addEventListener('click', function() {
+      if(isPlaying) {
+        // Stop: jump to last frame
+        video.currentTime = video.duration;
+        video.pause();
+        playStopBtn.textContent = 'PLAY';
+      } else {
+        // Play from current position
+        video.play();
+        playStopBtn.textContent = 'STOP';
+      }
+    });
+  }
 
   // Toggle artist details when clicking grid images - FULL PAGE MODAL
   document.querySelectorAll('.artist-header[data-artist]').forEach(function(header){
