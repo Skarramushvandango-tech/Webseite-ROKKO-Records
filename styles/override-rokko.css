@@ -2,12 +2,19 @@
    stellt Header-Höhe wieder her, Desktop-Rahmen, trenner-Regel, versteckt Subscribe-Block */
 
 :root{
-  --rokko-brown: #201613; /* dunkles Braun, an Header angelehnt */
+  /* New color palette matching screenshot design */
+  --rokko-sand: #e9d8b8; /* light sand inner background */
+  --rokko-brown: #6b4f3a; /* brown border color */
+  --rokko-brown-dark: #402a1f; /* darker brown for accents */
+  --rokko-accent: #e38b2f; /* accent orange */
+  --carousel-arrow-bg: #2f241b; /* arrow background color */
+  
+  /* Legacy compatibility */
   --main-width: 900px; /* Breite der Inhalte auf Desktop (zentriert) - increased for better centering visibility */
   --content-bg: #997A4B; /* darker sand/brown background */
   --artist-img-max: 468px; /* Reduced by 10% from 520px */
-  --carousel-outline: #3D2817; /* Dark brown for frames */
-  --frame-color: #3D2817; /* Dark brown color for all frames */
+  --carousel-outline: var(--rokko-brown); /* Dark brown for frames */
+  --frame-color: var(--rokko-brown); /* Dark brown color for all frames */
 }
 
 /* --- globale Abstände reduzieren --- */
@@ -1192,4 +1199,189 @@ audio:not([paused]) {
 
 #artist-song-list::-webkit-scrollbar-thumb:hover {
   background: rgba(224, 194, 144, 0.5);
+}
+
+/* ===== NEW FRAME & CAROUSEL DESIGN SYSTEM ===== */
+
+/* Universal ROKKO Frame - Brown border with sand inner background */
+.rokko-frame {
+  border: 6px solid var(--rokko-brown);
+  border-radius: 8px;
+  background: var(--rokko-sand);
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Inner container with sand background and padding */
+.rokko-frame .inner {
+  background: var(--rokko-sand);
+  padding: 15px;
+}
+
+/* Headline images - wider display with minimal padding */
+.headline-img, .headline-banner {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto 10px;
+  border-radius: 0;
+  padding: 0;
+}
+
+/* Reduce space between headline image and content */
+.rokko-frame .headline-img + * {
+  margin-top: 5px;
+}
+
+/* Artist Carousel Wrapper with Frame */
+.artist-carousel {
+  position: relative;
+  background: var(--rokko-sand);
+  border: 6px solid var(--rokko-brown);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: var(--main-width);
+}
+
+/* Carousel Track - horizontal scrolling container */
+.carousel-track {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rokko-brown) var(--rokko-sand);
+}
+
+/* Hide scrollbar for cleaner look */
+.carousel-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.carousel-track::-webkit-scrollbar-track {
+  background: var(--rokko-sand);
+  border-radius: 3px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+  background: var(--rokko-brown);
+  border-radius: 3px;
+}
+
+/* Carousel Item/Cover - rounded with shadow */
+.carousel-item, .cover {
+  min-width: 180px;
+  max-width: 180px;
+  flex-shrink: 0;
+  background: var(--rokko-sand);
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.carousel-item:hover, .cover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+}
+
+/* Cover image inside carousel item */
+.carousel-item img, .cover img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Carousel Navigation Arrows */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--carousel-arrow-bg);
+  border: 2px solid var(--rokko-brown);
+  color: var(--rokko-sand);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.carousel-arrow:hover {
+  background: var(--rokko-brown);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow.left {
+  left: -24px;
+}
+
+.carousel-arrow.right {
+  right: -24px;
+}
+
+/* Arrow symbols */
+.carousel-arrow.left::before {
+  content: "‹";
+}
+
+.carousel-arrow.right::before {
+  content: "›";
+}
+
+/* Update existing sections to use new frame system */
+.music-productions-section,
+.welcome-text,
+.artists-section,
+.news-section,
+.merch-section,
+.social-section {
+  background: var(--rokko-sand) !important;
+  border: 6px solid var(--rokko-brown) !important;
+}
+
+/* Player Frame styling - sand background with brown border */
+#artist-player-dropdown > div {
+  background: var(--rokko-sand) !important;
+  border-color: var(--rokko-brown) !important;
+}
+
+/* Update album carousel styling in existing code */
+#album-carousel-wrapper {
+  position: relative;
+  padding: 0 50px; /* Space for arrows */
+}
+
+#album-carousel {
+  background: transparent;
+  border-radius: 0;
+}
+
+/* Update album card styling to match new design */
+.album-card {
+  background: var(--rokko-sand) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15) !important;
+}
+
+.album-card > div:first-child {
+  border-radius: 8px !important;
+}
+
+.album-card:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.25) !important;
+}
 }

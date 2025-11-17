@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROKKO - Player & Carousel Design Demo</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/override-rokko.css">
+  <style>
+    body {
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    
+    .demo-section {
+      margin-bottom: 40px;
+    }
+    
+    .demo-title {
+      color: var(--rokko-brown-dark);
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    
+    .demo-description {
+      color: #666;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center; color: var(--rokko-brown); margin-bottom: 30px;">
+    ROKKO Records - Design System Demo
+  </h1>
+  
+  <p style="text-align: center; color: #666; margin-bottom: 40px;">
+    Diese Seite demonstriert das neue Design für Player und Artist-Karussell
+  </p>
+
+  <!-- Demo 1: Headline Image with Frame -->
+  <div class="demo-section">
+    <h2 class="demo-title">Headline-Banner mit Rahmen</h2>
+    <p class="demo-description">
+      Breiter angezeigt, weniger Abstand zum Rahmen
+    </p>
+    
+    <section class="rokko-frame" style="max-width: 900px; margin: 0 auto;">
+      <img src="../images/beats.png" alt="ROKKO! Music Productions" class="headline-img">
+      <div class="inner">
+        <p style="text-align: center; color: var(--rokko-brown); font-size: 0.9em;">
+          Willst du mit dem Kopfe nicken,<br>musse auffe Bilder klicken
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Demo 2: Artist Carousel -->
+  <div class="demo-section">
+    <h2 class="demo-title">Artist-Karussell mit Pfeilen</h2>
+    <p class="demo-description">
+      Sandfarbene Innenfläche, runde Pfeile, abgerundete Cover mit Schatten
+    </p>
+    
+    <div class="artist-carousel" id="demo-carousel" style="max-width: 900px;">
+      <div class="carousel-track">
+        <div class="carousel-item">
+          <img src="../mp3/vandango/cover.png" alt="Skaramush Vandango">
+          <div style="text-align: center; margin-top: 8px; color: var(--rokko-brown);">
+            <strong>Skaramush Vandango</strong>
+          </div>
+        </div>
+        
+        <div class="carousel-item">
+          <img src="../mp3/schablonski/kohle_raus_cover.png" alt="Skank Schablonski">
+          <div style="text-align: center; margin-top: 8px; color: var(--rokko-brown);">
+            <strong>Skank Schablonski</strong>
+          </div>
+        </div>
+        
+        <div class="carousel-item">
+          <img src="../mp3/fleurbeunie/feu_leger_cover.png" alt="Fleur Beunie">
+          <div style="text-align: center; margin-top: 8px; color: var(--rokko-brown);">
+            <strong>Fleur Beunie</strong>
+          </div>
+        </div>
+        
+        <div class="carousel-item">
+          <img src="../mp3/vandango/cover.png" alt="Album 4">
+          <div style="text-align: center; margin-top: 8px; color: var(--rokko-brown);">
+            <strong>Album 4</strong>
+          </div>
+        </div>
+        
+        <div class="carousel-item">
+          <img src="../mp3/schablonski/kohle_raus_cover.png" alt="Album 5">
+          <div style="text-align: center; margin-top: 8px; color: var(--rokko-brown);">
+            <strong>Album 5</strong>
+          </div>
+        </div>
+        
+        <div class="carousel-item">
+          <img src="../mp3/fleurbeunie/feu_leger_cover.png" alt="Album 6">
+          <div style="text-align: center; margin-top: 8px; color: var(--rokko-brown);">
+            <strong>Album 6</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Demo 3: Audio Player Frame -->
+  <div class="demo-section">
+    <h2 class="demo-title">Audio Player mit neuem Frame-Design</h2>
+    <p class="demo-description">
+      Brauner Rahmen mit sandfarben Innenfläche
+    </p>
+    
+    <section class="rokko-frame" style="max-width: 900px; margin: 0 auto;">
+      <div class="inner">
+        <div style="background: rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 20px; backdrop-filter: blur(10px);">
+          <audio controls style="width: 100%; height: 48px; border-radius: 25px;">
+            <source src="../mp3/vandango/set_the_fire.m4a" type="audio/mp4">
+            Your browser does not support the audio element.
+          </audio>
+          <div style="text-align: center; color: var(--rokko-brown-dark); margin-top: 15px; font-size: 1em; font-weight: 700;">
+            Set the Fire - Skaramush Vandango
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Demo 4: Multiple Headline Images -->
+  <div class="demo-section">
+    <h2 class="demo-title">Weitere Headline-Banner</h2>
+    <p class="demo-description">
+      Verschiedene Abschnitte mit konsistentem Design
+    </p>
+    
+    <div style="display: grid; gap: 20px; max-width: 900px; margin: 0 auto;">
+      <section class="rokko-frame">
+        <img src="../images/crew.png" alt="ROKKO! Crew" class="headline-img">
+        <div class="inner">
+          <p style="text-align: center; color: var(--rokko-brown);">Die Crew</p>
+        </div>
+      </section>
+      
+      <section class="rokko-frame">
+        <img src="../images/news.png" alt="ROKKO! News" class="headline-img">
+        <div class="inner">
+          <p style="text-align: center; color: var(--rokko-brown);">Aktuelle News</p>
+        </div>
+      </section>
+      
+      <section class="rokko-frame">
+        <img src="../images/merch.png" alt="ROKKO! Merch" class="headline-img">
+        <div class="inner">
+          <p style="text-align: center; color: var(--rokko-brown);">Merchandise</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Color Palette Demo -->
+  <div class="demo-section">
+    <h2 class="demo-title">Farbpalette</h2>
+    <p class="demo-description">
+      Zentral definierte CSS-Variablen für einfache Anpassungen
+    </p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; max-width: 900px; margin: 0 auto;">
+      <div style="text-align: center;">
+        <div style="height: 80px; background: var(--rokko-sand); border: 2px solid #ccc; border-radius: 8px; margin-bottom: 8px;"></div>
+        <strong>--rokko-sand</strong><br>
+        <code style="font-size: 0.8em;">#e9d8b8</code>
+      </div>
+      
+      <div style="text-align: center;">
+        <div style="height: 80px; background: var(--rokko-brown); border: 2px solid #ccc; border-radius: 8px; margin-bottom: 8px;"></div>
+        <strong>--rokko-brown</strong><br>
+        <code style="font-size: 0.8em;">#6b4f3a</code>
+      </div>
+      
+      <div style="text-align: center;">
+        <div style="height: 80px; background: var(--rokko-brown-dark); border: 2px solid #ccc; border-radius: 8px; margin-bottom: 8px;"></div>
+        <strong>--rokko-brown-dark</strong><br>
+        <code style="font-size: 0.8em;">#402a1f</code>
+      </div>
+      
+      <div style="text-align: center;">
+        <div style="height: 80px; background: var(--rokko-accent); border: 2px solid #ccc; border-radius: 8px; margin-bottom: 8px;"></div>
+        <strong>--rokko-accent</strong><br>
+        <code style="font-size: 0.8em;">#e38b2f</code>
+      </div>
+      
+      <div style="text-align: center;">
+        <div style="height: 80px; background: var(--carousel-arrow-bg); border: 2px solid #ccc; border-radius: 8px; margin-bottom: 8px;"></div>
+        <strong>--carousel-arrow-bg</strong><br>
+        <code style="font-size: 0.8em;">#2f241b</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include carousel navigation script -->
+  <script src="../assets/js/carousel-simple.js"></script>
+  
+  <script>
+    // Manual initialization for demo carousel
+    if (window.RokkoCarousel) {
+      window.RokkoCarousel.init(document.getElementById('demo-carousel'), {
+        trackSelector: '.carousel-track',
+        scrollAmount: 300
+      });
+    }
+  </script>
+</body>
+</html>
