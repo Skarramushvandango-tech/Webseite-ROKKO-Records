@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROKKO Styles Demo - Headline & Carousel</title>
+  <link rel="stylesheet" href="../styles/override-rokko.css">
+  <style>
+    /* Base styles for demo page */
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: var(--content-bg);
+      color: #333;
+    }
+    
+    .demo-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      text-align: center;
+      color: var(--rokko-brown);
+      margin-bottom: 30px;
+    }
+    
+    .demo-section {
+      margin: 40px 0;
+    }
+    
+    .demo-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: var(--rokko-brown);
+      margin-bottom: 15px;
+      padding: 10px;
+      background: var(--rokko-sand);
+      border-radius: 4px;
+    }
+    
+    .demo-description {
+      margin-bottom: 20px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <h1>🎵 ROKKO Styles Demo Page 🎵</h1>
+    
+    <!-- Demo Section 1: Rokko Frame -->
+    <div class="demo-section">
+      <div class="demo-title">1. Rokko Frame (Dark Brown Border with Light Sand Interior)</div>
+      <div class="demo-description">
+        This demonstrates the .rokko-frame class with outer dark brown border and inner light sand-colored background.
+      </div>
+      
+      <div class="rokko-frame">
+        <div class="inner">
+          <h2 style="color: var(--rokko-brown); margin-top: 0;">Welcome to ROKKO!</h2>
+          <p>This is an example of content inside a rokko-frame. The outer border is dark brown (var(--frame-color)), 
+          and the inner area has a light sand color (var(--rokko-sand)).</p>
+          <p>Perfect for highlighting important sections or creating visual separation between content areas.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo Section 2: Headline Images -->
+    <div class="demo-section">
+      <div class="demo-title">2. Headline Images (Wider with Less Spacing)</div>
+      <div class="demo-description">
+        This demonstrates headline images (.headline-img) displayed wider with minimal spacing to the frame, as shown in the screenshot design.
+      </div>
+      
+      <div class="rokko-frame">
+        <div class="inner">
+          <div class="headline-container">
+            <img src="../images/beats.png" alt="Beats Headline" class="headline-img">
+          </div>
+          <p>The headline image above is displayed with full width and minimal padding to the frame edges, 
+          matching the screenshot design requirements.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo Section 3: Multiple Headline Examples -->
+    <div class="demo-section">
+      <div class="demo-title">3. More Headline Examples</div>
+      <div class="demo-description">
+        Additional examples of headline images from the images directory.
+      </div>
+      
+      <div class="rokko-frame">
+        <div class="inner">
+          <div class="headline-container">
+            <img src="../images/news.png" alt="News Headline" class="headline-img">
+          </div>
+          <h3 style="color: var(--rokko-brown); margin: 15px 0 10px 0;">News Section</h3>
+          <p>Latest updates and announcements from ROKKO Records.</p>
+        </div>
+      </div>
+      
+      <div style="height: 20px;"></div>
+      
+      <div class="rokko-frame">
+        <div class="inner">
+          <div class="headline-container">
+            <img src="../images/crew.png" alt="Crew Headline" class="headline-img">
+          </div>
+          <h3 style="color: var(--rokko-brown); margin: 15px 0 10px 0;">Artists Section</h3>
+          <p>Meet the talented artists of ROKKO Records.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo Section 4: Artist Carousel -->
+    <div class="demo-section">
+      <div class="demo-title">4. Artist Carousel (Sand Interior with Round Arrows)</div>
+      <div class="demo-description">
+        This demonstrates the .artist-carousel with sand-colored background, rounded cover images with shadows, 
+        and round arrow navigation buttons on the sides (visible on desktop).
+      </div>
+      
+      <div class="artist-carousel">
+        <h3 style="color: var(--rokko-brown); margin-top: 0; margin-bottom: 15px; text-align: center;">
+          Artist Albums Collection
+        </h3>
+        <div class="carousel-track">
+          <div class="cover">
+            <img src="../mp3/vandango/cover.png" alt="Skaramush Vandango">
+          </div>
+          <div class="cover">
+            <img src="../mp3/schablonski/kohle_raus_cover.png" alt="Skank Schablonski">
+          </div>
+          <div class="cover">
+            <img src="../mp3/bellieu/petite_colibri.png" alt="Henri Bellieu">
+          </div>
+          <div class="cover">
+            <img src="../mp3/fleurbeunie/feu_leger_cover.png" alt="Fleur Beunie">
+          </div>
+          <div class="cover">
+            <img src="../mp3/vandango/cover.png" alt="Album 5">
+          </div>
+          <div class="cover">
+            <img src="../mp3/schablonski/kohle_raus_cover.png" alt="Album 6">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo Section 5: Combined Frame with Carousel -->
+    <div class="demo-section">
+      <div class="demo-title">5. Combined: Frame + Headline + Carousel</div>
+      <div class="demo-description">
+        A complete example combining rokko-frame, headline image, and artist carousel.
+      </div>
+      
+      <div class="rokko-frame">
+        <div class="inner">
+          <div class="headline-container">
+            <img src="../images/studio.png" alt="Studio Headline" class="headline-img">
+          </div>
+          
+          <h2 style="color: var(--rokko-brown); margin: 20px 0 10px 0; text-align: center;">
+            ROKKO Studio Productions
+          </h2>
+          
+          <p style="text-align: center; margin-bottom: 20px;">
+            Browse through our latest releases and click on any cover to explore more.
+          </p>
+          
+          <div class="artist-carousel">
+            <div class="carousel-track">
+              <div class="cover">
+                <img src="../mp3/vandango/cover.png" alt="Release 1">
+              </div>
+              <div class="cover">
+                <img src="../mp3/schablonski/kohle_raus_cover.png" alt="Release 2">
+              </div>
+              <div class="cover">
+                <img src="../mp3/bellieu/petite_colibri.png" alt="Release 3">
+              </div>
+              <div class="cover">
+                <img src="../mp3/fleurbeunie/feu_leger_cover.png" alt="Release 4">
+              </div>
+              <div class="cover">
+                <img src="../mp3/vandango/cover.png" alt="Release 5">
+              </div>
+            </div>
+          </div>
+          
+          <p style="margin-top: 20px; text-align: center; font-size: 0.9em; color: var(--rokko-brown);">
+            ← Scroll horizontally or use arrow buttons (desktop) to browse →
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo Section 6: Audio Player Example -->
+    <div class="demo-section">
+      <div class="demo-title">6. Audio Player Widget with Frame</div>
+      <div class="demo-description">
+        Example of the audio player widget styled to match the screenshot design.
+      </div>
+      
+      <div class="rokko-frame">
+        <div class="inner">
+          <h3 style="color: var(--rokko-brown); margin-top: 0; text-align: center;">Featured Track</h3>
+          
+          <div class="audio-player-widget" style="background: #E0C290; border: 3px solid #3D2817; border-radius: 15px; padding: 25px; margin: 20px 0;">
+            <audio controls style="width: 100%; border-radius: 25px; height: 48px;">
+              <source src="../mp3/vandango/set_the_fire.m4a" type="audio/mp4">
+              Your browser does not support the audio element.
+            </audio>
+            <p style="text-align: center; margin-top: 15px; color: var(--rokko-brown); font-weight: 600;">
+              Skaramush Vandango – Set the Fire
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align: center; margin: 60px 0 40px 0; padding: 20px; background: var(--rokko-sand); border-radius: 8px;">
+      <h3 style="color: var(--rokko-brown); margin-top: 0;">Style Guide Summary</h3>
+      <p style="margin-bottom: 10px;"><strong>Key Features:</strong></p>
+      <ul style="list-style: none; padding: 0; line-height: 1.8;">
+        <li>✓ Dark brown frames (#3D2817) with light sand interiors (#E0C290)</li>
+        <li>✓ Wider headline images with minimal spacing</li>
+        <li>✓ Rounded carousel covers with shadow effects</li>
+        <li>✓ Round navigation arrows (desktop only)</li>
+        <li>✓ Consistent color variables for easy customization</li>
+        <li>✓ Responsive design for mobile and desktop</li>
+      </ul>
+      <p style="margin-top: 20px; font-size: 0.9em; color: var(--rokko-brown);">
+        <strong>CSS File:</strong> styles/override-rokko.css<br>
+        <strong>JavaScript:</strong> assets/js/carousel-simple.js
+      </p>
+    </div>
+  </div>
+
+  <!-- Load the carousel JavaScript -->
+  <script src="../assets/js/carousel-simple.js"></script>
+</body>
+</html>

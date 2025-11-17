@@ -3,11 +3,15 @@
 
 :root{
   --rokko-brown: #201613; /* dunkles Braun, an Header angelehnt */
+  --rokko-brown-dark: #2d1f1b; /* Darker brown for hover states */
+  --rokko-sand: #E0C290; /* Light sand color for inner frame backgrounds */
+  --rokko-accent: #d9af6b; /* Accent gold color */
   --main-width: 900px; /* Breite der Inhalte auf Desktop (zentriert) - increased for better centering visibility */
   --content-bg: #997A4B; /* darker sand/brown background */
   --artist-img-max: 468px; /* Reduced by 10% from 520px */
   --carousel-outline: #3D2817; /* Dark brown for frames */
   --frame-color: #3D2817; /* Dark brown color for all frames */
+  --carousel-arrow-bg: rgba(224, 194, 144, 0.9); /* Sand-colored arrow background */
 }
 
 /* --- globale Abstände reduzieren --- */
@@ -1192,4 +1196,195 @@ audio:not([paused]) {
 
 #artist-song-list::-webkit-scrollbar-thumb:hover {
   background: rgba(224, 194, 144, 0.5);
+}
+
+/* ========================================
+   ROKKO FRAME STYLES (Screenshot Design)
+   ======================================== */
+
+/* Outer dark brown frame with light sand interior */
+.rokko-frame {
+  border: 6px solid var(--frame-color);
+  border-radius: 8px;
+  background: var(--frame-color);
+  padding: 6px;
+  margin: 8px auto;
+  max-width: var(--main-width);
+}
+
+.rokko-frame .inner {
+  background: var(--rokko-sand);
+  border-radius: 4px;
+  padding: 15px;
+  min-height: 100px;
+}
+
+/* ========================================
+   HEADLINE IMAGE STYLES (Screenshot Design)
+   ======================================== */
+
+/* Headline images - wider display with less spacing to frame */
+.headline-img,
+.headline-banner {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+  margin: 0;
+}
+
+/* Container for headline images with tight frame spacing */
+.headline-container {
+  margin: -10px -10px 15px -10px; /* Negative margins to reduce spacing to frame */
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.headline-container .headline-img,
+.headline-container .headline-banner {
+  border-radius: 4px 4px 0 0;
+}
+
+/* ========================================
+   ARTIST CAROUSEL STYLES (Screenshot Design)
+   ======================================== */
+
+/* Artist carousel with sand-colored interior */
+.artist-carousel {
+  position: relative;
+  background: var(--rokko-sand);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: var(--main-width);
+}
+
+/* Carousel track container */
+.carousel-track {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 5px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--frame-color) var(--rokko-sand);
+}
+
+.carousel-track::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel-track::-webkit-scrollbar-track {
+  background: rgba(61, 40, 23, 0.1);
+  border-radius: 4px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+  background: var(--frame-color);
+  border-radius: 4px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb:hover {
+  background: var(--rokko-brown-dark);
+}
+
+/* Individual cover items in carousel */
+.carousel-track .cover {
+  flex: 0 0 auto;
+  width: 180px;
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(61, 40, 23, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.carousel-track .cover:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(61, 40, 23, 0.4);
+}
+
+.carousel-track .cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive cover sizes */
+@media (max-width: 768px) {
+  .carousel-track .cover {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .carousel-track .cover {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+/* ========================================
+   CAROUSEL ARROW NAVIGATION (Screenshot Design)
+   ======================================== */
+
+/* Round arrow buttons with sand-colored border */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--carousel-arrow-bg);
+  border: 3px solid var(--frame-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: 0 3px 10px rgba(61, 40, 23, 0.3);
+}
+
+.carousel-arrow:hover {
+  background: var(--frame-color);
+  color: var(--rokko-sand);
+  box-shadow: 0 5px 15px rgba(61, 40, 23, 0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-arrow.left {
+  left: -20px;
+}
+
+.carousel-arrow.right {
+  right: -20px;
+}
+
+.carousel-arrow svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--frame-color);
+  transition: fill 0.3s ease;
+}
+
+.carousel-arrow:hover svg {
+  fill: var(--rokko-sand);
+}
+
+/* Hide arrows on mobile */
+@media (max-width: 768px) {
+  .carousel-arrow {
+    display: none;
+  }
 }
