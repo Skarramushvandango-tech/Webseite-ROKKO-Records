@@ -3,6 +3,10 @@
 
 :root{
   --rokko-brown: #201613; /* dunkles Braun, an Header angelehnt */
+  --rokko-brown-dark: #3D2817; /* Dark brown for frames */
+  --rokko-sand: #E0C290; /* Light sand color for interior backgrounds */
+  --rokko-accent: #B8935F; /* Accent sand/brown */
+  --carousel-arrow-bg: rgba(224, 194, 144, 0.95); /* Arrow background with transparency */
   --main-width: 900px; /* Breite der Inhalte auf Desktop (zentriert) - increased for better centering visibility */
   --content-bg: #997A4B; /* darker sand/brown background */
   --artist-img-max: 468px; /* Reduced by 10% from 520px */
@@ -1192,4 +1196,247 @@ audio:not([paused]) {
 
 #artist-song-list::-webkit-scrollbar-thumb:hover {
   background: rgba(224, 194, 144, 0.5);
+}
+/* ========================================
+   ROKKO Frame Styling - Brown frame with sand interior
+   ======================================== */
+.rokko-frame {
+  border: 6px solid var(--rokko-brown-dark);
+  border-radius: 8px;
+  padding: 10px;
+  background: var(--rokko-sand);
+  box-shadow: 0 4px 12px rgba(61, 40, 23, 0.3);
+}
+
+.rokko-frame .inner {
+  background: var(--rokko-sand);
+  padding: 15px;
+  border-radius: 4px;
+}
+
+/* ========================================
+   Headline Image Styling - Wider with minimal margin
+   ======================================== */
+.headline-img,
+.headline-banner {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+  border-radius: 5px 5px 0 0;
+  display: block;
+}
+
+/* Headline images in sections should have minimal padding */
+.music-productions-section .headline-img,
+.music-productions-section .headline-banner,
+.artists-section .headline-img,
+.artists-section .headline-banner {
+  margin-bottom: 5px;
+}
+
+/* ========================================
+   Artist Carousel Styling - Sand background with rounded covers
+   ======================================== */
+.artist-carousel {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 0;
+  background: var(--rokko-sand);
+  border-radius: 8px;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rokko-brown-dark) var(--rokko-sand);
+}
+
+.carousel-track::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel-track::-webkit-scrollbar-track {
+  background: rgba(61, 40, 23, 0.2);
+  border-radius: 4px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+  background: var(--rokko-brown-dark);
+  border-radius: 4px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb:hover {
+  background: var(--rokko-brown);
+}
+
+/* Carousel item/cover styling */
+.carousel-track .cover,
+.carousel-item {
+  flex-shrink: 0;
+  width: 180px;
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(61, 40, 23, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.carousel-track .cover:hover,
+.carousel-item:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 24px rgba(61, 40, 23, 0.5);
+}
+
+.carousel-track .cover img,
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* ========================================
+   Carousel Navigation Arrows - Round with sand border
+   ======================================== */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--carousel-arrow-bg);
+  border: 3px solid var(--rokko-sand);
+  box-shadow: 0 4px 12px rgba(61, 40, 23, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--rokko-brown);
+  user-select: none;
+}
+
+.carousel-arrow:hover {
+  background: var(--rokko-sand);
+  box-shadow: 0 6px 16px rgba(61, 40, 23, 0.4);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-arrow-left {
+  left: -25px;
+}
+
+.carousel-arrow-right {
+  right: -25px;
+}
+
+/* Mobile responsiveness for carousel arrows */
+@media (max-width: 900px) {
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  .carousel-arrow-left {
+    left: 5px;
+  }
+  
+  .carousel-arrow-right {
+    right: 5px;
+  }
+}
+
+/* ========================================
+   Album Carousel Horizontal Scroll Enhancement
+   ======================================== */
+#album-carousel-wrapper {
+  position: relative;
+  background: var(--rokko-sand);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+#album-carousel {
+  background: var(--rokko-sand);
+}
+
+/* Album card styling - rounded with shadow */
+.album-card {
+  flex-shrink: 0;
+  width: 150px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(61, 40, 23, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.album-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 12px 24px rgba(61, 40, 23, 0.5);
+}
+
+.album-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* ========================================
+   Enhanced Audio Player Widget Frame
+   ======================================== */
+.audio-player-widget {
+  background: var(--rokko-sand) !important;
+  border: 3px solid var(--rokko-brown-dark) !important;
+  border-radius: 15px !important;
+  padding: 25px !important;
+  margin: 20px 0 !important;
+  box-shadow: 0 6px 20px rgba(61, 40, 23, 0.4) !important;
+}
+
+/* ========================================
+   Responsive Mobile Adjustments
+   ======================================== */
+@media (max-width: 768px) {
+  .rokko-frame {
+    border-width: 4px;
+    padding: 8px;
+  }
+  
+  .rokko-frame .inner {
+    padding: 12px;
+  }
+  
+  .carousel-track .cover,
+  .carousel-item {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .album-card {
+    width: 120px;
+  }
+  
+  .album-card img {
+    height: 120px;
+  }
 }
