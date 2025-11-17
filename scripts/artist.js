@@ -56,9 +56,9 @@ document.addEventListener('DOMContentLoaded', function(){
   var muteBtn = document.getElementById('muteButton');
   
   if(video && muteBtn) {
-    // Start muted (video starts without sound)
-    video.muted = true;
-    muteBtn.textContent = 'UNMUTE';
+    // Start unmuted (video starts with sound)
+    video.muted = false;
+    muteBtn.textContent = 'MUTE';
     
     muteBtn.addEventListener('click', function() {
       if(video.muted) {
@@ -754,7 +754,7 @@ document.addEventListener('DOMContentLoaded', function(){
     
     // Update play/pause button
     if(artistPlayPauseBtn) {
-      artistPlayPauseBtn.textContent = 'Abspielen';
+      artistPlayPauseBtn.textContent = '▶';
     }
     
     // Highlight active song
@@ -834,10 +834,10 @@ document.addEventListener('DOMContentLoaded', function(){
       
       if(artistPlayer.paused) {
         artistPlayer.play().catch(function(e) { console.log(e); });
-        this.textContent = 'Pause';
+        this.textContent = '⏸';
       } else {
         artistPlayer.pause();
-        this.textContent = 'Abspielen';
+        this.textContent = '▶';
       }
     });
     
@@ -856,14 +856,14 @@ document.addEventListener('DOMContentLoaded', function(){
   if(artistPlayer) {
     artistPlayer.addEventListener('play', function() {
       if(artistPlayPauseBtn) {
-        artistPlayPauseBtn.textContent = 'Pause';
+        artistPlayPauseBtn.textContent = '⏸';
       }
       updateSongListHighlight();
     });
     
     artistPlayer.addEventListener('pause', function() {
       if(artistPlayPauseBtn) {
-        artistPlayPauseBtn.textContent = 'Abspielen';
+        artistPlayPauseBtn.textContent = '▶';
       }
     });
     
