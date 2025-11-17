@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROKKO - Styling Demo: Player & Carousel</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/override-rokko.css">
+  <style>
+    body {
+      background: #997A4B;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    
+    .demo-section {
+      max-width: 900px;
+      margin: 30px auto;
+    }
+    
+    h1 {
+      text-align: center;
+      color: var(--rokko-brown);
+      margin-bottom: 40px;
+    }
+    
+    h2 {
+      color: var(--rokko-brown);
+      margin: 30px 0 15px 0;
+      border-bottom: 3px solid var(--rokko-brown-dark);
+      padding-bottom: 8px;
+    }
+    
+    .demo-description {
+      background: var(--rokko-sand);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border: 2px solid var(--rokko-brown-dark);
+    }
+  </style>
+</head>
+<body>
+  <h1>ROKKO Records - Visual Styling Demo</h1>
+  
+  <div class="demo-section">
+    <h2>1. Brown Frame with Sand Interior</h2>
+    <div class="demo-description">
+      <strong>Usage:</strong> Use class <code>.rokko-frame</code> for brown frame with sand interior background.
+    </div>
+    
+    <div class="rokko-frame">
+      <div class="inner">
+        <h3>Example Frame Content</h3>
+        <p>This demonstrates the brown frame (6px border, dark brown #3D2817) with light sand-colored interior (#E0C290). The frame creates a cohesive visual identity throughout the site.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>2. Headline Images - Wider Display</h2>
+    <div class="demo-description">
+      <strong>Usage:</strong> Use class <code>.headline-img</code> or <code>.headline-banner</code> for section headers.
+    </div>
+    
+    <div class="rokko-frame">
+      <div class="inner">
+        <img src="../images/beats.png" alt="Music Productions" class="headline-img">
+        <p style="margin-top: 10px;">The headline images now display wider with minimal margin to the frame border, using <code>object-fit: cover</code> for proper scaling.</p>
+      </div>
+    </div>
+    
+    <div class="rokko-frame" style="margin-top: 20px;">
+      <div class="inner">
+        <img src="../images/crew.png" alt="ROKKO Artists" class="headline-banner">
+        <p style="margin-top: 10px;">Another example with the crew headline image showing the consistent styling approach.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>3. Artist Carousel with Rounded Covers</h2>
+    <div class="demo-description">
+      <strong>Usage:</strong> Use <code>.artist-carousel</code> wrapper with <code>.carousel-track</code> for horizontal scrolling.
+    </div>
+    
+    <div class="rokko-frame">
+      <div class="inner">
+        <div class="artist-carousel">
+          <div class="carousel-track">
+            <div class="cover">
+              <img src="../mp3/vandango/cover.png" alt="Skaramush Vandango">
+            </div>
+            <div class="cover">
+              <img src="../mp3/schablonski/kohle_raus_cover.png" alt="Skank Schablonski">
+            </div>
+            <div class="cover">
+              <img src="../mp3/bellieu/petite_colibri.png" alt="Henri Bellieu">
+            </div>
+            <div class="cover">
+              <img src="../mp3/fleurbeunie/feu_leger_cover.png" alt="Fléur et Beunié">
+            </div>
+            <div class="cover">
+              <img src="../mp3/vandango/cover.png" alt="Album 5">
+            </div>
+            <div class="cover">
+              <img src="../mp3/schablonski/kohle_raus_cover.png" alt="Album 6">
+            </div>
+          </div>
+        </div>
+        <p style="margin-top: 15px;"><strong>Features:</strong> Sand-colored background, rounded covers (12px radius), box shadows (0 6px 16px), hover effects with scale and lift.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>4. Album Carousel with Navigation Arrows</h2>
+    <div class="demo-description">
+      <strong>Usage:</strong> Horizontal scrollable carousel with round navigation arrows (requires carousel-simple.js).
+    </div>
+    
+    <div class="rokko-frame">
+      <div class="inner">
+        <div id="demo-album-carousel-wrapper" style="position: relative; max-width: 900px; margin: 0 auto;">
+          <div id="demo-album-carousel" class="carousel-track" style="display: flex; gap: 15px; overflow-x: auto; scroll-behavior: smooth; padding: 20px 10px;">
+            <div class="album-card">
+              <img src="../mp3/vandango/cover.png" alt="Album 1">
+            </div>
+            <div class="album-card">
+              <img src="../mp3/schablonski/kohle_raus_cover.png" alt="Album 2">
+            </div>
+            <div class="album-card">
+              <img src="../mp3/bellieu/petite_colibri.png" alt="Album 3">
+            </div>
+            <div class="album-card">
+              <img src="../mp3/fleurbeunie/feu_leger_cover.png" alt="Album 4">
+            </div>
+            <div class="album-card">
+              <img src="../mp3/vandango/cover.png" alt="Album 5">
+            </div>
+            <div class="album-card">
+              <img src="../mp3/schablonski/kohle_raus_cover.png" alt="Album 6">
+            </div>
+            <div class="album-card">
+              <img src="../mp3/bellieu/petite_colibri.png" alt="Album 7">
+            </div>
+          </div>
+        </div>
+        <p style="margin-top: 15px;"><strong>Features:</strong> Round arrow buttons (50px diameter), sand border (3px), smooth scroll behavior, hover scale effects.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>5. Audio Player Widget Example</h2>
+    <div class="demo-description">
+      <strong>Usage:</strong> Use <code>.audio-player-widget</code> for styled audio player containers.
+    </div>
+    
+    <div class="audio-player-widget">
+      <div style="text-align: center; margin-bottom: 20px;">
+        <img src="../mp3/vandango/cover.png" alt="Album Cover" style="width: 100%; max-width: 260px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); border: 2px solid #3D2817;">
+      </div>
+      
+      <div style="margin-bottom: 25px; background: rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 15px;">
+        <audio controls style="width: 100%; border-radius: 25px; height: 48px;">
+          <source src="../mp3/vandango/set_the_fire.m4a" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+        <div style="text-align: center; color: #201613; margin-top: 12px; font-size: 1em; font-weight: 700;">
+          Set the Fire - Skaramush Vandango
+        </div>
+      </div>
+      
+      <p style="text-align: center; color: var(--rokko-brown);"><strong>Features:</strong> Sand background, dark brown border, rounded corners, shadow effects for depth.</p>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>6. CSS Variables Reference</h2>
+    <div class="demo-description">
+      <p><strong>Available CSS Variables:</strong></p>
+      <ul style="margin: 10px 0; padding-left: 20px;">
+        <li><code>--rokko-sand</code>: #E0C290 (Light sand for backgrounds)</li>
+        <li><code>--rokko-brown</code>: #201613 (Dark brown for text/accents)</li>
+        <li><code>--rokko-brown-dark</code>: #3D2817 (Dark brown for frames)</li>
+        <li><code>--rokko-accent</code>: #B8935F (Accent sand/brown)</li>
+        <li><code>--carousel-arrow-bg</code>: rgba(224, 194, 144, 0.95) (Arrow background)</li>
+      </ul>
+      
+      <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+        <div style="background: var(--rokko-sand); padding: 20px; border-radius: 8px; border: 2px solid var(--rokko-brown-dark); flex: 1; min-width: 120px; text-align: center;">
+          <strong>Sand</strong><br>#E0C290
+        </div>
+        <div style="background: var(--rokko-brown); color: white; padding: 20px; border-radius: 8px; flex: 1; min-width: 120px; text-align: center;">
+          <strong>Brown</strong><br>#201613
+        </div>
+        <div style="background: var(--rokko-brown-dark); color: white; padding: 20px; border-radius: 8px; flex: 1; min-width: 120px; text-align: center;">
+          <strong>Brown Dark</strong><br>#3D2817
+        </div>
+        <div style="background: var(--rokko-accent); padding: 20px; border-radius: 8px; flex: 1; min-width: 120px; text-align: center;">
+          <strong>Accent</strong><br>#B8935F
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>Implementation Notes</h2>
+    <div class="rokko-frame">
+      <div class="inner">
+        <h3>To Use These Styles:</h3>
+        <ol style="margin: 15px 0; padding-left: 25px; line-height: 1.8;">
+          <li>Include <code>styles/override-rokko.css</code> in your HTML</li>
+          <li>For carousel functionality, include <code>assets/js/carousel-simple.js</code></li>
+          <li>Apply appropriate classes to your HTML elements</li>
+          <li>Use the CSS variables for consistent theming</li>
+        </ol>
+        
+        <h3 style="margin-top: 20px;">Key Features:</h3>
+        <ul style="margin: 15px 0; padding-left: 25px; line-height: 1.8;">
+          <li>All brown frames have light sand-colored interiors</li>
+          <li>Headline images display wider with minimal margin</li>
+          <li>Carousel covers are rounded with shadows for depth</li>
+          <li>Navigation arrows are round with sand-colored borders</li>
+          <li>Fully responsive for mobile devices</li>
+          <li>No functional changes to audio player (only visual styling)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/carousel-simple.js"></script>
+  <script>
+    // Initialize demo carousel
+    document.addEventListener('DOMContentLoaded', function() {
+      const wrapper = document.getElementById('demo-album-carousel-wrapper');
+      const track = document.getElementById('demo-album-carousel');
+      
+      if (wrapper && track) {
+        wrapper.style.position = 'relative';
+        
+        // Create arrows
+        const leftArrow = document.createElement('button');
+        leftArrow.className = 'carousel-arrow carousel-arrow-left';
+        leftArrow.innerHTML = '‹';
+        leftArrow.setAttribute('aria-label', 'Scroll left');
+        
+        const rightArrow = document.createElement('button');
+        rightArrow.className = 'carousel-arrow carousel-arrow-right';
+        rightArrow.innerHTML = '›';
+        rightArrow.setAttribute('aria-label', 'Scroll right');
+        
+        wrapper.appendChild(leftArrow);
+        wrapper.appendChild(rightArrow);
+        
+        leftArrow.addEventListener('click', function() {
+          track.scrollBy({ left: -200, behavior: 'smooth' });
+        });
+        
+        rightArrow.addEventListener('click', function() {
+          track.scrollBy({ left: 200, behavior: 'smooth' });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
