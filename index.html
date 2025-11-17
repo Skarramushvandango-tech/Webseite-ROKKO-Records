@@ -25,7 +25,7 @@
     <!-- Intro Video Section -->
     <section class="intro-video" style="position: relative; width: 100%; padding: 0; background: #000; border: 6px solid #3D2817; border-radius: 8px; overflow: hidden;">
       <!-- Bunnyfloor overlay at bottom center of video frame -->
-      <img src="images/bunnyfloor.png" alt="" style="position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%); height: 80px; width: auto; z-index: 15; pointer-events: none;">
+      <img src="images/bunnyfloor.png" alt="" style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); height: 80px; width: auto; z-index: 15; pointer-events: none;">
       <!-- Video Preloader -->
       <div id="videoPreloader" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 20;">
         <img src="images/logo.png" alt="ROKKO Logo" style="width: 200px; margin-bottom: 30px; opacity: 0.9;">
@@ -35,15 +35,15 @@
         <p style="color: #E0C290; margin-top: 15px; font-size: 0.9em; opacity: 0.8;">Lädt...</p>
       </div>
       
-      <video id="introVideo" muted playsinline preload="auto" style="width: 100%; height: auto; display: block; margin: 0; padding: 0; border-radius: 5px; background: #000;">
+      <video id="introVideo" playsinline preload="auto" style="width: 100%; height: auto; display: block; margin: 0; padding: 0; border-radius: 5px; background: #000;">
         <source src="images/intro_movie.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
-      <button id="playStopButton" style="position: absolute; bottom: 10px; right: 120px; padding: 6px 12px; background: rgba(255, 255, 255, 0.5); color: #201613; border: none; border-radius: 15px; cursor: pointer; font-weight: 600; font-size: 0.7em; z-index: 10; backdrop-filter: blur(5px);">
+      <button id="playStopButton" style="position: absolute; bottom: 10px; left: 10px; padding: 6px 12px; background: rgba(255, 255, 255, 0.5); color: #201613; border: none; border-radius: 15px; cursor: pointer; font-weight: 600; font-size: 0.7em; z-index: 10; backdrop-filter: blur(5px);">
         STOP
       </button>
       <button id="muteButton" style="position: absolute; bottom: 10px; right: 10px; padding: 6px 12px; background: rgba(255, 255, 255, 0.5); color: #201613; border: none; border-radius: 15px; cursor: pointer; font-weight: 600; font-size: 0.7em; z-index: 10; backdrop-filter: blur(5px);">
-        UNMUTE
+        MUTE
       </button>
     </section>
 
@@ -649,14 +649,14 @@
             
             <!-- Navigation Controls -->
             <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 30px;">
-              <button id="artist-prev" style="padding: 12px 24px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); color: #fff; border: 1px solid rgba(224, 194, 144, 0.3); border-radius: 25px; cursor: pointer; font-weight: 700; font-size: 0.85em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2);">
-                Zurück
+              <button id="artist-prev" style="padding: 12px 24px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); color: #fff; border: 1px solid rgba(224, 194, 144, 0.3); border-radius: 25px; cursor: pointer; font-weight: 700; font-size: 1.2em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2);">
+                ◀
               </button>
-              <button id="artist-play-pause" style="padding: 12px 28px; background: linear-gradient(135deg, #E0C290 0%, #D4B584 100%); color: #201613; border: 2px solid #3D2817; border-radius: 25px; cursor: pointer; font-weight: 700; font-size: 0.9em; transition: all 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
-                Abspielen
+              <button id="artist-play-pause" style="padding: 12px 28px; background: linear-gradient(135deg, #E0C290 0%, #D4B584 100%); color: #201613; border: 2px solid #3D2817; border-radius: 25px; cursor: pointer; font-weight: 700; font-size: 1.2em; transition: all 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+                ▶
               </button>
-              <button id="artist-next" style="padding: 12px 24px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); color: #fff; border: 1px solid rgba(224, 194, 144, 0.3); border-radius: 25px; cursor: pointer; font-weight: 700; font-size: 0.85em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2);">
-                Weiter
+              <button id="artist-next" style="padding: 12px 24px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); color: #fff; border: 1px solid rgba(224, 194, 144, 0.3); border-radius: 25px; cursor: pointer; font-weight: 700; font-size: 1.2em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2);">
+                ▶
               </button>
             </div>
             
@@ -703,9 +703,9 @@
                 <h3 style="margin-bottom: 6px; font-size: 0.95em; color: var(--rokko-brown);">Studio Session Highlights</h3>
                 <p style="font-size: 0.65em; color: #666; margin-bottom: 8px;">08. Oktober 2024</p>
                 <p style="line-height: 1.5; font-size: 0.8em; color: var(--rokko-brown); text-align: justify;">
-                  <div style="float: right; width: 80px; height: 80px; background: #E0C290; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--rokko-brown); font-size: 0.7em; text-align: center; padding: 8px; margin: 0 0 10px 10px;">Foto Platzhalter</div>
                   Exklusive Einblicke in unsere aktuellen Studio Sessions! Unsere Artists arbeiten an spannenden neuen Projekten. 
                   Bleibt gespannt auf weitere Updates und neue Releases in den kommenden Monaten.
+                  <img style="float: right; width: 80px; height: 80px; background: #E0C290; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin: 0 0 10px 10px;" alt="Foto Platzhalter">
                 </p>
               </div>
             </article>
@@ -715,10 +715,10 @@
               <div style="background: #E0C290; border-radius: 6px; padding: 15px; border: 2px solid #3D2817; ">
                 <h3 style="margin-bottom: 6px; font-size: 0.95em; color: var(--rokko-brown);">Kollaboration mit internationalen Artists</h3>
                 <p style="font-size: 0.65em; color: #666; margin-bottom: 8px;">01. Oktober 2024</p>
-                <div style="float: right; width: 80px; height: 80px; background: #E0C290; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--rokko-brown); font-size: 0.7em; text-align: center; padding: 8px;">Foto Platzhalter</div>
                 <p style="line-height: 1.5; font-size: 0.8em; color: var(--rokko-brown); text-align: justify;">
                   ROKKO Records freut sich, eine neue internationale Zusammenarbeit ankündigen zu können. 
                   Unsere Artists werden mit renommierten Produzenten aus verschiedenen Ländern zusammenarbeiten, um einzigartige Sounds zu kreieren.
+                  <img style="float: right; width: 80px; height: 80px; background: #E0C290; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin: 0 0 10px 10px;" alt="Foto Platzhalter">
                 </p>
               </div>
             </article>
@@ -728,10 +728,10 @@
               <div style="background: #E0C290; border-radius: 6px; padding: 15px; border: 2px solid #3D2817; ">
                 <h3 style="margin-bottom: 6px; font-size: 0.95em; color: var(--rokko-brown);">Neues Label Signing</h3>
                 <p style="font-size: 0.65em; color: #666; margin-bottom: 8px;">25. September 2024</p>
-                <div style="float: right; width: 80px; height: 80px; background: #E0C290; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--rokko-brown); font-size: 0.7em; text-align: center; padding: 8px;">Foto Platzhalter</div>
                 <p style="line-height: 1.5; font-size: 0.8em; color: var(--rokko-brown); text-align: justify;">
                   Wir sind stolz, unsere neuesten Artists im ROKKO Records Roster willkommen zu heißen! 
                   Mit frischen Talenten und innovativen Sounds erweitern wir unser musikalisches Portfolio kontinuierlich.
+                  <img style="float: right; width: 80px; height: 80px; background: #E0C290; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin: 0 0 10px 10px;" alt="Foto Platzhalter">
                 </p>
               </div>
             </article>
