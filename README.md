@@ -1,6 +1,12 @@
 # Webseite-ROKKO-Records
 Homepages for a record label duh
 
+## ⚠️ Important: Color Scheme Policy
+
+**Before making any design changes, please read [COLORS.md](COLORS.md)**
+
+The interior color of all brown frames (`#E0C290`) is **permanently fixed** and must not be changed without explicit approval. See the [color documentation](COLORS.md) for full details on the color scheme and change management policy.
+
 ## Deployment
 
 This website is automatically deployed to GitHub Pages via GitHub Actions.
@@ -27,3 +33,13 @@ npx http-server
 ```
 
 Then open your browser to `http://localhost:8000`
+
+## Color Policy Validation
+
+To verify that the immutable color scheme is maintained, run:
+
+```bash
+./validate-colors.sh
+```
+
+This script checks that the interior frame color (`#E0C290`) has not been modified and provides a summary of color usage throughout the stylesheet.

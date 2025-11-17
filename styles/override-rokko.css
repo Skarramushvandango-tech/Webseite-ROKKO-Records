@@ -1,10 +1,35 @@
 /* Override / Ergänzungen für ROKKO-Layout - reduziert Abstände, entfernt Foto-Schatten,
    stellt Header-Höhe wieder her, Desktop-Rahmen, trenner-Regel, versteckt Subscribe-Block */
 
+/* ============================================================================
+   ⚠️ CRITICAL COLOR DECLARATION - READ BEFORE MAKING ANY CHANGES ⚠️
+   ============================================================================
+   
+   PERMANENT COLOR COMMITMENT:
+   ---------------------------
+   The interior color of all brown frames (--rokko-sand: #E0C290) is
+   PERMANENTLY FIXED and must NEVER be changed without explicit written
+   approval from the project owner.
+   
+   This color is part of the ROKKO Records brand identity and is documented
+   in COLORS.md. Any unauthorized changes to this color violate the 
+   established color policy.
+   
+   DO NOT MODIFY: --rokko-sand: #E0C290
+   
+   For full color policy and change management procedures, see:
+   /COLORS.md
+   
+   ============================================================================ */
+
 :root{
   --rokko-brown: #201613; /* dunkles Braun, an Header angelehnt */
   --rokko-brown-dark: #3D2817; /* Dark brown for frames */
-  --rokko-sand: #E0C290; /* Light sand color for interior backgrounds */
+  
+  /* ⚠️ PERMANENTLY FIXED COLOR - DO NOT CHANGE WITHOUT APPROVAL ⚠️ */
+  --rokko-sand: #E0C290; /* Light sand color for interior backgrounds - IMMUTABLE */
+  /* ⚠️ See COLORS.md for change management policy ⚠️ */
+  
   --rokko-accent: #B8935F; /* Accent sand/brown */
   --carousel-arrow-bg: rgba(224, 194, 144, 0.95); /* Arrow background with transparency */
   --main-width: 900px; /* Breite der Inhalte auf Desktop (zentriert) - increased for better centering visibility */
