@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ROKKO - Headline Image Usage Examples</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/override-rokko.css">
+  <style>
+    body {
+      padding: 20px;
+      background: #997A4B;
+    }
+    
+    .example-section {
+      max-width: 900px;
+      margin: 20px auto;
+      background: #E0C290;
+      border: 6px solid #3D2817;
+      border-radius: 8px;
+      padding: 15px;
+    }
+    
+    .code-block {
+      background: #201613;
+      color: #E0C290;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 10px 0;
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 0.9em;
+    }
+    
+    h1, h2 {
+      color: #201613;
+      text-align: center;
+    }
+    
+    p {
+      color: #201613;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="example-section">
+    <h1>ROKKO Records - Headline Image Usage Guide</h1>
+    <p>Diese Demo zeigt, wie die neuen Headline-Image-Klassen verwendet werden.</p>
+  </div>
+
+  <div class="example-section">
+    <h2>Beispiel 1: Crew Headline</h2>
+    <img src="../images/crew.png" alt="ROKKO! Artists" class="headline-img">
+    
+    <div class="code-block">
+&lt;img src="images/crew.png" alt="ROKKO! Artists" class="headline-img"&gt;
+    </div>
+    
+    <p><strong>Eigenschaften:</strong></p>
+    <ul>
+      <li>Volle Breite innerhalb des Containers</li>
+      <li>Minimale Ränder (margin: 0)</li>
+      <li>object-fit: cover für optimale Darstellung</li>
+      <li>Abgerundete obere Ecken (border-radius: 5px 5px 0 0)</li>
+    </ul>
+  </div>
+
+  <div class="example-section">
+    <h2>Beispiel 2: Beats/Music Production Headline</h2>
+    <img src="../images/beats.png" alt="ROKKO! Music Productions" class="headline-img">
+    
+    <div class="code-block">
+&lt;img src="images/beats.png" alt="ROKKO! Music Productions" class="headline-img"&gt;
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2>Beispiel 3: News Headline</h2>
+    <img src="../images/news.png" alt="ROKKO! News" class="headline-img">
+    
+    <div class="code-block">
+&lt;img src="images/news.png" alt="ROKKO! News" class="headline-img"&gt;
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2>Beispiel 4: Merch Headline</h2>
+    <img src="../images/merch.png" alt="ROKKO! Merchandise" class="headline-img">
+    
+    <div class="code-block">
+&lt;img src="images/merch.png" alt="ROKKO! Merchandise" class="headline-img"&gt;
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2>Beispiel 5: Social Media Headline</h2>
+    <img src="../images/social.png" alt="ROKKO! Social Media" class="headline-img">
+    
+    <div class="code-block">
+&lt;img src="images/social.png" alt="ROKKO! Social Media" class="headline-img"&gt;
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2>Beispiel 6: Kontakt Headline</h2>
+    <img src="../images/kontakt.png" alt="ROKKO! Kontakt" class="headline-img">
+    
+    <div class="code-block">
+&lt;img src="images/kontakt.png" alt="ROKKO! Kontakt" class="headline-img"&gt;
+    </div>
+  </div>
+
+  <div class="example-section">
+    <h2>CSS Klassen Übersicht</h2>
+    
+    <p>Die folgenden CSS-Klassen können für Headline-Bilder verwendet werden:</p>
+    <ul>
+      <li><code>.headline-img</code> - Hauptklasse für Headline-Bilder</li>
+      <li><code>.headline-image</code> - Alternative Klassennamen</li>
+      <li><code>.banner-image</code> - Alternative für Banner-Style</li>
+    </ul>
+    
+    <h3>CSS Farbvariablen</h3>
+    <div class="code-block">
+:root {
+  --rokko-sand: #E0C290;       /* Light sand color for interior frames */
+  --rokko-brown: #201613;      /* Dark brown for text */
+  --rokko-brown-dark: #3D2817; /* Dark brown for frame borders */
+  --rokko-accent: #D4B584;     /* Accent sand color */
+}
+    </div>
+    
+    <h3>Frame Styling</h3>
+    <p>Alle Haupt-Sections haben jetzt:</p>
+    <ul>
+      <li>Hellsandfarbenen Innenbereich (background: var(--rokko-sand))</li>
+      <li>Dunkelbraunen Rahmen (border: 6px solid var(--rokko-brown-dark))</li>
+      <li>Abgerundete Ecken (border-radius: 8px)</li>
+    </ul>
+  </div>
+
+  <div class="example-section">
+    <h2>Testing Instructions</h2>
+    <ol>
+      <li>Öffne index.html im Browser</li>
+      <li>Überprüfe, dass alle Headline-Bilder breit dargestellt werden</li>
+      <li>Überprüfe, dass Sections hellsandfarben mit braunem Rahmen sind</li>
+      <li>Teste das Artist-Karussell auf korrekte Darstellung</li>
+      <li>Überprüfe, dass die Carousel-Pfeile rund sind und am Rand positioniert sind</li>
+    </ol>
+  </div>
+
+  <div class="example-section">
+    <h2>Geänderte Dateien</h2>
+    <ul>
+      <li><strong>styles/override-rokko.css</strong> - Hauptstil-Datei mit allen neuen Styles</li>
+      <li><strong>index.html</strong> - Headline-Bilder haben jetzt die Klasse .headline-img</li>
+      <li><strong>examples/headline-usage.html</strong> - Diese Demo-Datei (nur für Review)</li>
+    </ul>
+  </div>
+</body>
+</html>

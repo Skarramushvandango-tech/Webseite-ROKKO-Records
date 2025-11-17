@@ -2,10 +2,16 @@
    stellt Header-Höhe wieder her, Desktop-Rahmen, trenner-Regel, versteckt Subscribe-Block */
 
 :root{
-  --rokko-brown: #201613; /* dunkles Braun, an Header angelehnt */
-  --main-width: 900px; /* Breite der Inhalte auf Desktop (zentriert) - increased for better centering visibility */
-  --content-bg: #997A4B; /* darker sand/brown background */
-  --artist-img-max: 468px; /* Reduced by 10% from 520px */
+  /* ROKKO Color Variables - Centralized color definitions */
+  --rokko-sand: #E0C290; /* Light sand color for interior frames */
+  --rokko-brown: #201613; /* Dark brown for text and dark elements */
+  --rokko-brown-dark: #3D2817; /* Dark brown for frame borders */
+  --rokko-accent: #D4B584; /* Accent sand color for highlights */
+  
+  /* Layout Variables */
+  --main-width: 900px; /* Content width on desktop (centered) */
+  --content-bg: #997A4B; /* Background sand/brown color */
+  --artist-img-max: 468px; /* Max artist image width */
   --carousel-outline: #3D2817; /* Dark brown for frames */
   --frame-color: #3D2817; /* Dark brown color for all frames */
 }
@@ -1192,4 +1198,149 @@ audio:not([paused]) {
 
 #artist-song-list::-webkit-scrollbar-thumb:hover {
   background: rgba(224, 194, 144, 0.5);
+}
+/* ===================================================================
+   HEADLINE IMAGE STYLING
+   Wide display with minimal margins, object-fit cover
+   =================================================================== */
+.headline-img, .headline-image, .banner-image {
+  width: 100% !important;
+  max-width: 100% !important; /* Full width within container */
+  margin: 0 auto 0 auto !important; /* Minimal margin - only bottom if needed */
+  padding: 0 !important;
+  display: block !important;
+  object-fit: cover !important;
+  border-radius: 5px 5px 0 0 !important;
+  height: auto !important;
+}
+
+/* ===================================================================
+   UPDATED SECTION FRAME STYLING
+   Brown frames with light sand interiors
+   =================================================================== */
+.welcome-text, 
+.artists-section, 
+.music-productions-section, 
+.news-section, 
+.merch-section, 
+.social-section, 
+.site-comment {
+  background: var(--rokko-sand) !important; /* Light sand interior */
+  border: 6px solid var(--rokko-brown-dark) !important; /* Dark brown frame */
+  border-radius: 8px !important;
+}
+
+/* Intro video keeps its existing styling */
+.intro-video {
+  background: #000 !important;
+  border: 6px solid var(--rokko-brown-dark) !important;
+  border-radius: 8px !important;
+}
+
+/* ===================================================================
+   ARTIST CAROUSEL ENHANCED STYLING
+   Sand interior, rounded arrows, rounded covers with shadows
+   =================================================================== */
+.music-productions-section {
+  background: var(--rokko-sand) !important;
+  padding: 15px !important;
+}
+
+/* Album carousel container */
+#album-carousel {
+  background: var(--rokko-sand) !important;
+  padding: 10px 0 !important;
+  border-radius: 8px !important;
+}
+
+/* Album cards with rounded corners and shadows */
+.album-card {
+  background: var(--rokko-sand) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(61, 40, 23, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.album-card:hover {
+  box-shadow: 0 6px 16px rgba(61, 40, 23, 0.4) !important;
+  transform: translateY(-5px) !important;
+}
+
+/* Album cover images - rounded with shadow */
+.album-card img {
+  border-radius: 8px !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Artist player dropdown with sand background */
+#artist-player-dropdown {
+  background: var(--rokko-sand) !important;
+  border-radius: 8px !important;
+  padding: 20px !important;
+  margin-top: 20px !important;
+}
+
+/* Control buttons - rounded arrows at edges */
+#artist-prev,
+#artist-next {
+  background: transparent !important;
+  border: 2px solid rgba(224, 194, 144, 0.4) !important;
+  border-radius: 50% !important; /* Fully rounded arrows */
+  width: 45px !important;
+  height: 45px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  color: var(--rokko-sand) !important;
+  font-size: 1.2em !important;
+  font-weight: bold !important;
+}
+
+#artist-prev:hover,
+#artist-next:hover {
+  background: rgba(224, 194, 144, 0.15) !important;
+  border-color: var(--rokko-sand) !important;
+  transform: scale(1.1) !important;
+}
+
+/* Play/Pause button styling */
+#artist-play-pause {
+  background: var(--rokko-sand) !important;
+  border: 2px solid var(--rokko-brown-dark) !important;
+  border-radius: 25px !important;
+  padding: 10px 25px !important;
+  color: var(--rokko-brown) !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+#artist-play-pause:hover {
+  background: var(--rokko-accent) !important;
+  transform: scale(1.05) !important;
+}
+
+/* Song list styling */
+#artist-song-list .song-item {
+  background: transparent !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+}
+
+#artist-song-list .song-item:hover {
+  background: rgba(224, 194, 144, 0.12) !important;
+}
+
+/* Update existing frame styles to use CSS variables */
+.intro-video,
+.welcome-text,
+.artists-section,
+.music-productions-section,
+.news-section,
+.merch-section,
+.social-section,
+.site-comment {
+  border-color: var(--rokko-brown-dark) !important;
 }
