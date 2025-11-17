@@ -25,8 +25,7 @@ document.addEventListener('DOMContentLoaded', function(){
         preloader.style.transition = 'opacity 0.5s ease';
         setTimeout(function() {
           preloader.style.display = 'none';
-          // Autoplay video once after preloader is hidden
-          video.play().catch(function(e) { console.log('Autoplay failed:', e); });
+          // Do NOT autoplay - user must click play button
         }, 500);
       }, 300);
     });
@@ -46,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function(){
         preloader.style.transition = 'opacity 0.5s ease';
         setTimeout(function() {
           preloader.style.display = 'none';
-          video.play().catch(function(e) { console.log('Autoplay failed:', e); });
+          // Do NOT autoplay - user must click play button
         }, 500);
       }
     }, 3000);
@@ -77,6 +76,9 @@ document.addEventListener('DOMContentLoaded', function(){
   if(video && playStopBtn) {
     var isPlaying = false;
     
+    // Initialize button text as PLAY since video doesn't autoplay
+    playStopBtn.textContent = 'PLAY';
+    
     // Update button state when video plays/pauses
     video.addEventListener('play', function() {
       isPlaying = true;
@@ -91,16 +93,21 @@ document.addEventListener('DOMContentLoaded', function(){
     video.addEventListener('ended', function() {
       isPlaying = false;
       playStopBtn.textContent = 'PLAY';
+      // When video ends, jump to end and stay there
+      video.currentTime = video.duration;
     });
     
     playStopBtn.addEventListener('click', function() {
       if(isPlaying) {
-        // Stop: jump to last frame
+        // Stop: jump to end frame and pause
         video.currentTime = video.duration;
         video.pause();
         playStopBtn.textContent = 'PLAY';
       } else {
-        // Play from current position
+        // If at the end, restart from beginning; otherwise resume from current position
+        if(video.currentTime >= video.duration) {
+          video.currentTime = 0;
+        }
         video.play();
         playStopBtn.textContent = 'STOP';
       }
