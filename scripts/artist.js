@@ -25,7 +25,10 @@ document.addEventListener('DOMContentLoaded', function(){
         preloader.style.transition = 'opacity 0.5s ease';
         setTimeout(function() {
           preloader.style.display = 'none';
-          // Do NOT autoplay - user must click play button
+          // Autoplay video when ready
+          video.play().catch(function(err) {
+            console.log('Autoplay failed:', err);
+          });
         }, 500);
       }, 300);
     });
@@ -45,7 +48,10 @@ document.addEventListener('DOMContentLoaded', function(){
         preloader.style.transition = 'opacity 0.5s ease';
         setTimeout(function() {
           preloader.style.display = 'none';
-          // Do NOT autoplay - user must click play button
+          // Autoplay video when ready
+          video.play().catch(function(err) {
+            console.log('Autoplay failed:', err);
+          });
         }, 500);
       }
     }, 3000);
