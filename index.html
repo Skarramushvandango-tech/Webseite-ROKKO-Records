@@ -6,6 +6,7 @@
   <title>ROKKO — Startseite</title>
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/override-rokko.css">
+  <link rel="stylesheet" href="styles/frame-colors.css">
   <script defer src="scripts/artist.js"></script>
   <script defer src="assets/js/carousel-simple.js"></script>
 </head>
@@ -14,50 +15,42 @@
   <div class="side-frame right" aria-hidden="true"></div>
 
   <!-- Header -->
-  <header class="site-header">
+  <header class="site-header frame">
     <img src="images/header.png" alt="ROKKO Header">
   </header>
 
-  <main>
+  <main class="frame">
     <!-- Separator above intro video -->
     <div class="trenner"></div>
 
     <!-- Intro Video Section -->
-    <section class="intro-video" style="position: relative; width: 100%; padding: 0; background: #000; border: 6px solid #3D2817; border-radius: 8px; overflow: visible;">
-      <!-- Bunnyfloor overlay at bottom center of video frame -->
-<<<<<<< HEAD
-      <img src="images/bunnyfloor.png" alt="" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); height: 120px; width: auto; z-index: 5; pointer-events: none;">
-=======
-      <img src="images/bunnyfloor.png" alt="" style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); height: 80px; width: auto; z-index: 100; pointer-events: none;">
->>>>>>> origin/main
-      <!-- Video Preloader -->
-      <div id="videoPreloader" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 20;">
-        <img src="images/logo.png" alt="ROKKO Logo" style="width: 200px; margin-bottom: 30px; opacity: 0.9;">
-        <div style="width: 200px; height: 4px; background: rgba(224, 194, 144, 0.2); border-radius: 2px; overflow: hidden;">
-          <div id="loadingBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #E0C290, #d9af6b); border-radius: 2px; transition: width 0.3s ease;"></div>
+    <section id="intro-section" class="frame" style="position: relative; width: 100%; padding: 10px; background: #000;">
+      <div style="position: relative;">
+        <video id="intro-video" class="intro-video" src="images/intro_movie.mp4" playsinline style="width: 100%; height: auto; display: block; border-radius: 5px;">
+          Your browser does not support the video tag.
+        </video>
+        
+        <div class="intro-video-controls">
+          <button id="intro-stop" aria-pressed="false">PLAY</button>
+          <button id="intro-mute" aria-pressed="false">MUTE</button>
         </div>
-        <p style="color: #E0C290; margin-top: 15px; font-size: 0.9em; opacity: 0.8;">Lädt...</p>
       </div>
-      
-      <video id="introVideo" autoplay muted playsinline preload="auto" style="width: 100%; height: auto; display: block; margin: 0; padding: 0; border-radius: 5px; background: #000;">
-        <source src="images/intro_movie.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <button id="playStopButton" style="position: absolute; bottom: 10px; left: 10px; padding: 6px 12px; background: rgba(255, 255, 255, 0.5); color: #201613; border: none; border-radius: 15px; cursor: pointer; font-weight: 600; font-size: 0.7em; z-index: 10; backdrop-filter: blur(5px);">
-        PLAY
-      </button>
-      <button id="muteButton" style="position: absolute; bottom: 10px; right: 10px; padding: 6px 12px; background: rgba(255, 255, 255, 0.5); color: #201613; border: none; border-radius: 15px; cursor: pointer; font-weight: 600; font-size: 0.7em; z-index: 10; backdrop-filter: blur(5px);">
-        MUTE
-      </button>
     </section>
 
     <!-- Separator below intro video -->
     <div class="trenner"></div>
 
+    <!-- Bunnyfloor Section (moved one DOM row deeper) -->
+    <section class="frame" style="text-align: center; padding: 20px;">
+      <img src="images/bunnyfloor.png" alt="Bunnyfloor" class="bunnyfloor bunnyfloor--row-lower">
+    </section>
+
+    <div class="trenner"></div>
+
     <!-- Welcome Text Section -->
-    <section class="welcome-text" style="padding: 10px; background: #E0C290; border: 6px solid #3D2817; border-radius: 8px;">
+    <section class="welcome-text frame" style="padding: 10px;">
       <div style="padding: 15px;">
-        <h2 style="margin: 0 0 10px 0; font-size: 1.4em; font-weight: 700; color: var(--rokko-brown); text-align: center;">Wir sind ROKKO! Und du noch nicht!</h2>
+        <h2 style="margin: 0 0 10px 0; font-size: 1.4em; font-weight: 700; text-align: center;">Wir sind ROKKO! Und du noch nicht!</h2>
         <p style="margin: 0 0 10px 0; line-height: 1.5; font-size: 0.9em;">
           Du hast Dich erfolgreich auf unsere Homepage verlaufen, Gratulation. Jetzt hoffen wir, dass Du Dir vorher ordentlich die Ohren gewaschen hast.<br><br>
           Denn bei ROKKO! RECORDS gibt es ne Menge Lauschlappen Propaganda.
@@ -69,7 +62,7 @@
     <div class="trenner"></div>
 
     <!-- Artists Section with Grid Layout -->
-    <section class="artists-section" style="padding: 10px; background: #E0C290; border: 6px solid #3D2817; border-radius: 8px;">
+    <section class="artists-section frame" style="padding: 10px;">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/crew.png" alt="ROKKO! Artists" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -616,7 +609,7 @@
     <div class="trenner"></div>
 
     <!-- Music Productions Section with Horizontal Carousel -->
-    <section class="music-productions-section" style="padding: 10px; background: #E0C290; border: 6px solid #3D2817; border-radius: 8px;">
+    <section class="music-productions-section frame" style="padding: 10px;">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/beats.png" alt="ROKKO! Music Productions" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -679,7 +672,7 @@
     <div class="trenner"></div>
 
     <!-- News Section -->
-    <section class="news-section" style="padding: 10px; background: #E0C290; border: 6px solid #3D2817; border-radius: 8px;">
+    <section class="news-section frame" style="padding: 10px;">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/news.png" alt="ROKKO! News" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -794,7 +787,7 @@
     <div class="trenner"></div>
 
     <!-- Merch Shop Section -->
-    <section class="merch-section" style="padding: 10px; background: #E0C290; border: 6px solid #3D2817; border-radius: 8px;">
+    <section class="merch-section frame" style="padding: 10px;">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/merch.png" alt="ROKKO! Merchandise" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -823,7 +816,7 @@
     <div class="trenner"></div>
 
     <!-- Social Media Section -->
-    <section class="social-section" style="padding: 10px; background: #E0C290; border: 6px solid #3D2817; border-radius: 8px;">
+    <section class="social-section frame" style="padding: 10px;">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/social.png" alt="ROKKO! Social Media" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -870,7 +863,7 @@
     <div class="trenner"></div>
 
     <!-- Contact Form Section -->
-    <section id="kontakt" class="site-comment" style="padding: 10px; background: #E0C290; border: 6px solid #3D2817; border-radius: 8px;">
+    <section id="kontakt" class="site-comment frame" style="padding: 10px;">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/kontakt.png" alt="ROKKO! Kontakt" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -916,6 +909,11 @@
     </div>
   </div>
 
-  <footer></footer>
+  <footer class="frame"></footer>
+
+  <!-- Frame Colors & Features Scripts -->
+  <script src="scripts/frame-alternator.js"></script>
+  <script src="scripts/video-autoplay.js"></script>
+  <script src="scripts/bunnyfloor-adjust.js"></script>
 </body>
 </html>

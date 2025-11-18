@@ -1,0 +1,111 @@
+/**
+ * Frame Colors System
+ * Implements alternating frame backgrounds based on nesting depth
+ * with dark brown borders throughout
+ */
+
+:root {
+  --dark-brown: #3D2817;
+  --light-sand: #E0C290;
+  --dark-sand: #B8935F;
+}
+
+/* Base frame style */
+.frame {
+  border: 6px solid var(--dark-brown);
+  box-sizing: border-box;
+  border-radius: 8px;
+  background: var(--light-sand); /* default background */
+}
+
+/* Alternating backgrounds based on nesting depth */
+.frame--light-sand {
+  background: var(--light-sand);
+  color: #201613;
+}
+
+.frame--dark-sand {
+  background: var(--dark-sand);
+  color: #E0C290; /* light text on dark background */
+}
+
+/* Bunnyfloor baseline styles */
+.bunnyfloor {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Helper class for bunnyfloor row positioning */
+.bunnyfloor--row-lower {
+  /* Positioning handled by parent container and JS resize logic */
+}
+
+/* Intro video styles */
+.intro-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 5px;
+  background: #000;
+}
+
+/* Intro video controls */
+.intro-video-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.intro-video-controls button {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.5);
+  color: #201613;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9em;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.intro-video-controls button:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: scale(1.05);
+}
+
+.intro-video-controls button[aria-pressed="true"] {
+  background: var(--dark-brown);
+  color: var(--light-sand);
+}
+
+/* Toast notification for autoplay feedback */
+.autoplay-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(61, 40, 23, 0.95);
+  color: #E0C290;
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  z-index: 10000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
