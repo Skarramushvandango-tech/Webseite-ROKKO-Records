@@ -18,7 +18,11 @@
   background: var(--light-sand); /* default background */
 }
 
-/* Alternating backgrounds based on nesting depth */
+/* Alternating backgrounds based on nesting depth
+   NOTE: These rules may conflict with existing inline styles in HTML.
+   The inline styles should be removed or these rules should use !important
+   if strict alternation is required. For now, we rely on JS to add these
+   classes which will work with non-inline-styled elements. */
 .frame--light-sand {
   background: var(--light-sand);
   color: #201613;
