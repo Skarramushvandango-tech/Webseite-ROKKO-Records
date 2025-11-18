@@ -1,25 +1,28 @@
 /**
- * Frame Alternator
- * Automatically applies alternating background colors to .frame elements
- * based on their nesting depth
+ * ROKKO Records - Frame Color Alternator
+ * Automatically assigns alternating frame colors based on nesting depth
+ * 
+ * Rules:
+ * - depth 0 (root level): light-sand background
+ * - depth 1 (nested once): dark-sand background
+ * - depth 2 (nested twice): light-sand background
+ * - etc., strictly alternating to prevent adjacent dark-sand frames
  */
 
 (function() {
   'use strict';
 
-  let recolorTimeout = null;
-
   /**
    * Calculate the nesting depth of a frame element
    * @param {HTMLElement} element - The frame element
-   * @returns {number} The depth (0 for root frames)
+   * @returns {number} The nesting depth
    */
   function getFrameDepth(element) {
     let depth = 0;
     let parent = element.parentElement;
     
     while (parent) {
-      if (parent.classList.contains('frame')) {
+      if (parent.classList && parent.classList.contains('frame')) {
         depth++;
       }
       parent = parent.parentElement;
@@ -29,91 +32,102 @@
   }
 
   /**
-   * Apply alternating colors to all frame elements based on nesting depth
+   * Assign color classes to all frame elements based on depth
    */
   function recolorFrames() {
     const frames = document.querySelectorAll('.frame');
     
     frames.forEach(frame => {
+      const depth = getFrameDepth(frame);
+      
       // Remove existing color classes
       frame.classList.remove('frame--light-sand', 'frame--dark-sand');
       
-      // Calculate depth
-      const depth = getFrameDepth(frame);
-      
-      // Apply color based on depth (even = light, odd = dark)
+      // Assign color based on depth (even = light-sand, odd = dark-sand)
       if (depth % 2 === 0) {
         frame.classList.add('frame--light-sand');
       } else {
         frame.classList.add('frame--dark-sand');
       }
     });
-  }
-
-  /**
-   * Debounced recolor function to avoid excessive recalculations
-   */
-  function debouncedRecolor() {
-    if (recolorTimeout) {
-      clearTimeout(recolorTimeout);
-    }
-    recolorTimeout = setTimeout(recolorFrames, 100);
+    
+    // Log for debugging
+    console.log(`[Frame Alternator] Recolored ${frames.length} frame elements`);
   }
 
   /**
    * Initialize the frame alternator
    */
-  function init() {
-    // Initial coloring
+  function initFrameAlternator() {
+    // Initial recolor on load
     recolorFrames();
-
-    // Set up MutationObserver to watch for DOM changes
-    const observer = new MutationObserver(function(mutations) {
+    
+    // Set up MutationObserver for dynamic content
+    const observer = new MutationObserver((mutations) => {
       let shouldRecolor = false;
       
-      mutations.forEach(function(mutation) {
-        // Check if any added nodes contain or are .frame elements
-        mutation.addedNodes.forEach(function(node) {
-          if (node.nodeType === Node.ELEMENT_NODE) {
-            if (node.classList && node.classList.contains('frame')) {
-              shouldRecolor = true;
-            } else if (node.querySelector && node.querySelector('.frame')) {
+      mutations.forEach((mutation) => {
+        // Check if any frame nodes were added or removed
+        if (mutation.addedNodes.length > 0) {
+          mutation.addedNodes.forEach(node => {
+            if (node.nodeType === 1 && (node.classList.contains('frame') || node.querySelector('.frame'))) {
               shouldRecolor = true;
             }
-          }
-        });
+          });
+        }
         
-        // Check if any removed nodes contain or are .frame elements
-        mutation.removedNodes.forEach(function(node) {
-          if (node.nodeType === Node.ELEMENT_NODE) {
-            if (node.classList && node.classList.contains('frame')) {
+        if (mutation.removedNodes.length > 0) {
+          mutation.removedNodes.forEach(node => {
+            if (node.nodeType === 1 && (node.classList.contains('frame') || node.querySelector('.frame'))) {
               shouldRecolor = true;
-            } else if (node.querySelector && node.querySelector('.frame')) {
+            }
+          });
+        }
+        
+        // Check if class list changed and frame class was added/removed
+        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          const target = mutation.target;
+          if (target.classList && target.classList.contains('frame')) {
+            const oldClasses = mutation.oldValue || '';
+            const hadFrame = oldClasses.includes('frame');
+            const hasFrame = target.classList.contains('frame');
+            if (hadFrame !== hasFrame) {
               shouldRecolor = true;
             }
           }
-        });
+        }
       });
       
       if (shouldRecolor) {
-        debouncedRecolor();
+        // Debounce: wait a bit before recoloring
+        clearTimeout(window.frameRecolorTimeout);
+        window.frameRecolorTimeout = setTimeout(() => {
+          recolorFrames();
+        }, 200);
       }
     });
-
-    // Observe the entire document body
+    
+    // Observe the entire document for changes
     observer.observe(document.body, {
       childList: true,
-      subtree: true
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class'],
+      attributeOldValue: true
     });
+    
+    console.log('[Frame Alternator] Initialized with MutationObserver');
   }
 
-  // Export recolorFrames function to window for manual access if needed
+  // Export recolorFrames to window for manual invocation if needed
   window.recolorFrames = recolorFrames;
 
-  // Initialize on DOMContentLoaded
+  // Auto-initialize on DOMContentLoaded
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', initFrameAlternator);
   } else {
-    init();
+    // DOM already loaded
+    initFrameAlternator();
   }
+
 })();

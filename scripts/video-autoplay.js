@@ -1,69 +1,92 @@
 /**
- * Video Autoplay Handler
- * Manages intro video autoplay with sound attempt and robust fallback UI
+ * ROKKO Records - Intro Video Autoplay with Sound
+ * Attempts to autoplay video with sound, with robust fallback to muted autoplay
+ * 
+ * Features:
+ * - Attempts unmuted autoplay on page load
+ * - Falls back to muted autoplay if browser blocks sound
+ * - Provides user controls: Mute/Unmute toggle and Stop
+ * - Shows notification if autoplay with sound is blocked
  */
 
 (function() {
   'use strict';
 
-  const STATE = {
-    video: null,
-    muteButton: null,
-    stopButton: null,
-    isPlaying: false
-  };
+  let video = null;
+  let toggleMuteBtn = null;
+  let stopVideoBtn = null;
+  let notificationShown = false;
 
   /**
-   * Show a temporary toast notification
-   * @param {string} message - The message to display
-   * @param {number} duration - How long to show the toast (ms)
+   * Show notification that autoplay with sound was blocked
    */
-  function showToast(message, duration = 3000) {
-    const toast = document.createElement('div');
-    toast.className = 'autoplay-toast';
-    toast.textContent = message;
-    document.body.appendChild(toast);
+  function showAutoplayNotification() {
+    if (notificationShown) return;
+    notificationShown = true;
 
-    setTimeout(() => {
-      toast.style.opacity = '0';
-      toast.style.transition = 'opacity 0.3s ease-out';
+    const notification = document.createElement('div');
+    notification.className = 'video-notification';
+    notification.id = 'autoplayNotification';
+    notification.innerHTML = `
+      <p><strong>Autoplay mit Ton wurde blockiert</strong></p>
+      <p>Das Video läuft stumm. Klicken Sie auf "Ton aktivieren" für Audio.</p>
+      <button id="dismissNotification">OK, verstanden</button>
+    `;
+
+    const videoContainer = video.parentElement;
+    videoContainer.appendChild(notification);
+
+    // Dismiss notification
+    document.getElementById('dismissNotification').addEventListener('click', () => {
+      notification.style.opacity = '0';
       setTimeout(() => {
-        if (toast.parentNode) {
-          document.body.removeChild(toast);
-        }
+        notification.remove();
       }, 300);
-    }, duration);
+    });
+
+    // Auto-dismiss after 5 seconds
+    setTimeout(() => {
+      if (notification.parentElement) {
+        notification.style.opacity = '0';
+        setTimeout(() => {
+          notification.remove();
+        }, 300);
+      }
+    }, 5000);
   }
 
   /**
-   * Update mute button label and aria-pressed state
+   * Attempt to play video with sound
    */
-  function updateMuteButton() {
-    if (!STATE.muteButton || !STATE.video) return;
-
-    if (STATE.video.muted) {
-      STATE.muteButton.textContent = 'UNMUTE';
-      STATE.muteButton.setAttribute('aria-pressed', 'true');
-    } else {
-      STATE.muteButton.textContent = 'MUTE';
-      STATE.muteButton.setAttribute('aria-pressed', 'false');
+  async function attemptAutoplayWithSound() {
+    if (!video) {
+      console.error('[Video Autoplay] Video element not found');
+      return;
     }
-  }
 
-  /**
-   * Update stop button label and aria-pressed state
-   */
-  function updateStopButton() {
-    if (!STATE.stopButton || !STATE.video) return;
+    try {
+      // First, try unmuted autoplay
+      video.muted = false;
+      const playPromise = video.play();
 
-    if (STATE.video.paused) {
-      STATE.stopButton.textContent = 'PLAY';
-      STATE.stopButton.setAttribute('aria-pressed', 'false');
-      STATE.isPlaying = false;
-    } else {
-      STATE.stopButton.textContent = 'STOP';
-      STATE.stopButton.setAttribute('aria-pressed', 'true');
-      STATE.isPlaying = true;
+      if (playPromise !== undefined) {
+        await playPromise;
+        console.log('[Video Autoplay] Successfully autoplaying with sound');
+        updateMuteButtonState();
+      }
+    } catch (error) {
+      console.warn('[Video Autoplay] Autoplay with sound blocked:', error.message);
+      
+      // Fallback to muted autoplay
+      try {
+        video.muted = true;
+        await video.play();
+        console.log('[Video Autoplay] Falling back to muted autoplay');
+        updateMuteButtonState();
+        showAutoplayNotification();
+      } catch (mutedError) {
+        console.error('[Video Autoplay] Even muted autoplay failed:', mutedError.message);
+      }
     }
   }
 
@@ -71,93 +94,102 @@
    * Toggle mute/unmute
    */
   function toggleIntroMute() {
-    if (!STATE.video) return;
-
-    STATE.video.muted = !STATE.video.muted;
-    updateMuteButton();
-
-    // If unmuting and video is paused, try to play
-    if (!STATE.video.muted && STATE.video.paused) {
-      STATE.video.play().catch(err => {
-        console.log('Play after unmute failed:', err);
-      });
-    }
+    if (!video) return;
+    
+    video.muted = !video.muted;
+    updateMuteButtonState();
+    
+    console.log(`[Video Autoplay] Video ${video.muted ? 'muted' : 'unmuted'}`);
   }
 
   /**
-   * Stop or play the video
+   * Stop video (pause and reset to beginning)
    */
   function stopIntroVideo() {
-    if (!STATE.video) return;
-
-    if (STATE.video.paused) {
-      STATE.video.play().catch(err => {
-        console.error('Play failed:', err);
-        showToast('Video konnte nicht abgespielt werden. Bitte versuchen Sie es erneut.');
-      });
-    } else {
-      STATE.video.pause();
-    }
-
-    updateStopButton();
+    if (!video) return;
+    
+    video.pause();
+    video.currentTime = 0;
+    
+    console.log('[Video Autoplay] Video stopped and reset');
   }
 
   /**
-   * Initialize the intro video with autoplay attempt
+   * Update mute button state
    */
-  async function initIntroVideo() {
-    STATE.video = document.getElementById('intro-video');
-    STATE.muteButton = document.getElementById('intro-mute');
-    STATE.stopButton = document.getElementById('intro-stop');
+  function updateMuteButtonState() {
+    if (!toggleMuteBtn) return;
+    
+    if (video.muted) {
+      toggleMuteBtn.textContent = '🔇 Ton aktivieren';
+      toggleMuteBtn.setAttribute('aria-pressed', 'true');
+      toggleMuteBtn.setAttribute('aria-label', 'Ton aktivieren');
+    } else {
+      toggleMuteBtn.textContent = '🔊 Ton deaktivieren';
+      toggleMuteBtn.setAttribute('aria-pressed', 'false');
+      toggleMuteBtn.setAttribute('aria-label', 'Ton deaktivieren');
+    }
+  }
 
-    if (!STATE.video) {
-      console.log('Intro video element not found');
+  /**
+   * Initialize intro video autoplay system
+   */
+  function initIntroVideo() {
+    // Find video element
+    video = document.getElementById('introVideo');
+    if (!video) {
+      console.warn('[Video Autoplay] Video element #introVideo not found');
       return;
     }
 
+    // Find or create control buttons
+    const videoContainer = video.parentElement;
+
+    // Create or find mute toggle button
+    toggleMuteBtn = document.getElementById('toggleMuteBtn');
+    if (!toggleMuteBtn) {
+      toggleMuteBtn = document.createElement('button');
+      toggleMuteBtn.id = 'toggleMuteBtn';
+      toggleMuteBtn.className = 'video-controls';
+      toggleMuteBtn.style.cssText = 'position: absolute; bottom: 10px; right: 10px;';
+      videoContainer.appendChild(toggleMuteBtn);
+    }
+
+    // Create or find stop button
+    stopVideoBtn = document.getElementById('stopVideoBtn');
+    if (!stopVideoBtn) {
+      stopVideoBtn = document.createElement('button');
+      stopVideoBtn.id = 'stopVideoBtn';
+      stopVideoBtn.className = 'video-controls';
+      stopVideoBtn.textContent = '⏹ Stop';
+      stopVideoBtn.setAttribute('aria-label', 'Video stoppen');
+      stopVideoBtn.style.cssText = 'position: absolute; bottom: 10px; left: 10px;';
+      videoContainer.appendChild(stopVideoBtn);
+    }
+
     // Set up event listeners
-    if (STATE.muteButton) {
-      STATE.muteButton.addEventListener('click', toggleIntroMute);
+    toggleMuteBtn.addEventListener('click', toggleIntroMute);
+    stopVideoBtn.addEventListener('click', stopIntroVideo);
+
+    // Update button state initially
+    updateMuteButtonState();
+
+    // Attempt autoplay with sound when video metadata is loaded
+    if (video.readyState >= 2) {
+      // Metadata already loaded
+      attemptAutoplayWithSound();
+    } else {
+      video.addEventListener('loadedmetadata', attemptAutoplayWithSound, { once: true });
     }
 
-    if (STATE.stopButton) {
-      STATE.stopButton.addEventListener('click', stopIntroVideo);
-    }
-
-    // Update button states when video plays/pauses
-    STATE.video.addEventListener('play', updateStopButton);
-    STATE.video.addEventListener('pause', updateStopButton);
-    STATE.video.addEventListener('ended', () => {
-      STATE.video.currentTime = 0;
-      updateStopButton();
-    });
-
-    // Try to play with sound first
-    try {
-      STATE.video.muted = false;
-      await STATE.video.play();
-      console.log('Video playing with sound');
-      updateMuteButton();
-      updateStopButton();
-    } catch (err) {
-      console.log('Autoplay with sound blocked:', err.message);
-      
-      // Fallback: try muted autoplay
-      try {
-        STATE.video.muted = true;
-        await STATE.video.play();
-        console.log('Video playing muted');
-        showToast('Autoplay mit Ton wurde blockiert. Klicken Sie auf UNMUTE für Ton.');
-        updateMuteButton();
-        updateStopButton();
-      } catch (muteErr) {
-        console.log('Muted autoplay also blocked:', muteErr.message);
-        showToast('Autoplay blockiert. Klicken Sie auf PLAY zum Starten.');
-        STATE.video.muted = false; // Reset to unmuted for manual play
-        updateMuteButton();
-        updateStopButton();
+    // Also try on canplay event as a backup
+    video.addEventListener('canplay', () => {
+      if (video.paused) {
+        attemptAutoplayWithSound();
       }
-    }
+    }, { once: true });
+
+    console.log('[Video Autoplay] Initialized');
   }
 
   // Export functions to window
@@ -169,6 +201,8 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initIntroVideo);
   } else {
+    // DOM already loaded
     initIntroVideo();
   }
+
 })();

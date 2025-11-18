@@ -1,121 +1,165 @@
-/**
- * Frame Colors System
- * Implements alternating frame backgrounds based on nesting depth
- * with dark brown borders throughout
- */
+/* ===========================================================================
+   ROKKO Records - Frame Color System
+   Strict alternating frame backgrounds based on nesting depth
+   =========================================================================== */
 
+/* CSS Variables for Frame Color System */
 :root {
   --dark-brown: #3D2817;
   --light-sand: #E0C290;
   --dark-sand: #B8935F;
 }
 
-/* Base frame style */
+/* Base frame class - all frames must have dark-brown border */
 .frame {
-  border: 6px solid var(--dark-brown);
-  box-sizing: border-box;
+  border: 6px solid var(--dark-brown) !important;
   border-radius: 8px;
-  background: var(--light-sand); /* default background */
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-/* Alternating backgrounds based on nesting depth
-   IMPORTANT: These rules use !important to override existing styles in override-rokko.css
-   that set backgrounds with !important (lines 612, 616, 620, 626, 640, 974, 1475, etc.)
-   Without !important, the alternating color system would not work due to existing
-   high-specificity rules forcing --rokko-sand on all sections. */
+/* Light sand background (depth 0, 2, 4, ...) */
 .frame--light-sand {
   background: var(--light-sand) !important;
-  color: #201613;
+  color: var(--dark-brown);
 }
 
+/* Dark sand background (depth 1, 3, 5, ...) */
 .frame--dark-sand {
   background: var(--dark-sand) !important;
-  color: #E0C290; /* light text on dark background */
+  color: var(--light-sand);
 }
 
-/* Bunnyfloor baseline styles */
+/* Dark sand frames use light sand text color */
+.frame--dark-sand h1,
+.frame--dark-sand h2,
+.frame--dark-sand h3,
+.frame--dark-sand h4,
+.frame--dark-sand h5,
+.frame--dark-sand h6,
+.frame--dark-sand p {
+  color: var(--light-sand);
+}
+
+/* ===========================================================================
+   Bunnyfloor Image Styling
+   =========================================================================== */
+
+/* Bunnyfloor image - reduced to 50% width */
 .bunnyfloor {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: 0 auto;
+  width: 50% !important;
+  height: auto !important;
+  max-width: 50% !important;
 }
 
-/* Helper class for bunnyfloor row positioning */
+/* Helper class for moving bunnyfloor one DOM row deeper using flexbox/grid order */
 .bunnyfloor--row-lower {
-  /* Positioning handled by parent container and JS resize logic */
+  order: 10;
 }
 
-/* Intro video styles */
+/* ===========================================================================
+   Intro Video Styling
+   =========================================================================== */
+
+/* Intro video container */
 .intro-video {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.intro-video video {
   width: 100%;
   height: auto;
   display: block;
+  margin: 0;
+  padding: 0;
   border-radius: 5px;
   background: #000;
 }
 
-/* Intro section should keep black background regardless of frame depth
-   This overrides the alternating color system for the video section */
-#intro-section {
-  background: #000 !important;
+/* Video control buttons */
+.video-controls {
+  position: absolute;
+  bottom: 10px;
+  z-index: 10;
 }
 
-/* Intro video controls */
-.intro-video-controls {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
-}
-
-.intro-video-controls button {
-  padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.5);
-  color: #201613;
-  border: none;
+.video-controls button {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--dark-brown);
+  border: 2px solid var(--dark-brown);
   border-radius: 20px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 0.9em;
+  font-size: 0.85em;
   backdrop-filter: blur(5px);
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
-.intro-video-controls button:hover {
-  background: rgba(255, 255, 255, 0.7);
+.video-controls button:hover {
+  background: rgba(224, 194, 144, 0.95);
   transform: scale(1.05);
 }
 
-.intro-video-controls button[aria-pressed="true"] {
-  background: var(--dark-brown);
+.video-controls button:active {
+  transform: scale(0.98);
+}
+
+/* Mute toggle button - right side */
+#toggleMuteBtn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+/* Stop button - left side */
+#stopVideoBtn {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+}
+
+/* Autoplay fallback notification */
+.video-notification {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(61, 40, 23, 0.95);
+  color: var(--light-sand);
+  padding: 20px 30px;
+  border-radius: 10px;
+  border: 3px solid var(--light-sand);
+  text-align: center;
+  z-index: 15;
+  max-width: 400px;
+  font-size: 0.9em;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.video-notification p {
+  margin: 0 0 10px 0;
   color: var(--light-sand);
 }
 
-/* Toast notification for autoplay feedback */
-.autoplay-toast {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(61, 40, 23, 0.95);
-  color: #E0C290;
-  padding: 15px 25px;
-  border-radius: 8px;
+.video-notification button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: var(--light-sand);
+  color: var(--dark-brown);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
   font-weight: 600;
-  z-index: 10000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  animation: slideDown 0.3s ease-out;
+  transition: all 0.2s ease;
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+.video-notification button:hover {
+  background: #F5E6D3;
+  transform: scale(1.05);
 }
