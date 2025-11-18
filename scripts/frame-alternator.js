@@ -67,16 +67,33 @@
       let shouldRecolor = false;
       
       mutations.forEach((mutation) => {
-        // Check if any nodes were added or removed
-        if (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0) {
-          shouldRecolor = true;
+        // Check if any frame nodes were added or removed
+        if (mutation.addedNodes.length > 0) {
+          mutation.addedNodes.forEach(node => {
+            if (node.nodeType === 1 && (node.classList.contains('frame') || node.querySelector('.frame'))) {
+              shouldRecolor = true;
+            }
+          });
         }
         
-        // Check if class list changed (frame class might have been added)
+        if (mutation.removedNodes.length > 0) {
+          mutation.removedNodes.forEach(node => {
+            if (node.nodeType === 1 && (node.classList.contains('frame') || node.querySelector('.frame'))) {
+              shouldRecolor = true;
+            }
+          });
+        }
+        
+        // Check if class list changed and frame class was added/removed
         if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
           const target = mutation.target;
           if (target.classList && target.classList.contains('frame')) {
-            shouldRecolor = true;
+            const oldClasses = mutation.oldValue || '';
+            const hadFrame = oldClasses.includes('frame');
+            const hasFrame = target.classList.contains('frame');
+            if (hadFrame !== hasFrame) {
+              shouldRecolor = true;
+            }
           }
         }
       });
@@ -86,7 +103,7 @@
         clearTimeout(window.frameRecolorTimeout);
         window.frameRecolorTimeout = setTimeout(() => {
           recolorFrames();
-        }, 100);
+        }, 200);
       }
     });
     
@@ -95,7 +112,8 @@
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ['class']
+      attributeFilter: ['class'],
+      attributeOldValue: true
     });
     
     console.log('[Frame Alternator] Initialized with MutationObserver');
