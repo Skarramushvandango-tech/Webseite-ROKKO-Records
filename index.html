@@ -6,6 +6,7 @@
   <title>ROKKO — Startseite</title>
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/override-rokko.css">
+  <link rel="stylesheet" href="styles/frame-colors.css">
   <script defer src="scripts/artist.js"></script>
   <script defer src="assets/js/carousel-simple.js"></script>
 </head>
@@ -23,13 +24,9 @@
     <div class="trenner"></div>
 
     <!-- Intro Video Section -->
-    <section class="intro-video" style="position: relative; width: 100%; padding: 0; background: #000; border: 6px solid #3D2817; border-radius: 8px; overflow: visible;">
-      <!-- Bunnyfloor overlay at bottom center of video frame -->
-<<<<<<< HEAD
-      <img src="images/bunnyfloor.png" alt="" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); height: 120px; width: auto; z-index: 5; pointer-events: none;">
-=======
-      <img src="images/bunnyfloor.png" alt="" style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); height: 80px; width: auto; z-index: 100; pointer-events: none;">
->>>>>>> origin/main
+    <section class="intro-video frame" style="position: relative; width: 100%; padding: 0; background: #000; overflow: visible;">
+      <!-- Bunnyfloor overlay at bottom center of video frame - moved one row lower -->
+      <img src="images/bunnyfloor.png" alt="" class="bunnyfloor bunnyfloor--row-lower" style="position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); height: 40px; z-index: 100; pointer-events: none;">
       <!-- Video Preloader -->
       <div id="videoPreloader" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 20;">
         <img src="images/logo.png" alt="ROKKO Logo" style="width: 200px; margin-bottom: 30px; opacity: 0.9;">
@@ -55,7 +52,7 @@
     <div class="trenner"></div>
 
     <!-- Welcome Text Section -->
-    <section class="welcome-text" style="padding: 10px; background: #E0C290; border: 6px solid #3D2817; border-radius: 8px;">
+    <section class="welcome-text frame" style="padding: 10px;">
       <div style="padding: 15px;">
         <h2 style="margin: 0 0 10px 0; font-size: 1.4em; font-weight: 700; color: var(--rokko-brown); text-align: center;">Wir sind ROKKO! Und du noch nicht!</h2>
         <p style="margin: 0 0 10px 0; line-height: 1.5; font-size: 0.9em;">
@@ -69,7 +66,7 @@
     <div class="trenner"></div>
 
     <!-- Artists Section with Grid Layout -->
-    <section class="artists-section" style="padding: 10px; background: #E0C290; border: 6px solid #3D2817; border-radius: 8px;">
+    <section class="artists-section frame" style="padding: 10px;">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/crew.png" alt="ROKKO! Artists" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -136,7 +133,7 @@
             <h3 style="margin-bottom: 8px; font-size: 1.1em;">DISKOGRAPHIE</h3>
             
             <!-- Audio Player Widget -->
-            <div class="audio-player-widget" style="background: #E0C290; border: 3px solid #3D2817; border-radius: 15px; padding: 25px; margin: 20px 0; box-shadow: 0 6px 20px rgba(61, 40, 23, 0.4);">
+            <div class="audio-player-widget frame" style="background: #E0C290; border: 3px solid #3D2817; border-radius: 15px; padding: 25px; margin: 20px 0; box-shadow: 0 6px 20px rgba(61, 40, 23, 0.4);">
               <!-- Cover Image at Top -->
               <div style="text-align: center; margin-bottom: 20px;">
                 <img src="mp3/vandango/cover.png" alt="Album Cover" style="width: 100%; max-width: 260px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); border: 2px solid #3D2817;">
@@ -335,7 +332,7 @@
             <h3 style="margin-bottom: 8px; font-size: 1.1em;">DISKOGRAPHIE</h3>
             
             <!-- Audio Player Widget -->
-            <div class="audio-player-widget" style="background: #E0C290; border: 3px solid #3D2817; border-radius: 15px; padding: 25px; margin: 20px 0; box-shadow: 0 6px 20px rgba(61, 40, 23, 0.4);">
+            <div class="audio-player-widget frame" style="background: #E0C290; border: 3px solid #3D2817; border-radius: 15px; padding: 25px; margin: 20px 0; box-shadow: 0 6px 20px rgba(61, 40, 23, 0.4);">
               <!-- Cover Image at Top -->
               <div style="text-align: center; margin-bottom: 20px;">
                 <img src="mp3/schablonski/kohle_raus_cover.png" alt="Album Cover" style="width: 100%; max-width: 260px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); border: 2px solid #3D2817;">
@@ -426,7 +423,7 @@
             <h3 style="margin-bottom: 8px; font-size: 1.1em;">DISKOGRAPHIE</h3>
             
             <!-- Audio Player Widget -->
-            <div class="audio-player-widget" style="background: #E0C290; border: 3px solid #3D2817; border-radius: 15px; padding: 25px; margin: 20px 0; box-shadow: 0 6px 20px rgba(61, 40, 23, 0.4);">
+            <div class="audio-player-widget frame" style="background: #E0C290; border: 3px solid #3D2817; border-radius: 15px; padding: 25px; margin: 20px 0; box-shadow: 0 6px 20px rgba(61, 40, 23, 0.4);">
               <!-- Cover Image at Top -->
               <div style="text-align: center; margin-bottom: 20px;">
                 <img src="mp3/bellieu/petite_colibri.png" alt="Album Cover" style="width: 100%; max-width: 260px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); border: 2px solid #3D2817;">
@@ -526,7 +523,7 @@
             <h3 style="margin-bottom: 8px; font-size: 1.1em;">DISKOGRAPHIE</h3>
             
             <!-- Audio Player Widget -->
-            <div class="audio-player-widget" style="background: #E0C290; border: 3px solid #3D2817; border-radius: 15px; padding: 25px; margin: 20px 0; box-shadow: 0 6px 20px rgba(61, 40, 23, 0.4);">
+            <div class="audio-player-widget frame" style="background: #E0C290; border: 3px solid #3D2817; border-radius: 15px; padding: 25px; margin: 20px 0; box-shadow: 0 6px 20px rgba(61, 40, 23, 0.4);">
               <!-- Cover Image at Top -->
               <div style="text-align: center; margin-bottom: 20px;">
                 <img src="mp3/fleurbeunie/feu_leger_cover.png" alt="Album Cover" style="width: 100%; max-width: 260px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); border: 2px solid #3D2817;">
@@ -616,7 +613,7 @@
     <div class="trenner"></div>
 
     <!-- Music Productions Section with Horizontal Carousel -->
-    <section class="music-productions-section" style="padding: 10px; background: #E0C290; border: 6px solid #3D2817; border-radius: 8px;">
+    <section class="music-productions-section frame" style="padding: 10px;">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/beats.png" alt="ROKKO! Music Productions" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -627,7 +624,7 @@
         </p>
 
         <!-- Horizontal Scrollable Album Carousel -->
-        <div id="album-carousel-wrapper" style="position: relative; max-width: 900px; margin: 0 auto 30px; background: #B8935F; border-radius: 8px; padding: 10px; border: 2px solid #3D2817;">
+        <div id="album-carousel-wrapper" class="frame" style="position: relative; max-width: 900px; margin: 0 auto 30px; background: #B8935F; border-radius: 8px; padding: 10px; border: 2px solid #3D2817;">
           <div id="album-carousel" style="display: flex; gap: 15px; overflow-x: auto; scroll-behavior: smooth; padding: 20px 10px; scrollbar-width: thin; scrollbar-color: #3D2817 #B8935F; background: #B8935F;">
             <!-- Albums will be generated by JavaScript -->
           </div>
@@ -679,7 +676,7 @@
     <div class="trenner"></div>
 
     <!-- News Section -->
-    <section class="news-section" style="padding: 10px; background: #E0C290; border: 6px solid #3D2817; border-radius: 8px;">
+    <section class="news-section frame" style="padding: 10px;">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/news.png" alt="ROKKO! News" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -688,7 +685,7 @@
         <div class="news-feed-container" style="max-width: 900px; margin: 0 auto; padding: 10px 0; background: #E0C290;">
           <div class="news-feed" style="padding: 10px; background: #E0C290;">
             <!-- News Item 1 -->
-            <article class="news-item" data-page="1" style="margin-bottom: 15px; padding: 0; border-radius: 6px; background: #E0C290;">
+            <article class="news-item frame" data-page="1" style="margin-bottom: 15px; padding: 0; border-radius: 6px; background: #E0C290;">
               <div style="background: #B8935F; border-radius: 6px; padding: 15px; border: 2px solid #3D2817;">
                 <!-- Top Section: Cover and Title -->
                 <div style="display: flex; align-items: center; gap: 15px; background: #B8935F; padding: 10px; border-radius: 6px; margin-bottom: 10px; min-height: 80px;">
@@ -712,7 +709,7 @@
             </article>
 
             <!-- News Item 2 -->
-            <article class="news-item" data-page="2" style="display: none; margin-bottom: 15px; padding: 0; border-radius: 6px; background: #E0C290;">
+            <article class="news-item frame" data-page="2" style="display: none; margin-bottom: 15px; padding: 0; border-radius: 6px; background: #E0C290;">
               <div style="background: #B8935F; border-radius: 6px; padding: 15px; border: 2px solid #3D2817;">
                 <!-- Top Section: Cover and Title -->
                 <div style="display: flex; align-items: center; gap: 15px; background: #B8935F; padding: 10px; border-radius: 6px; margin-bottom: 10px; min-height: 80px;">
@@ -735,7 +732,7 @@
             </article>
 
             <!-- News Item 3 -->
-            <article class="news-item" data-page="3" style="display: none; margin-bottom: 15px; padding: 0; border-radius: 6px; background: #E0C290;">
+            <article class="news-item frame" data-page="3" style="display: none; margin-bottom: 15px; padding: 0; border-radius: 6px; background: #E0C290;">
               <div style="background: #B8935F; border-radius: 6px; padding: 15px; border: 2px solid #3D2817;">
                 <!-- Top Section: Cover and Title -->
                 <div style="display: flex; align-items: center; gap: 15px; background: #B8935F; padding: 10px; border-radius: 6px; margin-bottom: 10px; min-height: 80px;">
@@ -758,7 +755,7 @@
             </article>
 
             <!-- News Item 4 -->
-            <article class="news-item" data-page="4" style="display: none; margin-bottom: 15px; padding: 0; border-radius: 6px; background: #E0C290;">
+            <article class="news-item frame" data-page="4" style="display: none; margin-bottom: 15px; padding: 0; border-radius: 6px; background: #E0C290;">
               <div style="background: #B8935F; border-radius: 6px; padding: 15px; border: 2px solid #3D2817;">
                 <!-- Top Section: Cover and Title -->
                 <div style="display: flex; align-items: center; gap: 15px; background: #B8935F; padding: 10px; border-radius: 6px; margin-bottom: 10px; min-height: 80px;">
@@ -794,7 +791,7 @@
     <div class="trenner"></div>
 
     <!-- Merch Shop Section -->
-    <section class="merch-section" style="padding: 10px; background: #E0C290; border: 6px solid #3D2817; border-radius: 8px;">
+    <section class="merch-section frame" style="padding: 10px;">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/merch.png" alt="ROKKO! Merchandise" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -823,7 +820,7 @@
     <div class="trenner"></div>
 
     <!-- Social Media Section -->
-    <section class="social-section" style="padding: 10px; background: #E0C290; border: 6px solid #3D2817; border-radius: 8px;">
+    <section class="social-section frame" style="padding: 10px;">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/social.png" alt="ROKKO! Social Media" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -870,7 +867,7 @@
     <div class="trenner"></div>
 
     <!-- Contact Form Section -->
-    <section id="kontakt" class="site-comment" style="padding: 10px; background: #E0C290; border: 6px solid #3D2817; border-radius: 8px;">
+    <section id="kontakt" class="site-comment frame" style="padding: 10px;">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/kontakt.png" alt="ROKKO! Kontakt" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -917,5 +914,8 @@
   </div>
 
   <footer></footer>
+  
+  <!-- Frame color alternation script -->
+  <script src="scripts/frame-alternator.js"></script>
 </body>
 </html>
