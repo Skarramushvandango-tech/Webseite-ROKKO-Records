@@ -19,17 +19,17 @@
 }
 
 /* Alternating backgrounds based on nesting depth
-   NOTE: These rules may conflict with existing inline styles in HTML.
-   The inline styles should be removed or these rules should use !important
-   if strict alternation is required. For now, we rely on JS to add these
-   classes which will work with non-inline-styled elements. */
+   IMPORTANT: These rules use !important to override existing styles in override-rokko.css
+   that set backgrounds with !important (lines 612, 616, 620, 626, 640, 974, 1475, etc.)
+   Without !important, the alternating color system would not work due to existing
+   high-specificity rules forcing --rokko-sand on all sections. */
 .frame--light-sand {
-  background: var(--light-sand);
+  background: var(--light-sand) !important;
   color: #201613;
 }
 
 .frame--dark-sand {
-  background: var(--dark-sand);
+  background: var(--dark-sand) !important;
   color: #E0C290; /* light text on dark background */
 }
 
@@ -53,6 +53,12 @@
   display: block;
   border-radius: 5px;
   background: #000;
+}
+
+/* Intro section should keep black background regardless of frame depth
+   This overrides the alternating color system for the video section */
+#intro-section {
+  background: #000 !important;
 }
 
 /* Intro video controls */
