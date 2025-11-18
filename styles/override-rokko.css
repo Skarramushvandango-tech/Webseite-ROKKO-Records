@@ -561,28 +561,54 @@ body.home .btn-welcome { display:none !important; }
 .artist-dropdown {
   transition: max-height 0.5s ease;
   overflow: visible !important; /* Allow content to be fully visible */
-  background: #f3e2c9;
+  background: var(--rokko-sand);
   border-radius: 8px;
-  padding: 0 20px;
+  padding: 20px;
+}
+
+/* Inner content wrapper with static size and dark sand background */
+.artist-dropdown > div {
+  background: #B8935F; /* Dark sand color for text areas */
+  padding: 20px;
+  border-radius: 8px;
+  border: 3px solid var(--rokko-brown-dark);
+  min-height: 400px; /* Static minimum height for inner frame */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Text in dropdown should be light sand color */
+.artist-dropdown h3,
+.artist-dropdown p {
+  color: #F5E6D3; /* Light sand color for text */
+}
+
+/* Links should also be light sand */
+.artist-dropdown a {
+  color: #F5E6D3;
+}
+
+.artist-dropdown a:hover {
+  color: #FFFFFF;
 }
 
 /* News section styling - keep completely sand-colored */
 .news-section {
-  background: var(--content-bg) !important;
+  background: var(--rokko-sand) !important;
 }
 
 .news-feed-container {
-  background: var(--content-bg) !important;
+  background: var(--rokko-sand) !important;
 }
 
 .news-feed {
-  background: var(--content-bg) !important;
+  background: var(--rokko-sand) !important;
 }
 
 .news-feed .news-item {
   margin-bottom: 20px;
   padding: 15px;
-  background: var(--content-bg) !important;
+  background: var(--rokko-sand) !important;
   border-radius: 6px;
   border: none;
   transition: transform 0.2s ease;
@@ -596,7 +622,7 @@ body.home .btn-welcome { display:none !important; }
 }
 
 .news-pagination {
-  background: var(--content-bg) !important;
+  background: var(--rokko-sand) !important;
 }
 
 /* Centered trenner styling - updated for new divider line */
@@ -613,7 +639,7 @@ body.home .btn-welcome { display:none !important; }
 
 /* Welcome section */
 .welcome-text {
-  background: var(--content-bg);
+  background: var(--rokko-sand);
 }
 
 .welcome-text h1 {
@@ -930,7 +956,7 @@ body.home .btn-welcome { display:none !important; }
 
 /* Music Productions Carousel Styling with enhanced animations */
 .music-productions-section {
-  background: var(--content-bg) !important;
+  background: var(--rokko-sand) !important;
 }
 
 .music-carousel-container {
