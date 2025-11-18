@@ -18,16 +18,16 @@ document.addEventListener('DOMContentLoaded', function(){
       }
     });
     
-    // Hide preloader when video can play
+    // Hide preloader when video can play and autoplay
     video.addEventListener('canplaythrough', function() {
       setTimeout(function() {
         preloader.style.opacity = '0';
         preloader.style.transition = 'opacity 0.5s ease';
         setTimeout(function() {
           preloader.style.display = 'none';
-          // Autoplay video when ready
-          video.play().catch(function(err) {
-            console.log('Autoplay failed:', err);
+          // Autoplay video once preloader is hidden
+          video.play().catch(function(error) {
+            console.log('Autoplay prevented:', error);
           });
         }, 500);
       }, 300);
@@ -48,9 +48,9 @@ document.addEventListener('DOMContentLoaded', function(){
         preloader.style.transition = 'opacity 0.5s ease';
         setTimeout(function() {
           preloader.style.display = 'none';
-          // Autoplay video when ready
-          video.play().catch(function(err) {
-            console.log('Autoplay failed:', err);
+          // Autoplay video after fallback
+          video.play().catch(function(error) {
+            console.log('Autoplay prevented:', error);
           });
         }, 500);
       }
@@ -61,9 +61,9 @@ document.addEventListener('DOMContentLoaded', function(){
   var muteBtn = document.getElementById('muteButton');
   
   if(video && muteBtn) {
-    // Start unmuted (video starts with sound)
-    video.muted = false;
-    muteBtn.textContent = 'MUTE';
+    // Start muted for autoplay (browsers require muted autoplay)
+    video.muted = true;
+    muteBtn.textContent = 'UNMUTE';
     
     muteBtn.addEventListener('click', function() {
       if(video.muted) {
@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', function(){
   if(video && playStopBtn) {
     var isPlaying = false;
     
-    // Initialize button text as PLAY since video doesn't autoplay
-    playStopBtn.textContent = 'PLAY';
+    // Initialize button text as STOP since video autoplays
+    playStopBtn.textContent = 'STOP';
     
     // Update button state when video plays/pauses
     video.addEventListener('play', function() {
