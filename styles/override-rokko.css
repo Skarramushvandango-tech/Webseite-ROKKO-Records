@@ -1232,7 +1232,7 @@ audio:not([paused]) {
 }
 
 #album-carousel::-webkit-scrollbar-track {
-  background: rgba(61, 40, 23, 0.2);
+  background: rgba(32, 22, 19, 0.3);
   border-radius: 4px;
 }
 
@@ -1242,7 +1242,7 @@ audio:not([paused]) {
 }
 
 #album-carousel::-webkit-scrollbar-thumb:hover {
-  background: #4a3527;
+  background: #201613;
 }
 
 /* Artist Player Dropdown Song List Scrollbar */
@@ -1435,13 +1435,14 @@ audio:not([paused]) {
    ======================================== */
 #album-carousel-wrapper {
   position: relative;
-  background: var(--rokko-sand);
+  background: #B8935F; /* Dark sand for carousel interior */
   border-radius: 8px;
   padding: 10px;
+  border: 2px solid var(--rokko-brown-dark);
 }
 
 #album-carousel {
-  background: var(--rokko-sand);
+  background: #B8935F; /* Dark sand for carousel interior */
 }
 
 /* Album card styling - rounded with shadow */
