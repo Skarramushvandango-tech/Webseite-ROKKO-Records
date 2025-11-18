@@ -1,0 +1,110 @@
+/* ============================================================================
+   ROKKO Frame Color System - Enforces Alternating Frame Colors
+   ============================================================================
+   
+   This CSS file defines the frame color system for ROKKO Records website.
+   
+   Rules:
+   - Every visible frame has a dark-brown border (--dark-brown: #3D2817)
+   - Frame backgrounds alternate: outermost is light-sand, nested is dark-sand, etc.
+   - Never should two dark-sand frames be adjacent
+   - Nested frames (news, carousel) within light-sand have dark-sand background
+     with light-sand text
+   - Bunnyfloor.png is displayed at 50% width
+   ============================================================================ */
+
+:root {
+  /* Color variables for frame system */
+  --dark-brown: #3D2817;
+  --light-sand: #E0C290;
+  --dark-sand: #B8935F;
+}
+
+/* Base frame class - applies dark brown border to all frames */
+.frame {
+  border: 6px solid var(--dark-brown) !important;
+  border-radius: 8px !important;
+  padding: 10px !important;
+  box-sizing: border-box !important;
+}
+
+/* Light sand frame - used for even nesting depth (0, 2, 4...) */
+.frame--light-sand {
+  background: var(--light-sand) !important;
+  color: var(--dark-brown) !important;
+}
+
+/* Light sand frame ensures nested text elements inherit correct color */
+.frame--light-sand h1,
+.frame--light-sand h2,
+.frame--light-sand h3,
+.frame--light-sand h4,
+.frame--light-sand h5,
+.frame--light-sand h6,
+.frame--light-sand p,
+.frame--light-sand span,
+.frame--light-sand div {
+  color: var(--dark-brown);
+}
+
+/* Dark sand frame - used for odd nesting depth (1, 3, 5...) */
+.frame--dark-sand {
+  background: var(--dark-sand) !important;
+  color: var(--light-sand) !important;
+}
+
+/* Dark sand frame ensures nested text elements inherit correct color */
+.frame--dark-sand h1,
+.frame--dark-sand h2,
+.frame--dark-sand h3,
+.frame--dark-sand h4,
+.frame--dark-sand h5,
+.frame--dark-sand h6,
+.frame--dark-sand p,
+.frame--dark-sand span,
+.frame--dark-sand div {
+  color: var(--light-sand);
+}
+
+/* Bunnyfloor image styling - 50% width, centered */
+.bunnyfloor {
+  width: 50% !important;
+  max-width: 50% !important;
+  height: auto !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Helper class to position bunnyfloor one row lower in layout */
+.bunnyfloor--row-lower {
+  /* For flexbox layouts */
+  order: 1 !important;
+}
+
+/* For grid layouts */
+@supports (display: grid) {
+  .bunnyfloor--row-lower {
+    grid-row-start: 2 !important;
+  }
+}
+
+/* Ensure buttons and links maintain appropriate contrast in frames */
+.frame--dark-sand a,
+.frame--dark-sand button {
+  color: var(--light-sand);
+}
+
+.frame--light-sand a,
+.frame--light-sand button {
+  color: var(--dark-brown);
+}
+
+/* Override any conflicting styles from other stylesheets */
+.frame.frame--light-sand {
+  background: var(--light-sand) !important;
+}
+
+.frame.frame--dark-sand {
+  background: var(--dark-sand) !important;
+}
