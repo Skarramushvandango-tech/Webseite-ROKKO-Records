@@ -566,29 +566,44 @@ body.home .btn-welcome { display:none !important; }
   padding: 20px;
 }
 
-/* Inner content wrapper with static size and dark sand background */
+/* Inner content wrapper with static size and proper background */
 .artist-dropdown > div {
-  background: #B8935F; /* Dark sand color for text areas */
   padding: 20px;
   border-radius: 8px;
-  border: 3px solid var(--rokko-brown-dark);
-  min-height: 400px; /* Static minimum height for inner frame */
-  max-width: 800px;
+  min-height: 500px; /* Static minimum height for inner frame */
+  max-width: 850px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
-/* Text in dropdown should be light sand color */
-.artist-dropdown h3,
-.artist-dropdown p {
-  color: #F5E6D3; /* Light sand color for text */
+/* Biography sections - direct children only */
+.artist-dropdown > div > h3 {
+  background: #B8935F; /* Dark sand color */
+  color: #F5E6D3; /* Light sand text */
+  padding: 12px 15px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  border: 2px solid var(--rokko-brown-dark);
 }
 
-/* Links should also be light sand */
-.artist-dropdown a {
-  color: #F5E6D3;
+.artist-dropdown > div > p {
+  background: #B8935F; /* Dark sand color */
+  color: #F5E6D3; /* Light sand text */
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  border: 2px solid var(--rokko-brown-dark);
+  min-height: 80px; /* Ensure consistent minimum height */
 }
 
-.artist-dropdown a:hover {
+/* Links within biography text */
+.artist-dropdown > div > p a {
+  color: #FFF8DC; /* Very light sand/cream */
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.artist-dropdown > div > p a:hover {
   color: #FFFFFF;
 }
 
