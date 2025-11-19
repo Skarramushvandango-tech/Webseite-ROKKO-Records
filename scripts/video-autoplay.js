@@ -31,6 +31,8 @@
   let toggleMuteBtn = null;
   let stopVideoBtn = null;
   let notificationShown = false;
+  let preloader = null;
+  let loadingBar = null;
 
   /**
    * Show notification that autoplay with sound was blocked
@@ -71,6 +73,35 @@
   }
 
   /**
+   * Hide the video preloader
+   */
+  function hidePreloader() {
+    if (preloader) {
+      preloader.style.transition = 'opacity 0.5s ease';
+      preloader.style.opacity = '0';
+      setTimeout(() => {
+        preloader.style.display = 'none';
+      }, 500);
+    }
+  }
+
+  /**
+   * Update loading bar progress
+   */
+  function updateLoadingProgress() {
+    if (!video || !loadingBar) return;
+    
+    if (video.buffered.length > 0) {
+      const bufferedEnd = video.buffered.end(video.buffered.length - 1);
+      const duration = video.duration;
+      if (duration > 0) {
+        const percentLoaded = (bufferedEnd / duration) * 100;
+        loadingBar.style.width = `${percentLoaded}%`;
+      }
+    }
+  }
+
+  /**
    * Attempt to play video with sound
    */
   async function attemptAutoplayWithSound() {
@@ -88,6 +119,7 @@
         await playPromise;
         console.log('[Video Autoplay] Successfully autoplaying with sound');
         updateMuteButtonState();
+        hidePreloader();
       }
     } catch (error) {
       console.warn('[Video Autoplay] Autoplay with sound blocked:', error.message);
@@ -98,6 +130,7 @@
         await video.play();
         console.log('[Video Autoplay] Falling back to muted autoplay');
         updateMuteButtonState();
+        hidePreloader();
         showAutoplayNotification();
       } catch (mutedError) {
         console.error('[Video Autoplay] Even muted autoplay failed:', mutedError.message);
@@ -161,6 +194,10 @@
       return;
     }
 
+    // Find preloader elements
+    preloader = document.getElementById('videoPreloader');
+    loadingBar = document.getElementById('loadingBar');
+
     // Find or create control buttons
     const videoContainer = video.parentElement;
 
@@ -174,13 +211,13 @@
       videoContainer.appendChild(toggleMuteBtn);
     }
 
-    // Create or find stop button
+    // Create or find stop button (no emojis - simple text only)
     stopVideoBtn = document.getElementById('stopVideoBtn');
     if (!stopVideoBtn) {
       stopVideoBtn = document.createElement('button');
       stopVideoBtn.id = 'stopVideoBtn';
       stopVideoBtn.className = 'video-controls';
-      stopVideoBtn.textContent = '⏹ Stop';
+      stopVideoBtn.textContent = 'Stop';
       stopVideoBtn.setAttribute('aria-label', 'Video stoppen');
       stopVideoBtn.style.cssText = 'position: absolute; bottom: 10px; left: 10px;';
       videoContainer.appendChild(stopVideoBtn);
@@ -193,20 +230,32 @@
     // Update button state initially
     updateMuteButtonState();
 
-    // Attempt autoplay with sound when video metadata is loaded
-    if (video.readyState >= 2) {
-      // Metadata already loaded
+    // Update loading progress as video buffers
+    video.addEventListener('progress', updateLoadingProgress);
+
+    // Attempt autoplay with sound when video is fully loaded
+    // Use canplaythrough event to ensure video is completely loaded
+    if (video.readyState >= 4) {
+      // Video is fully loaded and ready to play
       attemptAutoplayWithSound();
     } else {
-      video.addEventListener('loadedmetadata', attemptAutoplayWithSound, { once: true });
+      // Wait for video to be fully loaded before attempting autoplay
+      video.addEventListener('canplaythrough', () => {
+        if (video.paused) {
+          attemptAutoplayWithSound();
+        }
+      }, { once: true });
+      
+      // Fallback: also try when metadata is loaded (in case canplaythrough takes too long)
+      video.addEventListener('loadedmetadata', () => {
+        if (video.paused && video.readyState >= 2) {
+          attemptAutoplayWithSound();
+        }
+      }, { once: true });
     }
 
-    // Also try on canplay event as a backup
-    video.addEventListener('canplay', () => {
-      if (video.paused) {
-        attemptAutoplayWithSound();
-      }
-    }, { once: true });
+    // Hide preloader if video starts playing
+    video.addEventListener('play', hidePreloader);
 
     console.log('[Video Autoplay] Initialized');
   }
