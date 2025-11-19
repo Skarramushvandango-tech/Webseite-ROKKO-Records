@@ -11,9 +11,9 @@
  * without explicit written approval from the project owner.
  * 
  * MANDATORY COLOR PATTERN:
- * - Frames alternate in pairs: dark-sand → light-sand → dark-sand → light-sand
- * - Pattern: (dark, light), (dark, light), (dark, light), ...
- * - This creates fixed pair blocks as specified
+ * - ALL root-level frames (depth 0) have light-sand background (#E0C290)
+ * - Nested frames (depth 1+) alternate: dark-sand → light-sand → dark-sand...
+ * - Pattern: light-sand (root) → dark-sand (nested level 1) → light-sand (nested level 2) → ...
  * 
  * Protected elements:
  * - Color values: #E0C290 (light-sand), #B8935F (dark-sand) - IMMUTABLE
@@ -45,66 +45,35 @@
   }
 
   /**
-   * Assign color classes to all frame elements based on position
-   * Pattern: dark-sand → light-sand → dark-sand → light-sand (in pairs at same depth)
+   * Assign color classes to all frame elements based on nesting depth
+   * Pattern: ALL root frames = light-sand, nested frames alternate (dark-sand, then light-sand, etc.)
    */
   function recolorFrames() {
-    // Get all root-level frames (depth 0) to establish pattern
+    // Get all frame elements
     const allFrames = document.querySelectorAll('.frame');
-    const rootFrames = [];
     
     allFrames.forEach(frame => {
       const depth = getFrameDepth(frame);
-      if (depth === 0) {
-        rootFrames.push(frame);
-      }
-    });
-    
-    // Assign colors to root frames in pairs: dark-sand, light-sand, dark-sand, light-sand
-    rootFrames.forEach((frame, index) => {
+      
       // Remove existing color classes
       frame.classList.remove('frame--light-sand', 'frame--dark-sand');
       
-      // Pair pattern: index 0,1 = pair 0, index 2,3 = pair 1, etc.
-      // Within each pair: first is dark-sand, second is light-sand
-      const pairIndex = Math.floor(index / 2);
-      const isFirstInPair = (index % 2) === 0;
-      
-      // Pattern: first of pair = dark-sand, second of pair = light-sand
-      // This creates: dark→light, dark→light, dark→light...
-      if (isFirstInPair) {
-        frame.classList.add('frame--dark-sand');
-      } else {
+      // Root frames (depth 0) are ALWAYS light-sand
+      if (depth === 0) {
         frame.classList.add('frame--light-sand');
-      }
-    });
-    
-    // For nested frames, alternate based on parent color
-    allFrames.forEach(frame => {
-      const depth = getFrameDepth(frame);
-      if (depth > 0) {
-        // Remove existing color classes
-        frame.classList.remove('frame--light-sand', 'frame--dark-sand');
-        
-        // Find parent frame
-        let parent = frame.parentElement;
-        while (parent && !parent.classList.contains('frame')) {
-          parent = parent.parentElement;
-        }
-        
-        // Alternate from parent: if parent is dark-sand, child is light-sand, and vice versa
-        if (parent) {
-          if (parent.classList.contains('frame--dark-sand')) {
-            frame.classList.add('frame--light-sand');
-          } else {
-            frame.classList.add('frame--dark-sand');
-          }
+      } else {
+        // Nested frames alternate based on depth:
+        // depth 1 = dark-sand, depth 2 = light-sand, depth 3 = dark-sand, etc.
+        if (depth % 2 === 1) {
+          frame.classList.add('frame--dark-sand');
+        } else {
+          frame.classList.add('frame--light-sand');
         }
       }
     });
     
     // Log for debugging
-    console.log(`[Frame Alternator] Recolored ${allFrames.length} frame elements in pair pattern`);
+    console.log(`[Frame Alternator] Recolored ${allFrames.length} frame elements - all root frames are light-sand`);
   }
 
   /**
