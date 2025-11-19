@@ -151,32 +151,60 @@
   }
 
   /**
-   * Stop video (pause and reset to beginning)
+   * Stop video (jump to end or replay from beginning)
    */
   function stopIntroVideo() {
     if (!video) return;
     
-    video.pause();
-    video.currentTime = 0;
+    // If video is playing or paused before the end, jump to the end
+    if (video.currentTime < video.duration - 0.5) {
+      video.currentTime = video.duration;
+      video.pause();
+      updateStopButtonState();
+      console.log('[Video Autoplay] Video jumped to end');
+    } else {
+      // If video is at the end, replay from beginning
+      video.currentTime = 0;
+      video.play();
+      updateStopButtonState();
+      console.log('[Video Autoplay] Video replaying from beginning');
+    }
+  }
+  
+  /**
+   * Update stop button state based on video position
+   */
+  function updateStopButtonState() {
+    if (!stopVideoBtn) return;
     
-    console.log('[Video Autoplay] Video stopped and reset');
+    // Show play button when video is at the end, stop button otherwise
+    if (video.currentTime >= video.duration - 0.5) {
+      stopVideoBtn.innerHTML = '<img src="img/playbutton.png" alt="Play" style="width: 20px; height: 20px; vertical-align: middle;">';
+      stopVideoBtn.setAttribute('aria-label', 'Video abspielen');
+      stopVideoBtn.title = 'Video abspielen';
+    } else {
+      stopVideoBtn.innerHTML = '<img src="img/stopbutton.png" alt="Stop" style="width: 20px; height: 20px; vertical-align: middle;">';
+      stopVideoBtn.setAttribute('aria-label', 'Video stoppen');
+      stopVideoBtn.title = 'Video stoppen';
+    }
   }
 
   /**
    * Update mute button state
-   * Uses mute_0.png for muted and mute_1.png for unmuted
+   * Uses mute.png when sound is playing (to show you can mute it)
+   * Uses sound.png when muted (to show you can enable sound)
    */
   function updateMuteButtonState() {
     if (!toggleMuteBtn) return;
     
-    // Use PNG images instead of emojis: mute_0.png = muted, mute_1.png = unmuted
+    // Use new PNG images: sound.png when muted (click to enable sound), mute.png when playing (click to mute)
     if (video.muted) {
-      toggleMuteBtn.innerHTML = '<img src="img/mute_0.png" alt="Muted" style="width: 24px; height: 24px; vertical-align: middle;">';
+      toggleMuteBtn.innerHTML = '<img src="img/sound.png" alt="Sound aktivieren" style="width: 20px; height: 20px; vertical-align: middle;">';
       toggleMuteBtn.setAttribute('aria-pressed', 'true');
       toggleMuteBtn.setAttribute('aria-label', 'Ton aktivieren');
       toggleMuteBtn.title = 'Ton aktivieren';
     } else {
-      toggleMuteBtn.innerHTML = '<img src="img/mute_1.png" alt="Unmuted" style="width: 24px; height: 24px; vertical-align: middle;">';
+      toggleMuteBtn.innerHTML = '<img src="img/mute.png" alt="Mute" style="width: 20px; height: 20px; vertical-align: middle;">';
       toggleMuteBtn.setAttribute('aria-pressed', 'false');
       toggleMuteBtn.setAttribute('aria-label', 'Ton deaktivieren');
       toggleMuteBtn.title = 'Ton deaktivieren';
@@ -201,25 +229,24 @@
     // Find or create control buttons
     const videoContainer = video.parentElement;
 
-    // Create or find mute toggle button
+    // Create or find mute toggle button - positioned bottom-left
     toggleMuteBtn = document.getElementById('toggleMuteBtn');
     if (!toggleMuteBtn) {
       toggleMuteBtn = document.createElement('button');
       toggleMuteBtn.id = 'toggleMuteBtn';
       toggleMuteBtn.className = 'video-controls';
-      toggleMuteBtn.style.cssText = 'position: absolute; bottom: 10px; right: 10px;';
+      toggleMuteBtn.style.cssText = 'position: absolute; bottom: 5px; left: 5px; z-index: 10; background: transparent; border: none; padding: 2px; cursor: pointer;';
       videoContainer.appendChild(toggleMuteBtn);
     }
 
-    // Create or find stop button (no emojis - simple text only)
+    // Create or find stop button - positioned bottom-right
     stopVideoBtn = document.getElementById('stopVideoBtn');
     if (!stopVideoBtn) {
       stopVideoBtn = document.createElement('button');
       stopVideoBtn.id = 'stopVideoBtn';
       stopVideoBtn.className = 'video-controls';
-      stopVideoBtn.textContent = 'Stop';
       stopVideoBtn.setAttribute('aria-label', 'Video stoppen');
-      stopVideoBtn.style.cssText = 'position: absolute; bottom: 10px; left: 10px;';
+      stopVideoBtn.style.cssText = 'position: absolute; bottom: 5px; right: 5px; z-index: 10; background: transparent; border: none; padding: 2px; cursor: pointer;';
       videoContainer.appendChild(stopVideoBtn);
     }
 
@@ -227,8 +254,9 @@
     toggleMuteBtn.addEventListener('click', toggleIntroMute);
     stopVideoBtn.addEventListener('click', stopIntroVideo);
 
-    // Update button state initially
+    // Update button states initially
     updateMuteButtonState();
+    updateStopButtonState();
 
     // Update loading progress as video buffers
     video.addEventListener('progress', updateLoadingProgress);
@@ -257,11 +285,20 @@
     // Hide preloader if video starts playing
     video.addEventListener('play', hidePreloader);
 
-    // When video ends, pause it on the last frame (don't loop or reset)
+    // When video ends, update stop button to show play icon
     video.addEventListener('ended', () => {
       console.log('[Video Autoplay] Video playback completed, pausing on last frame');
-      // Video naturally stays on last frame when ended
-      // No need to reset to beginning
+      updateStopButtonState();
+    });
+    
+    // Update stop button state when video plays
+    video.addEventListener('play', () => {
+      updateStopButtonState();
+    });
+    
+    // Update stop button state when video pauses
+    video.addEventListener('pause', () => {
+      updateStopButtonState();
     });
 
     console.log('[Video Autoplay] Initialized');
