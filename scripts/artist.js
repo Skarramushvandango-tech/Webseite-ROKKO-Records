@@ -608,7 +608,7 @@ document.addEventListener('DOMContentLoaded', function(){
       var albumCard = document.createElement('div');
       albumCard.className = 'album-card';
       albumCard.setAttribute('data-artist', artistName);
-      albumCard.style.cssText = 'min-width: 180px; max-width: 180px; cursor: pointer; transition: all 0.3s ease; position: relative; flex-shrink: 0; background: #997A4B; padding: 12px; border-radius: 8px; display: flex; flex-direction: column; align-items: center;';
+      albumCard.style.cssText = 'min-width: 180px; max-width: 180px; cursor: pointer; transition: all 0.3s ease; position: relative; flex-shrink: 0; background: #997A4B; padding: 12px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; scroll-snap-align: center;';
       
       albumCard.innerHTML = 
         '<div style="width: 160px; height: 160px; position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); transition: all 0.3s ease; flex-shrink: 0;">' +
