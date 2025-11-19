@@ -1,12 +1,25 @@
 /**
  * ROKKO Records - Frame Color Alternator
- * Automatically assigns alternating frame colors based on nesting depth
+ * Automatically assigns alternating frame colors in fixed pair pattern
  * 
- * Rules:
- * - depth 0 (root level): light-sand background
- * - depth 1 (nested once): dark-sand background
- * - depth 2 (nested twice): light-sand background
- * - etc., strictly alternating to prevent adjacent dark-sand frames
+ * ============================================================================
+ * ⚠️ CRITICAL - DO NOT MODIFY WITHOUT EXPLICIT APPROVAL ⚠️
+ * ============================================================================
+ * 
+ * This code is subject to strict change control policies.
+ * All color values and patterns are MANDATORY and must NOT be changed 
+ * without explicit written approval from the project owner.
+ * 
+ * MANDATORY COLOR PATTERN:
+ * - Frames alternate in pairs: dark-sand → light-sand → dark-sand → light-sand
+ * - Pattern: (dark, light), (dark, light), (dark, light), ...
+ * - This creates fixed pair blocks as specified
+ * 
+ * Protected elements:
+ * - Color values: #E0C290 (light-sand), #B8935F (dark-sand) - IMMUTABLE
+ * - Alternation pattern - IMMUTABLE
+ * 
+ * ============================================================================
  */
 
 (function() {
@@ -32,27 +45,66 @@
   }
 
   /**
-   * Assign color classes to all frame elements based on depth
+   * Assign color classes to all frame elements based on position
+   * Pattern: dark-sand → light-sand → dark-sand → light-sand (in pairs at same depth)
    */
   function recolorFrames() {
-    const frames = document.querySelectorAll('.frame');
+    // Get all root-level frames (depth 0) to establish pattern
+    const allFrames = document.querySelectorAll('.frame');
+    const rootFrames = [];
     
-    frames.forEach(frame => {
+    allFrames.forEach(frame => {
       const depth = getFrameDepth(frame);
-      
+      if (depth === 0) {
+        rootFrames.push(frame);
+      }
+    });
+    
+    // Assign colors to root frames in pairs: dark-sand, light-sand, dark-sand, light-sand
+    rootFrames.forEach((frame, index) => {
       // Remove existing color classes
       frame.classList.remove('frame--light-sand', 'frame--dark-sand');
       
-      // Assign color based on depth (even = light-sand, odd = dark-sand)
-      if (depth % 2 === 0) {
-        frame.classList.add('frame--light-sand');
-      } else {
+      // Pair pattern: index 0,1 = pair 0, index 2,3 = pair 1, etc.
+      // Within each pair: first is dark-sand, second is light-sand
+      const pairIndex = Math.floor(index / 2);
+      const isFirstInPair = (index % 2) === 0;
+      
+      // Pattern: first of pair = dark-sand, second of pair = light-sand
+      // This creates: dark→light, dark→light, dark→light...
+      if (isFirstInPair) {
         frame.classList.add('frame--dark-sand');
+      } else {
+        frame.classList.add('frame--light-sand');
+      }
+    });
+    
+    // For nested frames, alternate based on parent color
+    allFrames.forEach(frame => {
+      const depth = getFrameDepth(frame);
+      if (depth > 0) {
+        // Remove existing color classes
+        frame.classList.remove('frame--light-sand', 'frame--dark-sand');
+        
+        // Find parent frame
+        let parent = frame.parentElement;
+        while (parent && !parent.classList.contains('frame')) {
+          parent = parent.parentElement;
+        }
+        
+        // Alternate from parent: if parent is dark-sand, child is light-sand, and vice versa
+        if (parent) {
+          if (parent.classList.contains('frame--dark-sand')) {
+            frame.classList.add('frame--light-sand');
+          } else {
+            frame.classList.add('frame--dark-sand');
+          }
+        }
       }
     });
     
     // Log for debugging
-    console.log(`[Frame Alternator] Recolored ${frames.length} frame elements`);
+    console.log(`[Frame Alternator] Recolored ${allFrames.length} frame elements in pair pattern`);
   }
 
   /**
