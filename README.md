@@ -3,9 +3,9 @@ Homepages for a record label duh
 
 ## ⚠️ Important: Color Scheme Policy
 
-**Before making any design changes, please read [COLORS.md](COLORS.md)**
+**Before making any design changes, please read [COLOR_GUIDE.md](COLOR_GUIDE.md)**
 
-The interior color of all brown frames (`#E0C290`) is **permanently fixed** and must not be changed without explicit approval. See the [color documentation](COLORS.md) for full details on the color scheme and change management policy.
+The interior color of all brown frames (`#E0C290`) is **permanently fixed** and must not be changed without explicit approval. See the [color documentation](COLOR_GUIDE.md) for full details on the color scheme and change management policy.
 
 ## Deployment
 
