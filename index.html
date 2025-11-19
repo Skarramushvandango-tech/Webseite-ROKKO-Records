@@ -54,7 +54,7 @@
     <div class="trenner"></div>
 
     <!-- Welcome Text Section -->
-    <section class="welcome-text frame">
+    <section class="welcome-text frame frame--light-sand">
       <div style="padding: 15px;">
         <h2 style="margin: 0 0 10px 0; font-size: 1.4em; font-weight: 700; color: var(--rokko-brown); text-align: center;">Wir sind ROKKO! Und du noch nicht!</h2>
         <p style="margin: 0 0 10px 0; line-height: 1.5; font-size: 0.9em;">
@@ -68,7 +68,7 @@
     <div class="trenner"></div>
 
     <!-- Artists Section with Grid Layout -->
-    <section class="artists-section frame">
+    <section class="artists-section frame frame--light-sand">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/crew.png" alt="ROKKO! Artists" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -87,6 +87,9 @@
             <img src="artists/skaramush_vandango/skaramush.png" alt="Skaramush Vandango" 
                  class="artist-main-image" 
                  style="width: 90%; display: block; margin: 0 auto;">
+            <div style="text-align: center; margin-top: 10px;">
+              <img src="img/logo_01.png" alt="More Info" style="width: 60px; height: auto; cursor: pointer;">
+            </div>
           </div>
         </div>
 
@@ -96,6 +99,9 @@
             <img src="artists/ska_schablonski/skank.png" alt="Skank Schablonski" 
                  class="artist-main-image" 
                  style="width: 90%; display: block; margin: 0 auto;">
+            <div style="text-align: center; margin-top: 10px;">
+              <img src="img/logo_01.png" alt="More Info" style="width: 60px; height: auto; cursor: pointer;">
+            </div>
           </div>
         </div>
 
@@ -105,6 +111,9 @@
             <img src="artists/henri_bellieu/henri.png" alt="Henri Bellieu" 
                  class="artist-main-image" 
                  style="width: 90%; display: block; margin: 0 auto;">
+            <div style="text-align: center; margin-top: 10px;">
+              <img src="img/logo_01.png" alt="More Info" style="width: 60px; height: auto; cursor: pointer;">
+            </div>
           </div>
         </div>
 
@@ -114,6 +123,9 @@
             <img src="artists/fleuretbeunie/fleurbeunie.png" alt="Fléur et Beunié" 
                  class="artist-main-image" 
                  style="width: 90%; display: block; margin: 0 auto;">
+            <div style="text-align: center; margin-top: 10px;">
+              <img src="img/logo_01.png" alt="More Info" style="width: 60px; height: auto; cursor: pointer;">
+            </div>
           </div>
         </div>
         </div>
@@ -121,7 +133,7 @@
         <!-- Artist Details shown below carousel -->
         <article id="artist-vandango" class="artist-details">
         <div class="artist-dropdown" style="max-height: 0; transition: max-height 0.5s ease; padding: 0 10px;">
-          <div style="padding: 15px;">
+          <div class="frame frame--dark-sand" style="padding: 15px;">
             <h3 style="margin-bottom: 8px; font-size: 1.1em;">BIOGRAFIE</h3>
             <p style="line-height: 1.5; margin-bottom: 10px; font-size: 0.9em;">
               Skaramush Vandango ist ein vielseitiger Künstler aus dem ROKKO Records Label. Mit seinem einzigartigen Stil verbindet er verschiedene Musikrichtungen zu einem unverwechselbaren Sound. 
@@ -153,21 +165,24 @@
               </div>
               
               <!-- Music Platform Links -->
-              <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px;">
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  YouTube
+              <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px;">
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_01.png" alt="SoundCloud" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  Spotify
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_02.png" alt="Amazon Music" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  SoundCloud
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_03.png" alt="Apple Music" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  Amazon
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_04.png" alt="Deezer" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  Beatport
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_05.png" alt="Beatport" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_06.png" alt="Spotify" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
               </div>
               
@@ -321,7 +336,7 @@
 
       <article id="artist-schablonski" class="artist-details">
         <div class="artist-dropdown" style="max-height: 0; transition: max-height 0.5s ease; padding: 0 10px;">
-          <div style="padding: 15px;">
+          <div class="frame frame--dark-sand" style="padding: 15px;">
             <h3 style="margin-bottom: 8px; font-size: 1.1em;">BIOGRAFIE</h3>
             <p style="line-height: 1.5; margin-bottom: 10px; font-size: 0.9em;">
               Skank Schablonski bringt energiegeladene Ska-Rhythmen und einzigartige Texte auf die Bühne. Ein fester Bestandteil des ROKKO Records Rosters.
@@ -352,21 +367,24 @@
               </div>
               
               <!-- Music Platform Links -->
-              <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px;">
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  YouTube
+              <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px;">
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_01.png" alt="SoundCloud" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  Spotify
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_02.png" alt="Amazon Music" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  SoundCloud
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_03.png" alt="Apple Music" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  Amazon
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_04.png" alt="Deezer" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  Beatport
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_05.png" alt="Beatport" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_06.png" alt="Spotify" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
               </div>
               
@@ -412,7 +430,7 @@
 
       <article id="artist-bellieu" class="artist-details">
         <div class="artist-dropdown" style="max-height: 0; transition: max-height 0.5s ease; padding: 0 10px;">
-          <div style="padding: 15px;">
+          <div class="frame frame--dark-sand" style="padding: 15px;">
             <h3 style="margin-bottom: 8px; font-size: 1.1em;">BIOGRAFIE</h3>
             <p style="line-height: 1.5; margin-bottom: 10px; font-size: 0.9em;">
               Henri Bellieu ist bekannt für seine melodischen und gefühlvollen Kompositionen. Seine Musik berührt die Herzen der Zuhörer weltweit.
@@ -443,21 +461,24 @@
               </div>
               
               <!-- Music Platform Links -->
-              <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px;">
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  YouTube
+              <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px;">
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_01.png" alt="SoundCloud" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  Spotify
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_02.png" alt="Amazon Music" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  SoundCloud
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_03.png" alt="Apple Music" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  Amazon
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_04.png" alt="Deezer" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  Beatport
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_05.png" alt="Beatport" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_06.png" alt="Spotify" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
               </div>
               
@@ -512,7 +533,7 @@
 
       <article id="artist-beunie" class="artist-details">
         <div class="artist-dropdown" style="max-height: 0; transition: max-height 0.5s ease; padding: 0 10px;">
-          <div style="padding: 15px;">
+          <div class="frame frame--dark-sand" style="padding: 15px;">
             <h3 style="margin-bottom: 8px; font-size: 1.1em;">BIOGRAFIE</h3>
             <p style="line-height: 1.5; margin-bottom: 10px; font-size: 0.9em;">
               Fléur et Beunié verzaubert mit einer einzigartigen Mischung aus elektronischen und akustischen Klängen. Ein Duo, das Grenzen überschreitet.
@@ -543,21 +564,24 @@
               </div>
               
               <!-- Music Platform Links -->
-              <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px;">
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  YouTube
+              <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 25px;">
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_01.png" alt="SoundCloud" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  Spotify
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_02.png" alt="Amazon Music" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  SoundCloud
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_03.png" alt="Apple Music" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  Amazon
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_04.png" alt="Deezer" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
-                <a href="#" target="_blank" style="color: #fff; text-decoration: none; padding: 10px 18px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); border-radius: 25px; font-weight: 700; font-size: 0.75em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2); border: 1px solid rgba(224, 194, 144, 0.3);">
-                  Beatport
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_05.png" alt="Beatport" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                </a>
+                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
+                  <img src="img/logo_06.png" alt="Spotify" style="height: 50px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                 </a>
               </div>
               
@@ -615,7 +639,7 @@
     <div class="trenner"></div>
 
     <!-- Music Productions Section with Horizontal Carousel -->
-    <section class="music-productions-section frame">
+    <section class="music-productions-section frame frame--light-sand">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/beats.png" alt="ROKKO! Music Productions" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -626,8 +650,8 @@
         </p>
 
         <!-- Horizontal Scrollable Album Carousel -->
-        <div id="album-carousel-wrapper" style="position: relative; max-width: 900px; margin: 0 auto 30px; background: #B8935F; border-radius: 8px; padding: 10px; border: 2px solid #3D2817;">
-          <div id="album-carousel" style="display: flex; gap: 15px; overflow-x: auto; scroll-behavior: smooth; padding: 20px 10px; scrollbar-width: thin; scrollbar-color: #3D2817 #B8935F; background: #B8935F;">
+        <div id="album-carousel-wrapper" class="frame frame--dark-sand" style="position: relative; max-width: 900px; margin: 0 auto 30px; border-radius: 8px; padding: 10px;">
+          <div id="album-carousel" style="display: flex; gap: 15px; overflow-x: auto; scroll-behavior: smooth; padding: 20px 10px; scrollbar-width: thin; scrollbar-color: #3D2817 var(--dark-sand);">
             <!-- Albums will be generated by JavaScript -->
           </div>
         </div>
@@ -637,7 +661,7 @@
           <!-- Centered Artist Name Above Player -->
           <h3 id="artist-name-display" style="text-align: center; color: var(--rokko-brown); font-size: 1.4em; font-weight: 700; margin: 15px 0 20px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.1);"></h3>
           
-          <div style="background: #E0C290; border: 3px solid #3D2817; border-radius: 15px; padding: 30px; box-shadow: 0 8px 24px rgba(61, 40, 23, 0.5);">
+          <div class="frame frame--dark-sand" style="border-radius: 15px; padding: 30px; box-shadow: 0 8px 24px rgba(61, 40, 23, 0.5);">
             
             <!-- Compact Player -->
             <div style="margin-bottom: 30px; background: rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 20px; backdrop-filter: blur(10px);">
@@ -678,7 +702,7 @@
     <div class="trenner"></div>
 
     <!-- News Section -->
-    <section class="news-section frame">
+    <section class="news-section frame frame--light-sand">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/news.png" alt="ROKKO! News" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -797,7 +821,7 @@
     <div class="trenner"></div>
 
     <!-- Merch Shop Section -->
-    <section class="merch-section frame">
+    <section class="merch-section frame frame--light-sand">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/merch.png" alt="ROKKO! Merchandise" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -808,8 +832,8 @@
             Besuche unseren offiziellen Merchandise-Shop für exklusive ROKKO Records Produkte, T-Shirts, Hoodies und mehr!
           </p>
         
-        <!-- Ladenlokal Image -->
-        <div style="margin-bottom: 15px;">
+        <!-- Ladenlokal Image in nested frame -->
+        <div class="frame frame--dark-sand" style="margin-bottom: 15px; padding: 15px;">
           <img src="images/ladenlokal.png" alt="ROKKO Ladenlokal" style="max-width: 600px; width: 100%; height: auto; margin: 0 auto; display: block; border-radius: 8px;">
         </div>
         
@@ -826,7 +850,7 @@
     <div class="trenner"></div>
 
     <!-- Social Media Section -->
-    <section class="social-section frame">
+    <section class="social-section frame frame--light-sand">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/social.png" alt="ROKKO! Social Media" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
@@ -881,7 +905,7 @@
     <div class="trenner"></div>
 
     <!-- Contact Form Section -->
-    <section id="kontakt" class="site-comment frame">
+    <section id="kontakt" class="site-comment frame frame--light-sand">
       <div style="padding: 15px;">
         <div style="margin-bottom: 5px;">
           <img src="images/kontakt.png" alt="ROKKO! Kontakt" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
