@@ -20,7 +20,7 @@
 
 /* Light sand background (depth 0, 2, 4, ...) */
 .frame--light-sand {
-  background: var(--light-sand) !important;
+  background: #E0C290 !important;
   color: var(--dark-brown);
 }
 
