@@ -257,6 +257,13 @@
     // Hide preloader if video starts playing
     video.addEventListener('play', hidePreloader);
 
+    // When video ends, pause it on the last frame (don't loop or reset)
+    video.addEventListener('ended', () => {
+      console.log('[Video Autoplay] Video playback completed, pausing on last frame');
+      // Video naturally stays on last frame when ended
+      // No need to reset to beginning
+    });
+
     console.log('[Video Autoplay] Initialized');
   }
 
