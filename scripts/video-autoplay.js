@@ -131,7 +131,7 @@
         console.log('[Video Autoplay] Falling back to muted autoplay');
         updateMuteButtonState();
         hidePreloader();
-        showAutoplayNotification();
+        // Notification removed per user request - autoplay with sound should work silently
       } catch (mutedError) {
         console.error('[Video Autoplay] Even muted autoplay failed:', mutedError.message);
       }
