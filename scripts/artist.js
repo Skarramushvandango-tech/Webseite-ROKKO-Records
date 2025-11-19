@@ -633,9 +633,9 @@ document.addEventListener('DOMContentLoaded', function(){
         this.style.boxShadow = 'none';
       });
       
-      // Click to load artist
+      // Click to open popup modal
       albumCard.addEventListener('click', function() {
-        loadArtist(artistName);
+        openAudioPlayerModal(artistName);
       });
       
       return albumCard;
@@ -888,6 +888,178 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
   
+  // Audio Player Modal Functions
+  var audioPlayerModal = document.getElementById('audioPlayerModal');
+  var modalAudioPlayer = document.getElementById('modal-audio-player');
+  var modalCurrentTrack = document.getElementById('modal-current-track');
+  var modalCoverImage = document.getElementById('modal-cover-image');
+  var modalArtistName = document.getElementById('modal-artist-name');
+  var modalTrackList = document.getElementById('modal-track-list');
+  var closeAudioPlayerModalBtn = document.getElementById('closeAudioPlayerModal');
+  
+  var modalCurrentArtist = null;
+  var modalCurrentTrackIndex = 0;
+  var modalCurrentTracks = [];
+  
+  // Open audio player modal with artist data
+  function openAudioPlayerModal(artistName) {
+    if(!artistAlbums[artistName] || !audioPlayerModal) return;
+    
+    var album = artistAlbums[artistName];
+    modalCurrentArtist = artistName;
+    modalCurrentTracks = album.tracks;
+    modalCurrentTrackIndex = 0;
+    
+    // Pause all audio
+    document.querySelectorAll('audio').forEach(function(audio) {
+      if(!audio.paused) audio.pause();
+    });
+    
+    // Set artist name and cover
+    if(modalArtistName) modalArtistName.textContent = artistName;
+    if(modalCoverImage) modalCoverImage.src = album.cover;
+    
+    // Build track list
+    if(modalTrackList) {
+      modalTrackList.innerHTML = '';
+      modalCurrentTracks.forEach(function(track, index) {
+        var trackItem = document.createElement('div');
+        trackItem.className = 'track-item-widget modal-track-item';
+        trackItem.setAttribute('data-index', index);
+        trackItem.style.cssText = 'display: flex; align-items: center; gap: 10px; padding: 8px; margin: 4px 0; background: #A68968; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;';
+        
+        trackItem.innerHTML = 
+          '<div class="track-cover-mini" style="width: 40px; height: 40px; flex-shrink: 0; position: relative;">' +
+          '<img loading="lazy" src="' + album.cover + '" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">' +
+          '<div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #201613; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>' +
+          '</div>' +
+          '<div style="flex: 1; color: #E0C290; font-size: 0.7em; font-weight: 400;">' + track.title + '</div>';
+        
+        trackItem.addEventListener('click', function() {
+          loadModalTrack(parseInt(this.getAttribute('data-index')));
+        });
+        
+        modalTrackList.appendChild(trackItem);
+      });
+    }
+    
+    // Load first track
+    loadModalTrack(0);
+    
+    // Show modal
+    audioPlayerModal.style.display = 'block';
+    audioPlayerModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  // Load track in modal
+  function loadModalTrack(index) {
+    if(index < 0 || index >= modalCurrentTracks.length || !modalAudioPlayer) return;
+    
+    modalCurrentTrackIndex = index;
+    var track = modalCurrentTracks[index];
+    
+    // Pause all other audio
+    document.querySelectorAll('audio').forEach(function(audio) {
+      if(audio !== modalAudioPlayer && !audio.paused) audio.pause();
+    });
+    
+    // Load and play track
+    modalAudioPlayer.src = track.src;
+    modalAudioPlayer.load();
+    modalAudioPlayer.play().catch(function(e) { console.log('Modal playback failed:', e); });
+    
+    // Update current track display
+    if(modalCurrentTrack) {
+      modalCurrentTrack.textContent = track.title;
+    }
+    
+    // Update track list highlights
+    updateModalTrackListHighlight();
+  }
+  
+  // Update track list highlighting in modal
+  function updateModalTrackListHighlight() {
+    if(!modalTrackList) return;
+    
+    var allTracks = modalTrackList.querySelectorAll('.modal-track-item');
+    allTracks.forEach(function(item, index) {
+      var playIndicator = item.querySelector('.play-indicator');
+      if(index === modalCurrentTrackIndex) {
+        item.style.background = '#f3e2c9';
+        if(playIndicator) playIndicator.style.display = 'block';
+      } else {
+        item.style.background = '#A68968';
+        if(playIndicator) playIndicator.style.display = 'none';
+      }
+    });
+  }
+  
+  // Close modal button
+  if(closeAudioPlayerModalBtn) {
+    closeAudioPlayerModalBtn.addEventListener('click', function() {
+      if(audioPlayerModal) {
+        audioPlayerModal.style.display = 'none';
+        audioPlayerModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        
+        // Pause modal audio
+        if(modalAudioPlayer && !modalAudioPlayer.paused) {
+          modalAudioPlayer.pause();
+        }
+      }
+    });
+  }
+  
+  // Close modal when clicking outside
+  if(audioPlayerModal) {
+    audioPlayerModal.addEventListener('click', function(e) {
+      if(e.target === audioPlayerModal) {
+        closeAudioPlayerModalBtn.click();
+      }
+    });
+  }
+  
+  // Close modal on ESC key
+  document.addEventListener('keydown', function(e) {
+    if(e.key === 'Escape' && audioPlayerModal && audioPlayerModal.style.display === 'block') {
+      closeAudioPlayerModalBtn.click();
+    }
+  });
+  
+  // Handle clicks on artist cover images in artist profiles
+  document.body.addEventListener('click', function(e) {
+    var coverImage = e.target.closest('.artist-cover-clickable');
+    if(coverImage) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      var artistName = coverImage.getAttribute('data-artist');
+      if(artistName) {
+        // Add hover effect
+        coverImage.style.transform = 'scale(1.05)';
+        setTimeout(function() {
+          coverImage.style.transform = 'scale(1)';
+        }, 200);
+        
+        openAudioPlayerModal(artistName);
+      }
+    }
+  });
+  
+  // Auto-advance to next track when current ends
+  if(modalAudioPlayer) {
+    modalAudioPlayer.addEventListener('ended', function() {
+      var nextIndex = modalCurrentTrackIndex + 1;
+      if(nextIndex >= modalCurrentTracks.length) nextIndex = 0;
+      loadModalTrack(nextIndex);
+    });
+    
+    modalAudioPlayer.addEventListener('play', function() {
+      updateModalTrackListHighlight();
+    });
+  }
+
   // Scroll to Top Button functionality
   var scrollToTopBtn = document.getElementById('scrollToTop');
   
