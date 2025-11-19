@@ -2,10 +2,25 @@
  * ROKKO Records - Intro Video Autoplay with Sound
  * Attempts to autoplay video with sound, with robust fallback to muted autoplay
  * 
+ * ============================================================================
+ * ⚠️ CRITICAL - DO NOT MODIFY WITHOUT EXPLICIT APPROVAL ⚠️
+ * ============================================================================
+ * 
+ * This code is subject to strict change control policies.
+ * All color values, size specifications, and behavior patterns are MANDATORY
+ * and must NOT be changed without explicit written approval from the project owner.
+ * 
+ * Specifically protected elements:
+ * - Mute button icons: mute_0.png (muted), mute_1.png (unmuted) - IMMUTABLE
+ * - Video autoplay behavior - IMMUTABLE
+ * - Button positioning and styling - IMMUTABLE
+ * 
+ * ============================================================================
+ * 
  * Features:
- * - Attempts unmuted autoplay on page load
+ * - Attempts unmuted autoplay on page load when video is fully loaded
  * - Falls back to muted autoplay if browser blocks sound
- * - Provides user controls: Mute/Unmute toggle and Stop
+ * - Provides user controls: Mute/Unmute toggle (using PNG icons) and Stop
  * - Shows notification if autoplay with sound is blocked
  */
 
@@ -116,18 +131,22 @@
 
   /**
    * Update mute button state
+   * Uses mute_0.png for muted and mute_1.png for unmuted
    */
   function updateMuteButtonState() {
     if (!toggleMuteBtn) return;
     
+    // Use PNG images instead of emojis: mute_0.png = muted, mute_1.png = unmuted
     if (video.muted) {
-      toggleMuteBtn.textContent = '🔇 Ton aktivieren';
+      toggleMuteBtn.innerHTML = '<img src="img/mute_0.png" alt="Muted" style="width: 24px; height: 24px; vertical-align: middle;">';
       toggleMuteBtn.setAttribute('aria-pressed', 'true');
       toggleMuteBtn.setAttribute('aria-label', 'Ton aktivieren');
+      toggleMuteBtn.title = 'Ton aktivieren';
     } else {
-      toggleMuteBtn.textContent = '🔊 Ton deaktivieren';
+      toggleMuteBtn.innerHTML = '<img src="img/mute_1.png" alt="Unmuted" style="width: 24px; height: 24px; vertical-align: middle;">';
       toggleMuteBtn.setAttribute('aria-pressed', 'false');
       toggleMuteBtn.setAttribute('aria-label', 'Ton deaktivieren');
+      toggleMuteBtn.title = 'Ton deaktivieren';
     }
   }
 

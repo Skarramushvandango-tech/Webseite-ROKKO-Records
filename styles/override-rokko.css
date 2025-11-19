@@ -1507,3 +1507,61 @@ audio:not([paused]) {
     height: 120px;
   }
 }
+
+/* ===========================================================================
+   Audio Player Styling - Fully Colored, No White Background
+   =========================================================================== */
+
+/* 
+  MANDATORY: Audio players must be fully colored without white backgrounds.
+  These styles override browser defaults to ensure consistent branding.
+  DO NOT MODIFY without explicit approval.
+*/
+
+audio {
+  /* Ensure audio player has colored background */
+  background: var(--rokko-accent) !important;
+  border: 2px solid var(--rokko-brown-dark) !important;
+}
+
+/* WebKit browsers (Chrome, Safari, Edge) */
+audio::-webkit-media-controls-panel {
+  background: var(--rokko-accent) !important;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+  color: var(--rokko-brown) !important;
+  filter: invert(0) !important;
+}
+
+audio::-webkit-media-controls-timeline {
+  background: rgba(61, 40, 23, 0.3) !important;
+  border-radius: 25px !important;
+}
+
+audio::-webkit-media-controls-volume-slider {
+  background: rgba(61, 40, 23, 0.3) !important;
+  border-radius: 25px !important;
+}
+
+/* Firefox */
+audio::-moz-range-track {
+  background: rgba(61, 40, 23, 0.3) !important;
+}
+
+/* Remove rounded corners from header - MANDATORY */
+/* The header must have square corners without rounding */
+.site-header {
+  border-radius: 0 !important;
+}
+
+/* Fixed height for news text sections - MANDATORY */
+/* News text must have static height to prevent layout jumping */
+.news-item .news-text-container {
+  min-height: 200px;
+  height: 200px;
+  overflow-y: auto;
+}
