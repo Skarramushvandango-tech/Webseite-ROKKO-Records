@@ -280,7 +280,15 @@
 
     // Aggressively attempt to start video playback as soon as possible
     // Try on multiple events to ensure autoplay
+    let autoplayAttempted = false;
     const tryAutoplay = () => {
+      // Prevent multiple simultaneous play attempts
+      if (autoplayAttempted) {
+        console.log('[Video Autoplay] Autoplay already attempted, skipping...');
+        return;
+      }
+      
+      autoplayAttempted = true;
       console.log('[Video Autoplay] Attempting autoplay...');
       
       video.play().then(() => {
@@ -302,6 +310,8 @@
         }, 100);
       }).catch((error) => {
         console.warn('[Video Autoplay] Autoplay failed:', error.message);
+        // Reset flag to allow retry
+        autoplayAttempted = false;
         // Keep trying with muted playback
         video.muted = true;
         updateMuteButtonState();
