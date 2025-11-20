@@ -213,7 +213,7 @@ class RokkoAudioPlayer {
       })
       .catch(error => {
         console.error('Error playing audio:', error);
-        this.onError({ message: 'Failed to play audio' });
+        this.onError(error);
       });
   }
 
@@ -302,8 +302,17 @@ class RokkoAudioPlayer {
   }
 
   getCoverImage() {
-    // Default placeholder cover
-    return 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400"%3E%3Crect width="400" height="400" fill="%23E0C290"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%233D2817" font-size="24" font-family="Arial"%3EROKKO Records%3C/text%3E%3C/svg%3E';
+    // Default placeholder cover - SVG with ROKKO branding
+    const svg = [
+      '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400">',
+      '<rect width="400" height="400" fill="#E0C290"/>',
+      '<text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="#3D2817" font-size="24" font-family="Arial">',
+      'ROKKO Records',
+      '</text>',
+      '</svg>'
+    ].join('');
+    
+    return 'data:image/svg+xml,' + encodeURIComponent(svg);
   }
 }
 

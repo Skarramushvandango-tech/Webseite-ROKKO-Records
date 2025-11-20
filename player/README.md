@@ -154,6 +154,12 @@ Um Farben anzupassen, überschreibe diese Variablen in deinem eigenen CSS:
 
 Der Player passt sich automatisch an die Bildschirmgröße an.
 
+## ⚙️ Verhalten
+
+### Autoplay
+
+Der Player spielt automatisch den nächsten Track ab, wenn der aktuelle Track endet. Dies ist das Standard-Verhalten und sorgt für ein kontinuierliches Hörerlebnis. Um das Autoplay-Verhalten anzupassen, kann die `onTrackEnded()` Methode in `player.js` modifiziert werden.
+
 ## 🎵 Assets
 
 ### Audio-Dateien

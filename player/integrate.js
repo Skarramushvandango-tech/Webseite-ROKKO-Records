@@ -26,25 +26,25 @@
   const CSS_PATH = PLAYER_BASE_PATH + 'player.css';
   const JS_PATH = PLAYER_BASE_PATH + 'player.js';
 
-  // Default demo playlist
+  // Default demo playlist - using existing tracks from the repository
   const DEFAULT_PLAYLIST = [
     {
-      title: 'Demo Track 1',
-      artist: 'ROKKO Artist',
-      src: 'public/player-assets/demo-track-1.mp3',
-      cover: 'public/player-assets/cover-1.jpg'
+      title: 'Always Sunny',
+      artist: 'Skaramush Vandango',
+      src: 'mp3/vandango/always_sunny.m4a',
+      cover: 'mp3/vandango/cover.png'
     },
     {
-      title: 'Demo Track 2',
-      artist: 'ROKKO Artist',
-      src: 'public/player-assets/demo-track-2.mp3',
-      cover: 'public/player-assets/cover-2.jpg'
+      title: 'Among the Crowd',
+      artist: 'Skaramush Vandango',
+      src: 'mp3/vandango/among_the_crowd.m4a',
+      cover: 'mp3/vandango/cover.png'
     },
     {
-      title: 'Demo Track 3',
-      artist: 'ROKKO Artist',
-      src: 'public/player-assets/demo-track-3.mp3',
-      cover: 'public/player-assets/cover-3.jpg'
+      title: 'Kohle Raus',
+      artist: 'Skank Schablonski',
+      src: 'mp3/schablonski/kohle_raus.m4a',
+      cover: 'mp3/schablonski/kohle_raus_cover.png'
     }
   ];
 
