@@ -292,9 +292,9 @@
       console.log('[Video Autoplay] Attempting autoplay...');
       
       video.play().then(() => {
-        console.log('[Video Autoplay] Autoplay successful');
-        clearInterval(loadingInterval);
-        hidePreloader();
+        console.log('[Video Autoplay] Autoplay successful - video playing, waiting for sufficient buffer...');
+        // Don't hide preloader yet - keep it visible while buffering
+        // It will be hidden when video has buffered enough (canplaythrough event)
         
         // Try to unmute after successful play
         setTimeout(() => {
@@ -340,8 +340,22 @@
     // Video will autoplay muted due to HTML attributes
     // Once it starts playing, update UI state
     video.addEventListener('play', () => {
-      hidePreloader();
+      // Keep preloader visible while buffering
       updateStopButtonState();
+    });
+    
+    // Hide preloader only when video has buffered enough to play smoothly
+    video.addEventListener('canplaythrough', () => {
+      console.log('[Video Autoplay] Video buffered enough, hiding preloader');
+      clearInterval(loadingInterval);
+      hidePreloader();
+    });
+    
+    // Also hide on playing event as fallback (when video actually starts playing)
+    video.addEventListener('playing', () => {
+      console.log('[Video Autoplay] Video playing smoothly, ensuring preloader is hidden');
+      clearInterval(loadingInterval);
+      hidePreloader();
     });
 
     // When video ends, update stop button to show play icon
