@@ -110,20 +110,23 @@
       return;
     }
 
-    try {
-      // Video starts muted due to HTML attribute - this allows autoplay
-      // Now try to unmute immediately after playback starts
-      video.muted = false;
-      console.log('[Video Autoplay] Successfully autoplaying with sound');
-      updateMuteButtonState();
-      hidePreloader();
-    } catch (error) {
-      console.warn('[Video Autoplay] Autoplay with sound blocked:', error.message);
-      // Keep muted if unmuting fails
-      video.muted = true;
-      updateMuteButtonState();
-      hidePreloader();
-    }
+    // Video starts muted due to HTML attribute - this allows autoplay
+    // Try to unmute after a small delay to give browser time to start playback
+    setTimeout(() => {
+      try {
+        video.muted = false;
+        console.log('[Video Autoplay] Successfully unmuted video');
+        updateMuteButtonState();
+      } catch (error) {
+        console.warn('[Video Autoplay] Could not unmute:', error.message);
+        // Keep muted if unmuting fails
+        video.muted = true;
+        updateMuteButtonState();
+      }
+    }, 100);
+    
+    hidePreloader();
+    updateStopButtonState();
   }
 
   /**
