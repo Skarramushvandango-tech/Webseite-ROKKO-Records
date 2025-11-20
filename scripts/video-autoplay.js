@@ -155,16 +155,18 @@
   function stopIntroVideo() {
     if (!video) return;
     
-    // If video is playing, pause it
+    // If video is playing, stop it (jump to end)
     if (!video.paused) {
+      video.currentTime = video.duration;
       video.pause();
       updateStopButtonState();
-      console.log('[Video Autoplay] Video paused');
+      console.log('[Video Autoplay] Video stopped at end');
     } else {
-      // If video is paused, play it
+      // If video is stopped/paused, restart from beginning
+      video.currentTime = 0;
       video.play();
       updateStopButtonState();
-      console.log('[Video Autoplay] Video playing');
+      console.log('[Video Autoplay] Video restarted from beginning');
     }
   }
   
@@ -234,7 +236,7 @@
       stopVideoBtn.id = 'stopVideoBtn';
       stopVideoBtn.className = 'video-controls';
       stopVideoBtn.setAttribute('aria-label', 'Video stoppen');
-      stopVideoBtn.style.cssText = 'position: absolute; bottom: 10px; left: 10px; z-index: 10; background: rgba(0, 0, 0, 0.5); border: 2px solid rgba(224, 194, 144, 0.8); border-radius: 8px; padding: 8px; cursor: pointer; transition: all 0.3s ease;';
+      stopVideoBtn.style.cssText = 'position: absolute; bottom: 10px; left: 10px; z-index: 10; background: transparent; border: none; padding: 0; cursor: pointer; transition: all 0.3s ease;';
       videoContainer.appendChild(stopVideoBtn);
     }
 
@@ -244,7 +246,7 @@
       toggleMuteBtn = document.createElement('button');
       toggleMuteBtn.id = 'toggleMuteBtn';
       toggleMuteBtn.className = 'video-controls';
-      toggleMuteBtn.style.cssText = 'position: absolute; bottom: 10px; right: 10px; z-index: 10; background: rgba(0, 0, 0, 0.5); border: 2px solid rgba(224, 194, 144, 0.8); border-radius: 8px; padding: 8px; cursor: pointer; transition: all 0.3s ease;';
+      toggleMuteBtn.style.cssText = 'position: absolute; bottom: 10px; right: 10px; z-index: 10; background: transparent; border: none; padding: 0; cursor: pointer; transition: all 0.3s ease;';
       videoContainer.appendChild(toggleMuteBtn);
     }
 
@@ -252,14 +254,12 @@
     toggleMuteBtn.addEventListener('click', toggleIntroMute);
     stopVideoBtn.addEventListener('click', stopIntroVideo);
     
-    // Add hover effects
+    // Add hover effects (scale only, no background change)
     [toggleMuteBtn, stopVideoBtn].forEach(btn => {
       btn.addEventListener('mouseenter', () => {
-        btn.style.background = 'rgba(224, 194, 144, 0.3)';
         btn.style.transform = 'scale(1.1)';
       });
       btn.addEventListener('mouseleave', () => {
-        btn.style.background = 'rgba(0, 0, 0, 0.5)';
         btn.style.transform = 'scale(1)';
       });
     });
