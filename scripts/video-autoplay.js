@@ -111,30 +111,18 @@
     }
 
     try {
-      // First, try unmuted autoplay
+      // Video starts muted due to HTML attribute - this allows autoplay
+      // Now try to unmute immediately after playback starts
       video.muted = false;
-      const playPromise = video.play();
-
-      if (playPromise !== undefined) {
-        await playPromise;
-        console.log('[Video Autoplay] Successfully autoplaying with sound');
-        updateMuteButtonState();
-        hidePreloader();
-      }
+      console.log('[Video Autoplay] Successfully autoplaying with sound');
+      updateMuteButtonState();
+      hidePreloader();
     } catch (error) {
       console.warn('[Video Autoplay] Autoplay with sound blocked:', error.message);
-      
-      // Fallback to muted autoplay
-      try {
-        video.muted = true;
-        await video.play();
-        console.log('[Video Autoplay] Falling back to muted autoplay');
-        updateMuteButtonState();
-        hidePreloader();
-        // Notification removed per user request - autoplay with sound should work silently
-      } catch (mutedError) {
-        console.error('[Video Autoplay] Even muted autoplay failed:', mutedError.message);
-      }
+      // Keep muted if unmuting fails
+      video.muted = true;
+      updateMuteButtonState();
+      hidePreloader();
     }
   }
 
@@ -151,39 +139,37 @@
   }
 
   /**
-   * Stop video (jump to end or replay from beginning)
+   * Stop/Play video toggle
    */
   function stopIntroVideo() {
     if (!video) return;
     
-    // If video is playing or paused before the end, jump to the end
-    if (video.currentTime < video.duration - 0.5) {
-      video.currentTime = video.duration;
+    // If video is playing, pause it
+    if (!video.paused) {
       video.pause();
       updateStopButtonState();
-      console.log('[Video Autoplay] Video jumped to end');
+      console.log('[Video Autoplay] Video paused');
     } else {
-      // If video is at the end, replay from beginning
-      video.currentTime = 0;
+      // If video is paused, play it
       video.play();
       updateStopButtonState();
-      console.log('[Video Autoplay] Video replaying from beginning');
+      console.log('[Video Autoplay] Video playing');
     }
   }
   
   /**
-   * Update stop button state based on video position
+   * Update stop button state based on video playing status
    */
   function updateStopButtonState() {
     if (!stopVideoBtn) return;
     
-    // Show play button when video is at the end, stop button otherwise
-    if (video.currentTime >= video.duration - 0.5) {
-      stopVideoBtn.innerHTML = '<img src="img/playbutton.png" alt="Play" style="width: 20px; height: 20px; vertical-align: middle;">';
+    // Show play button when video is paused, stop button when playing
+    if (video.paused) {
+      stopVideoBtn.innerHTML = '<img src="img/playbutton.png" alt="Play" style="width: 30px; height: 30px; vertical-align: middle;">';
       stopVideoBtn.setAttribute('aria-label', 'Video abspielen');
       stopVideoBtn.title = 'Video abspielen';
     } else {
-      stopVideoBtn.innerHTML = '<img src="img/stopbutton.png" alt="Stop" style="width: 20px; height: 20px; vertical-align: middle;">';
+      stopVideoBtn.innerHTML = '<img src="img/stopbutton.png" alt="Stop" style="width: 30px; height: 30px; vertical-align: middle;">';
       stopVideoBtn.setAttribute('aria-label', 'Video stoppen');
       stopVideoBtn.title = 'Video stoppen';
     }
@@ -191,20 +177,21 @@
 
   /**
    * Update mute button state
-   * Uses mute.png when sound is playing (to show you can mute it)
-   * Uses sound.png when muted (to show you can enable sound)
+   * When sound is playing (unmuted): show mute.png (user can click to mute)
+   * When muted: show sound.png (user can click to enable sound)
    */
   function updateMuteButtonState() {
     if (!toggleMuteBtn) return;
     
-    // Use new PNG images: sound.png when muted (click to enable sound), mute.png when playing (click to mute)
+    // When video is muted, show sound.png (click to enable sound)
+    // When video has sound, show mute.png (click to mute)
     if (video.muted) {
-      toggleMuteBtn.innerHTML = '<img src="img/sound.png" alt="Sound aktivieren" style="width: 20px; height: 20px; vertical-align: middle;">';
+      toggleMuteBtn.innerHTML = '<img src="img/sound.png" alt="Sound aktivieren" style="width: 30px; height: 30px; vertical-align: middle;">';
       toggleMuteBtn.setAttribute('aria-pressed', 'true');
       toggleMuteBtn.setAttribute('aria-label', 'Ton aktivieren');
       toggleMuteBtn.title = 'Ton aktivieren';
     } else {
-      toggleMuteBtn.innerHTML = '<img src="img/mute.png" alt="Mute" style="width: 20px; height: 20px; vertical-align: middle;">';
+      toggleMuteBtn.innerHTML = '<img src="img/mute.png" alt="Ton aus" style="width: 30px; height: 30px; vertical-align: middle;">';
       toggleMuteBtn.setAttribute('aria-pressed', 'false');
       toggleMuteBtn.setAttribute('aria-label', 'Ton deaktivieren');
       toggleMuteBtn.title = 'Ton deaktivieren';
@@ -229,30 +216,42 @@
     // Find or create control buttons
     const videoContainer = video.parentElement;
 
-    // Create or find mute toggle button - positioned bottom-left
-    toggleMuteBtn = document.getElementById('toggleMuteBtn');
-    if (!toggleMuteBtn) {
-      toggleMuteBtn = document.createElement('button');
-      toggleMuteBtn.id = 'toggleMuteBtn';
-      toggleMuteBtn.className = 'video-controls';
-      toggleMuteBtn.style.cssText = 'position: absolute; bottom: 5px; left: 5px; z-index: 10; background: transparent; border: none; padding: 2px; cursor: pointer;';
-      videoContainer.appendChild(toggleMuteBtn);
-    }
-
-    // Create or find stop button - positioned bottom-right
+    // Create or find stop/play button - positioned bottom-left
     stopVideoBtn = document.getElementById('stopVideoBtn');
     if (!stopVideoBtn) {
       stopVideoBtn = document.createElement('button');
       stopVideoBtn.id = 'stopVideoBtn';
       stopVideoBtn.className = 'video-controls';
       stopVideoBtn.setAttribute('aria-label', 'Video stoppen');
-      stopVideoBtn.style.cssText = 'position: absolute; bottom: 5px; right: 5px; z-index: 10; background: transparent; border: none; padding: 2px; cursor: pointer;';
+      stopVideoBtn.style.cssText = 'position: absolute; bottom: 10px; left: 10px; z-index: 10; background: rgba(0, 0, 0, 0.5); border: 2px solid rgba(224, 194, 144, 0.8); border-radius: 8px; padding: 8px; cursor: pointer; transition: all 0.3s ease;';
       videoContainer.appendChild(stopVideoBtn);
+    }
+
+    // Create or find mute toggle button - positioned bottom-right
+    toggleMuteBtn = document.getElementById('toggleMuteBtn');
+    if (!toggleMuteBtn) {
+      toggleMuteBtn = document.createElement('button');
+      toggleMuteBtn.id = 'toggleMuteBtn';
+      toggleMuteBtn.className = 'video-controls';
+      toggleMuteBtn.style.cssText = 'position: absolute; bottom: 10px; right: 10px; z-index: 10; background: rgba(0, 0, 0, 0.5); border: 2px solid rgba(224, 194, 144, 0.8); border-radius: 8px; padding: 8px; cursor: pointer; transition: all 0.3s ease;';
+      videoContainer.appendChild(toggleMuteBtn);
     }
 
     // Set up event listeners
     toggleMuteBtn.addEventListener('click', toggleIntroMute);
     stopVideoBtn.addEventListener('click', stopIntroVideo);
+    
+    // Add hover effects
+    [toggleMuteBtn, stopVideoBtn].forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        btn.style.background = 'rgba(224, 194, 144, 0.3)';
+        btn.style.transform = 'scale(1.1)';
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.background = 'rgba(0, 0, 0, 0.5)';
+        btn.style.transform = 'scale(1)';
+      });
+    });
 
     // Update button states initially
     updateMuteButtonState();
@@ -261,29 +260,16 @@
     // Update loading progress as video buffers
     video.addEventListener('progress', updateLoadingProgress);
 
-    // Attempt autoplay with sound when video is fully loaded
-    // Use canplaythrough event to ensure video is completely loaded
-    if (video.readyState >= 4) {
-      // Video is fully loaded and ready to play
-      attemptAutoplayWithSound();
-    } else {
-      // Wait for video to be fully loaded before attempting autoplay
-      video.addEventListener('canplaythrough', () => {
-        if (video.paused) {
-          attemptAutoplayWithSound();
-        }
-      }, { once: true });
-      
-      // Fallback: also try when metadata is loaded (in case canplaythrough takes too long)
-      video.addEventListener('loadedmetadata', () => {
-        if (video.paused && video.readyState >= 2) {
-          attemptAutoplayWithSound();
-        }
-      }, { once: true });
-    }
-
-    // Hide preloader if video starts playing
-    video.addEventListener('play', hidePreloader);
+    // Video will autoplay muted due to HTML attributes
+    // Once it starts playing, try to unmute it
+    video.addEventListener('play', () => {
+      hidePreloader();
+      // Try to unmute on first play
+      if (!video.hasAttribute('data-unmute-attempted')) {
+        video.setAttribute('data-unmute-attempted', 'true');
+        attemptAutoplayWithSound();
+      }
+    }, { once: true });
 
     // When video ends, update stop button to show play icon
     video.addEventListener('ended', () => {
