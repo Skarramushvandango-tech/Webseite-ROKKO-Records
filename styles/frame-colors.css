@@ -45,11 +45,11 @@
    Bunnyfloor Image Styling
    =========================================================================== */
 
-/* Bunnyfloor image - reduced to 50% width */
+/* Bunnyfloor image - reduced to 25% width */
 .bunnyfloor {
-  width: 50% !important;
+  width: 25% !important;
   height: auto !important;
-  max-width: 50% !important;
+  max-width: 25% !important;
 }
 
 /* Helper class for moving bunnyfloor one DOM row deeper using flexbox/grid order */
