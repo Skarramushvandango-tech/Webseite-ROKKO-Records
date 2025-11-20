@@ -48,6 +48,7 @@ body, html {
   background: var(--content-bg);
   color:#111;
   -webkit-font-smoothing:antialiased;
+  overflow-x: hidden !important; /* Prevent horizontal scrolling - mobile pages scroll up/down only */
 }
 
 /* Enge Ränder für Sections - STARK REDUZIERT */
