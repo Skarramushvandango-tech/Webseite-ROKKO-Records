@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROKKO Custom Audio Player - Demo</title>
+  <link rel="stylesheet" href="player.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #997A4B;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .demo-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .demo-header {
+      text-align: center;
+      color: #E0C290;
+      margin-bottom: 30px;
+    }
+
+    .demo-header h1 {
+      font-size: 2.5em;
+      margin: 0 0 10px 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .demo-header p {
+      font-size: 1.2em;
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    .demo-footer {
+      text-align: center;
+      color: #E0C290;
+      margin-top: 40px;
+      padding: 20px;
+      opacity: 0.8;
+    }
+
+    .demo-footer a {
+      color: #f4d678;
+      text-decoration: none;
+    }
+
+    .demo-footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+
+      .demo-header h1 {
+        font-size: 1.8em;
+      }
+
+      .demo-header p {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <div class="demo-header">
+      <h1>🎵 ROKKO Custom Audio Player</h1>
+      <p>Responsive Audio Player für ROKKO Records</p>
+    </div>
+
+    <!-- Player will be rendered here -->
+    <div id="player-demo"></div>
+
+    <div class="demo-footer">
+      <p>
+        <strong>ROKKO Records Audio Player Demo</strong><br>
+        Designed with the ROKKO color scheme (#E0C290 sand, #3D2817 brown)<br>
+        <br>
+        <a href="../index.html">← Zurück zur Hauptseite</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="player.js"></script>
+  <script>
+    // Demo playlist with placeholder data
+    const demoPlaylist = [
+      {
+        title: 'Always Sunny',
+        artist: 'Skaramush Vandango',
+        src: '../mp3/vandango/always_sunny.m4a',
+        cover: '../mp3/vandango/cover.png'
+      },
+      {
+        title: 'Among the Crowd',
+        artist: 'Skaramush Vandango',
+        src: '../mp3/vandango/among_the_crowd.m4a',
+        cover: '../mp3/vandango/cover.png'
+      },
+      {
+        title: 'Borrowed Time',
+        artist: 'Skaramush Vandango',
+        src: '../mp3/vandango/borrowed_time.m4a',
+        cover: '../mp3/vandango/cover.png'
+      },
+      {
+        title: 'Like Water',
+        artist: 'Skaramush Vandango',
+        src: '../mp3/vandango/like_water.m4a',
+        cover: '../mp3/vandango/cover.png'
+      },
+      {
+        title: 'Love Song',
+        artist: 'Skaramush Vandango',
+        src: '../mp3/vandango/love_song.m4a',
+        cover: '../mp3/vandango/cover.png'
+      },
+      {
+        title: 'Kohle Raus',
+        artist: 'Skank Schablonski',
+        src: '../mp3/schablonski/kohle_raus.m4a',
+        cover: '../mp3/schablonski/kohle_raus_cover.png'
+      },
+      {
+        title: 'Kohle Raus (Remix)',
+        artist: 'Skank Schablonski',
+        src: '../mp3/schablonski/kohle_raus_rmx.m4a',
+        cover: '../mp3/schablonski/kohle_raus_cover.png'
+      }
+    ];
+
+    // Initialize player when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      new RokkoAudioPlayer('player-demo', demoPlaylist);
+    });
+  </script>
+</body>
+</html>
