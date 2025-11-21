@@ -111,12 +111,12 @@ body {
 /* Album Cover Area - TOP LEFT in YOUR design */
 .album-cover-area {
     position: absolute;
-    top: 10.7%;
-    left: 8%;
-    width: 38.5%;
+    top: 10.8%;
+    left: 8.2%;
+    width: 38.2%;
     aspect-ratio: 1;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 6px;
 }
 
 .album-cover-area img {
@@ -128,36 +128,45 @@ body {
 /* Track Info Area - TOP RIGHT in YOUR design */
 .track-info-area {
     position: absolute;
-    top: 11.5%;
+    top: 11.3%;
     left: 50.5%;
     width: 45%;
     text-align: left;
-    color: #201613;
     pointer-events: none;
+    background: rgba(224, 194, 144, 0.98);
+    padding: 3px 8px;
+    border-radius: 4px;
 }
 
 .track-info-area h2 {
-    font-size: clamp(14px, 2.5vw, 22px);
-    font-weight: 700;
+    font-size: clamp(11px, 2vw, 18px);
+    font-weight: 600;
     margin-bottom: 2px;
-    line-height: 1.2;
+    line-height: 1.1;
+    color: #5A4A3A;
 }
 
 .track-info-area p {
-    font-size: clamp(12px, 2.2vw, 36px);
+    font-size: clamp(20px, 4vw, 52px);
     font-weight: 700;
-    margin-bottom: 4px;
+    margin-bottom: 0;
+    line-height: 0.95;
+    color: #201613;
 }
 
 /* Time Display - Shows "2:34/4:35" in YOUR design */
 .time-display-area {
     position: absolute;
-    top: 31.5%;
-    right: 8%;
-    font-size: clamp(14px, 2vw, 20px);
+    top: 32.5%;
+    right: 7.5%;
+    font-size: clamp(16px, 2.5vw, 26px);
     font-weight: 700;
     color: #201613;
     pointer-events: none;
+    white-space: nowrap;
+    background: rgba(224, 194, 144, 0.98);
+    padding: 3px 10px;
+    border-radius: 4px;
 }
 
 /* Progress Bar - Horizontal bar in YOUR design */
@@ -286,28 +295,36 @@ body {
 .streaming-buttons-area {
     position: absolute;
     top: 60.5%;
-    right: 6%;
-    width: 35%;
-    height: 34%;
+    right: 5.5%;
+    width: 37%;
+    height: 34.5%;
     display: flex;
     flex-direction: column;
-    gap: 3%;
+    gap: 2%;
     pointer-events: auto;
 }
 
 .streaming-btn {
     width: 100%;
-    height: 22%;
+    height: 24%;
     background: transparent;
     border: none;
     cursor: pointer;
     transition: all 0.2s;
     outline: none;
+    padding: 0;
+}
+
+.streaming-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 .streaming-btn:hover {
-    transform: scale(1.02);
-    background: rgba(184, 147, 95, 0.2);
+    transform: scale(1.03);
+    filter: brightness(1.1);
 }
 
 .streaming-btn:focus {
