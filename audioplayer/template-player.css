@@ -1,5 +1,9 @@
 /* ROKKO Records Audio Player - Matching YOUR Design Template Exactly */
 
+:root {
+    --overlay-bg: rgba(224, 194, 144, 0.98);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -133,7 +137,7 @@ body {
     width: 45%;
     text-align: left;
     pointer-events: none;
-    background: rgba(224, 194, 144, 0.98);
+    background: var(--overlay-bg);
     padding: 3px 8px;
     border-radius: 4px;
 }
@@ -164,7 +168,7 @@ body {
     color: #201613;
     pointer-events: none;
     white-space: nowrap;
-    background: rgba(224, 194, 144, 0.98);
+    background: var(--overlay-bg);
     padding: 3px 10px;
     border-radius: 4px;
 }
