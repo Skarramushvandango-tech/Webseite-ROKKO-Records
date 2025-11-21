@@ -18,6 +18,7 @@
   let loadingBar = null;
   let resizeTimer = null;
   let resizeHandlerAttached = false;
+  let autoplayAttempted = false;
 
   /**
    * Hide the video preloader
@@ -265,7 +266,13 @@
 
     // Attempt to autoplay video with sound when metadata is loaded
     // Note: Browsers may block autoplay with sound due to autoplay policies
+    // Use flag to prevent multiple autoplay attempts
     video.addEventListener('loadedmetadata', () => {
+      if (autoplayAttempted) {
+        return; // Already attempted autoplay once
+      }
+      autoplayAttempted = true;
+      
       // Try to play the video with sound
       const playPromise = video.play();
       
