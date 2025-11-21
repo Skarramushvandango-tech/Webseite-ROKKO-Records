@@ -283,15 +283,11 @@
         playPromise
           .then(() => {
             // Autoplay with sound succeeded
-            console.log('Video autoplay with sound successful');
             updateStopButtonState();
           })
           .catch(error => {
             // Autoplay was blocked by browser policy
-            console.log('Autoplay blocked by browser:', error.message);
-            console.log('User can click the play button to start the video');
-            
-            // Update button states to show play button
+            // User can interact with play button to start video
             updateMuteButtonState();
             updateStopButtonState();
           });
