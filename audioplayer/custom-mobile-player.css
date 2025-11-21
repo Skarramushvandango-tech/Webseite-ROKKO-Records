@@ -1,0 +1,392 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #3D2817;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+.player-container {
+    position: relative;
+    width: 100%;
+    max-width: 675px;
+    min-height: 100vh;
+    margin: 0 auto;
+    background: url('../img/background.png') no-repeat center top;
+    background-size: cover;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top Section Styling */
+.top-section {
+    padding: 60px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Album Cover */
+.album-cover-wrapper {
+    margin-bottom: 15px;
+}
+
+.album-cover-frame {
+    width: 260px;
+    height: 260px;
+    background: #E0C290;
+    border: 6px solid #B89968;
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+#album-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Song Info */
+.song-info {
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 0 20px;
+}
+
+.artist-name {
+    font-size: 1em;
+    font-weight: 600;
+    color: #201613;
+    margin-bottom: 3px;
+}
+
+.song-title {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: #201613;
+}
+
+/* Character */
+.character-wrapper {
+    position: absolute;
+    right: 25px;
+    top: 320px;
+    width: 100px;
+    height: 100px;
+    z-index: 5;
+}
+
+.character-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: none; /* Hidden by default, can be shown with JS */
+}
+
+/* Progress Bar */
+.progress-wrapper {
+    width: 90%;
+    max-width: 380px;
+    margin-bottom: 10px;
+}
+
+.progress-bar-bg {
+    position: relative;
+    width: 100%;
+    height: 26px;
+    background: #8B7355;
+    border-radius: 13px;
+    border: 2px solid #5D4A3A;
+    overflow: visible;
+    margin-bottom: 5px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 54%;
+    background: linear-gradient(to right, #C8A882, #B89968);
+    border-radius: 11px;
+    transition: width 0.1s linear;
+}
+
+.progress-handle {
+    position: absolute;
+    top: 50%;
+    left: 54%;
+    transform: translate(-50%, -50%);
+    width: 18px;
+    height: 18px;
+    background: #3D2817;
+    border: 3px solid #E0C290;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.time-display {
+    text-align: right;
+    font-size: 1em;
+    font-weight: 700;
+    color: #201613;
+}
+
+/* Player Controls Section */
+.controls-section {
+    position: relative;
+    width: 100%;
+    max-width: 550px;
+    height: 120px;
+    margin: 15px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls-bg {
+    width: 100%;
+    height: auto;
+    max-width: 550px;
+    display: block;
+}
+
+.control-btn {
+    position: absolute;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: transform 0.1s;
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+.prev-btn {
+    left: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 85px;
+    height: 85px;
+}
+
+.play-btn {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 110px;
+    height: 110px;
+}
+
+.next-btn {
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 85px;
+    height: 85px;
+}
+
+/* Bottom Section */
+.bottom-section {
+    padding: 0 20px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+/* Waveform */
+.waveform-section {
+    width: 100%;
+    max-width: 380px;
+    height: 90px;
+    background: rgba(224, 194, 144, 0.85);
+    border: 3px solid #5D4A3A;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+#waveform-canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    background: rgba(139, 115, 85, 0.4);
+}
+
+/* Track List */
+.tracklist-section {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    background: rgba(224, 194, 144, 0.9);
+    border: 3px solid #5D4A3A;
+    border-radius: 12px;
+    padding: 15px;
+    max-height: 280px;
+    margin-bottom: 20px;
+}
+
+.tracklist-scroll {
+    max-height: 240px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.track-item {
+    display: flex;
+    align-items: center;
+    padding: 9px 12px;
+    background: #B89968;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.track-item:hover {
+    background: #A68958;
+}
+
+.track-item.active {
+    background: #8B7355;
+    color: #E0C290;
+}
+
+.track-number {
+    font-weight: 700;
+    margin-right: 8px;
+    color: #201613;
+    min-width: 22px;
+    font-size: 0.85em;
+}
+
+.track-name {
+    flex: 1;
+    color: #201613;
+    font-size: 0.85em;
+}
+
+.track-item.active .track-number,
+.track-item.active .track-name {
+    color: #E0C290;
+}
+
+/* Headphone Icon */
+.headphone-icon {
+    position: absolute;
+    bottom: 12px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    opacity: 0.5;
+}
+
+.headphone-icon::before {
+    content: '🎧';
+    font-size: 24px;
+}
+
+/* Logo Stack */
+.logo-stack {
+    position: fixed;
+    right: 18px;
+    bottom: 140px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 100;
+}
+
+.logo-item {
+    display: block;
+    width: 95px;
+    height: auto;
+    transition: transform 0.2s;
+}
+
+.logo-item:hover {
+    transform: translateX(-5px);
+}
+
+.logo-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+}
+
+/* Scrollbar Styling */
+.tracklist-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tracklist-scroll::-webkit-scrollbar-track {
+    background: rgba(61, 40, 23, 0.15);
+    border-radius: 10px;
+}
+
+.tracklist-scroll::-webkit-scrollbar-thumb {
+    background: #5D4A3A;
+    border-radius: 10px;
+}
+
+.tracklist-scroll::-webkit-scrollbar-thumb:hover {
+    background: #3D2817;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .album-cover-frame {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .song-title {
+        font-size: 1.4em;
+    }
+    
+    .controls-section {
+        max-width: 450px;
+    }
+    
+    .logo-stack {
+        right: 12px;
+        bottom: 120px;
+    }
+    
+    .logo-item {
+        width: 80px;
+    }
+}
+
+@media (max-width: 400px) {
+    .album-cover-frame {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .controls-section {
+        max-width: 380px;
+        height: 100px;
+    }
+    
+    .prev-btn, .next-btn {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .play-btn {
+        width: 95px;
+        height: 95px;
+    }
+}
