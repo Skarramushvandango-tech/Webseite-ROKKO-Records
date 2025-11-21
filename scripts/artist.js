@@ -515,9 +515,20 @@ document.addEventListener('DOMContentLoaded', function(){
         this.style.boxShadow = 'none';
       });
       
-      // Click to open popup modal
+      // Click to open template player
       albumCard.addEventListener('click', function() {
-        openAudioPlayerModal(artistName);
+        if (window.rokkoAudioPlayer && artistAlbums[artistName]) {
+          var album = artistAlbums[artistName];
+          var tracks = album.tracks.map(function(t) {
+            return {
+              title: t.title,
+              artist: artistName,
+              src: t.src,
+              cover: album.cover
+            };
+          });
+          window.rokkoAudioPlayer.openPlayer(tracks, artistName);
+        }
       });
       
       return albumCard;
