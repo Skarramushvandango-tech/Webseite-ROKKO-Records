@@ -263,22 +263,21 @@
       resizeHandlerAttached = true;
     }
 
-    // Attempt to play video with sound when it's ready
+    // Monitor for autoplay failures due to browser policies
     // Note: Browsers may block autoplay with sound due to autoplay policies
-    video.addEventListener('loadedmetadata', () => {
-      // Try to play with sound
-      const playPromise = video.play();
-      
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          // Autoplay with sound was blocked by browser
-          console.log('Autoplay with sound blocked by browser. Video will need user interaction to play with sound.');
-          
-          // If autoplay is blocked, the video may still autoplay muted due to HTML attributes
-          // Update button states to reflect actual state
-          updateMuteButtonState();
-          updateStopButtonState();
-        });
+    // The HTML autoplay attribute will handle starting playback
+    video.addEventListener('suspend', () => {
+      // Video loading has been suspended (possibly due to autoplay policy)
+      // Update button states to reflect current state
+      updateMuteButtonState();
+      updateStopButtonState();
+    });
+    
+    // Log autoplay failures for debugging
+    video.addEventListener('pause', () => {
+      if (video.currentTime === 0 && !video.ended) {
+        // Video was paused at the start, likely due to autoplay policy
+        console.log('Video autoplay may have been blocked by browser policy. User can click play to start.');
       }
     });
   }
