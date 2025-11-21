@@ -115,6 +115,26 @@
   }
 
   /**
+   * Set the appropriate video source based on screen size
+   */
+  function setVideoSource() {
+    if (!video) return;
+    
+    const videoSource = document.getElementById('videoSource');
+    if (!videoSource) return;
+    
+    // Check if mobile (768px or less) or desktop
+    const isMobile = window.innerWidth <= 768;
+    const newSrc = isMobile ? 'images/intro_movie_mobile.mp4' : 'images/intro_movie.mp4';
+    
+    // Only update if the source is different
+    if (videoSource.src !== newSrc && !videoSource.src.endsWith(newSrc)) {
+      videoSource.src = newSrc;
+      video.load(); // Reload the video with the new source
+    }
+  }
+
+  /**
    * Initialize intro video controls
    */
   function initIntroVideo() {
@@ -123,6 +143,9 @@
     if (!video) {
       return;
     }
+
+    // Set the appropriate video source based on screen size
+    setVideoSource();
 
     // Find preloader elements
     preloader = document.getElementById('videoPreloader');
@@ -205,6 +228,15 @@
     // Update stop button state when video pauses
     video.addEventListener('pause', () => {
       updateStopButtonState();
+    });
+    
+    // Handle window resize to switch video source if needed
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        setVideoSource();
+      }, 250); // Debounce resize events
     });
   }
 
