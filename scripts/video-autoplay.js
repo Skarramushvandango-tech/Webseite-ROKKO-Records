@@ -162,6 +162,9 @@
       return;
     }
 
+    // Ensure video starts unmuted (user requirement: autoplay with sound)
+    video.muted = false;
+
     // Set the appropriate video source based on screen size
     setVideoSource();
 
@@ -259,6 +262,25 @@
       });
       resizeHandlerAttached = true;
     }
+
+    // Attempt to play video with sound when it's ready
+    // Note: Browsers may block autoplay with sound due to autoplay policies
+    video.addEventListener('loadedmetadata', () => {
+      // Try to play with sound
+      const playPromise = video.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          // Autoplay with sound was blocked by browser
+          console.log('Autoplay with sound blocked by browser. Video will need user interaction to play with sound.');
+          
+          // If autoplay is blocked, the video may still autoplay muted due to HTML attributes
+          // Update button states to reflect actual state
+          updateMuteButtonState();
+          updateStopButtonState();
+        });
+      }
+    });
   }
 
   // Auto-initialize when DOM is ready
