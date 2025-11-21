@@ -1,10 +1,11 @@
 /**
  * ROKKO Records - Intro Video Controls
- * Simple video control system - browser handles autoplay via HTML attributes
+ * JavaScript-controlled video autoplay system with sound
  * 
  * Features:
- * - Video autoplays muted via HTML attributes (autoplay muted)
- * - Video stops on last frame (no loop attribute)
+ * - Video attempts to autoplay with sound via JavaScript
+ * - Handles browser autoplay policies gracefully
+ * - Video stops on last frame (no loop)
  * - Provides user controls: Mute/Unmute toggle and Stop/Play
  */
 
@@ -150,6 +151,8 @@
     if (currentFilename !== newFilename) {
       videoSource.src = newSrc;
       video.load(); // Reload the video with the new source
+      // Reset autoplay flag so video can autoplay with the new source
+      autoplayAttempted = false;
     }
   }
 
