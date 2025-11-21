@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ROKKO Records - Audio Player</title>
-    <link rel="stylesheet" href="image-player.css">
+    <link rel="stylesheet" href="template-player.css">
 </head>
 <body>
     <!-- Trigger Button (for testing) -->
@@ -12,70 +12,82 @@
 
     <!-- Full Page Popup Player Overlay -->
     <div id="playerOverlay" class="player-overlay" style="display: none;">
-        <!-- Close Button -->
+        <!-- Close Button (Top Right) -->
         <button id="closePlayerBtn" class="close-btn" aria-label="Player schließen" title="Schließen">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-            </svg>
+            ✕
         </button>
 
-        <!-- Player Container with Template Background -->
-        <div class="player-content">
-            <!-- Background Image -->
-            <img src="player_template.png" alt="Player Design" class="player-background">
+        <!-- Player Container - Using YOUR design template -->
+        <div class="player-container">
+            <!-- Background Image - YOUR template design -->
+            <img src="player_template.png" alt="Player Design Template" class="template-bg">
             
-            <!-- Interactive Overlay Elements -->
-            <div class="player-overlay-elements">
-                <!-- Cover Art Overlay -->
-                <div class="cover-overlay" id="coverOverlay">
-                    <img id="coverArt" 
-                         src="assets/cover-placeholder.jpg" 
+            <!-- Interactive Elements Positioned Over Template -->
+            <div class="interactive-layer">
+                
+                <!-- Album Cover Area (Top Left in YOUR design) -->
+                <div class="album-cover-area">
+                    <img id="albumCover" 
+                         src="assets/cover1.jpg" 
                          alt="Album Cover"
-                         onerror="this.style.opacity='0'">
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23B8935F%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23201613%22 font-size=%2220%22%3ENo Cover%3C/text%3E%3C/svg%3E'">
                 </div>
                 
-                <!-- Track Info Overlay -->
-                <div class="info-overlay">
-                    <h2 id="trackTitle" class="track-title">Track 1 - Sample</h2>
-                    <p id="trackArtist" class="track-artist">ROKKO Artist</p>
-                    <p id="trackTime" class="track-time">0:00 / 0:00</p>
+                <!-- Track Info Area (Top Right in YOUR design) -->
+                <div class="track-info-area">
+                    <h2 id="trackTitle">SkaRamush Vandango</h2>
+                    <p id="trackArtist">Neurocentric</p>
                 </div>
                 
-                <!-- Progress Bar Hotspot -->
-                <div class="progress-hotspot" 
-                     id="progressHotspot"
+                <!-- Time Display (YOUR design shows "2:34/4:35") -->
+                <div class="time-display-area">
+                    <span id="currentTime">0:00</span><span>/</span><span id="duration">0:00</span>
+                </div>
+                
+                <!-- Progress Bar Clickable Area (horizontal bar in YOUR design) -->
+                <div class="progress-bar-area" 
+                     id="progressBarArea"
                      role="slider"
                      aria-label="Song position"
                      aria-valuemin="0"
                      aria-valuemax="100"
                      aria-valuenow="0"
                      tabindex="0">
-                    <div class="progress-fill" id="progressFill"></div>
+                    <div class="progress-indicator" id="progressIndicator"></div>
                 </div>
                 
-                <!-- Control Buttons Hotspots -->
+                <!-- Control Buttons (THREE large circles in YOUR design) -->
                 <button id="prevBtn" 
-                        class="control-hotspot prev-hotspot" 
-                        aria-label="Vorheriger Track"
-                        title="Zurück">
+                        class="control-btn prev-btn" 
+                        aria-label="Previous Track"
+                        title="Previous">
                 </button>
                 
-                <button id="playPauseBtn" 
-                        class="control-hotspot play-hotspot" 
+                <button id="playBtn" 
+                        class="control-btn play-btn" 
                         aria-label="Play"
-                        title="Abspielen">
+                        title="Play/Pause">
                 </button>
                 
                 <button id="nextBtn" 
-                        class="control-hotspot next-hotspot" 
-                        aria-label="Nächster Track"
-                        title="Weiter">
+                        class="control-btn next-btn" 
+                        aria-label="Next Track"
+                        title="Next">
                 </button>
                 
-                <!-- Playlist Items Hotspots (clickable areas over the song list) -->
-                <div class="playlist-hotspots" id="playlistHotspots">
-                    <!-- Dynamically generated by JS -->
+                <!-- Playlist Area (Bottom Left - 7 songs in YOUR design) -->
+                <div class="playlist-area" id="playlistArea">
+                    <!-- Generated dynamically -->
                 </div>
+                
+                <!-- Streaming Buttons Area (Right side in YOUR design) -->
+                <div class="streaming-buttons-area">
+                    <button class="streaming-btn spotify-btn" aria-label="Listen on Spotify" title="Spotify"></button>
+                    <button class="streaming-btn beatport-btn" aria-label="Listen on Beatport" title="Beatport"></button>
+                    <button class="streaming-btn applemusic-btn" aria-label="Listen on Apple Music" title="Apple Music"></button>
+                    <button class="streaming-btn soundcloud-btn" aria-label="Listen on SoundCloud" title="SoundCloud"></button>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -83,6 +95,6 @@
     <!-- Hidden Audio Element -->
     <audio id="audioElement" preload="metadata"></audio>
     
-    <script src="image-player.js"></script>
+    <script src="template-player.js"></script>
 </body>
 </html>
