@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROKKO Records Audio Player</title>
+    <link rel="stylesheet" href="audioplayer.css">
+</head>
+<body>
+    <div class="player-container">
+        <div class="audio-player">
+            <!-- Album Cover / Artwork -->
+            <div class="player-artwork">
+                <img id="coverArt" src="assets/placeholder-cover.svg" alt="Album Cover" class="cover-image">
+            </div>
+            
+            <!-- Track Information -->
+            <div class="track-info">
+                <h2 id="trackTitle" class="track-title">Track Title</h2>
+                <p id="artistName" class="artist-name">Artist Name</p>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="time-display">
+                    <span id="currentTime" class="time-current">0:00</span>
+                    <span id="duration" class="time-duration">0:00</span>
+                </div>
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-filled" id="progressFilled"></div>
+                    <div class="progress-handle" id="progressHandle"></div>
+                </div>
+            </div>
+            
+            <!-- Control Buttons -->
+            <div class="controls">
+                <button id="prevBtn" class="control-btn btn-prev" aria-label="Previous Track">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 20L9 12l10-8v16zm-11 0V4"/>
+                    </svg>
+                </button>
+                
+                <button id="playPauseBtn" class="control-btn btn-play-pause" aria-label="Play/Pause">
+                    <svg id="playIcon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <svg id="pauseIcon" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+                        <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                    </svg>
+                </button>
+                
+                <button id="nextBtn" class="control-btn btn-next" aria-label="Next Track">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 4l10 8-10 8V4zm11 0v16"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Volume Control -->
+            <div class="volume-control">
+                <button id="muteBtn" class="control-btn btn-volume" aria-label="Mute/Unmute">
+                    <svg id="volumeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                    </svg>
+                    <svg id="muteIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                        <line x1="23" y1="9" x2="17" y2="15"/>
+                        <line x1="17" y1="9" x2="23" y2="15"/>
+                    </svg>
+                </button>
+                <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="70" aria-label="Volume">
+            </div>
+            
+            <!-- Playlist Toggle -->
+            <div class="playlist-toggle">
+                <button id="playlistBtn" class="control-btn btn-playlist" aria-label="Toggle Playlist">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="8" y1="6" x2="21" y2="6"/>
+                        <line x1="8" y1="12" x2="21" y2="12"/>
+                        <line x1="8" y1="18" x2="21" y2="18"/>
+                        <line x1="3" y1="6" x2="3.01" y2="6"/>
+                        <line x1="3" y1="12" x2="3.01" y2="12"/>
+                        <line x1="3" y1="18" x2="3.01" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Playlist -->
+        <div class="playlist" id="playlist" style="display: none;">
+            <div class="playlist-header">
+                <h3>Playlist</h3>
+                <button id="closePlaylistBtn" class="control-btn" aria-label="Close Playlist">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="playlist-items" id="playlistItems">
+                <!-- Playlist items will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hidden audio element -->
+    <audio id="audioElement" preload="metadata"></audio>
+    
+    <script src="audioplayer.js"></script>
+</body>
+</html>
