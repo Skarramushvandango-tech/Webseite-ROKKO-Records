@@ -379,6 +379,11 @@ header h1 {
     border-radius: 3px;
 }
 
+/* Initialize volume indicator on page load */
+.volume-slider {
+    --volume-percent: 70%;
+}
+
 .volume-slider::-moz-range-track {
     height: 6px;
     background: var(--progress-bg);

@@ -205,7 +205,7 @@ class AudioPlayer {
     
     seek(value) {
         const seekTime = (value / 100) * this.audio.duration;
-        if (!isNaN(seekTime)) {
+        if (!isNaN(seekTime) && !isNaN(this.audio.duration) && isFinite(this.audio.duration)) {
             this.audio.currentTime = seekTime;
         }
     }
@@ -285,14 +285,33 @@ class AudioPlayer {
                 item.classList.add('active');
             }
             
-            item.innerHTML = `
-                <img src="${track.cover}" alt="${track.title} cover" class="playlist-item-cover">
-                <div class="playlist-item-info">
-                    <div class="playlist-item-title">${track.title}</div>
-                    <div class="playlist-item-artist">${track.artist}</div>
-                </div>
-                <div class="playlist-item-duration">${track.duration}</div>
-            `;
+            // Create elements safely to prevent XSS
+            const img = document.createElement('img');
+            img.src = track.cover;
+            img.alt = `${this.escapeHtml(track.title)} cover`;
+            img.className = 'playlist-item-cover';
+            
+            const info = document.createElement('div');
+            info.className = 'playlist-item-info';
+            
+            const title = document.createElement('div');
+            title.className = 'playlist-item-title';
+            title.textContent = track.title;
+            
+            const artist = document.createElement('div');
+            artist.className = 'playlist-item-artist';
+            artist.textContent = track.artist;
+            
+            info.appendChild(title);
+            info.appendChild(artist);
+            
+            const duration = document.createElement('div');
+            duration.className = 'playlist-item-duration';
+            duration.textContent = track.duration;
+            
+            item.appendChild(img);
+            item.appendChild(info);
+            item.appendChild(duration);
             
             item.addEventListener('click', () => {
                 this.loadTrack(index);
@@ -301,6 +320,12 @@ class AudioPlayer {
             
             this.elements.playlistContainer.appendChild(item);
         });
+    }
+    
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     }
     
     updatePlaylistUI() {
@@ -315,6 +340,11 @@ class AudioPlayer {
     }
     
     handleKeyboard(e) {
+        // Don't interfere with form controls
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON' || e.target.tagName === 'TEXTAREA') {
+            return;
+        }
+        
         switch(e.key) {
             case ' ':
             case 'k':
@@ -396,7 +426,7 @@ class AudioPlayer {
     }
     
     formatTime(seconds) {
-        if (isNaN(seconds) || seconds === Infinity) {
+        if (isNaN(seconds) || seconds === Infinity || seconds < 0) {
             return '0:00';
         }
         
