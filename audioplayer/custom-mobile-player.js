@@ -162,12 +162,14 @@ function updateTracklistActive() {
 
 // Play
 function play() {
-    audioPlayer.play().catch(error => {
-        console.log('Playback failed:', error);
-        isPlaying = false;
-    }).then(() => {
-        isPlaying = true;
-    });
+    audioPlayer.play()
+        .then(() => {
+            isPlaying = true;
+        })
+        .catch(error => {
+            console.log('Playback failed:', error);
+            isPlaying = false;
+        });
 }
 
 // Pause
