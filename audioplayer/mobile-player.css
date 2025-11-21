@@ -1,0 +1,349 @@
+/* ROKKO Records Mobile Audio Player - Using playerleiste.png for buttons */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #3D2817;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Test Button */
+.open-player-btn {
+    font-size: 18px;
+    padding: 15px 30px;
+    background: #E0C290;
+    border: 3px solid #3D2817;
+    border-radius: 8px;
+    color: #201613;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+/* Full Page Overlay */
+.player-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    overflow: auto;
+}
+
+/* Close Button */
+.close-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #E0C290;
+    border: 3px solid #3D2817;
+    border-radius: 50%;
+    color: #201613;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.close-btn:hover {
+    background: #3D2817;
+    color: #E0C290;
+    transform: rotate(90deg);
+}
+
+/* Mobile Player Container - Based on player_template.png (675x1080) */
+.mobile-player-container {
+    position: relative;
+    width: 100%;
+    max-width: 675px;
+    aspect-ratio: 675 / 1080;
+    margin: auto;
+}
+
+/* Background Template */
+.bg-template {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Interactive Layer */
+.interactive-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.interactive-layer > * {
+    pointer-events: auto;
+}
+
+/* Album Cover - Top Left per player_template.png */
+.cover-area {
+    position: absolute;
+    top: 10.5%;
+    left: 8%;
+    width: 39%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.cover-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Track Info with Mascot Character */
+.track-info {
+    position: absolute;
+    top: 11%;
+    left: 50.5%;
+    width: 45%;
+    color: #201613;
+    pointer-events: none;
+}
+
+.track-info h2 {
+    font-size: clamp(12px, 2.2vw, 20px);
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.track-info p {
+    font-size: clamp(16px, 3vw, 38px);
+    font-weight: 700;
+}
+
+/* Time Display */
+.time-info {
+    position: absolute;
+    top: 32%;
+    right: 8%;
+    font-size: clamp(12px, 1.8vw, 18px);
+    font-weight: 700;
+    color: #201613;
+    pointer-events: none;
+}
+
+/* Progress Bar */
+.progress-bar {
+    position: absolute;
+    top: 35.5%;
+    left: 9%;
+    width: 82%;
+    height: 2.5%;
+    cursor: pointer;
+    background: transparent;
+}
+
+.progress-fill {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 90%;
+    width: 0%;
+    background: rgba(61, 40, 23, 0.6);
+    border-radius: 10px;
+    transition: width 0.1s linear;
+}
+
+/* Control Buttons using playerleiste.png */
+.control-buttons {
+    position: absolute;
+    top: 41%;
+    left: 0%;
+    width: 100%;
+    height: 17%;
+    pointer-events: none;
+}
+
+/* playerleiste.png as background */
+.playerleiste-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Hotspot Buttons on playerleiste.png */
+.control-hotspot {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+    pointer-events: auto;
+}
+
+.control-hotspot:hover {
+    background: rgba(224, 194, 144, 0.2);
+}
+
+.control-hotspot:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* Previous Button - LEFT circle on playerleiste.png */
+.prev-hotspot {
+    left: 14%;
+    width: 20%;
+    aspect-ratio: 1;
+}
+
+/* Play Button - CENTER circle on playerleiste.png (larger) */
+.play-hotspot {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24%;
+    aspect-ratio: 1;
+}
+
+/* Next Button - RIGHT circle on playerleiste.png */
+.next-hotspot {
+    right: 14%;
+    width: 20%;
+    aspect-ratio: 1;
+}
+
+/* Waveform Visualization (shown in player_template.png) */
+.waveform-area {
+    position: absolute;
+    top: 58%;
+    left: 7%;
+    width: 54%;
+    height: 8%;
+    pointer-events: none;
+}
+
+/* Scrollable Playlist - 7+ songs */
+.playlist-scroll {
+    position: absolute;
+    top: 67%;
+    left: 7%;
+    width: 53%;
+    height: 27%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    pointer-events: auto;
+}
+
+.playlist-item {
+    width: 100%;
+    padding: 8px 6px;
+    background: transparent;
+    border: none;
+    text-align: left;
+    color: #201613;
+    font-size: clamp(10px, 1.6vw, 16px);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: block;
+}
+
+.playlist-item:hover {
+    background: rgba(184, 147, 95, 0.3);
+}
+
+.playlist-item.active {
+    background: rgba(61, 40, 23, 0.4);
+    font-weight: 700;
+}
+
+/* Scrollbar Styling */
+.playlist-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+
+.playlist-scroll::-webkit-scrollbar-track {
+    background: rgba(184, 147, 95, 0.2);
+}
+
+.playlist-scroll::-webkit-scrollbar-thumb {
+    background: rgba(61, 40, 23, 0.5);
+    border-radius: 2px;
+}
+
+/* Streaming Service Buttons */
+.streaming-services {
+    position: absolute;
+    top: 67%;
+    right: 6%;
+    width: 36%;
+    height: 27%;
+    display: flex;
+    flex-direction: column;
+    gap: 3%;
+    pointer-events: auto;
+}
+
+.streaming-btn {
+    width: 100%;
+    height: 22%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.streaming-btn:hover {
+    background: rgba(184, 147, 95, 0.2);
+}
+
+/* Responsive for very small screens */
+@media (max-width: 480px) {
+    .mobile-player-container {
+        max-width: 95vw;
+    }
+    
+    .close-btn {
+        top: 10px;
+        right: 10px;
+        width: 44px;
+        height: 44px;
+        font-size: 24px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
