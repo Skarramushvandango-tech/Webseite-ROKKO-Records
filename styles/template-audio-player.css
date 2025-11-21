@@ -1,0 +1,360 @@
+/* ROKKO Records Template Audio Player - Matching player_template.png Design */
+
+:root {
+    --template-overlay-bg: rgba(224, 194, 144, 0.98);
+}
+
+/* Full Page Overlay */
+.template-player-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow: auto;
+}
+
+/* Close Button (Top Right Corner) */
+.template-close-btn {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: #E0C290;
+    border: 4px solid #3D2817;
+    border-radius: 50%;
+    color: #201613;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+    transition: all 0.3s;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    line-height: 1;
+}
+
+.template-close-btn:hover {
+    background: #3D2817;
+    color: #E0C290;
+    transform: scale(1.1) rotate(90deg);
+}
+
+/* Player Container - Based on 675x1080 template */
+.template-player-container {
+    position: relative;
+    width: 100%;
+    max-width: 675px;
+    aspect-ratio: 675 / 1080;
+    margin: auto;
+}
+
+/* Template Background Image */
+.template-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Interactive Layer - All clickable elements */
+.template-interactive-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.template-interactive-layer > * {
+    pointer-events: auto;
+}
+
+/* Album Cover Area - TOP LEFT */
+.template-album-cover-area {
+    position: absolute;
+    top: 10.8%;
+    left: 8.2%;
+    width: 38.2%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.template-album-cover-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Track Info Area - TOP RIGHT */
+.template-track-info-area {
+    position: absolute;
+    top: 11.3%;
+    left: 50.5%;
+    width: 45%;
+    text-align: left;
+    pointer-events: none;
+    background: var(--template-overlay-bg);
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.template-track-info-area h2 {
+    font-size: clamp(11px, 2vw, 18px);
+    font-weight: 600;
+    margin-bottom: 2px;
+    line-height: 1.1;
+    color: #5A4A3A;
+}
+
+.template-track-info-area p {
+    font-size: clamp(20px, 4vw, 52px);
+    font-weight: 700;
+    margin-bottom: 0;
+    line-height: 0.95;
+    color: #201613;
+}
+
+/* Time Display */
+.template-time-display-area {
+    position: absolute;
+    top: 32.5%;
+    right: 7.5%;
+    font-size: clamp(16px, 2.5vw, 26px);
+    font-weight: 700;
+    color: #201613;
+    pointer-events: none;
+    white-space: nowrap;
+    background: var(--template-overlay-bg);
+    padding: 3px 10px;
+    border-radius: 4px;
+}
+
+/* Progress Bar */
+.template-progress-bar-area {
+    position: absolute;
+    top: 35%;
+    left: 9.5%;
+    width: 81%;
+    height: 2.5%;
+    cursor: pointer;
+    background: transparent;
+    outline: none;
+}
+
+.template-progress-bar-area:focus {
+    outline: 3px solid rgba(224, 194, 144, 0.6);
+    outline-offset: 2px;
+}
+
+.template-progress-indicator {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100%;
+    width: 0%;
+    background: rgba(61, 40, 23, 0.6);
+    border-radius: 10px;
+    pointer-events: none;
+    transition: width 0.1s linear;
+}
+
+/* Control Buttons - THREE LARGE CIRCULAR BUTTONS */
+.template-control-btn {
+    position: absolute;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.2s;
+    outline: none;
+}
+
+.template-control-btn:hover {
+    transform: scale(1.05);
+    background: rgba(224, 194, 144, 0.1);
+}
+
+.template-control-btn:active {
+    transform: scale(0.98);
+}
+
+.template-control-btn:focus {
+    outline: 3px solid rgba(224, 194, 144, 0.5);
+    outline-offset: 4px;
+}
+
+/* Previous Button (Left circle) */
+.template-prev-btn {
+    top: 42.8%;
+    left: 8.5%;
+    width: 22%;
+    aspect-ratio: 1;
+}
+
+/* Play Button (Center circle - LARGER) */
+.template-play-btn {
+    top: 40.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 27%;
+    aspect-ratio: 1;
+}
+
+/* Next Button (Right circle) */
+.template-next-btn {
+    top: 42.8%;
+    right: 8.5%;
+    width: 22%;
+    aspect-ratio: 1;
+}
+
+/* Playlist Area - BOTTOM LEFT */
+.template-playlist-area {
+    position: absolute;
+    top: 60.5%;
+    left: 7%;
+    width: 50%;
+    height: 34%;
+    overflow-y: auto;
+    pointer-events: auto;
+}
+
+.template-playlist-item {
+    width: 100%;
+    height: 12.5%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    padding: 4px 8px;
+    color: #201613;
+    font-size: clamp(10px, 1.4vw, 16px);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s;
+    outline: none;
+}
+
+.template-playlist-item:hover {
+    background: rgba(184, 147, 95, 0.3);
+}
+
+.template-playlist-item:focus {
+    background: rgba(184, 147, 95, 0.4);
+    outline: 2px solid rgba(61, 40, 23, 0.5);
+}
+
+.template-playlist-item.active {
+    background: rgba(61, 40, 23, 0.4);
+    font-weight: 700;
+}
+
+/* Streaming Buttons - RIGHT SIDE */
+.template-streaming-buttons-area {
+    position: absolute;
+    top: 60.5%;
+    right: 5.5%;
+    width: 37%;
+    height: 34.5%;
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+    pointer-events: auto;
+}
+
+.template-streaming-btn {
+    width: 100%;
+    height: 24%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    outline: none;
+    padding: 0;
+}
+
+.template-streaming-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.template-streaming-btn:hover {
+    transform: scale(1.03);
+    filter: brightness(1.1);
+}
+
+.template-streaming-btn:focus {
+    outline: 2px solid rgba(224, 194, 144, 0.5);
+}
+
+/* Scrollbar for playlist */
+.template-playlist-area::-webkit-scrollbar {
+    width: 6px;
+}
+
+.template-playlist-area::-webkit-scrollbar-track {
+    background: rgba(184, 147, 95, 0.3);
+    border-radius: 3px;
+}
+
+.template-playlist-area::-webkit-scrollbar-thumb {
+    background: rgba(61, 40, 23, 0.6);
+    border-radius: 3px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .template-player-container {
+        max-width: 90vw;
+    }
+    
+    .template-close-btn {
+        top: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .template-player-container {
+        max-width: 95vw;
+    }
+    
+    .template-close-btn {
+        top: 10px;
+        right: 10px;
+        width: 44px;
+        height: 44px;
+        font-size: 24px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
