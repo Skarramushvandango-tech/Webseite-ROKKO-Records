@@ -1,10 +1,11 @@
 /**
  * ROKKO Records - Intro Video Controls
- * Simple video control system - browser handles autoplay via HTML attributes
+ * JavaScript-controlled video autoplay system with sound
  * 
  * Features:
- * - Video autoplays muted via HTML attributes (autoplay muted)
- * - Video stops on last frame (no loop attribute)
+ * - Video attempts to autoplay with sound via JavaScript
+ * - Handles browser autoplay policies gracefully
+ * - Video stops on last frame (no loop)
  * - Provides user controls: Mute/Unmute toggle and Stop/Play
  */
 
@@ -18,6 +19,7 @@
   let loadingBar = null;
   let resizeTimer = null;
   let resizeHandlerAttached = false;
+  let autoplayAttempted = false;
 
   /**
    * Hide the video preloader
@@ -149,6 +151,8 @@
     if (currentFilename !== newFilename) {
       videoSource.src = newSrc;
       video.load(); // Reload the video with the new source
+      // Reset autoplay flag so video can autoplay with the new source
+      autoplayAttempted = false;
     }
   }
 
@@ -161,6 +165,9 @@
     if (!video) {
       return;
     }
+
+    // Ensure video starts unmuted (user requirement: autoplay with sound)
+    video.muted = false;
 
     // Set the appropriate video source based on screen size
     setVideoSource();
@@ -259,6 +266,33 @@
       });
       resizeHandlerAttached = true;
     }
+
+    // Attempt to autoplay video with sound when metadata is loaded
+    // Note: Browsers may block autoplay with sound due to autoplay policies
+    // Use flag to prevent multiple autoplay attempts
+    video.addEventListener('loadedmetadata', () => {
+      if (autoplayAttempted) {
+        return; // Already attempted autoplay once
+      }
+      autoplayAttempted = true;
+      
+      // Try to play the video with sound
+      const playPromise = video.play();
+      
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            // Autoplay with sound succeeded
+            updateStopButtonState();
+          })
+          .catch(error => {
+            // Autoplay was blocked by browser policy
+            // User can interact with play button to start video
+            updateMuteButtonState();
+            updateStopButtonState();
+          });
+      }
+    });
   }
 
   // Auto-initialize when DOM is ready
