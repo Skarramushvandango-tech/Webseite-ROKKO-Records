@@ -13,7 +13,7 @@ const albumCoverEl = document.getElementById('album-cover');
 const tracklistEl = document.getElementById('tracklist');
 const waveformCanvas = document.getElementById('waveform-canvas');
 
-// Track data
+// Track data - All songs from mp3/vandango folder
 const tracks = [
     {
         title: 'Set the Fire',
@@ -55,6 +55,48 @@ const tracks = [
         title: 'Man on a Mission',
         artist: 'SkaRamush Vandango',
         src: '../mp3/vandango/man_on_a_mission.m4a',
+        cover: '../mp3/vandango/cover.png'
+    },
+    {
+        title: 'Nights Go By',
+        artist: 'SkaRamush Vandango',
+        src: '../mp3/vandango/nights_go_by.m4a',
+        cover: '../mp3/vandango/cover.png'
+    },
+    {
+        title: 'No Stitch No Story',
+        artist: 'SkaRamush Vandango',
+        src: '../mp3/vandango/no_stitch_no_story.m4a',
+        cover: '../mp3/vandango/cover.png'
+    },
+    {
+        title: 'Oh I Try',
+        artist: 'SkaRamush Vandango',
+        src: '../mp3/vandango/oh_i_try.m4a',
+        cover: '../mp3/vandango/cover.png'
+    },
+    {
+        title: 'System Failure (Kortana Mix)',
+        artist: 'SkaRamush Vandango',
+        src: '../mp3/vandango/system_failure_kortana_mix.m4a',
+        cover: '../mp3/vandango/cover.png'
+    },
+    {
+        title: 'Tiptoes',
+        artist: 'SkaRamush Vandango',
+        src: '../mp3/vandango/tiptoes.m4a',
+        cover: '../mp3/vandango/cover.png'
+    },
+    {
+        title: 'What You Need',
+        artist: 'SkaRamush Vandango',
+        src: '../mp3/vandango/what_you_need.m4a',
+        cover: '../mp3/vandango/cover.png'
+    },
+    {
+        title: 'Among the Crowd',
+        artist: 'SkaRamush Vandango',
+        src: '../mp3/vandango/among_the_crowd.m4a',
         cover: '../mp3/vandango/cover.png'
     }
 ];
@@ -120,8 +162,12 @@ function updateTracklistActive() {
 
 // Play
 function play() {
-    audioPlayer.play();
-    isPlaying = true;
+    audioPlayer.play().catch(error => {
+        console.log('Playback failed:', error);
+        isPlaying = false;
+    }).then(() => {
+        isPlaying = true;
+    });
 }
 
 // Pause
@@ -165,6 +211,9 @@ function nextTrack() {
 
 // Format time
 function formatTime(seconds) {
+    if (isNaN(seconds) || !isFinite(seconds)) {
+        return '0:00';
+    }
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
@@ -172,6 +221,9 @@ function formatTime(seconds) {
 
 // Update progress
 function updateProgress() {
+    if (!audioPlayer.duration || isNaN(audioPlayer.duration) || audioPlayer.duration === 0) {
+        return;
+    }
     const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
     progressBar.style.width = `${progress}%`;
     progressHandle.style.left = `${progress}%`;
