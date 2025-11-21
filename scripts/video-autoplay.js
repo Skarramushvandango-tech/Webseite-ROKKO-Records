@@ -16,6 +16,8 @@
   let stopVideoBtn = null;
   let preloader = null;
   let loadingBar = null;
+  let resizeTimer = null;
+  let resizeHandlerAttached = false;
 
   /**
    * Hide the video preloader
@@ -115,6 +117,42 @@
   }
 
   /**
+   * Get filename from URL or path
+   */
+  function getFilename(urlOrPath) {
+    try {
+      // Try to parse as URL
+      const url = new URL(urlOrPath, window.location.origin);
+      return url.pathname.split('/').pop();
+    } catch (e) {
+      // If not a valid URL, treat as path
+      return urlOrPath.split('/').pop();
+    }
+  }
+
+  /**
+   * Set the appropriate video source based on screen size
+   */
+  function setVideoSource() {
+    if (!video) return;
+    
+    const videoSource = document.getElementById('videoSource');
+    if (!videoSource) return;
+    
+    // Check if mobile (768px or less) or desktop
+    const isMobile = window.innerWidth <= 768;
+    const newSrc = isMobile ? 'images/intro_movie_mobile.mp4' : 'images/intro_movie.mp4';
+    const newFilename = getFilename(newSrc);
+    const currentFilename = getFilename(videoSource.src);
+    
+    // Only update if the source is different
+    if (currentFilename !== newFilename) {
+      videoSource.src = newSrc;
+      video.load(); // Reload the video with the new source
+    }
+  }
+
+  /**
    * Initialize intro video controls
    */
   function initIntroVideo() {
@@ -123,6 +161,9 @@
     if (!video) {
       return;
     }
+
+    // Set the appropriate video source based on screen size
+    setVideoSource();
 
     // Find preloader elements
     preloader = document.getElementById('videoPreloader');
@@ -206,6 +247,18 @@
     video.addEventListener('pause', () => {
       updateStopButtonState();
     });
+    
+    // Handle window resize to switch video source if needed
+    // Only attach once to prevent multiple listeners
+    if (!resizeHandlerAttached) {
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          setVideoSource();
+        }, 250); // Debounce resize events
+      });
+      resizeHandlerAttached = true;
+    }
   }
 
   // Auto-initialize when DOM is ready
