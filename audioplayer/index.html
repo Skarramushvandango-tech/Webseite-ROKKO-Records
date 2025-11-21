@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROKKO Records Audio Player</title>
+  <link rel="stylesheet" href="audioplayer.css">
+</head>
+<body>
+  <div class="pr-player">
+    <!-- Top: Album cover + metadata -->
+    <div class="pr-top">
+      <div class="pr-album">
+        <img id="cover" src="assets/cover-placeholder.jpg" alt="Album Cover">
+      </div>
+      <div class="pr-meta">
+        <div class="pr-artist">ROKKO Records</div>
+        <div class="pr-title">Track Title</div>
+        <div class="pr-time">
+          <span id="current">0:00</span> / <span id="duration">0:00</span>
+        </div>
+        <div class="pr-bar-wrap">
+          <input type="range" id="seek" min="0" max="100" value="0" step="0.1">
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="pr-controls">
+      <button class="btn" id="prev" aria-label="Previous Track">⏮</button>
+      <button class="btn btn-large" id="play" aria-label="Play/Pause">▶</button>
+      <button class="btn" id="next" aria-label="Next Track">⏭</button>
+    </div>
+
+    <!-- Lower area: Waveform + Playlist -->
+    <div class="pr-lower">
+      <div class="pr-wave" aria-label="Waveform visualization"></div>
+      <div class="pr-playlist">
+        <ol id="list"></ol>
+      </div>
+    </div>
+  </div>
+
+  <audio id="audio" preload="metadata"></audio>
+  <script src="audioplayer.js"></script>
+</body>
+</html>
