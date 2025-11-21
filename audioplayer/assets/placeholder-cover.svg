@@ -1,0 +1,7 @@
+<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="500" fill="#E0C290"/>
+  <text x="250" y="220" font-size="48" font-weight="bold" text-anchor="middle" fill="#3D2817" font-family="Arial, sans-serif">ROKKO</text>
+  <text x="250" y="280" font-size="48" font-weight="bold" text-anchor="middle" fill="#3D2817" font-family="Arial, sans-serif">RECORDS</text>
+  <circle cx="250" cy="350" r="30" fill="none" stroke="#3D2817" stroke-width="3"/>
+  <circle cx="250" cy="350" r="8" fill="#3D2817"/>
+</svg>
