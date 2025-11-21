@@ -310,9 +310,15 @@ body {
     border: 1px solid transparent;
 }
 
-.playlist-item:hover {
+.playlist-item:hover,
+.playlist-item:focus {
     background: var(--bg-lighter);
     border-color: var(--bg-lighter);
+    outline: none;
+}
+
+.playlist-item:focus {
+    box-shadow: 0 0 0 2px var(--accent);
 }
 
 .playlist-item.active {

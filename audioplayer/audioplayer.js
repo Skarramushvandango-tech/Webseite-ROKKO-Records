@@ -247,6 +247,10 @@ function renderPlaylist() {
     playlist.forEach((track, index) => {
         const item = document.createElement('div');
         item.className = 'playlist-item';
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('role', 'button');
+        item.setAttribute('aria-label', `Play ${track.title} by ${track.artist}`);
+        
         if (index === currentTrackIndex) {
             item.classList.add('active');
         }
@@ -260,10 +264,20 @@ function renderPlaylist() {
             <div class="playlist-item-duration">${track.duration}</div>
         `;
         
-        item.addEventListener('click', () => {
+        const playTrack = () => {
             loadTrack(index);
             play();
             togglePlaylist();
+        };
+        
+        item.addEventListener('click', playTrack);
+        
+        // Keyboard accessibility
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                playTrack();
+            }
         });
         
         playlistItems.appendChild(item);
@@ -342,23 +356,32 @@ function setupEventListeners() {
     progressBar.addEventListener('click', seek);
     
     // Progress bar - Drag to seek
+    let mouseMoveHandler = null;
+    let mouseUpHandler = null;
+    
     progressBar.addEventListener('mousedown', (e) => {
         isDragging = true;
         progressBar.classList.add('dragging');
         seek(e);
-    });
-    
-    document.addEventListener('mousemove', (e) => {
-        if (isDragging) {
-            seek(e);
-        }
-    });
-    
-    document.addEventListener('mouseup', () => {
-        if (isDragging) {
-            isDragging = false;
-            progressBar.classList.remove('dragging');
-        }
+        
+        // Attach move and up handlers only during drag
+        mouseMoveHandler = (e) => {
+            if (isDragging) {
+                seek(e);
+            }
+        };
+        
+        mouseUpHandler = () => {
+            if (isDragging) {
+                isDragging = false;
+                progressBar.classList.remove('dragging');
+                document.removeEventListener('mousemove', mouseMoveHandler);
+                document.removeEventListener('mouseup', mouseUpHandler);
+            }
+        };
+        
+        document.addEventListener('mousemove', mouseMoveHandler);
+        document.addEventListener('mouseup', mouseUpHandler);
     });
     
     // Volume controls
