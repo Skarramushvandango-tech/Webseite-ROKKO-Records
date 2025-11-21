@@ -263,21 +263,28 @@
       resizeHandlerAttached = true;
     }
 
-    // Monitor for autoplay failures due to browser policies
+    // Attempt to autoplay video with sound when metadata is loaded
     // Note: Browsers may block autoplay with sound due to autoplay policies
-    // The HTML autoplay attribute will handle starting playback
-    video.addEventListener('suspend', () => {
-      // Video loading has been suspended (possibly due to autoplay policy)
-      // Update button states to reflect current state
-      updateMuteButtonState();
-      updateStopButtonState();
-    });
-    
-    // Log autoplay failures for debugging
-    video.addEventListener('pause', () => {
-      if (video.currentTime === 0 && !video.ended) {
-        // Video was paused at the start, likely due to autoplay policy
-        console.log('Video autoplay may have been blocked by browser policy. User can click play to start.');
+    video.addEventListener('loadedmetadata', () => {
+      // Try to play the video with sound
+      const playPromise = video.play();
+      
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            // Autoplay with sound succeeded
+            console.log('Video autoplay with sound successful');
+            updateStopButtonState();
+          })
+          .catch(error => {
+            // Autoplay was blocked by browser policy
+            console.log('Autoplay blocked by browser:', error.message);
+            console.log('User can click the play button to start the video');
+            
+            // Update button states to show play button
+            updateMuteButtonState();
+            updateStopButtonState();
+          });
       }
     });
   }
