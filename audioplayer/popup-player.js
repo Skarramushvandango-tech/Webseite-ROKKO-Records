@@ -1,4 +1,4 @@
-// ROKKO Records Audio Player
+// ROKKO Records Popup Audio Player
 // Playlist Configuration
 
 const playlist = [
@@ -26,15 +26,16 @@ const playlist = [
 ];
 
 // DOM Elements
+const playerOverlay = document.getElementById('playerOverlay');
+const openPlayerBtn = document.getElementById('openPlayerBtn');
+const closePlayerBtn = document.getElementById('closePlayerBtn');
 const audioElement = document.getElementById('audioElement');
-const playPauseBtn = document.getElementById('playPauseBtn');
+const playStopBtn = document.getElementById('playStopBtn');
 const playIcon = document.getElementById('playIcon');
-const pauseIcon = document.getElementById('pauseIcon');
+const stopIcon = document.getElementById('stopIcon');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
-const progressBar = document.querySelector('.progress-bar');
-const progress = document.getElementById('progress');
-const progressHandle = document.getElementById('progressHandle');
+const progressBar = document.getElementById('progressBar');
 const currentTimeEl = document.getElementById('currentTime');
 const durationEl = document.getElementById('duration');
 const coverArt = document.getElementById('coverArt');
@@ -42,7 +43,7 @@ const trackTitle = document.getElementById('trackTitle');
 const trackArtist = document.getElementById('trackArtist');
 const volumeSlider = document.getElementById('volumeSlider');
 const muteBtn = document.getElementById('muteBtn');
-const volumeIcon = document.getElementById('volumeIcon');
+const soundIcon = document.getElementById('soundIcon');
 const muteIcon = document.getElementById('muteIcon');
 const playlistToggle = document.getElementById('playlistToggle');
 const playlistPanel = document.getElementById('playlistPanel');
@@ -51,7 +52,6 @@ const playlistEl = document.getElementById('playlist');
 // Player State
 let currentTrackIndex = 0;
 let isPlaying = false;
-let isSeeking = false;
 let lastVolume = 0.7;
 
 // Initialize Player
@@ -68,6 +68,20 @@ function init() {
     
     // Add event listeners
     addEventListeners();
+}
+
+// Open/Close Player Overlay
+function openPlayer() {
+    playerOverlay.style.display = 'flex';
+    playerOverlay.classList.add('show');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+function closePlayer() {
+    playerOverlay.style.display = 'none';
+    playerOverlay.classList.remove('show');
+    document.body.style.overflow = ''; // Restore scrolling
+    pause(); // Stop playback when closing
 }
 
 // Build Playlist UI
@@ -93,7 +107,6 @@ function buildPlaylist() {
         li.addEventListener('click', () => {
             loadTrack(index);
             play();
-            closePlaylist();
         });
         
         li.addEventListener('keydown', (e) => {
@@ -101,7 +114,6 @@ function buildPlaylist() {
                 e.preventDefault();
                 loadTrack(index);
                 play();
-                closePlaylist();
             }
         });
         
@@ -123,22 +135,18 @@ function loadTrack(index) {
     trackTitle.textContent = track.title;
     trackArtist.textContent = track.artist;
     
-    // Update cover art with loading state
-    coverArt.classList.add('loading');
+    // Update cover art
+    coverArt.style.display = 'block';
     coverArt.src = track.coverSrc;
     coverArt.onerror = () => {
-        coverArt.src = 'assets/cover-placeholder.jpg';
-        coverArt.classList.remove('loading');
-    };
-    coverArt.onload = () => {
-        coverArt.classList.remove('loading');
+        coverArt.style.display = 'none';
     };
     
     // Update playlist active state
     updatePlaylistActiveState();
     
     // Reset progress
-    progress.style.width = '0%';
+    progressBar.value = 0;
     currentTimeEl.textContent = '0:00';
 }
 
@@ -160,12 +168,12 @@ function play() {
         .then(() => {
             isPlaying = true;
             playIcon.style.display = 'none';
-            pauseIcon.style.display = 'block';
-            playPauseBtn.setAttribute('aria-label', 'Pause');
+            stopIcon.style.display = 'block';
+            playStopBtn.setAttribute('aria-label', 'Stop');
         })
         .catch(error => {
             console.error('Error playing audio:', error);
-            alert('Error loading audio file. Please check that the file exists at: ' + playlist[currentTrackIndex].audioSrc);
+            alert('Fehler beim Laden der Audiodatei. Bitte stellen Sie sicher, dass die Datei existiert: ' + playlist[currentTrackIndex].audioSrc);
         });
 }
 
@@ -174,8 +182,8 @@ function pause() {
     audioElement.pause();
     isPlaying = false;
     playIcon.style.display = 'block';
-    pauseIcon.style.display = 'none';
-    playPauseBtn.setAttribute('aria-label', 'Play');
+    stopIcon.style.display = 'none';
+    playStopBtn.setAttribute('aria-label', 'Play');
 }
 
 // Toggle Play/Pause
@@ -213,10 +221,9 @@ function nextTrack() {
 
 // Update Progress
 function updateProgress() {
-    if (!isSeeking && audioElement.duration) {
+    if (audioElement.duration) {
         const progressPercent = (audioElement.currentTime / audioElement.duration) * 100;
-        progress.style.width = progressPercent + '%';
-        progressBar.setAttribute('aria-valuenow', progressPercent.toFixed(0));
+        progressBar.value = progressPercent;
     }
 }
 
@@ -237,30 +244,27 @@ function formatTime(seconds) {
 }
 
 // Seek
-function seek(e) {
-    const rect = progressBar.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const width = rect.width;
-    const percentage = (clickX / width);
-    
+function seek() {
     if (audioElement.duration) {
-        audioElement.currentTime = percentage * audioElement.duration;
-        progress.style.width = (percentage * 100) + '%';
+        const seekTime = (progressBar.value / 100) * audioElement.duration;
+        audioElement.currentTime = seekTime;
     }
 }
 
 // Toggle Playlist
 function togglePlaylist() {
-    const isActive = playlistPanel.classList.toggle('active');
-    playlistToggle.setAttribute('aria-expanded', isActive);
-    playlistPanel.setAttribute('aria-hidden', !isActive);
-}
-
-// Close Playlist
-function closePlaylist() {
-    playlistPanel.classList.remove('active');
-    playlistToggle.setAttribute('aria-expanded', 'false');
-    playlistPanel.setAttribute('aria-hidden', 'true');
+    const isShown = playlistPanel.style.display === 'block';
+    if (isShown) {
+        playlistPanel.style.display = 'none';
+        playlistPanel.classList.remove('show');
+        playlistToggle.setAttribute('aria-expanded', 'false');
+        playlistPanel.setAttribute('aria-hidden', 'true');
+    } else {
+        playlistPanel.style.display = 'block';
+        playlistPanel.classList.add('show');
+        playlistToggle.setAttribute('aria-expanded', 'true');
+        playlistPanel.setAttribute('aria-hidden', 'false');
+    }
 }
 
 // Toggle Mute
@@ -269,15 +273,15 @@ function toggleMute() {
         lastVolume = audioElement.volume;
         audioElement.volume = 0;
         volumeSlider.value = 0;
-        volumeIcon.style.display = 'none';
+        soundIcon.style.display = 'none';
         muteIcon.style.display = 'block';
-        muteBtn.setAttribute('aria-label', 'Unmute');
+        muteBtn.setAttribute('aria-label', 'Ton an');
     } else {
         audioElement.volume = lastVolume;
         volumeSlider.value = lastVolume * 100;
-        volumeIcon.style.display = 'block';
+        soundIcon.style.display = 'block';
         muteIcon.style.display = 'none';
-        muteBtn.setAttribute('aria-label', 'Mute');
+        muteBtn.setAttribute('aria-label', 'Stummschalten');
     }
 }
 
@@ -288,48 +292,38 @@ function updateVolume() {
     
     if (volume > 0) {
         lastVolume = volume;
-        volumeIcon.style.display = 'block';
+        soundIcon.style.display = 'block';
         muteIcon.style.display = 'none';
-        muteBtn.setAttribute('aria-label', 'Mute');
+        muteBtn.setAttribute('aria-label', 'Stummschalten');
     } else {
-        volumeIcon.style.display = 'none';
+        soundIcon.style.display = 'none';
         muteIcon.style.display = 'block';
-        muteBtn.setAttribute('aria-label', 'Unmute');
+        muteBtn.setAttribute('aria-label', 'Ton an');
     }
 }
 
 // Add Event Listeners
 function addEventListeners() {
+    // Open/Close Player
+    if (openPlayerBtn) {
+        openPlayerBtn.addEventListener('click', openPlayer);
+    }
+    closePlayerBtn.addEventListener('click', closePlayer);
+    
+    // Close on overlay click (but not player content)
+    playerOverlay.addEventListener('click', (e) => {
+        if (e.target === playerOverlay) {
+            closePlayer();
+        }
+    });
+    
     // Playback controls
-    playPauseBtn.addEventListener('click', togglePlayPause);
+    playStopBtn.addEventListener('click', togglePlayPause);
     prevBtn.addEventListener('click', previousTrack);
     nextBtn.addEventListener('click', nextTrack);
     
     // Progress bar
-    progressBar.addEventListener('click', seek);
-    progressBar.addEventListener('mousedown', () => {
-        isSeeking = true;
-    });
-    progressBar.addEventListener('mouseup', (e) => {
-        seek(e);
-        isSeeking = false;
-    });
-    progressBar.addEventListener('mousemove', (e) => {
-        if (isSeeking) {
-            seek(e);
-        }
-    });
-    
-    // Progress bar keyboard navigation
-    progressBar.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            audioElement.currentTime = Math.max(0, audioElement.currentTime - 5);
-        } else if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            audioElement.currentTime = Math.min(audioElement.duration, audioElement.currentTime + 5);
-        }
-    });
+    progressBar.addEventListener('input', seek);
     
     // Volume controls
     volumeSlider.addEventListener('input', updateVolume);
@@ -337,15 +331,6 @@ function addEventListeners() {
     
     // Playlist toggle
     playlistToggle.addEventListener('click', togglePlaylist);
-    
-    // Close playlist when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!playlistPanel.contains(e.target) && 
-            !playlistToggle.contains(e.target) && 
-            playlistPanel.classList.contains('active')) {
-            closePlaylist();
-        }
-    });
     
     // Audio element events
     audioElement.addEventListener('timeupdate', () => {
@@ -364,31 +349,33 @@ function addEventListeners() {
     audioElement.addEventListener('error', (e) => {
         console.error('Audio error:', e);
         pause();
-        alert('Error loading audio file: ' + playlist[currentTrackIndex].audioSrc + 
-              '\n\nPlease make sure MP3 files are placed in the audioplayer/assets/ directory.');
+        alert('Fehler beim Laden der Audiodatei: ' + playlist[currentTrackIndex].audioSrc + 
+              '\n\nBitte stellen Sie sicher, dass die MP3-Dateien im audioplayer/assets/ Verzeichnis vorhanden sind.');
     });
     
     // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
-        // Prevent shortcuts when typing in inputs
+        // Don't trigger shortcuts when typing in inputs
         if (e.target.tagName === 'INPUT') return;
         
+        // Only when player is open
+        if (playerOverlay.style.display !== 'flex') return;
+        
         switch(e.key) {
+            case 'Escape':
+                closePlayer();
+                break;
             case ' ':
                 e.preventDefault();
                 togglePlayPause();
                 break;
             case 'ArrowLeft':
-                if (!progressBar.matches(':focus')) {
-                    e.preventDefault();
-                    previousTrack();
-                }
+                e.preventDefault();
+                previousTrack();
                 break;
             case 'ArrowRight':
-                if (!progressBar.matches(':focus')) {
-                    e.preventDefault();
-                    nextTrack();
-                }
+                e.preventDefault();
+                nextTrack();
                 break;
             case 'ArrowUp':
                 e.preventDefault();

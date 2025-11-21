@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROKKO Records - Audio Player (Mobile)</title>
+    <link rel="stylesheet" href="mobile-player.css">
+</head>
+<body>
+    <!-- Trigger Button (for testing) -->
+    <button id="openPlayerBtn" class="open-player-btn">🎵 Player öffnen</button>
+
+    <!-- Full Page Popup Player Overlay -->
+    <div id="playerOverlay" class="player-overlay" style="display: none;">
+        <!-- Close Button (Top Right) -->
+        <button id="closePlayerBtn" class="close-btn" aria-label="Player schließen" title="Schließen">
+            ✕
+        </button>
+
+        <!-- Mobile Player Container -->
+        <div class="mobile-player-container">
+            <!-- Background Image from player_template.png design -->
+            <img src="player_template.png" alt="Player Background" class="bg-template">
+            
+            <!-- Interactive Layer -->
+            <div class="interactive-layer">
+                
+                <!-- Album Cover (positioned per player_template.png) -->
+                <div class="cover-area">
+                    <img id="albumCover" 
+                         src="assets/cover1.jpg" 
+                         alt="Album Cover"
+                         onerror="this.style.opacity='0'">
+                </div>
+                
+                <!-- Track Info with Mascot Character -->
+                <div class="track-info">
+                    <h2 id="trackTitle">SkaRamush Vandango</h2>
+                    <p id="trackArtist">Neurocentric</p>
+                </div>
+                
+                <!-- Time Display -->
+                <div class="time-info">
+                    <span id="currentTime">0:00</span><span>/</span><span id="duration">0:00</span>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="progress-bar" 
+                     id="progressBar"
+                     role="slider"
+                     aria-label="Song position"
+                     tabindex="0">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                
+                <!-- Control Buttons using playerleiste.png -->
+                <div class="control-buttons">
+                    <!-- playerleiste.png as background, hotspots for interaction -->
+                    <img src="playerleiste.png" alt="Control Buttons" class="playerleiste-bg">
+                    
+                    <!-- Hotspot Buttons -->
+                    <button id="prevBtn" 
+                            class="control-hotspot prev-hotspot" 
+                            aria-label="Previous Track"
+                            title="Previous">
+                    </button>
+                    
+                    <button id="playBtn" 
+                            class="control-hotspot play-hotspot" 
+                            aria-label="Play"
+                            title="Play/Pause">
+                    </button>
+                    
+                    <button id="nextBtn" 
+                            class="control-hotspot next-hotspot" 
+                            aria-label="Next Track"
+                            title="Next">
+                    </button>
+                </div>
+                
+                <!-- Waveform Visualization Area (from design) -->
+                <div class="waveform-area">
+                    <!-- Waveform shown in player_template.png -->
+                </div>
+                
+                <!-- Scrollable Playlist (7+ songs) -->
+                <div class="playlist-scroll" id="playlistScroll">
+                    <!-- Generated dynamically -->
+                </div>
+                
+                <!-- Streaming Service Buttons -->
+                <div class="streaming-services">
+                    <button class="streaming-btn spotify-btn" aria-label="Spotify"></button>
+                    <button class="streaming-btn beatport-btn" aria-label="Beatport"></button>
+                    <button class="streaming-btn applemusic-btn" aria-label="Apple Music"></button>
+                    <button class="streaming-btn soundcloud-btn" aria-label="SoundCloud"></button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio id="audioElement" preload="metadata"></audio>
+    
+    <script src="mobile-player.js"></script>
+</body>
+</html>

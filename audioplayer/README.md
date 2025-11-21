@@ -1,257 +1,202 @@
 # ROKKO Records Audio Player
 
-A modern, responsive audio player implementation for ROKKO Records website, designed to match the brand's distinctive brown and sand color scheme.
+A modern, accessible, and responsive audio player designed for ROKKO Records with full playlist functionality, keyboard navigation, and ARIA labels.
 
 ## Features
 
-- **Full Playlist Support**: Manage and play multiple tracks with visual feedback
-- **Modern UI**: Clean, intuitive interface following ROKKO design guidelines
-- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
-- **Keyboard Controls**: Full keyboard navigation support
-- **Visual Feedback**: Album art, progress bar, and now-playing indicators
-- **Volume Control**: Adjustable volume with mute functionality
-- **Accessibility**: ARIA labels and keyboard navigation for screen readers
+- ✅ **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
+- ✅ **Keyboard Accessible**: Full keyboard navigation support with ARIA labels
+- ✅ **Playlist Management**: Dynamic playlist with track selection
+- ✅ **Playback Controls**: Play/Pause, Previous/Next track navigation
+- ✅ **Progress Bar**: Seek through tracks with visual progress indication
+- ✅ **Volume Control**: Adjustable volume with mute/unmute functionality
+- ✅ **Cover Art Display**: Shows album artwork for each track
+- ✅ **ROKKO Color Scheme**: Uses official ROKKO Records color palette (from COLOR_GUIDE.md)
 
-## Installation
+## Installation & Testing
 
-### Option 1: Standalone Test Page
+### Local Testing
 
-The audio player includes a standalone test page (`index.html`) that can be opened directly in a browser:
-
-1. Open `audioplayer/index.html` in your web browser
-2. Add your MP3 files and cover images to the `audioplayer/assets/` directory
-3. Update the playlist in `audioplayer/audioplayer.js` (see Configuration section)
-
-### Option 2: Integration into Existing Website
-
-To integrate the audio player into your existing ROKKO Records website:
-
-1. **Include the CSS** in your HTML `<head>`:
-   ```html
-   <link rel="stylesheet" href="audioplayer/audioplayer.css">
+1. **Simple Method** (no server required for some browsers):
+   ```bash
+   open audioplayer/index.html
    ```
+   Or double-click on `index.html`
 
-2. **Add the player HTML structure** where you want the player to appear:
-   ```html
-   <div class="audio-player-container">
-       <div class="audio-player">
-           <!-- Copy the structure from index.html -->
-       </div>
-   </div>
+2. **Recommended Method** (with local server to avoid CORS issues):
+   ```bash
+   # From project root directory
+   cd audioplayer
+   python3 -m http.server 8000
    ```
+   Then open http://localhost:8000 in your browser
 
-3. **Include the JavaScript** before the closing `</body>` tag:
-   ```html
-   <audio id="audioElement" preload="metadata"></audio>
-   <script src="audioplayer/audioplayer.js"></script>
+3. **Alternative Servers**:
+   ```bash
+   # Using Node.js
+   npx http-server -p 8000
+   
+   # Using PHP
+   php -S localhost:8000
    ```
 
 ## Configuration
 
-### Adding Your Music
+### Adding Tracks to the Playlist
 
-1. **Add media files** to the `audioplayer/assets/` directory:
-   - MP3 files (your tracks)
-   - JPG/PNG files (album covers)
+Edit the `playlist` array in `audioplayer/audioplayer.js`:
 
-2. **Update the playlist** in `audioplayer/audioplayer.js`:
-   ```javascript
-   this.playlist = [
-       {
-           title: 'Your Track Title',
-           artist: 'Artist Name',
-           src: 'assets/your-track.mp3',
-           cover: 'assets/your-cover.jpg',
-           duration: '3:45'  // Optional, auto-calculated if omitted
-       },
-       // Add more tracks...
-   ];
-   ```
-
-### Customizing Colors
-
-The audio player uses CSS variables that follow the ROKKO color scheme defined in `COLOR_GUIDE.md`:
-
-```css
-:root {
-    --rokko-brown: #201613;       /* Dark brown for text */
-    --rokko-brown-dark: #3D2817;  /* Dark brown for borders */
-    --rokko-sand: #E0C290;        /* Sand color for backgrounds (IMMUTABLE) */
-    --rokko-accent: #B8935F;      /* Accent color */
-    --content-bg: #997A4B;        /* Page background */
-}
+```javascript
+const playlist = [
+    {
+        title: "Your Track Title",
+        artist: "Artist Name",
+        audioSrc: "assets/your-track.mp3",
+        coverSrc: "assets/your-cover.jpg"
+    },
+    // Add more tracks...
+];
 ```
 
-**Important**: The `--rokko-sand` color (`#E0C290`) is permanently fixed per the project's color policy. Do not modify this value without explicit approval.
+### Asset Organization
 
-To customize other aspects, edit the CSS variables in `audioplayer/audioplayer.css`.
-
-## File Structure
+Place your media files in the `audioplayer/assets/` directory:
 
 ```
 audioplayer/
-├── index.html          # Standalone test page
-├── audioplayer.css     # Player styles
-├── audioplayer.js      # Player functionality
-├── README.md          # This file
-└── assets/            # Directory for audio files and images
-    └── .gitkeep       # Keeps directory in git
+├── assets/
+│   ├── track1.mp3           # Audio files
+│   ├── track2.mp3
+│   ├── track3.mp3
+│   ├── cover1.jpg           # Cover art images
+│   ├── cover2.jpg
+│   ├── cover3.jpg
+│   └── cover-placeholder.jpg # Default cover art
+├── index.html
+├── audioplayer.css
+├── audioplayer.js
+└── README.md
 ```
 
-## Keyboard Controls
+### Supported Formats
 
-The audio player supports the following keyboard shortcuts:
+- **Audio**: MP3, WAV, OGG, M4A
+- **Images**: JPG, PNG, WebP, GIF
+
+## Keyboard Shortcuts
 
 | Key | Action |
 |-----|--------|
-| `Space` or `K` | Play/Pause |
-| `←` | Seek backward 5 seconds |
-| `→` | Seek forward 5 seconds |
-| `↑` | Volume up |
-| `↓` | Volume down |
+| `Space` | Play/Pause |
+| `←` (Left Arrow) | Previous track (or seek back 5s when progress bar is focused) |
+| `→` (Right Arrow) | Next track (or seek forward 5s when progress bar is focused) |
+| `↑` (Up Arrow) | Increase volume |
+| `↓` (Down Arrow) | Decrease volume |
 | `M` | Mute/Unmute |
-| `N` | Next track |
-| `P` | Previous track |
+| `L` | Toggle playlist |
+| `Tab` | Navigate between controls |
+| `Enter` | Activate focused button/track |
+
+## Integration into Website
+
+### Method 1: Embedded Player
+
+Include the player in any page:
+
+```html
+<link rel="stylesheet" href="/audioplayer/audioplayer.css">
+
+<div class="player-container">
+    <!-- Copy content from index.html -->
+</div>
+
+<audio id="audioElement" preload="metadata"></audio>
+<script src="/audioplayer/audioplayer.js"></script>
+```
+
+### Method 2: Iframe Integration
+
+```html
+<iframe 
+    src="/audioplayer/index.html" 
+    width="100%" 
+    height="600px"
+    frameborder="0"
+    title="ROKKO Records Audio Player">
+</iframe>
+```
+
+### Method 3: Standalone Page
+
+Link to the player as a separate page:
+```html
+<a href="/audioplayer/index.html">Listen Now</a>
+```
+
+## Color Customization
+
+The player uses CSS variables that align with the ROKKO Records brand identity:
+
+```css
+:root {
+    --bg: #997A4B;              /* Content background */
+    --accent: #B8935F;          /* Accent color */
+    --gold1: #E0C290;           /* Primary sand color (IMMUTABLE per COLOR_GUIDE.md) */
+    --rokko-brown: #201613;     /* Dark brown text */
+    --rokko-brown-dark: #3D2817; /* Frame borders */
+}
+```
+
+⚠️ **Note**: The `--gold1` (#E0C290) color is permanently fixed per the COLOR_GUIDE.md and should not be changed.
 
 ## Browser Support
 
-The audio player works in all modern browsers that support:
-- HTML5 `<audio>` element
-- CSS Grid and Flexbox
-- ES6 JavaScript (classes, arrow functions)
+- ✅ Chrome/Edge 90+
+- ✅ Firefox 88+
+- ✅ Safari 14+
+- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
 
-Tested in:
-- Chrome/Edge (latest)
-- Firefox (latest)
-- Safari (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
+## Accessibility Features
 
-## Accessibility
-
-The player includes:
-- ARIA labels on all interactive elements
-- Keyboard navigation support
-- Proper heading hierarchy
-- Color contrast meeting WCAG AAA standards
-- Screen reader friendly controls
-
-## Technical Details
-
-### Dependencies
-
-**None!** The audio player is built with vanilla HTML, CSS, and JavaScript. No external libraries or frameworks are required.
-
-### Browser APIs Used
-
-- HTML5 Audio API
-- CSS Custom Properties (Variables)
-- Vanilla JavaScript ES6
-
-### Performance
-
-- Lightweight: Total size < 50KB (uncompressed)
-- No external requests (except for audio files)
-- Efficient event handling
-- Smooth animations using CSS transitions
-
-## Customization Examples
-
-### Changing Player Layout
-
-Edit the grid template in `audioplayer.css`:
-
-```css
-.audio-player {
-    display: grid;
-    grid-template-columns: 300px 1fr;  /* Adjust album art width */
-    gap: var(--spacing-lg);
-}
-```
-
-### Adjusting Control Sizes
-
-Modify button sizes in `audioplayer.css`:
-
-```css
-.control-btn-main {
-    width: 64px;   /* Main play button size */
-    height: 64px;
-}
-```
-
-### Playlist Height
-
-Change the maximum playlist height:
-
-```css
-.playlist-container {
-    max-height: 300px;  /* Adjust as needed */
-}
-```
+- **ARIA Labels**: All interactive elements have descriptive ARIA labels
+- **Keyboard Navigation**: Full keyboard control support
+- **Focus Indicators**: Clear visual focus states for keyboard users
+- **Screen Reader Support**: Semantic HTML and proper ARIA roles
+- **Reduced Motion**: Respects `prefers-reduced-motion` setting
+- **High Contrast**: Sufficient color contrast ratios (WCAG AA compliant)
 
 ## Troubleshooting
 
-### Audio files not playing
+### Audio Not Playing
 
-1. Check that the file paths in the playlist are correct
-2. Ensure MP3 files are in the `assets/` directory
-3. Check browser console for error messages
-4. Verify the audio file format is supported (MP3 is recommended)
+1. Check that MP3 files exist in `audioplayer/assets/` directory
+2. Verify file paths in the `playlist` array match actual file names
+3. Run from a web server (not directly from file system) to avoid CORS issues
+4. Check browser console for error messages
 
-### Cover images not showing
+### Cover Images Not Loading
 
-1. Check that image paths in the playlist are correct
-2. Ensure image files are in the `assets/` directory
-3. Verify image formats (JPG, PNG, WebP are supported)
+1. Ensure image files exist in `audioplayer/assets/` directory
+2. Verify image paths in the `playlist` array
+3. Check that image files are in supported formats (JPG, PNG, WebP)
+4. Add a placeholder image: `assets/cover-placeholder.jpg`
 
-### Styling issues
+### Browser CORS Errors
 
-1. Ensure `audioplayer.css` is loaded before the page renders
-2. Check for CSS conflicts with existing stylesheets
-3. Verify CSS custom properties are supported by the browser
-
-## Integration Notes
-
-- The player is designed to work within the ROKKO Records frame system
-- It automatically matches the site's color scheme through CSS variables
-- The player container can be placed in any `.rokko-frame` element
-- Responsive breakpoints match the main site's breakpoints
-
-## Development
-
-### Local Testing
-
-To test the audio player locally:
-
+Run the player from a local web server instead of opening the HTML file directly:
 ```bash
-# Using Python 3
-python -m http.server 8000
-
-# Using Node.js
-npx http-server
-
-# Then open: http://localhost:8000/audioplayer/
+python3 -m http.server 8000
 ```
 
-### Adding Features
+## Design Notes
 
-The `AudioPlayer` class in `audioplayer.js` is well-structured for extensions:
-
-- Add methods to the class for new features
-- Update the DOM elements object for new UI elements
-- Follow the existing pattern for event listeners
-
-## Support
-
-For issues, questions, or contributions related to this audio player:
-1. Check this README for common solutions
-2. Review the code comments in `audioplayer.js` and `audioplayer.css`
-3. Consult the main ROKKO Records repository documentation
+This player implementation:
+- Uses the official ROKKO Records color palette
+- Features responsive design for all screen sizes
+- Provides full keyboard and screen reader accessibility
+- Includes smooth animations and transitions
+- Implements modern web standards and best practices
 
 ## License
 
-This audio player is part of the ROKKO Records website project.
-
----
-
-**Note**: Remember to populate the `assets/` directory with your actual audio files and cover images before deploying to production. The placeholder paths in the default playlist will need to be updated with your real content.
+© ROKKO Records. All rights reserved.
