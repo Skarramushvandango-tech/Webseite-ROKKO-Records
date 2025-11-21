@@ -14,6 +14,7 @@
   <script defer src="scripts/frame-alternator.js"></script>
   <script defer src="scripts/artist.js"></script>
   <script defer src="assets/js/carousel-simple.js"></script>
+  <script defer src="audioplayer/mobile-player-component.js"></script>
 </head>
 <body class="home site-shell">
   <div class="side-frame left" aria-hidden="true"></div>
@@ -136,176 +137,35 @@
 
             <h3 style="margin-bottom: 5px; font-size: 1em;">DISKOGRAPHIE</h3>
             
-            <!-- Audio Player Widget -->
-            <div class="audio-player-widget" style="background: #E0C290; border: 3px solid #3D2817; border-radius: 15px; padding: 15px; margin: 10px 0; box-shadow: 0 6px 20px rgba(61, 40, 23, 0.4);">
-              <!-- Cover Image at Top - Clickable to open popup player -->
-              <div style="text-align: center; margin-bottom: 12px;">
-                <img loading="lazy" src="mp3/vandango/cover.png" alt="Album Cover" class="artist-cover-clickable" data-artist="Skaramush Vandango" style="width: 100%; max-width: 200px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); border: 2px solid #3D2817; cursor: pointer; transition: transform 0.2s;">
-              </div>
-              
-              <!-- Audio Player Controls -->
-              <div style="margin-bottom: 15px; background: rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 10px; backdrop-filter: blur(10px);">
-                <audio id="player-vandango" controls style="width: 100%; border-radius: 25px; height: 40px;">
-                  <source src="mp3/vandango/set_the_fire.m4a" type="audio/mp4">
-                  Your browser does not support the audio element.
-                </audio>
-                <div id="current-track-vandango" style="text-align: center; color: #201613; margin-top: 8px; font-size: 0.9em; font-weight: 700; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);">
-                  Set the Fire
-                </div>
-              </div>
-              
-              <!-- Music Platform Links -->
-              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; justify-items: center; margin-bottom: 25px; max-width: 300px; margin-left: auto; margin-right: auto;">
-                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
-                  <img src="img/logo_01.png" alt="SoundCloud" style="height: 24px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-                </a>
-                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
-                  <img src="img/logo_02.png" alt="Amazon Music" style="height: 24px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-                </a>
-                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
-                  <img src="img/logo_03.png" alt="Apple Music" style="height: 24px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-                </a>
-                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
-                  <img src="img/logo_05.png" alt="Beatport" style="height: 24px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-                </a>
-                <a href="#" target="_blank" style="display: inline-block; transition: all 0.3s;">
-                  <img src="img/logo_06.png" alt="Spotify" style="height: 24px; width: auto; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-                </a>
-              </div>
-              
-              <!-- Scrollable Track List -->
-              <div style="background: #8B7355; border-radius: 12px; padding: 15px; max-height: 300px; overflow-y: auto; border: 2px solid #3D2817;">
-                <h4 style="margin: 0 0 12px 0; color: #E0C290; font-size: 0.95em; text-align: center;">TRACKLIST</h4>
-                <div class="track-list">
-                  <div class="track-item-widget" data-src="mp3/vandango/set_the_fire.m4a" data-player="player-vandango" data-title="Set the Fire" data-cover="mp3/vandango/cover.png" style="display: flex; align-items: center; gap: 10px; padding: 8px; margin: 4px 0; background: #A68968; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;">
-                    <div class="track-cover-mini" style="width: 40px; height: 40px; flex-shrink: 0; position: relative;">
-                      <img loading="lazy" src="mp3/vandango/cover.png" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                      <div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #201613; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>
-                    </div>
-                    <div style="flex: 1; color: #E0C290; font-size: 0.7em; font-weight: 400;">
-                      Set the Fire
-                    </div>
-                  </div>
-                  <div class="track-item-widget" data-src="mp3/vandango/set_the_fire_remix.m4a" data-player="player-vandango" data-title="Set the Fire (Remix)" data-cover="mp3/vandango/cover.png" style="display: flex; align-items: center; gap: 10px; padding: 8px; margin: 4px 0; background: #A68968; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;">
-                    <div class="track-cover-mini" style="width: 40px; height: 40px; flex-shrink: 0; position: relative;">
-                      <img loading="lazy" src="mp3/vandango/cover.png" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                      <div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #201613; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>
-                    </div>
-                    <div style="flex: 1; color: #E0C290; font-size: 0.7em; font-weight: 400;">
-                      Set the Fire (Remix)
-                    </div>
-                  </div>
-                  <div class="track-item-widget" data-src="mp3/vandango/always_sunny.m4a" data-player="player-vandango" data-title="Always Sunny" data-cover="mp3/vandango/cover.png" style="display: flex; align-items: center; gap: 10px; padding: 8px; margin: 4px 0; background: #A68968; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;">
-                    <div class="track-cover-mini" style="width: 40px; height: 40px; flex-shrink: 0; position: relative;">
-                      <img loading="lazy" src="mp3/vandango/cover.png" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                      <div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #201613; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>
-                    </div>
-                    <div style="flex: 1; color: #E0C290; font-size: 0.7em; font-weight: 400;">
-                      Always Sunny
-                    </div>
-                  </div>
-                  <div class="track-item-widget" data-src="mp3/vandango/borrowed_time.m4a" data-player="player-vandango" data-title="Borrowed Time" data-cover="mp3/vandango/cover.png" style="display: flex; align-items: center; gap: 10px; padding: 8px; margin: 4px 0; background: #A68968; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;">
-                    <div class="track-cover-mini" style="width: 40px; height: 40px; flex-shrink: 0; position: relative;">
-                      <img loading="lazy" src="mp3/vandango/cover.png" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                      <div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #201613; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>
-                    </div>
-                    <div style="flex: 1; color: #E0C290; font-size: 0.7em; font-weight: 400;">
-                      Borrowed Time
-                    </div>
-                  </div>
-                  <div class="track-item-widget" data-src="mp3/vandango/like_water.m4a" data-player="player-vandango" data-title="Like Water" data-cover="mp3/vandango/cover.png" style="display: flex; align-items: center; gap: 10px; padding: 8px; margin: 4px 0; background: #A68968; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;">
-                    <div class="track-cover-mini" style="width: 40px; height: 40px; flex-shrink: 0; position: relative;">
-                      <img loading="lazy" src="mp3/vandango/cover.png" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                      <div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #201613; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>
-                    </div>
-                    <div style="flex: 1; color: #E0C290; font-size: 0.7em; font-weight: 400;">
-                      Like Water
-                    </div>
-                  </div>
-                  <div class="track-item-widget" data-src="mp3/vandango/love_song.m4a" data-player="player-vandango" data-title="Love Song" data-cover="mp3/vandango/cover.png" style="display: flex; align-items: center; gap: 10px; padding: 8px; margin: 4px 0; background: #A68968; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;">
-                    <div class="track-cover-mini" style="width: 40px; height: 40px; flex-shrink: 0; position: relative;">
-                      <img loading="lazy" src="mp3/vandango/cover.png" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                      <div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #201613; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>
-                    </div>
-                    <div style="flex: 1; color: #E0C290; font-size: 0.7em; font-weight: 400;">
-                      Love Song
-                    </div>
-                  </div>
-                  <div class="track-item-widget" data-src="mp3/vandango/man_on_a_mission.m4a" data-player="player-vandango" data-title="Man on a Mission" data-cover="mp3/vandango/cover.png" style="display: flex; align-items: center; gap: 10px; padding: 8px; margin: 4px 0; background: #A68968; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;">
-                    <div class="track-cover-mini" style="width: 40px; height: 40px; flex-shrink: 0; position: relative;">
-                      <img loading="lazy" src="mp3/vandango/cover.png" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                      <div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #201613; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>
-                    </div>
-                    <div style="flex: 1; color: #E0C290; font-size: 0.7em; font-weight: 400;">
-                      Man on a Mission
-                    </div>
-                  </div>
-                  <div class="track-item-widget" data-src="mp3/vandango/nights_go_by.m4a" data-player="player-vandango" data-title="Nights Go By" data-cover="mp3/vandango/cover.png" style="display: flex; align-items: center; gap: 10px; padding: 8px; margin: 4px 0; background: #A68968; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;">
-                    <div class="track-cover-mini" style="width: 40px; height: 40px; flex-shrink: 0; position: relative;">
-                      <img loading="lazy" src="mp3/vandango/cover.png" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                      <div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #201613; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>
-                    </div>
-                    <div style="flex: 1; color: #E0C290; font-size: 0.7em; font-weight: 400;">
-                      Nights Go By
-                    </div>
-                  </div>
-                  <div class="track-item-widget" data-src="mp3/vandango/no_stitch_no_story.m4a" data-player="player-vandango" data-title="No Stitch No Story" data-cover="mp3/vandango/cover.png" style="display: flex; align-items: center; gap: 10px; padding: 8px; margin: 4px 0; background: #A68968; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;">
-                    <div class="track-cover-mini" style="width: 40px; height: 40px; flex-shrink: 0; position: relative;">
-                      <img loading="lazy" src="mp3/vandango/cover.png" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                      <div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #201613; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>
-                    </div>
-                    <div style="flex: 1; color: #E0C290; font-size: 0.7em; font-weight: 400;">
-                      No Stitch No Story
-                    </div>
-                  </div>
-                  <div class="track-item-widget" data-src="mp3/vandango/oh_i_try.m4a" data-player="player-vandango" data-title="Oh I Try" data-cover="mp3/vandango/cover.png" style="display: flex; align-items: center; gap: 10px; padding: 8px; margin: 4px 0; background: #A68968; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;">
-                    <div class="track-cover-mini" style="width: 40px; height: 40px; flex-shrink: 0; position: relative;">
-                      <img loading="lazy" src="mp3/vandango/cover.png" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                      <div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #201613; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>
-                    </div>
-                    <div style="flex: 1; color: #E0C290; font-size: 0.7em; font-weight: 400;">
-                      Oh I Try
-                    </div>
-                  </div>
-                  <div class="track-item-widget" data-src="mp3/vandango/system_failure_kortana_mix.m4a" data-player="player-vandango" data-title="System Failure (Kortana Mix)" data-cover="mp3/vandango/cover.png" style="display: flex; align-items: center; gap: 10px; padding: 8px; margin: 4px 0; background: #A68968; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;">
-                    <div class="track-cover-mini" style="width: 40px; height: 40px; flex-shrink: 0; position: relative;">
-                      <img loading="lazy" src="mp3/vandango/cover.png" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                      <div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #201613; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>
-                    </div>
-                    <div style="flex: 1; color: #E0C290; font-size: 0.7em; font-weight: 400;">
-                      System Failure (Kortana Mix)
-                    </div>
-                  </div>
-                  <div class="track-item-widget" data-src="mp3/vandango/tiptoes.m4a" data-player="player-vandango" data-title="Tiptoes" data-cover="mp3/vandango/cover.png" style="display: flex; align-items: center; gap: 10px; padding: 8px; margin: 4px 0; background: #A68968; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;">
-                    <div class="track-cover-mini" style="width: 40px; height: 40px; flex-shrink: 0; position: relative;">
-                      <img loading="lazy" src="mp3/vandango/cover.png" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                      <div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #201613; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>
-                    </div>
-                    <div style="flex: 1; color: #E0C290; font-size: 0.7em; font-weight: 400;">
-                      Tiptoes
-                    </div>
-                  </div>
-                  <div class="track-item-widget" data-src="mp3/vandango/what_you_need.m4a" data-player="player-vandango" data-title="What You Need" data-cover="mp3/vandango/cover.png" style="display: flex; align-items: center; gap: 10px; padding: 8px; margin: 4px 0; background: #A68968; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;">
-                    <div class="track-cover-mini" style="width: 40px; height: 40px; flex-shrink: 0; position: relative;">
-                      <img loading="lazy" src="mp3/vandango/cover.png" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                      <div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #201613; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>
-                    </div>
-                    <div style="flex: 1; color: #E0C290; font-size: 0.7em; font-weight: 400;">
-                      What You Need
-                    </div>
-                  </div>
-                  <div class="track-item-widget" data-src="mp3/vandango/among_the_crowd.m4a" data-player="player-vandango" data-title="Among the Crowd" data-cover="mp3/vandango/cover.png" style="display: flex; align-items: center; gap: 10px; padding: 8px; margin: 4px 0; background: #A68968; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;">
-                    <div class="track-cover-mini" style="width: 40px; height: 40px; flex-shrink: 0; position: relative;">
-                      <img loading="lazy" src="mp3/vandango/cover.png" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                      <div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #201613; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>
-                    </div>
-                    <div style="flex: 1; color: #E0C290; font-size: 0.7em; font-weight: 400;">
-                      Among the Crowd
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <!-- Custom Mobile Audio Player -->
+            <div id="player-vandango-custom" style="margin: 10px 0;"></div>
+            
+            <script>
+              // Initialize Vandango player when component loads
+              document.addEventListener('DOMContentLoaded', function() {
+                const vandangoTracks = [
+                  { title: 'Set the Fire', artist: 'SkaRamush Vandango', src: 'mp3/vandango/set_the_fire.m4a', cover: 'mp3/vandango/cover.png' },
+                  { title: 'Set the Fire (Remix)', artist: 'SkaRamush Vandango', src: 'mp3/vandango/set_the_fire_remix.m4a', cover: 'mp3/vandango/cover.png' },
+                  { title: 'Always Sunny', artist: 'SkaRamush Vandango', src: 'mp3/vandango/always_sunny.m4a', cover: 'mp3/vandango/cover.png' },
+                  { title: 'Borrowed Time', artist: 'SkaRamush Vandango', src: 'mp3/vandango/borrowed_time.m4a', cover: 'mp3/vandango/cover.png' },
+                  { title: 'Like Water', artist: 'SkaRamush Vandango', src: 'mp3/vandango/like_water.m4a', cover: 'mp3/vandango/cover.png' },
+                  { title: 'Love Song', artist: 'SkaRamush Vandango', src: 'mp3/vandango/love_song.m4a', cover: 'mp3/vandango/cover.png' },
+                  { title: 'Man on a Mission', artist: 'SkaRamush Vandango', src: 'mp3/vandango/man_on_a_mission.m4a', cover: 'mp3/vandango/cover.png' },
+                  { title: 'Nights Go By', artist: 'SkaRamush Vandango', src: 'mp3/vandango/nights_go_by.m4a', cover: 'mp3/vandango/cover.png' },
+                  { title: 'No Stitch No Story', artist: 'SkaRamush Vandango', src: 'mp3/vandango/no_stitch_no_story.m4a', cover: 'mp3/vandango/cover.png' },
+                  { title: 'Oh I Try', artist: 'SkaRamush Vandango', src: 'mp3/vandango/oh_i_try.m4a', cover: 'mp3/vandango/cover.png' },
+                  { title: 'System Failure (Kortana Mix)', artist: 'SkaRamush Vandango', src: 'mp3/vandango/system_failure_kortana_mix.m4a', cover: 'mp3/vandango/cover.png' },
+                  { title: 'Tiptoes', artist: 'SkaRamush Vandango', src: 'mp3/vandango/tiptoes.m4a', cover: 'mp3/vandango/cover.png' },
+                  { title: 'What You Need', artist: 'SkaRamush Vandango', src: 'mp3/vandango/what_you_need.m4a', cover: 'mp3/vandango/cover.png' },
+                  { title: 'Among the Crowd', artist: 'SkaRamush Vandango', src: 'mp3/vandango/among_the_crowd.m4a', cover: 'mp3/vandango/cover.png' }
+                ];
+                
+                new MobileAudioPlayer('player-vandango-custom', {
+                  artistName: 'SkaRamush Vandango',
+                  tracks: vandangoTracks
+                });
+              });
+            </script>
 
             <div style="text-align: center; padding: 5px 0;">
               <div class="trenner"></div>

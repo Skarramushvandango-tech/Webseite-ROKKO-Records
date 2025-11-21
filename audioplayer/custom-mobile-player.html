@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROKKO Audio Player</title>
+    <link rel="stylesheet" href="custom-mobile-player.css">
+</head>
+<body>
+    <div class="player-container">
+        <!-- Top Section: Album Cover and Info -->
+        <div class="top-section">
+            <!-- Album Cover -->
+            <div class="album-cover-wrapper">
+                <div class="album-cover-frame">
+                    <img id="album-cover" src="../mp3/vandango/cover.png" alt="Album Cover">
+                </div>
+            </div>
+
+            <!-- Artist and Song Info -->
+            <div class="song-info">
+                <div class="artist-name" id="artist-name">SkaRamush Vandango</div>
+                <div class="song-title" id="song-title">Set the Fire</div>
+            </div>
+
+            <!-- Character/Mascot Image (if needed) -->
+            <div class="character-wrapper">
+                <img id="character-img" src="" alt="" class="character-img">
+            </div>
+
+            <!-- Progress Bar with Time -->
+            <div class="progress-wrapper">
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progress-bar"></div>
+                    <div class="progress-handle" id="progress-handle"></div>
+                </div>
+                <div class="time-display">
+                    <span id="current-time">2:34</span>/<span id="total-time">4:35</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Player Controls (playerleiste.png) -->
+        <div class="controls-section">
+            <img src="../img/playerleiste.png" alt="Player Controls" class="controls-bg">
+            <button class="control-btn prev-btn" id="prev-btn" aria-label="Previous Track"></button>
+            <button class="control-btn play-btn" id="play-btn" aria-label="Play/Pause"></button>
+            <button class="control-btn next-btn" id="next-btn" aria-label="Next Track"></button>
+        </div>
+
+        <!-- Bottom Section -->
+        <div class="bottom-section">
+            <!-- Waveform Visualization -->
+            <div class="waveform-section">
+                <canvas id="waveform-canvas"></canvas>
+            </div>
+
+            <!-- Track List -->
+            <div class="tracklist-section">
+                <div class="tracklist-scroll" id="tracklist">
+                    <!-- Tracks populated by JS -->
+                </div>
+                <!-- Headphone Icon -->
+                <div class="headphone-icon"></div>
+            </div>
+        </div>
+
+        <!-- Logo Stack (Right Side) -->
+        <div class="logo-stack">
+            <a href="#" target="_blank" class="logo-item">
+                <img src="../img/logo_01.png" alt="Spotify">
+            </a>
+            <a href="#" target="_blank" class="logo-item">
+                <img src="../img/logo_02.png" alt="Beatport">
+            </a>
+            <a href="#" target="_blank" class="logo-item">
+                <img src="../img/logo_03.png" alt="Apple Music">
+            </a>
+            <a href="#" target="_blank" class="logo-item">
+                <img src="../img/logo_04.png" alt="SoundCloud">
+            </a>
+        </div>
+
+        <!-- Hidden Audio Element -->
+        <audio id="audio-player" preload="metadata">
+            <source src="../mp3/vandango/set_the_fire.m4a" type="audio/mp4">
+        </audio>
+    </div>
+
+    <script src="custom-mobile-player.js"></script>
+</body>
+</html>
