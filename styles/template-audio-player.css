@@ -276,23 +276,21 @@
     top: 53.4%;
     left: 59.2%;
     width: 32.6%;
-    height: 38%;
     display: flex;
     flex-direction: column;
-    gap: 1.3%;
+    gap: 8.5%; /* 130px / 1536px */
     pointer-events: auto;
 }
 
 .template-streaming-btn {
     width: 100%;
-    height: 7.1%;
+    height: 7.2%; /* 110px / 1536px */
     background: transparent;
     border: none;
     cursor: pointer;
     transition: all 0.2s;
     outline: none;
     padding: 0;
-    margin-bottom: 1.5%;
 }
 
 .template-streaming-btn img {

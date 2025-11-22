@@ -185,7 +185,7 @@
       toggleMuteBtn = document.createElement('button');
       toggleMuteBtn.id = 'toggleMuteBtn';
       toggleMuteBtn.className = 'video-controls';
-      toggleMuteBtn.style.cssText = 'position: absolute; bottom: 10px; left: 10px; z-index: 10; background: transparent; border: none; padding: 0; cursor: pointer; transition: all 0.3s ease;';
+      toggleMuteBtn.style.left = '10px';
       videoContainer.appendChild(toggleMuteBtn);
     }
 
@@ -196,7 +196,7 @@
       stopVideoBtn.id = 'stopVideoBtn';
       stopVideoBtn.className = 'video-controls';
       stopVideoBtn.setAttribute('aria-label', 'Video stoppen');
-      stopVideoBtn.style.cssText = 'position: absolute; bottom: 10px; right: 10px; z-index: 10; background: transparent; border: none; padding: 0; cursor: pointer; transition: all 0.3s ease;';
+      stopVideoBtn.style.right = '10px';
       videoContainer.appendChild(stopVideoBtn);
     }
 
