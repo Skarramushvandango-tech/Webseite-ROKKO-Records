@@ -44,7 +44,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 0;
     overflow: auto;
 }
 
@@ -80,10 +80,10 @@ body {
 /* Player Container - Based on YOUR 675x1080 template */
 .player-container {
     position: relative;
-    width: 100%;
-    max-width: 675px;
+    width: 100vw;
+    max-width: 100vw;
     aspect-ratio: 675 / 1080;
-    margin: auto;
+    margin: 0;
 }
 
 /* Template Background Image */
