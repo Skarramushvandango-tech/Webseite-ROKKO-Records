@@ -184,7 +184,7 @@
     stopVideoBtn = document.getElementById('stopVideoBtn');
     
     if (!toggleMuteBtn || !stopVideoBtn) {
-      console.warn('Video control buttons not found in DOM');
+      console.warn('Video control buttons not found in DOM: toggleMuteBtn=' + !!toggleMuteBtn + ', stopVideoBtn=' + !!stopVideoBtn);
       return;
     }
 
@@ -255,6 +255,24 @@
       resizeHandlerAttached = true;
     }
 
+    /**
+     * Attempt to autoplay video with muted fallback
+     */
+    function attemptMutedAutoplay() {
+      video.muted = true;
+      video.play()
+        .then(() => {
+          console.log('Video autoplay started muted (fallback)');
+          updateStopButtonState();
+          updateMuteButtonState();
+        })
+        .catch(err => {
+          console.error('Video autoplay failed completely:', err);
+          updateMuteButtonState();
+          updateStopButtonState();
+        });
+    }
+
     // Attempt to autoplay video with sound when browser can start playing
     // canplay event fires when enough data is available to play without buffering
     // Note: Video should play once with sound and stay on last frame
@@ -279,18 +297,7 @@
           .catch(error => {
             // Autoplay with sound was blocked, try muted as fallback
             console.warn('Video autoplay with sound was prevented, trying muted:', error);
-            video.muted = true;
-            video.play()
-              .then(() => {
-                console.log('Video autoplay started muted (fallback)');
-                updateStopButtonState();
-                updateMuteButtonState();
-              })
-              .catch(err => {
-                console.error('Video autoplay failed completely:', err);
-                updateMuteButtonState();
-                updateStopButtonState();
-              });
+            attemptMutedAutoplay();
           });
       }
     });
