@@ -1,47 +1,81 @@
-  - name: Setup Node
-    uses: actions/setup-node@v4
-    with:
-      node-version: '18'
+name: CI
 
-  - name: Check if package.json exists
-    id: check_package
-    run: |
-      if [ -f "package.json" ]; then
-        echo "exists=true" >> $GITHUB_OUTPUT
-      else
-        echo "exists=false" >> $GITHUB_OUTPUT
-      fi
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+  workflow_dispatch:
 
-  - name: Install deps
-    if: steps.check_package.outputs.exists == 'true'
-    run: npm ci || npm install
+# Limit permissions for security - only need to read code
+permissions:
+  contents: read
 
-  - name: Build
-    if: steps.check_package.outputs.exists == 'true'
-    run: |
-      if npm run | grep -q " build"; then
-        npm run build
-      else
-        echo "No build script found, skipping"
-      fi
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  - name: Validate HTML files (safe)
-    run: |
-      set -e
-      count=$(git ls-files '*.html' | wc -l | tr -d ' ')
-      if [ "$count" -eq 0 ]; then
-        echo "No HTML files found, skipping."
-      else
-        git ls-files '*.html'
-      fi
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-  - name: Check assets (non-failing)
-    run: |
-      for f in assets/images/logo.png assets/movies/intro_movie.mp4; do
-        if [ -f "$f" ]; then
-          echo "✓ $f"
-        else
-          echo "⚠ missing: $f"
-        fi
-      done
-      exit 0
+      - name: Check if package.json exists
+        id: check_package
+        run: |
+          if [ -f "package.json" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Install deps
+        if: steps.check_package.outputs.exists == 'true'
+        run: npm ci || npm install
+
+      - name: Build
+        if: steps.check_package.outputs.exists == 'true'
+        run: |
+          if npm run | grep -q " build"; then
+            npm run build
+          else
+            echo "No build script found, skipping"
+          fi
+
+      - name: Validate HTML files (safe)
+        run: |
+          set -e
+          count=$(git ls-files '*.html' | wc -l | tr -d ' ')
+          if [ "$count" -eq 0 ]; then
+            echo "No HTML files found, skipping."
+          else
+            echo "✅ Found HTML files:"
+            git ls-files '*.html'
+          fi
+
+      - name: Check assets (non-failing)
+        run: |
+          echo "Checking for key assets..."
+          # Check critical assets used in index.html
+          for f in images/intro_movie.mp4 images/logo.png images/header.png; do
+            if [ -f "$f" ]; then
+              echo "✅ $f exists"
+            else
+              echo "⚠️  $f missing"
+            fi
+          done
+          exit 0
+
+      - name: Run color validation
+        run: |
+          if [ -f "validate-colors.sh" ]; then
+            chmod +x validate-colors.sh
+            ./validate-colors.sh || echo "⚠️  Color validation failed (non-blocking)"
+          else
+            echo "ℹ️  No color validation script found"
+          fi
+          exit 0
