@@ -276,7 +276,8 @@
       resizeHandlerAttached = true;
     }
 
-    // Attempt to autoplay video muted when enough data is loaded
+    // Attempt to autoplay video muted when browser can start playing
+    // canplay event fires when enough data is available to play without buffering
     // Note: Video should play once, muted, and stay on last frame
     // Use flag to prevent multiple autoplay attempts
     video.addEventListener('canplay', () => {
