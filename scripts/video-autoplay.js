@@ -87,11 +87,11 @@
     
     // Show play button when video is paused, stop button when playing
     if (video.paused) {
-      stopVideoBtn.innerHTML = '<img src="img/playbutton.png" alt="Play" style="width: 30px; height: 30px; vertical-align: middle;">';
+      stopVideoBtn.innerHTML = '<img src="img/playbutton.png" alt="Play" style="width: 50px; height: 50px; vertical-align: middle;">';
       stopVideoBtn.setAttribute('aria-label', 'Video abspielen');
       stopVideoBtn.title = 'Video abspielen';
     } else {
-      stopVideoBtn.innerHTML = '<img src="img/stopbutton.png" alt="Stop" style="width: 30px; height: 30px; vertical-align: middle;">';
+      stopVideoBtn.innerHTML = '<img src="img/stopbutton.png" alt="Stop" style="width: 50px; height: 50px; vertical-align: middle;">';
       stopVideoBtn.setAttribute('aria-label', 'Video stoppen');
       stopVideoBtn.title = 'Video stoppen';
     }
@@ -106,12 +106,12 @@
     // When video is muted, show sound.png (click to enable sound)
     // When video has sound, show mute.png (click to mute)
     if (video.muted) {
-      toggleMuteBtn.innerHTML = '<img src="img/sound.png" alt="Sound aktivieren" style="width: 30px; height: 30px; vertical-align: middle;">';
+      toggleMuteBtn.innerHTML = '<img src="img/sound.png" alt="Sound aktivieren" style="width: 50px; height: 50px; vertical-align: middle;">';
       toggleMuteBtn.setAttribute('aria-pressed', 'true');
       toggleMuteBtn.setAttribute('aria-label', 'Ton aktivieren');
       toggleMuteBtn.title = 'Ton aktivieren';
     } else {
-      toggleMuteBtn.innerHTML = '<img src="img/mute.png" alt="Ton aus" style="width: 30px; height: 30px; vertical-align: middle;">';
+      toggleMuteBtn.innerHTML = '<img src="img/mute.png" alt="Ton aus" style="width: 50px; height: 50px; vertical-align: middle;">';
       toggleMuteBtn.setAttribute('aria-pressed', 'false');
       toggleMuteBtn.setAttribute('aria-label', 'Ton deaktivieren');
       toggleMuteBtn.title = 'Ton deaktivieren';
@@ -166,8 +166,8 @@
       return;
     }
 
-    // Start video muted to allow autoplay (browser requirement)
-    video.muted = true;
+    // Start video with sound enabled (unmuted) - autoplay will be attempted with sound
+    video.muted = false;
     
     // Ensure video does not loop (play once and stop at last frame)
     video.loop = false;
@@ -179,34 +179,13 @@
     preloader = document.getElementById('videoPreloader');
     loadingBar = document.getElementById('loadingBar');
 
-    // Find or create control buttons
-    const videoContainer = video.parentElement;
-
-    // Create or find mute toggle button - positioned bottom-left (sound/mute control)
+    // Find control buttons (now defined in HTML)
     toggleMuteBtn = document.getElementById('toggleMuteBtn');
-    if (!toggleMuteBtn) {
-      toggleMuteBtn = document.createElement('button');
-      toggleMuteBtn.id = 'toggleMuteBtn';
-      toggleMuteBtn.className = 'video-controls';
-      toggleMuteBtn.style.position = 'absolute';
-      toggleMuteBtn.style.left = '10px';
-      toggleMuteBtn.style.bottom = '10px';
-      toggleMuteBtn.style.zIndex = '10';
-      videoContainer.appendChild(toggleMuteBtn);
-    }
-
-    // Create or find stop/play button - positioned bottom-right (play/stop control)
     stopVideoBtn = document.getElementById('stopVideoBtn');
-    if (!stopVideoBtn) {
-      stopVideoBtn = document.createElement('button');
-      stopVideoBtn.id = 'stopVideoBtn';
-      stopVideoBtn.className = 'video-controls';
-      stopVideoBtn.setAttribute('aria-label', 'Video stoppen');
-      stopVideoBtn.style.position = 'absolute';
-      stopVideoBtn.style.right = '10px';
-      stopVideoBtn.style.bottom = '10px';
-      stopVideoBtn.style.zIndex = '10';
-      videoContainer.appendChild(stopVideoBtn);
+    
+    if (!toggleMuteBtn || !stopVideoBtn) {
+      console.warn('Video control buttons not found in DOM');
+      return;
     }
 
     // Set up event listeners
@@ -276,9 +255,9 @@
       resizeHandlerAttached = true;
     }
 
-    // Attempt to autoplay video muted when browser can start playing
+    // Attempt to autoplay video with sound when browser can start playing
     // canplay event fires when enough data is available to play without buffering
-    // Note: Video should play once, muted, and stay on last frame
+    // Note: Video should play once with sound and stay on last frame
     // Use flag to prevent multiple autoplay attempts
     video.addEventListener('canplay', () => {
       if (autoplayAttempted) {
@@ -286,22 +265,32 @@
       }
       autoplayAttempted = true;
       
-      // Try to play the video muted (browsers allow autoplay when muted)
+      // Try to play the video with sound (browsers may block this)
       const playPromise = video.play();
       
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
-            // Autoplay muted succeeded
-            console.log('Video autoplay started successfully');
+            // Autoplay with sound succeeded
+            console.log('Video autoplay with sound started successfully');
             updateStopButtonState();
+            updateMuteButtonState();
           })
           .catch(error => {
-            // Autoplay was blocked by browser policy
-            console.warn('Video autoplay was prevented by browser:', error);
-            // User can interact with play button to start video
-            updateMuteButtonState();
-            updateStopButtonState();
+            // Autoplay with sound was blocked, try muted as fallback
+            console.warn('Video autoplay with sound was prevented, trying muted:', error);
+            video.muted = true;
+            video.play()
+              .then(() => {
+                console.log('Video autoplay started muted (fallback)');
+                updateStopButtonState();
+                updateMuteButtonState();
+              })
+              .catch(err => {
+                console.error('Video autoplay failed completely:', err);
+                updateMuteButtonState();
+                updateStopButtonState();
+              });
           });
       }
     });
