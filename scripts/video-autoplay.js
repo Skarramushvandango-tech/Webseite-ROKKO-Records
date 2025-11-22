@@ -166,8 +166,11 @@
       return;
     }
 
-    // Ensure video starts muted (requirement: autoplay muted)
+    // Start video muted to allow autoplay (browser requirement)
     video.muted = true;
+    
+    // Ensure video does not loop (play once and stop at last frame)
+    video.loop = false;
 
     // Set the appropriate video source based on screen size
     setVideoSource();
@@ -179,24 +182,30 @@
     // Find or create control buttons
     const videoContainer = video.parentElement;
 
-    // Create or find mute toggle button FIRST - positioned bottom-left (first control element per requirements)
+    // Create or find mute toggle button - positioned bottom-left (sound/mute control)
     toggleMuteBtn = document.getElementById('toggleMuteBtn');
     if (!toggleMuteBtn) {
       toggleMuteBtn = document.createElement('button');
       toggleMuteBtn.id = 'toggleMuteBtn';
       toggleMuteBtn.className = 'video-controls';
+      toggleMuteBtn.style.position = 'absolute';
       toggleMuteBtn.style.left = '10px';
+      toggleMuteBtn.style.bottom = '10px';
+      toggleMuteBtn.style.zIndex = '10';
       videoContainer.appendChild(toggleMuteBtn);
     }
 
-    // Create or find stop/play button - positioned bottom-right (second control element)
+    // Create or find stop/play button - positioned bottom-right (play/stop control)
     stopVideoBtn = document.getElementById('stopVideoBtn');
     if (!stopVideoBtn) {
       stopVideoBtn = document.createElement('button');
       stopVideoBtn.id = 'stopVideoBtn';
       stopVideoBtn.className = 'video-controls';
       stopVideoBtn.setAttribute('aria-label', 'Video stoppen');
+      stopVideoBtn.style.position = 'absolute';
       stopVideoBtn.style.right = '10px';
+      stopVideoBtn.style.bottom = '10px';
+      stopVideoBtn.style.zIndex = '10';
       videoContainer.appendChild(stopVideoBtn);
     }
 
@@ -267,10 +276,11 @@
       resizeHandlerAttached = true;
     }
 
-    // Attempt to autoplay video muted when metadata is loaded
+    // Attempt to autoplay video muted when browser can start playing
+    // canplay event fires when enough data is available to play without buffering
     // Note: Video should play once, muted, and stay on last frame
     // Use flag to prevent multiple autoplay attempts
-    video.addEventListener('loadedmetadata', () => {
+    video.addEventListener('canplay', () => {
       if (autoplayAttempted) {
         return; // Already attempted autoplay once
       }
@@ -283,10 +293,12 @@
         playPromise
           .then(() => {
             // Autoplay muted succeeded
+            console.log('Video autoplay started successfully');
             updateStopButtonState();
           })
           .catch(error => {
             // Autoplay was blocked by browser policy
+            console.warn('Video autoplay was prevented by browser:', error);
             // User can interact with play button to start video
             updateMuteButtonState();
             updateStopButtonState();

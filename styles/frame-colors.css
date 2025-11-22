@@ -122,17 +122,17 @@
   transform: scale(0.98);
 }
 
-/* Mute toggle button - right side */
+/* Mute toggle button - bottom left (sound/mute control) */
 #toggleMuteBtn {
   position: absolute;
-  right: 10px;
+  left: 10px;
   bottom: 10px;
 }
 
-/* Stop button - left side */
+/* Stop button - bottom right (play/stop control) */
 #stopVideoBtn {
   position: absolute;
-  left: 10px;
+  right: 10px;
   bottom: 10px;
 }
 
