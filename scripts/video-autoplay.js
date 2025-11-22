@@ -166,8 +166,8 @@
       return;
     }
 
-    // Ensure video starts unmuted (user requirement: autoplay with sound)
-    video.muted = false;
+    // Ensure video starts muted (requirement: autoplay muted)
+    video.muted = true;
 
     // Set the appropriate video source based on screen size
     setVideoSource();
@@ -179,25 +179,25 @@
     // Find or create control buttons
     const videoContainer = video.parentElement;
 
-    // Create or find stop/play button - positioned bottom-left
+    // Create or find mute toggle button FIRST - positioned bottom-left (first control element per requirements)
+    toggleMuteBtn = document.getElementById('toggleMuteBtn');
+    if (!toggleMuteBtn) {
+      toggleMuteBtn = document.createElement('button');
+      toggleMuteBtn.id = 'toggleMuteBtn';
+      toggleMuteBtn.className = 'video-controls';
+      toggleMuteBtn.style.left = '10px';
+      videoContainer.appendChild(toggleMuteBtn);
+    }
+
+    // Create or find stop/play button - positioned bottom-right (second control element)
     stopVideoBtn = document.getElementById('stopVideoBtn');
     if (!stopVideoBtn) {
       stopVideoBtn = document.createElement('button');
       stopVideoBtn.id = 'stopVideoBtn';
       stopVideoBtn.className = 'video-controls';
       stopVideoBtn.setAttribute('aria-label', 'Video stoppen');
-      stopVideoBtn.style.cssText = 'position: absolute; bottom: 10px; left: 10px; z-index: 10; background: transparent; border: none; padding: 0; cursor: pointer; transition: all 0.3s ease;';
+      stopVideoBtn.style.right = '10px';
       videoContainer.appendChild(stopVideoBtn);
-    }
-
-    // Create or find mute toggle button - positioned bottom-right
-    toggleMuteBtn = document.getElementById('toggleMuteBtn');
-    if (!toggleMuteBtn) {
-      toggleMuteBtn = document.createElement('button');
-      toggleMuteBtn.id = 'toggleMuteBtn';
-      toggleMuteBtn.className = 'video-controls';
-      toggleMuteBtn.style.cssText = 'position: absolute; bottom: 10px; right: 10px; z-index: 10; background: transparent; border: none; padding: 0; cursor: pointer; transition: all 0.3s ease;';
-      videoContainer.appendChild(toggleMuteBtn);
     }
 
     // Set up event listeners
@@ -267,8 +267,8 @@
       resizeHandlerAttached = true;
     }
 
-    // Attempt to autoplay video with sound when metadata is loaded
-    // Note: Browsers may block autoplay with sound due to autoplay policies
+    // Attempt to autoplay video muted when metadata is loaded
+    // Note: Video should play once, muted, and stay on last frame
     // Use flag to prevent multiple autoplay attempts
     video.addEventListener('loadedmetadata', () => {
       if (autoplayAttempted) {
@@ -276,13 +276,13 @@
       }
       autoplayAttempted = true;
       
-      // Try to play the video with sound
+      // Try to play the video muted (browsers allow autoplay when muted)
       const playPromise = video.play();
       
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
-            // Autoplay with sound succeeded
+            // Autoplay muted succeeded
             updateStopButtonState();
           })
           .catch(error => {

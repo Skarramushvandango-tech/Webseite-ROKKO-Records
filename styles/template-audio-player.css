@@ -49,12 +49,12 @@
     transform: scale(1.1) rotate(90deg);
 }
 
-/* Player Container - Based on 675x1080 template */
+/* Player Container - Based on 921x1536 template */
 .template-player-container {
     position: relative;
     width: 100%;
-    max-width: 675px;
-    aspect-ratio: 675 / 1080;
+    max-width: 921px;
+    aspect-ratio: 921 / 1536;
     margin: auto;
 }
 
@@ -84,12 +84,12 @@
     pointer-events: auto;
 }
 
-/* Album Cover Area - TOP LEFT */
+/* Album Cover Area - TOP LEFT (x=120px/0.130, y=170px/0.111, 330px×330px) */
 .template-album-cover-area {
     position: absolute;
-    top: 10.8%;
-    left: 8.2%;
-    width: 38.2%;
+    top: 11.1%;
+    left: 13.0%;
+    width: 35.8%;
     aspect-ratio: 1;
     overflow: hidden;
     border-radius: 6px;
@@ -101,57 +101,58 @@
     object-fit: cover;
 }
 
-/* Track Info Area - TOP RIGHT */
+/* Track Info Area - Artist Name (x=170px/0.184, y=515px/0.335) */
 .template-track-info-area {
     position: absolute;
-    top: 11.3%;
-    left: 50.5%;
-    width: 45%;
+    top: 33.5%;
+    left: 18.4%;
+    width: 65%;
     text-align: left;
     pointer-events: none;
-    background: var(--template-overlay-bg);
-    padding: 3px 8px;
-    border-radius: 4px;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
 }
 
 .template-track-info-area h2 {
-    font-size: clamp(11px, 2vw, 18px);
+    font-size: clamp(20px, 2.5vw, 32px);
     font-weight: 600;
-    margin-bottom: 2px;
-    line-height: 1.1;
-    color: #5A4A3A;
+    margin-bottom: 8px;
+    line-height: 1.2;
+    color: #E0C290;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .template-track-info-area p {
-    font-size: clamp(20px, 4vw, 52px);
-    font-weight: 700;
+    font-size: clamp(18px, 2.2vw, 28px);
+    font-weight: 400;
     margin-bottom: 0;
-    line-height: 0.95;
-    color: #201613;
+    line-height: 1.25;
+    color: #3D2817;
 }
 
-/* Time Display */
+/* Time Display - Hidden or minimal, player design shows track info instead */
 .template-time-display-area {
     position: absolute;
-    top: 32.5%;
-    right: 7.5%;
-    font-size: clamp(16px, 2.5vw, 26px);
-    font-weight: 700;
+    top: 48%;
+    right: 10%;
+    font-size: clamp(14px, 1.8vw, 22px);
+    font-weight: 600;
     color: #201613;
     pointer-events: none;
     white-space: nowrap;
-    background: var(--template-overlay-bg);
-    padding: 3px 10px;
-    border-radius: 4px;
+    background: transparent;
+    padding: 2px 6px;
+    border-radius: 3px;
 }
 
-/* Progress Bar */
+/* Progress Bar - Positioned near control buttons */
 .template-progress-bar-area {
     position: absolute;
-    top: 35%;
-    left: 9.5%;
-    width: 81%;
-    height: 2.5%;
+    top: 50%;
+    left: 10%;
+    width: 80%;
+    height: 2%;
     cursor: pointer;
     background: transparent;
     outline: none;
@@ -200,38 +201,40 @@
     outline-offset: 4px;
 }
 
-/* Previous Button (Left circle) */
+/* Previous Button (Center x=260px/0.282, y=650px/0.423, Radius=75px/0.081) */
 .template-prev-btn {
-    top: 42.8%;
-    left: 8.5%;
-    width: 22%;
+    top: 42.3%;
+    left: 28.2%;
+    width: 16.3%;
     aspect-ratio: 1;
+    transform: translateX(-50%) translateY(-50%);
 }
 
-/* Play Button (Center circle - LARGER) */
+/* Play Button (Center x=460px/0.499, y=650px/0.423, Radius=95px/0.103) */
 .template-play-btn {
-    top: 40.5%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 27%;
+    top: 42.3%;
+    left: 49.9%;
+    width: 20.6%;
     aspect-ratio: 1;
+    transform: translateX(-50%) translateY(-50%);
 }
 
-/* Next Button (Right circle) */
+/* Next Button (Center x=660px/0.717, y=650px/0.423, Radius=75px/0.081) */
 .template-next-btn {
-    top: 42.8%;
-    right: 8.5%;
-    width: 22%;
+    top: 42.3%;
+    left: 71.7%;
+    width: 16.3%;
     aspect-ratio: 1;
+    transform: translateX(-50%) translateY(-50%);
 }
 
-/* Playlist Area - BOTTOM LEFT */
+/* Playlist Area - BOTTOM LEFT (x=90px/0.097, y=830px/0.540, 420px×520px) */
 .template-playlist-area {
     position: absolute;
-    top: 60.5%;
-    left: 7%;
-    width: 50%;
-    height: 34%;
+    top: 54.0%;
+    left: 9.7%;
+    width: 45.6%;
+    height: 33.8%;
     overflow-y: auto;
     pointer-events: auto;
 }
@@ -267,22 +270,21 @@
     font-weight: 700;
 }
 
-/* Streaming Buttons - RIGHT SIDE */
+/* Streaming Buttons - RIGHT SIDE (x=545px/0.592, y=820px/0.534, 300px×110px, gap=130px) */
 .template-streaming-buttons-area {
     position: absolute;
-    top: 60.5%;
-    right: 5.5%;
-    width: 37%;
-    height: 34.5%;
+    top: 53.4%;
+    left: 59.2%;
+    width: 32.6%;
     display: flex;
     flex-direction: column;
-    gap: 2%;
+    gap: 8.5%; /* 130px / 1536px */
     pointer-events: auto;
 }
 
 .template-streaming-btn {
     width: 100%;
-    height: 24%;
+    height: 7.2%; /* 110px / 1536px */
     background: transparent;
     border: none;
     cursor: pointer;

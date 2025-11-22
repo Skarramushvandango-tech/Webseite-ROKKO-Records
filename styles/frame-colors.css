@@ -61,6 +61,18 @@
    Intro Video Styling
    =========================================================================== */
 
+/* Video control buttons */
+.video-controls {
+  position: absolute;
+  bottom: 10px;
+  z-index: 10;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
 /* Intro video container */
 .intro-video {
   position: relative;

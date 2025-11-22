@@ -99,17 +99,17 @@ class TemplateAudioPlayer {
 
                     <!-- Streaming Buttons (Bottom Right) -->
                     <div class="template-streaming-buttons-area">
-                        <button class="template-streaming-btn" aria-label="Listen on SoundCloud" title="SoundCloud">
-                            <img src="img/logo_01.png" alt="SoundCloud">
-                        </button>
                         <button class="template-streaming-btn" aria-label="Listen on Amazon Music" title="Amazon Music">
                             <img src="img/logo_02.png" alt="Amazon Music">
                         </button>
                         <button class="template-streaming-btn" aria-label="Listen on Apple Music" title="Apple Music">
                             <img src="img/logo_03.png" alt="Apple Music">
                         </button>
-                        <button class="template-streaming-btn" aria-label="Listen on Spotify" title="Spotify">
-                            <img src="img/logo_06.png" alt="Spotify">
+                        <button class="template-streaming-btn" aria-label="Listen on Beatport" title="Beatport">
+                            <img src="img/logo_04.png" alt="Beatport">
+                        </button>
+                        <button class="template-streaming-btn" aria-label="Listen on Amazon Music" title="Amazon Music">
+                            <img src="img/logo_02.png" alt="Amazon Music">
                         </button>
                     </div>
                 </div>
