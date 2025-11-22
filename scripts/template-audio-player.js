@@ -350,13 +350,13 @@ class TemplateAudioPlayer {
 }
 
 // Initialize global instance
-let rokkoAudioPlayer = null;
+window.rokkoAudioPlayer = null;
 
 // Auto-initialize when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        rokkoAudioPlayer = new TemplateAudioPlayer();
+        window.rokkoAudioPlayer = new TemplateAudioPlayer();
     });
 } else {
-    rokkoAudioPlayer = new TemplateAudioPlayer();
+    window.rokkoAudioPlayer = new TemplateAudioPlayer();
 }
