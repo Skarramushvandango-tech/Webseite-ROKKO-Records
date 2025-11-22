@@ -7,6 +7,10 @@ on:
     branches: ["**"]
   workflow_dispatch:
 
+# Limit permissions for security - only need to read code
+permissions:
+  contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
