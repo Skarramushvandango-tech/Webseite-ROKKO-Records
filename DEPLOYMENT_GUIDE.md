@@ -205,6 +205,4 @@ After pushing to `main`:
 
 ---
 
-**Last Updated:** 2024-11-22
-
 **Questions?** Check the Actions tab or create an issue on GitHub.

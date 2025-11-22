@@ -56,6 +56,7 @@ jobs:
       - name: Check assets (non-failing)
         run: |
           echo "Checking for key assets..."
+          # Check critical assets used in index.html
           for f in images/intro_movie.mp4 images/logo.png images/header.png; do
             if [ -f "$f" ]; then
               echo "✅ $f exists"
