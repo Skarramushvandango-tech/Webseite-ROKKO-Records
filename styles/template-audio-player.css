@@ -4,7 +4,7 @@
     --template-overlay-bg: rgba(0, 0, 0, 0.6);
 }
 
-/* Full Page Overlay - Fullscreen (below header with z-index 99999) */
+/* Full Page Overlay - Fullscreen (below header with z-index 1000) */
 .template-player-overlay {
     position: fixed;
     top: 0;
@@ -12,14 +12,14 @@
     width: 100vw;
     height: 100vh;
     background: var(--template-overlay-bg);
-    z-index: 10000;
+    z-index: 999;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
 }
 
-/* Close Button (Top Right Corner) - Clearly visible X */
+/* Close Button (Top Right Corner) - Clearly visible X (below header) */
 .template-close-btn {
     position: fixed;
     top: 30px;
@@ -36,7 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10001;
+    z-index: 999;
     transition: all 0.3s;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
     line-height: 1;
