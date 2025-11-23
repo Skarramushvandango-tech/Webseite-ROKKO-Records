@@ -1,7 +1,7 @@
 /* ROKKO Records Template Audio Player - Fullscreen with player_template.png */
 
 :root {
-    --template-overlay-bg: rgba(0, 0, 0, 0.95);
+    --template-overlay-bg: rgba(61, 40, 23, 0.4);
 }
 
 /* Full Page Overlay - Fullscreen */
@@ -84,13 +84,13 @@
     pointer-events: auto;
 }
 
-/* Album Cover - TOP LEFT (Design: x=120, y=150, 330×330) */
+/* Album Cover - TOP LEFT (Design: x=100, y=130, 280.5×280.5 - moved 20px left/up, 15% smaller) */
 .template-album-cover-area {
     position: absolute;
-    left: calc((120 / 921) * 100%);
-    top: calc((150 / 1536) * 100%);
-    width: calc((330 / 921) * 100%);
-    height: calc((330 / 1536) * 100%);
+    left: calc((100 / 921) * 100%);
+    top: calc((130 / 1536) * 100%);
+    width: calc((280.5 / 921) * 100%);
+    height: calc((280.5 / 1536) * 100%);
     overflow: hidden;
     border-radius: 6px;
 }
@@ -101,7 +101,7 @@
     object-fit: cover;
 }
 
-/* Artist Name - Centered below cover (Design: x=460 center, y=560) */
+/* Artist Name - Centered below cover (Design: x=460 center, y=560) - reduced size */
 .template-artist-name {
     position: absolute;
     left: 50%;
@@ -110,7 +110,7 @@
     text-align: center;
     pointer-events: none;
     color: #E0C290;
-    font-size: clamp(22px, 2.8vw, 36px);
+    font-size: clamp(16px, 2vw, 26px);
     font-weight: 700;
     text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
     white-space: nowrap;
@@ -143,12 +143,11 @@
 }
 
 .template-control-btn:hover {
-    transform: translate(-50%, -50%) scale(1.08);
-    background: rgba(224, 194, 144, 0.15);
+    transform: translate(-50%, -50%);
 }
 
 .template-control-btn:active {
-    transform: translate(-50%, -50%) scale(0.95);
+    transform: translate(-50%, -50%);
 }
 
 .template-control-btn:focus {
@@ -237,7 +236,7 @@
     cursor: pointer;
     text-align: left;
     padding: 6px 8px;
-    color: #201613;
+    color: #E0C290;
     font-family: inherit;
     font-size: clamp(11px, 1.3vw, 18px);
     font-weight: 500;
@@ -261,20 +260,22 @@
     font-weight: 700;
 }
 
-/* Streaming Buttons - RIGHT SIDE vertical column (Design: x=700 center, y=1010 start, gap=145px) */
+/* Streaming Buttons - RIGHT SIDE vertical column (Design: x=700 center, y=1010 start, 40% larger) */
 .template-streaming-buttons-area {
     position: absolute;
     left: calc((700 / 921) * 100%);
     top: calc((1010 / 1536) * 100%);
+    width: calc((168 / 921) * 100%);
+    height: calc((500 / 1536) * 100%);
     display: flex;
     flex-direction: column;
-    gap: calc((145 / 1536) * 100%);
+    justify-content: space-between;
     pointer-events: auto;
     transform: translateX(-50%);
 }
 
 .template-streaming-btn {
-    width: calc((120 / 921) * 100%);
+    width: 100%;
     aspect-ratio: 120 / 80;
     background: transparent;
     border: none;
