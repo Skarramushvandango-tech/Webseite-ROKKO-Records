@@ -270,24 +270,21 @@
     font-weight: 700;
 }
 
-/* Streaming Buttons - halfway between old and new position (x=645) */
+/* Streaming Buttons - centered on dark brown column (x=645, original size 120×80) */
 .template-streaming-buttons-area {
     position: absolute;
     left: calc((645 / 921) * 100%);
-    top: calc((1260 / 1536) * 100%);
-    width: calc((350 / 921) * 100%);
-    height: calc((500 / 1536) * 100%);
+    top: calc((1010 / 1536) * 100%);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: calc((145 / 1536) * 100%);
     pointer-events: auto;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
 }
 
 .template-streaming-btn {
-    width: 100%;
-    flex: 1;
-    min-height: 0;
+    width: calc((120 / 921) * 100vw);
+    height: calc((80 / 1536) * 100vh);
     background: transparent;
     border: none;
     cursor: pointer;
