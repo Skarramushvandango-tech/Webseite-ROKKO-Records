@@ -523,6 +523,7 @@ document.addEventListener('DOMContentLoaded', function(){
             return {
               title: t.title,
               artist: artistName,
+              album: album.albumName,
               src: t.src,
               cover: album.cover
             };
