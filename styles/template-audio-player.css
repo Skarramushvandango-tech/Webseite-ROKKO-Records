@@ -270,29 +270,26 @@
     font-weight: 700;
 }
 
-/* Streaming Buttons - scaled to match track list height (4 buttons × 85px = 340px + gaps) */
+/* Streaming Buttons - 4 buttons matching track list height, centered on dark brown column */
 .template-streaming-buttons-area {
     position: absolute;
-    left: calc((728 / 921) * 100%);
-    top: calc((1010 / 1536) * 100%);
-    width: calc((136 / 921) * 100%);
-    height: calc((500 / 1536) * 100%);
+    left: calc((475 / 921) * 100%);
+    top: calc((764 / 1536) * 100%);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 0;
     pointer-events: auto;
-    transform: translateX(-50%);
 }
 
 .template-streaming-btn {
-    width: 100%;
-    height: 24%;
+    width: calc((98 / 921) * 100vw);
+    height: calc((181 / 1536) * 100vh);
     background: transparent;
     border: none;
     cursor: pointer;
     transition: all 0.2s;
     outline: none;
-    padding: 2px 0;
+    padding: 0;
 }
 
 .template-streaming-btn img {
