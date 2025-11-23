@@ -4,7 +4,7 @@
     --template-overlay-bg: rgba(0, 0, 0, 0.6);
 }
 
-/* Full Page Overlay - Fullscreen (below header) */
+/* Full Page Overlay - Fullscreen (below header with z-index 99999) */
 .template-player-overlay {
     position: fixed;
     top: 0;
@@ -12,7 +12,7 @@
     width: 100vw;
     height: 100vh;
     background: var(--template-overlay-bg);
-    z-index: 100;
+    z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,7 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 101;
+    z-index: 10001;
     transition: all 0.3s;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
     line-height: 1;
@@ -84,13 +84,13 @@
     pointer-events: auto;
 }
 
-/* Album Cover - Centered in sand frame (Design: x=285 center, y=285 center, 280×280 smaller) */
+/* Album Cover - Centered in sand frame (Design: centered at x=285, y=285, 270×270) */
 .template-album-cover-area {
     position: absolute;
     left: calc((285 / 921) * 100%);
     top: calc((285 / 1536) * 100%);
-    width: calc((280 / 921) * 100%);
-    height: calc((280 / 1536) * 100%);
+    width: calc((270 / 921) * 100%);
+    height: calc((270 / 1536) * 100%);
     overflow: hidden;
     border-radius: 6px;
     transform: translate(-50%, -50%);
@@ -261,13 +261,13 @@
     font-weight: 700;
 }
 
-/* Streaming Buttons - RIGHT SIDE vertical column (Design: x=700 center, 4 buttons, larger) */
+/* Streaming Buttons - RIGHT SIDE vertical column (matching Stream & Download button width) */
 .template-streaming-buttons-area {
     position: absolute;
     left: calc((700 / 921) * 100%);
     top: calc((1260 / 1536) * 100%);
-    width: calc((280 / 921) * 100%);
-    height: calc((520 / 1536) * 100%);
+    width: calc((350 / 921) * 100%);
+    height: calc((500 / 1536) * 100%);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -284,7 +284,7 @@
     cursor: pointer;
     transition: all 0.2s;
     outline: none;
-    padding: 0;
+    padding: 2px 0;
 }
 
 .template-streaming-btn img {
