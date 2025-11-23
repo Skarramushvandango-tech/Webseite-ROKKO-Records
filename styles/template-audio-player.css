@@ -4,7 +4,7 @@
     --template-overlay-bg: rgba(0, 0, 0, 0.6);
 }
 
-/* Full Page Overlay - Fullscreen (below header with z-index 1000) */
+/* Full Page Overlay - Starts below header */
 .template-player-overlay {
     position: fixed;
     top: 0;
@@ -17,6 +17,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    padding-top: 80px;
 }
 
 /* Close Button (Top Right Corner) - Clearly visible X (below header) */
@@ -48,13 +49,13 @@
     transform: scale(1.15) rotate(90deg);
 }
 
-/* Player Container - Fullscreen viewport width, height calculated */
+/* Player Container - Fullscreen viewport width, height calculated, respects header space */
 .template-player-container {
     position: relative;
     width: 100vw;
     height: calc(100vw * (1536 / 921));
-    max-height: 100vh;
-    max-width: calc(100vh * (921 / 1536));
+    max-height: calc(100vh - 80px);
+    max-width: calc((100vh - 80px) * (921 / 1536));
 }
 
 /* Template Background Image - Full viewport width */
