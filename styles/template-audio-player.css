@@ -1,10 +1,10 @@
 /* ROKKO Records Template Audio Player - Fullscreen with player_template.png */
 
 :root {
-    --template-overlay-bg: rgba(61, 40, 23, 0.4);
+    --template-overlay-bg: rgba(0, 0, 0, 0.6);
 }
 
-/* Full Page Overlay - Fullscreen */
+/* Full Page Overlay - Fullscreen (below header) */
 .template-player-overlay {
     position: fixed;
     top: 0;
@@ -12,7 +12,7 @@
     width: 100vw;
     height: 100vh;
     background: var(--template-overlay-bg);
-    z-index: 9999;
+    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,7 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10001;
+    z-index: 101;
     transition: all 0.3s;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
     line-height: 1;
@@ -84,13 +84,13 @@
     pointer-events: auto;
 }
 
-/* Album Cover - Centered in sand frame (Design: x=285 center, y=285 center, 330×330) */
+/* Album Cover - Centered in sand frame (Design: x=285 center, y=285 center, 280×280 smaller) */
 .template-album-cover-area {
     position: absolute;
     left: calc((285 / 921) * 100%);
     top: calc((285 / 1536) * 100%);
-    width: calc((330 / 921) * 100%);
-    height: calc((330 / 1536) * 100%);
+    width: calc((280 / 921) * 100%);
+    height: calc((280 / 1536) * 100%);
     overflow: hidden;
     border-radius: 6px;
     transform: translate(-50%, -50%);
@@ -261,13 +261,13 @@
     font-weight: 700;
 }
 
-/* Streaming Buttons - RIGHT SIDE vertical column (Design: x=700 center, double size, centered) */
+/* Streaming Buttons - RIGHT SIDE vertical column (Design: x=700 center, 4 buttons, larger) */
 .template-streaming-buttons-area {
     position: absolute;
     left: calc((700 / 921) * 100%);
     top: calc((1260 / 1536) * 100%);
-    width: calc((240 / 921) * 100%);
-    height: calc((450 / 1536) * 100%);
+    width: calc((280 / 921) * 100%);
+    height: calc((520 / 1536) * 100%);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -277,7 +277,8 @@
 
 .template-streaming-btn {
     width: 100%;
-    aspect-ratio: 3 / 2;
+    flex: 1;
+    min-height: 0;
     background: transparent;
     border: none;
     cursor: pointer;
