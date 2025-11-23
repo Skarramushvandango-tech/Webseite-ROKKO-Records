@@ -262,10 +262,10 @@
     font-weight: 700;
 }
 
-/* Streaming Buttons - RIGHT SIDE vertical column (matching Stream & Download button width) */
+/* Streaming Buttons - RIGHT SIDE vertical column (moved 30px left from x=700 to x=670) */
 .template-streaming-buttons-area {
     position: absolute;
-    left: calc((700 / 921) * 100%);
+    left: calc((670 / 921) * 100%);
     top: calc((1260 / 1536) * 100%);
     width: calc((350 / 921) * 100%);
     height: calc((500 / 1536) * 100%);
