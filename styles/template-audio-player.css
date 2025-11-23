@@ -238,6 +238,7 @@
     text-align: left;
     padding: 6px 8px;
     color: #201613;
+    font-family: inherit;
     font-size: clamp(11px, 1.3vw, 18px);
     font-weight: 500;
     display: block;
@@ -273,8 +274,8 @@
 }
 
 .template-streaming-btn {
-    width: calc((120 / 921) * 100vw);
-    height: calc((80 / 1536) * 100vh);
+    width: calc((120 / 921) * 100%);
+    aspect-ratio: 120 / 80;
     background: transparent;
     border: none;
     cursor: pointer;

@@ -158,31 +158,21 @@ class TemplateAudioPlayer {
         this.playlistArea.innerHTML = '';
         
         this.currentPlaylist.forEach((track, index) => {
-            const div = document.createElement('div');
-            div.className = 'template-playlist-item';
-            div.setAttribute('role', 'button');
-            div.setAttribute('tabindex', '0');
-            div.setAttribute('aria-label', `Play ${track.title}`);
-            div.textContent = `${index + 1}. ${track.title}`;
+            const button = document.createElement('button');
+            button.className = 'template-playlist-item';
+            button.setAttribute('aria-label', `Play ${track.title}`);
+            button.textContent = `${index + 1}. ${track.title}`;
             
             if (index === this.currentTrackIndex) {
-                div.classList.add('active');
+                button.classList.add('active');
             }
             
-            const clickHandler = () => {
+            button.addEventListener('click', () => {
                 this.loadTrack(index);
                 this.play();
-            };
-            
-            div.addEventListener('click', clickHandler);
-            div.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    clickHandler();
-                }
             });
             
-            this.playlistArea.appendChild(div);
+            this.playlistArea.appendChild(button);
         });
     }
     

@@ -1,5 +1,14 @@
 // Händelt Diskografie Dropdowns, News Pagination und Carousel
 // NOTE: Video autoplay is handled by video-autoplay.js
+
+// Artist ID to name mapping for template player integration
+var ARTIST_NAME_MAP = {
+  'vandango': 'Skaramush Vandango',
+  'schablonski': 'Skank Schablonski',
+  'bellieu': 'Henri Bellieu',
+  'beunie': 'Fléur et Beunié'
+};
+
 document.addEventListener('DOMContentLoaded', function(){
 
   // Toggle artist details when clicking grid images - FULL PAGE MODAL
@@ -45,16 +54,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 e.stopPropagation();
                 // Get artist name from data attribute
                 var artistName = detailsSection.id.replace('artist-', '');
-                
-                // Map artist IDs to names
-                var artistNameMap = {
-                  'vandango': 'Skaramush Vandango',
-                  'schablonski': 'Skank Schablonski',
-                  'bellieu': 'Henri Bellieu',
-                  'beunie': 'Fléur et Beunié'
-                };
-                
-                var fullArtistName = artistNameMap[artistName];
+                var fullArtistName = ARTIST_NAME_MAP[artistName];
                 
                 // Open template player with artist's tracks
                 if (window.rokkoAudioPlayer && fullArtistName && artistAlbums[fullArtistName]) {
