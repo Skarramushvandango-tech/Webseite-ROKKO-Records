@@ -134,6 +134,13 @@ class TemplateAudioPlayer {
         this.currentArtist = artistName;
         this.currentTrackIndex = startIndex;
         
+        // Pause all other audio on the page
+        document.querySelectorAll('audio').forEach(audio => {
+            if (audio !== this.audioElement && !audio.paused) {
+                audio.pause();
+            }
+        });
+        
         this.buildPlaylist();
         this.loadTrack(this.currentTrackIndex);
         
@@ -207,6 +214,13 @@ class TemplateAudioPlayer {
     }
     
     play() {
+        // Pause all other audio on the page before playing
+        document.querySelectorAll('audio').forEach(audio => {
+            if (audio !== this.audioElement && !audio.paused) {
+                audio.pause();
+            }
+        });
+        
         this.audioElement.play()
             .then(() => {
                 this.isPlaying = true;
