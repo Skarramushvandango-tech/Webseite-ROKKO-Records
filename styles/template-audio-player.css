@@ -1,7 +1,7 @@
 /* ROKKO Records Template Audio Player - Fullscreen with player_template.png */
 
 :root {
-    --template-overlay-bg: rgba(0, 0, 0, 0.6);
+    --template-overlay-bg: rgba(0, 0, 0, 0.8);
 }
 
 /* Full Page Overlay - Starts below header */
@@ -262,10 +262,10 @@
     font-weight: 700;
 }
 
-/* Streaming Buttons - RIGHT SIDE vertical column (moved 30px left from x=700 to x=670) */
+/* Streaming Buttons - positioned center-left with spacing from track list */
 .template-streaming-buttons-area {
     position: absolute;
-    left: calc((670 / 921) * 100%);
+    left: calc((620 / 921) * 100%);
     top: calc((1260 / 1536) * 100%);
     width: calc((350 / 921) * 100%);
     height: calc((500 / 1536) * 100%);
