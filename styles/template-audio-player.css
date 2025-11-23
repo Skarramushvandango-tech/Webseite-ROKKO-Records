@@ -84,15 +84,16 @@
     pointer-events: auto;
 }
 
-/* Album Cover - TOP LEFT (Design: x=100, y=130, 280.5×280.5 - moved 20px left/up, 15% smaller) */
+/* Album Cover - Centered in sand frame (Design: x=285 center, y=285 center, 330×330) */
 .template-album-cover-area {
     position: absolute;
-    left: calc((100 / 921) * 100%);
-    top: calc((130 / 1536) * 100%);
-    width: calc((280.5 / 921) * 100%);
-    height: calc((280.5 / 1536) * 100%);
+    left: calc((285 / 921) * 100%);
+    top: calc((285 / 1536) * 100%);
+    width: calc((330 / 921) * 100%);
+    height: calc((330 / 1536) * 100%);
     overflow: hidden;
     border-radius: 6px;
+    transform: translate(-50%, -50%);
 }
 
 .template-album-cover-area img {
@@ -260,23 +261,23 @@
     font-weight: 700;
 }
 
-/* Streaming Buttons - RIGHT SIDE vertical column (Design: x=700 center, y=1010 start, 40% larger) */
+/* Streaming Buttons - RIGHT SIDE vertical column (Design: x=700 center, double size, centered) */
 .template-streaming-buttons-area {
     position: absolute;
     left: calc((700 / 921) * 100%);
-    top: calc((1010 / 1536) * 100%);
-    width: calc((168 / 921) * 100%);
-    height: calc((500 / 1536) * 100%);
+    top: calc((1260 / 1536) * 100%);
+    width: calc((240 / 921) * 100%);
+    height: calc((450 / 1536) * 100%);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     pointer-events: auto;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
 }
 
 .template-streaming-btn {
     width: 100%;
-    aspect-ratio: 120 / 80;
+    aspect-ratio: 3 / 2;
     background: transparent;
     border: none;
     cursor: pointer;
