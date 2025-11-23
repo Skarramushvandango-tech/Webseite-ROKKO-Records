@@ -85,13 +85,13 @@
     pointer-events: auto;
 }
 
-/* Album Cover - Centered in sand frame (Design: centered at x=285, y=285, 270×270) */
+/* Album Cover - 5% bigger and slightly more left (Design: 283.5×283.5, slightly left of x=285) */
 .template-album-cover-area {
     position: absolute;
-    left: calc((285 / 921) * 100%);
+    left: calc((280 / 921) * 100%);
     top: calc((285 / 1536) * 100%);
-    width: calc((270 / 921) * 100%);
-    height: calc((270 / 1536) * 100%);
+    width: calc((283.5 / 921) * 100%);
+    height: calc((283.5 / 1536) * 100%);
     overflow: hidden;
     border-radius: 6px;
     transform: translate(-50%, -50%);
@@ -223,21 +223,25 @@
     transition: width 0.1s linear;
 }
 
-/* Scrollable Track List - Simple vertical list */
+/* Scrollable Track List - Simple vertical list with frame and dividers */
 .template-playlist-area {
     width: 100%;
     height: 90%;
     overflow-y: auto;
     overflow-x: hidden;
+    border: 2px solid rgba(224, 194, 144, 0.5);
+    border-radius: 4px;
+    padding: 4px;
 }
 
 .template-playlist-item {
     width: 100%;
     background: transparent;
     border: none;
+    border-bottom: 1px solid rgba(224, 194, 144, 0.3);
     cursor: pointer;
     text-align: left;
-    padding: 6px 8px;
+    padding: 8px;
     color: #E0C290;
     font-family: inherit;
     font-size: clamp(11px, 1.3vw, 18px);
@@ -257,15 +261,19 @@
     outline: 2px solid rgba(61, 40, 23, 0.5);
 }
 
+.template-playlist-item:last-child {
+    border-bottom: none;
+}
+
 .template-playlist-item.active {
     background: rgba(61, 40, 23, 0.4);
     font-weight: 700;
 }
 
-/* Streaming Buttons - positioned center-left with spacing from track list */
+/* Streaming Buttons - halfway between old and new position (x=645) */
 .template-streaming-buttons-area {
     position: absolute;
-    left: calc((620 / 921) * 100%);
+    left: calc((645 / 921) * 100%);
     top: calc((1260 / 1536) * 100%);
     width: calc((350 / 921) * 100%);
     height: calc((500 / 1536) * 100%);
