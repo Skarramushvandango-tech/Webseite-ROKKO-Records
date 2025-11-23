@@ -40,10 +40,36 @@ document.addEventListener('DOMContentLoaded', function(){
               
               imgContainer.appendChild(clonedImg);
               
-              // Add click handler to close modal when clicking artist image
-              imgContainer.addEventListener('click', function() {
-                var closeBtn = document.getElementById('closeArtistModal');
-                if(closeBtn) closeBtn.click();
+              // Add click handler to open template player when clicking artist image
+              imgContainer.addEventListener('click', function(e) {
+                e.stopPropagation();
+                // Get artist name from data attribute
+                var artistName = detailsSection.id.replace('artist-', '');
+                
+                // Map artist IDs to names
+                var artistNameMap = {
+                  'vandango': 'Skaramush Vandango',
+                  'schablonski': 'Skank Schablonski',
+                  'bellieu': 'Henri Bellieu',
+                  'beunie': 'Fléur et Beunié'
+                };
+                
+                var fullArtistName = artistNameMap[artistName];
+                
+                // Open template player with artist's tracks
+                if (window.rokkoAudioPlayer && fullArtistName && artistAlbums[fullArtistName]) {
+                  var album = artistAlbums[fullArtistName];
+                  var tracks = album.tracks.map(function(t) {
+                    return {
+                      title: t.title,
+                      artist: fullArtistName,
+                      album: album.albumName,
+                      src: t.src,
+                      cover: album.cover
+                    };
+                  });
+                  window.rokkoAudioPlayer.openPlayer(tracks, fullArtistName);
+                }
               });
               
               modalContent.appendChild(imgContainer);
