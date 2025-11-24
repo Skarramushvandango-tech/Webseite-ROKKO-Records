@@ -49,28 +49,8 @@ document.addEventListener('DOMContentLoaded', function(){
               
               imgContainer.appendChild(clonedImg);
               
-              // Add click handler to open modern player when clicking artist image
-              imgContainer.addEventListener('click', function(e) {
-                e.stopPropagation();
-                // Get artist name from data attribute
-                var artistName = detailsSection.id.replace('artist-', '');
-                var fullArtistName = ARTIST_NAME_MAP[artistName];
-                
-                // Open modern player with artist's tracks
-                if (window.rokkoModernPlayer && fullArtistName && artistAlbums[fullArtistName]) {
-                  var album = artistAlbums[fullArtistName];
-                  var tracks = album.tracks.map(function(t) {
-                    return {
-                      title: t.title,
-                      artist: fullArtistName,
-                      album: album.albumName,
-                      src: t.src,
-                      cover: album.cover
-                    };
-                  });
-                  window.rokkoModernPlayer.openPlayer(tracks, fullArtistName);
-                }
-              });
+              // Note: Artist image is clickable to close modal (handled by parent click handler)
+              // The audio player is available inline below in the artist profile
               
               modalContent.appendChild(imgContainer);
             }
@@ -541,20 +521,14 @@ document.addEventListener('DOMContentLoaded', function(){
         this.style.boxShadow = 'none';
       });
       
-      // Click to open modern player
+      // Click to open inline dropdown player
       albumCard.addEventListener('click', function() {
-        if (window.rokkoModernPlayer && artistAlbums[artistName]) {
-          var album = artistAlbums[artistName];
-          var tracks = album.tracks.map(function(t) {
-            return {
-              title: t.title,
-              artist: artistName,
-              album: album.albumName,
-              src: t.src,
-              cover: album.cover
-            };
-          });
-          window.rokkoModernPlayer.openPlayer(tracks, artistName);
+        if (artistAlbums[artistName]) {
+          loadArtist(artistName);
+          // Scroll to player
+          if(playerDropdown) {
+            playerDropdown.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
         }
       });
       
