@@ -13,11 +13,16 @@
     logoSoundcloud: 'assets/logo-soundcloud.svg'
   };
 
+  const COLORS = {
+    waveform: '#d77014'  // ROKKO orange for waveform
+  };
+
   // Player state
   let state = {
     playlist: [],
     currentIndex: 0,
     isPlaying: false,
+    isOpen: false,
     audioContext: null,
     audioBuffer: null,
     source: null,
@@ -162,12 +167,13 @@
     elements.btnPlay.addEventListener('click', togglePlayPause);
     elements.btnNext.addEventListener('click', playNext);
     elements.waveform.addEventListener('click', handleWaveformClick);
+    elements.playlist.addEventListener('click', handlePlaylistClick);
   }
 
   // Setup keyboard shortcuts
   function setupKeyboardShortcuts() {
     document.addEventListener('keydown', (e) => {
-      if (state.playlist.length === 0 || elements.overlay.style.display === 'none') return;
+      if (!state.isOpen || state.playlist.length === 0) return;
       
       switch(e.key) {
         case ' ':
@@ -206,6 +212,7 @@
 
     renderPlaylist();
     loadTrack(state.currentIndex);
+    state.isOpen = true;
     elements.overlay.style.display = 'flex';
     elements.btnPlay.focus();
   }
@@ -239,14 +246,26 @@
   async function scanFolder(folder, artistName) {
     try {
       const response = await fetch(folder);
+      if (!response.ok) throw new Error('Folder not accessible');
+      
       const html = await response.text();
+      // Safely parse HTML - only extract href attributes, don't execute scripts
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
       const links = Array.from(doc.querySelectorAll('a'));
       
+      // Sanitize and filter audio files
       const audioFiles = links
-        .map(a => a.getAttribute('href'))
+        .map(a => {
+          const href = a.getAttribute('href');
+          // Only accept relative paths, no absolute URLs or protocols
+          return (href && !href.includes(':') && !href.startsWith('//')) ? href : null;
+        })
         .filter(href => href && /\.(mp3|m4a|ogg|wav)$/i.test(href));
+      
+      if (audioFiles.length === 0) {
+        throw new Error('No audio files found in folder');
+      }
       
       state.playlist = audioFiles.map(file => ({
         title: file.replace(/\.(mp3|m4a|ogg|wav)$/i, '').replace(/_/g, ' '),
@@ -258,6 +277,7 @@
       state.currentIndex = 0;
       renderPlaylist();
       loadTrack(state.currentIndex);
+      state.isOpen = true;
       elements.overlay.style.display = 'flex';
       elements.btnPlay.focus();
     } catch (error) {
@@ -268,6 +288,7 @@
   // Close player
   function closePlayer() {
     stopPlayback();
+    state.isOpen = false;
     elements.overlay.style.display = 'none';
   }
 
@@ -280,17 +301,18 @@
         <span class="rokko-playlist-artist">${track.artist}</span>
       </div>
     `).join('');
-    
-    // Add click handlers to playlist items
-    document.querySelectorAll('.rokko-playlist-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const index = parseInt(item.dataset.index);
-        if (index !== state.currentIndex) {
-          loadTrack(index);
-          play();
-        }
-      });
-    });
+  }
+  
+  // Handle playlist item clicks using event delegation
+  function handlePlaylistClick(e) {
+    const item = e.target.closest('.rokko-playlist-item');
+    if (item) {
+      const index = parseInt(item.dataset.index);
+      if (index !== state.currentIndex) {
+        loadTrack(index);
+        play();
+      }
+    }
   }
 
   // Load a track
@@ -348,7 +370,7 @@
     const amp = height / 2;
     
     ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = '#d77014'; // Orange from design
+    ctx.fillStyle = COLORS.waveform;
     ctx.beginPath();
     
     for (let i = 0; i < width; i++) {

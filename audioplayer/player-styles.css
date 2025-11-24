@@ -8,6 +8,7 @@
   --rokko-accent: #B8935F;
   --content-bg: #997A4B;
   --rokko-orange: #d77014;
+  --rokko-orange-transparent: rgba(215, 112, 20, 0.3);
 }
 
 /* Overlay */
@@ -207,7 +208,7 @@
   left: 0;
   width: 0%;
   height: 100%;
-  background: rgba(215, 112, 20, 0.3);
+  background: var(--rokko-orange-transparent);
   pointer-events: none;
   transition: width 0.1s linear;
 }
