@@ -919,9 +919,9 @@ body.home .btn-welcome { display:none !important; }
 }
 
 .audio-player-widget .track-item-widget:hover {
-  background: #f3e2c9 !important;
-  transform: translateX(5px) scale(1.01) !important;
-  box-shadow: 0 2px 6px rgba(61, 40, 23, 0.2) !important;
+  background: #E0C290 !important;
+  transform: translateX(3px) scale(1.02) !important;
+  box-shadow: 0 3px 8px rgba(61, 40, 23, 0.3) !important;
 }
 
 .audio-player-widget .track-item-widget:hover::before {
@@ -1565,4 +1565,87 @@ audio::-moz-range-track {
   min-height: 200px;
   height: 200px;
   overflow-y: auto;
+}
+
+/* Audio Player Styling - ROKKO Colors */
+/* Style the native HTML5 audio controls to match ROKKO design */
+audio[controls] {
+  filter: sepia(20%) saturate(70%) hue-rotate(15deg);
+}
+
+/* Mobile responsive audio player */
+@media (max-width: 768px) {
+  .artist-audio-player-widget {
+    margin: 10px 0 !important;
+  }
+  
+  .artist-audio-player-widget > div {
+    padding: 15px !important;
+  }
+  
+  .track-item-widget {
+    padding: 6px !important;
+    font-size: 0.8em !important;
+  }
+  
+  .track-item-widget img {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  
+  audio[controls] {
+    height: 40px !important;
+  }
+}
+
+/* Scrollbar styling for track lists */
+.artist-audio-player-widget div[style*="overflow-y"] {
+  scrollbar-width: thin;
+  scrollbar-color: #3D2817 #E0C290;
+}
+
+.artist-audio-player-widget div[style*="overflow-y"]::-webkit-scrollbar {
+  width: 8px;
+}
+
+.artist-audio-player-widget div[style*="overflow-y"]::-webkit-scrollbar-track {
+  background: #E0C290;
+  border-radius: 4px;
+}
+
+.artist-audio-player-widget div[style*="overflow-y"]::-webkit-scrollbar-thumb {
+  background: #3D2817;
+  border-radius: 4px;
+}
+
+.artist-audio-player-widget div[style*="overflow-y"]::-webkit-scrollbar-thumb:hover {
+  background: #201613;
+}
+
+/* Carousel player specific styling */
+#artist-player-dropdown audio[controls] {
+  filter: sepia(20%) saturate(70%) hue-rotate(15deg);
+}
+
+#artist-song-list {
+  scrollbar-width: thin;
+  scrollbar-color: #3D2817 #E0C290;
+}
+
+#artist-song-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+#artist-song-list::-webkit-scrollbar-track {
+  background: #E0C290;
+  border-radius: 4px;
+}
+
+#artist-song-list::-webkit-scrollbar-thumb {
+  background: #3D2817;
+  border-radius: 4px;
+}
+
+#artist-song-list::-webkit-scrollbar-thumb:hover {
+  background: #201613;
 }

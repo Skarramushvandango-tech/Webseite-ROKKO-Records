@@ -1,6 +1,14 @@
 // Händelt Diskografie Dropdowns, News Pagination und Carousel
 // NOTE: Video autoplay is handled by video-autoplay.js
 
+// ROKKO Brand Colors - from COLOR_GUIDE.md
+var ROKKO_COLORS = {
+  SAND: '#E0C290',           // Permanent sand interior (IMMUTABLE)
+  ACCENT: '#B8935F',         // Accent sand/brown
+  BROWN_DARK: '#3D2817',     // Dark brown frame borders
+  BROWN: '#201613'           // Dark brown text
+};
+
 // Artist ID to name mapping for template player integration
 var ARTIST_NAME_MAP = {
   'vandango': 'Skaramush Vandango',
@@ -49,28 +57,8 @@ document.addEventListener('DOMContentLoaded', function(){
               
               imgContainer.appendChild(clonedImg);
               
-              // Add click handler to open modern player when clicking artist image
-              imgContainer.addEventListener('click', function(e) {
-                e.stopPropagation();
-                // Get artist name from data attribute
-                var artistName = detailsSection.id.replace('artist-', '');
-                var fullArtistName = ARTIST_NAME_MAP[artistName];
-                
-                // Open modern player with artist's tracks
-                if (window.rokkoModernPlayer && fullArtistName && artistAlbums[fullArtistName]) {
-                  var album = artistAlbums[fullArtistName];
-                  var tracks = album.tracks.map(function(t) {
-                    return {
-                      title: t.title,
-                      artist: fullArtistName,
-                      album: album.albumName,
-                      src: t.src,
-                      cover: album.cover
-                    };
-                  });
-                  window.rokkoModernPlayer.openPlayer(tracks, fullArtistName);
-                }
-              });
+              // Note: Artist image is clickable to close modal (handled by parent click handler)
+              // The audio player is available inline below in the artist profile
               
               modalContent.appendChild(imgContainer);
             }
@@ -541,20 +529,14 @@ document.addEventListener('DOMContentLoaded', function(){
         this.style.boxShadow = 'none';
       });
       
-      // Click to open modern player
+      // Click to open inline dropdown player
       albumCard.addEventListener('click', function() {
-        if (window.rokkoModernPlayer && artistAlbums[artistName]) {
-          var album = artistAlbums[artistName];
-          var tracks = album.tracks.map(function(t) {
-            return {
-              title: t.title,
-              artist: artistName,
-              album: album.albumName,
-              src: t.src,
-              cover: album.cover
-            };
-          });
-          window.rokkoModernPlayer.openPlayer(tracks, artistName);
+        if (artistAlbums[artistName]) {
+          loadArtist(artistName);
+          // Scroll to player
+          if(playerDropdown) {
+            playerDropdown.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
         }
       });
       
@@ -625,20 +607,22 @@ document.addEventListener('DOMContentLoaded', function(){
         var songItem = document.createElement('div');
         songItem.className = 'song-item';
         songItem.setAttribute('data-index', index);
-        songItem.style.cssText = 'padding: 8px 12px; cursor: pointer; transition: all 0.2s ease; border-radius: 4px; display: flex; align-items: center; gap: 10px;';
+        songItem.style.cssText = 'padding: 8px 12px; cursor: pointer; transition: all 0.2s ease; border-radius: 6px; display: flex; align-items: center; gap: 10px; background: ' + ROKKO_COLORS.ACCENT + '; margin: 3px 0; border: 1px solid ' + ROKKO_COLORS.BROWN_DARK + ';';
         
         songItem.innerHTML = 
-          '<img src="' + coverUrl + '" alt="Cover" style="width: 32px; height: 32px; object-fit: cover; border-radius: 4px; flex-shrink: 0;">' +
-          '<span style="color: rgba(224, 194, 144, 0.5); font-size: 0.8em; min-width: 25px;">' + (index + 1) + '.</span>' +
-          '<span style="color: #E0C290; font-size: 0.9em; flex: 1; font-weight: 400; letter-spacing: 0.3px;">' + track.title + '</span>';
+          '<img src="' + coverUrl + '" alt="Cover" style="width: 30px; height: 30px; object-fit: cover; border-radius: 4px; flex-shrink: 0; border: 1px solid ' + ROKKO_COLORS.BROWN_DARK + ';">' +
+          '<span style="color: ' + ROKKO_COLORS.BROWN_DARK + '; font-size: 0.75em; min-width: 25px; font-weight: 600;">' + (index + 1) + '.</span>' +
+          '<span style="color: ' + ROKKO_COLORS.BROWN + '; font-size: 0.85em; flex: 1; font-weight: 600;">' + track.title + '</span>';
         
         songItem.addEventListener('mouseenter', function() {
-          this.style.background = 'rgba(224, 194, 144, 0.12)';
+          this.style.background = ROKKO_COLORS.SAND;
+          this.style.transform = 'translateX(3px)';
         });
         
         songItem.addEventListener('mouseleave', function() {
           if(parseInt(this.getAttribute('data-index')) !== currentTrackIndex) {
-            this.style.background = 'transparent';
+            this.style.background = ROKKO_COLORS.ACCENT;
+            this.style.transform = 'translateX(0)';
           }
         });
         
@@ -701,17 +685,21 @@ document.addEventListener('DOMContentLoaded', function(){
     var songItems = artistSongList.querySelectorAll('.song-item');
     songItems.forEach(function(item, i) {
       if(i === currentTrackIndex) {
-        item.style.background = 'rgba(169, 169, 169, 0.4)';
+        item.style.background = ROKKO_COLORS.SAND;
+        item.style.borderColor = ROKKO_COLORS.BROWN;
+        item.style.borderWidth = '2px';
         var numSpan = item.querySelector('span:first-child');
         var titleSpan = item.querySelector('span:last-child');
-        if(numSpan) numSpan.style.color = '#E0C290';
-        if(titleSpan) titleSpan.style.fontWeight = '600';
+        if(numSpan) numSpan.style.color = ROKKO_COLORS.BROWN;
+        if(titleSpan) titleSpan.style.fontWeight = '700';
       } else {
-        item.style.background = 'transparent';
+        item.style.background = ROKKO_COLORS.ACCENT;
+        item.style.borderColor = ROKKO_COLORS.BROWN_DARK;
+        item.style.borderWidth = '1px';
         var numSpan = item.querySelector('span:first-child');
         var titleSpan = item.querySelector('span:last-child');
-        if(numSpan) numSpan.style.color = 'rgba(224, 194, 144, 0.5)';
-        if(titleSpan) titleSpan.style.fontWeight = '400';
+        if(numSpan) numSpan.style.color = ROKKO_COLORS.BROWN_DARK;
+        if(titleSpan) titleSpan.style.fontWeight = '600';
       }
     });
   }
@@ -846,14 +834,14 @@ document.addEventListener('DOMContentLoaded', function(){
         var trackItem = document.createElement('div');
         trackItem.className = 'track-item-widget modal-track-item';
         trackItem.setAttribute('data-index', index);
-        trackItem.style.cssText = 'display: flex; align-items: center; gap: 10px; padding: 8px; margin: 4px 0; background: #A68968; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;';
+        trackItem.style.cssText = 'display: flex; align-items: center; gap: 10px; padding: 10px; margin: 5px 0; background: ' + ROKKO_COLORS.ACCENT + '; border: 2px solid ' + ROKKO_COLORS.BROWN_DARK + '; border-radius: 6px; cursor: pointer; transition: all 0.2s; position: relative;';
         
         trackItem.innerHTML = 
-          '<div class="track-cover-mini" style="width: 40px; height: 40px; flex-shrink: 0; position: relative;">' +
-          '<img loading="lazy" src="' + album.cover + '" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">' +
-          '<div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #201613; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>' +
+          '<div class="track-cover-mini" style="width: 35px; height: 35px; flex-shrink: 0; position: relative;">' +
+          '<img loading="lazy" src="' + album.cover + '" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px; border: 1px solid ' + ROKKO_COLORS.BROWN_DARK + ';">' +
+          '<div class="play-indicator" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: ' + ROKKO_COLORS.BROWN + '; font-size: 10px; font-weight: bold; background: rgba(224, 194, 144, 0.9); padding: 2px 4px; border-radius: 3px;">PLAY</div>' +
           '</div>' +
-          '<div style="flex: 1; color: #E0C290; font-size: 0.7em; font-weight: 400;">' + track.title + '</div>';
+          '<div style="flex: 1; color: ' + ROKKO_COLORS.BROWN + '; font-size: 0.85em; font-weight: 600;">' + track.title + '</div>';
         
         trackItem.addEventListener('click', function() {
           loadModalTrack(parseInt(this.getAttribute('data-index')));

@@ -11,11 +11,9 @@
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/override-rokko.css">
   <link rel="stylesheet" href="styles/frame-colors.css">
-  <link rel="stylesheet" href="styles/modern-audio-player.css">
   <script defer src="scripts/frame-alternator.js"></script>
   <script defer src="scripts/artist.js"></script>
   <script defer src="assets/js/carousel-simple.js"></script>
-  <script defer src="scripts/modern-audio-player.js"></script>
 </head>
 <body class="home site-shell">
   <div class="side-frame left" aria-hidden="true"></div>
@@ -38,7 +36,7 @@
         <div style="width: 200px; height: 4px; background: rgba(224, 194, 144, 0.2); border-radius: 2px; overflow: hidden;">
           <div id="loadingBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #E0C290, #d9af6b); border-radius: 2px; transition: width 0.3s ease;"></div>
         </div>
-        <p style="color: #E0C290; margin-top: 15px; font-size: 0.9em; opacity: 0.8;">Lädt...</p>
+        <p style="color: #E0C290; margin-top: 15px; font-size: 0.85em; opacity: 0.8;">Lädt...</p>
       </div>
       
       <video id="introVideo" playsinline preload="auto" style="width: 100%; height: auto; display: block; margin: 0; padding: 0; border-radius: 5px; background: #000;">
@@ -67,7 +65,7 @@
     <section class="welcome-text frame frame--light-sand">
       <div style="padding: 15px;">
         <h2 style="margin: 0 0 10px 0; font-size: 1.4em; font-weight: 700; color: var(--rokko-brown); text-align: center;">Wir sind ROKKO! Und du noch nicht!</h2>
-        <p style="margin: 0 0 10px 0; line-height: 1.5; font-size: 0.9em;">
+        <p style="margin: 0 0 10px 0; line-height: 1.5; font-size: 0.85em;">
           Du hast Dich erfolgreich auf unsere Homepage verlaufen, Gratulation. Jetzt hoffen wir, dass Du Dir vorher ordentlich die Ohren gewaschen hast.<br><br>
           Denn bei ROKKO! RECORDS gibt es ne Menge Lauschlappen Propaganda.
         </p>
@@ -85,7 +83,7 @@
         </div>
 
         <!-- Instruction Text -->
-        <p style="margin-bottom: 10px; font-weight: 600; font-size: 0.9em; color: var(--rokko-brown);">
+        <p style="margin-bottom: 10px; font-weight: 600; font-size: 0.85em; color: var(--rokko-brown);">
           Klicke auf einen Artist für mehr Infos
         </p>
 
@@ -144,90 +142,90 @@
 
             <h3 style="margin-bottom: 5px; font-size: 1em;">DISKOGRAPHIE</h3>
             
-            <!-- Integrated Audio Player (same as carousel) -->
+            <!-- Integrated Audio Player (simple version with ROKKO colors) -->
             <div class="artist-audio-player-widget" style="margin: 15px 0;">
-              <div style="position: relative; background-image: url('img/player_template.png'); background-size: cover; background-position: center; border: 2px solid #3D2817; border-radius: 12px; padding: 15px;">
+              <div style="background: #B8935F; border: 3px solid #3D2817; border-radius: 10px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
                 <!-- Compact Audio Player -->
-                <audio id="player-vandango" controls style="width: 100%; height: 48px; border-radius: 25px; margin-bottom: 15px;">
+                <audio id="player-vandango" controls style="width: 100%; margin-bottom: 15px; border-radius: 5px;">
                   <source src="" type="audio/mp4">
                   Your browser does not support the audio element.
                 </audio>
                 
                 <!-- Current Track Display -->
-                <div id="current-track-vandango" style="text-align: center; color: #E0C290; margin-bottom: 15px; font-size: 1em; font-weight: 700; min-height: 24px;">
+                <div id="current-track-vandango" style="text-align: center; color: #201613; background: #E0C290; padding: 8px; border-radius: 6px; margin-bottom: 15px; font-size: 0.95em; font-weight: 700; min-height: 24px; border: 2px solid #3D2817;">
                   Wähle einen Track
                 </div>
                 
                 <!-- Track List -->
-                <div style="max-height: 250px; overflow-y: auto; background: rgba(224, 194, 144, 0.1); border-radius: 8px; padding: 10px;">
-                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/set_the_fire.m4a" data-title="Set the Fire" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Set the Fire</span>
+                <div style="max-height: 250px; overflow-y: auto; background: #E0C290; border-radius: 8px; padding: 10px; border: 2px solid #3D2817;">
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/set_the_fire.m4a" data-title="Set the Fire" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Set the Fire</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/set_the_fire_remix.m4a" data-title="Set the Fire (Remix)" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Set the Fire (Remix)</span>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/set_the_fire_remix.m4a" data-title="Set the Fire (Remix)" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Set the Fire (Remix)</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/always_sunny.m4a" data-title="Always Sunny" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Always Sunny</span>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/always_sunny.m4a" data-title="Always Sunny" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Always Sunny</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/borrowed_time.m4a" data-title="Borrowed Time" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Borrowed Time</span>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/borrowed_time.m4a" data-title="Borrowed Time" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Borrowed Time</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/like_water.m4a" data-title="Like Water" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Like Water</span>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/like_water.m4a" data-title="Like Water" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Like Water</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/love_song.m4a" data-title="Love Song" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Love Song</span>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/love_song.m4a" data-title="Love Song" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Love Song</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/man_on_a_mission.m4a" data-title="Man on a Mission" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Man on a Mission</span>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/man_on_a_mission.m4a" data-title="Man on a Mission" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Man on a Mission</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/nights_go_by.m4a" data-title="Nights Go By" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Nights Go By</span>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/nights_go_by.m4a" data-title="Nights Go By" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Nights Go By</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/no_stitch_no_story.m4a" data-title="No Stitch No Story" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">No Stitch No Story</span>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/no_stitch_no_story.m4a" data-title="No Stitch No Story" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">No Stitch No Story</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/oh_i_try.m4a" data-title="Oh I Try" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Oh I Try</span>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/oh_i_try.m4a" data-title="Oh I Try" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Oh I Try</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/system_failure_kortana_mix.m4a" data-title="System Failure (Kortana Mix)" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">System Failure (Kortana Mix)</span>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/system_failure_kortana_mix.m4a" data-title="System Failure (Kortana Mix)" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">System Failure (Kortana Mix)</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/tiptoes.m4a" data-title="Tiptoes" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Tiptoes</span>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/tiptoes.m4a" data-title="Tiptoes" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Tiptoes</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/what_you_need.m4a" data-title="What You Need" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">What You Need</span>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/what_you_need.m4a" data-title="What You Need" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">What You Need</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/among_the_crowd.m4a" data-title="Among the Crowd" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Among the Crowd</span>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/among_the_crowd.m4a" data-title="Among the Crowd" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/vandango/cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Among the Crowd</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
                 </div>
@@ -278,14 +276,14 @@
                 
                 <!-- Track List -->
                 <div style="max-height: 250px; overflow-y: auto; background: rgba(224, 194, 144, 0.1); border-radius: 8px; padding: 10px;">
-                  <div class="track-item-widget" data-player="player-schablonski" data-src="mp3/schablonski/kohle_raus.m4a" data-title="Kohle Raus" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/schablonski/kohle_raus_cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Kohle Raus</span>
+                  <div class="track-item-widget" data-player="player-schablonski" data-src="mp3/schablonski/kohle_raus.m4a" data-title="Kohle Raus" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/schablonski/kohle_raus_cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Kohle Raus</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-schablonski" data-src="mp3/schablonski/kohle_raus_rmx.m4a" data-title="Kohle Raus (Remix)" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/schablonski/kohle_raus_cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Kohle Raus (Remix)</span>
+                  <div class="track-item-widget" data-player="player-schablonski" data-src="mp3/schablonski/kohle_raus_rmx.m4a" data-title="Kohle Raus (Remix)" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/schablonski/kohle_raus_cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Kohle Raus (Remix)</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
                 </div>
@@ -336,19 +334,19 @@
                 
                 <!-- Track List -->
                 <div style="max-height: 250px; overflow-y: auto; background: rgba(224, 194, 144, 0.1); border-radius: 8px; padding: 10px;">
-                  <div class="track-item-widget" data-player="player-bellieu" data-src="mp3/bellieu/petite_colibri.m4a" data-title="Petite Colibri" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/bellieu/petite_colibri.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Petite Colibri</span>
+                  <div class="track-item-widget" data-player="player-bellieu" data-src="mp3/bellieu/petite_colibri.m4a" data-title="Petite Colibri" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/bellieu/petite_colibri.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Petite Colibri</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-bellieu" data-src="mp3/bellieu/petite_colibri_ennio_mix.m4a" data-title="Petite Colibri (Ennio Mix)" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/bellieu/petite_colibri.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Petite Colibri (Ennio Mix)</span>
+                  <div class="track-item-widget" data-player="player-bellieu" data-src="mp3/bellieu/petite_colibri_ennio_mix.m4a" data-title="Petite Colibri (Ennio Mix)" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/bellieu/petite_colibri.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Petite Colibri (Ennio Mix)</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-bellieu" data-src="mp3/bellieu/petite_colibri_nocturne_mix.m4a" data-title="Petite Colibri (Nocturne Mix)" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/bellieu/petite_colibri.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Petite Colibri (Nocturne Mix)</span>
+                  <div class="track-item-widget" data-player="player-bellieu" data-src="mp3/bellieu/petite_colibri_nocturne_mix.m4a" data-title="Petite Colibri (Nocturne Mix)" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/bellieu/petite_colibri.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Petite Colibri (Nocturne Mix)</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
                 </div>
@@ -398,19 +396,19 @@
                 
                 <!-- Track List -->
                 <div style="max-height: 250px; overflow-y: auto; background: rgba(224, 194, 144, 0.1); border-radius: 8px; padding: 10px;">
-                  <div class="track-item-widget" data-player="player-beunie" data-src="mp3/fleurbeunie/feuleger_main.m4a" data-title="Feu Leger (Main)" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/fleurbeunie/feu_leger_cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Feu Leger (Main)</span>
+                  <div class="track-item-widget" data-player="player-beunie" data-src="mp3/fleurbeunie/feuleger_main.m4a" data-title="Feu Leger (Main)" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/fleurbeunie/feu_leger_cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Feu Leger (Main)</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-beunie" data-src="mp3/fleurbeunie/feuleger_house.m4a" data-title="Feu Leger (House)" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/fleurbeunie/feu_leger_cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Feu Leger (House)</span>
+                  <div class="track-item-widget" data-player="player-beunie" data-src="mp3/fleurbeunie/feuleger_house.m4a" data-title="Feu Leger (House)" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/fleurbeunie/feu_leger_cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Feu Leger (House)</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
-                  <div class="track-item-widget" data-player="player-beunie" data-src="mp3/fleurbeunie/feuleger_sundown.m4a" data-title="Feu Leger (Sundown)" style="padding: 10px; margin: 5px 0; background: #fff; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
-                    <img src="mp3/fleurbeunie/feu_leger_cover.png" alt="Cover" style="width: 40px; height: 40px; border-radius: 4px; object-fit: cover;">
-                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.9em;">Feu Leger (Sundown)</span>
+                  <div class="track-item-widget" data-player="player-beunie" data-src="mp3/fleurbeunie/feuleger_sundown.m4a" data-title="Feu Leger (Sundown)" style="padding: 8px; margin: 5px 0; background: #B8935F; border: 2px solid #3D2817; border-radius: 6px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px;">
+                    <img src="mp3/fleurbeunie/feu_leger_cover.png" alt="Cover" style="width: 35px; height: 35px; border-radius: 4px; object-fit: cover; border: 1px solid #3D2817;">
+                    <span style="flex: 1; color: #201613; font-weight: 600; font-size: 0.85em;">Feu Leger (Sundown)</span>
                     <div class="play-indicator" style="display: none; color: #201613; font-size: 0.7em; font-weight: bold;">▶</div>
                   </div>
                 </div>
@@ -457,34 +455,34 @@
           <!-- Centered Artist Name Above Player -->
           <h3 id="artist-name-display" style="text-align: center; color: var(--rokko-brown); font-size: 1.4em; font-weight: 700; margin: 15px 0 20px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.1);"></h3>
           
-          <div class="frame frame--dark-sand" style="position: relative; background-image: url('img/player_template.png'); background-size: cover; background-position: center; border-radius: 15px; padding: 30px; box-shadow: 0 8px 24px rgba(61, 40, 23, 0.5);">
+          <div class="frame frame--dark-sand" style="background: #B8935F; border: 3px solid #3D2817; border-radius: 12px; padding: 25px; box-shadow: 0 6px 20px rgba(61, 40, 23, 0.4);">
             
             <!-- Compact Player -->
-            <div style="margin-bottom: 30px; background: rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 20px; backdrop-filter: blur(10px);">
-              <audio id="artist-player" controls style="width: 100%; height: 48px; border-radius: 25px;">
+            <div style="margin-bottom: 20px; background: #E0C290; border: 2px solid #3D2817; border-radius: 10px; padding: 15px;">
+              <audio id="artist-player" controls style="width: 100%; border-radius: 5px;">
                 <source src="" type="audio/mp4">
                 Your browser does not support the audio element.
               </audio>
-              <div id="artist-track-info" style="text-align: center; color: #201613; margin-top: 15px; font-size: 1em; font-weight: 700;">
-                <div id="artist-track-title" style="font-size: 1.1em; margin-bottom: 3px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);"></div>
+              <div id="artist-track-info" style="text-align: center; color: #201613; margin-top: 12px; font-size: 1em; font-weight: 700;">
+                <div id="artist-track-title" style="font-size: 1.05em; margin-bottom: 3px;"></div>
               </div>
             </div>
             
             <!-- Navigation Controls -->
-            <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 30px;">
-              <button id="artist-prev" style="padding: 12px 24px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); color: #fff; border: 1px solid rgba(224, 194, 144, 0.3); border-radius: 25px; cursor: pointer; font-weight: 700; font-size: 1.2em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2);">
+            <div style="display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 20px;">
+              <button id="artist-prev" style="padding: 10px 20px; background: #3D2817; color: #E0C290; border: 2px solid #201613; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 1.1em; transition: all 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
                 ◀
               </button>
-              <button id="artist-play-pause" style="padding: 12px 28px; background: linear-gradient(135deg, #E0C290 0%, #D4B584 100%); color: #201613; border: 2px solid #3D2817; border-radius: 25px; cursor: pointer; font-weight: 700; font-size: 1.2em; transition: all 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+              <button id="artist-play-pause" style="padding: 10px 24px; background: #E0C290; color: #201613; border: 2px solid #3D2817; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 1.1em; transition: all 0.2s; box-shadow: 0 3px 8px rgba(0,0,0,0.2);">
                 ▶
               </button>
-              <button id="artist-next" style="padding: 12px 24px; background: linear-gradient(135deg, #201613 0%, #3D2817 100%); color: #fff; border: 1px solid rgba(224, 194, 144, 0.3); border-radius: 25px; cursor: pointer; font-weight: 700; font-size: 1.2em; transition: all 0.3s; box-shadow: 0 3px 8px rgba(0,0,0,0.2);">
+              <button id="artist-next" style="padding: 10px 20px; background: #3D2817; color: #E0C290; border: 2px solid #201613; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 1.1em; transition: all 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
                 ▶
               </button>
             </div>
             
             <!-- Elegant Song List -->
-            <div style="background: rgba(255, 255, 255, 0.9); border: 2px solid #3D2817; border-radius: 12px; padding: 18px; max-height: 280px; overflow-y: auto;">
+            <div style="background: #E0C290; border: 2px solid #3D2817; border-radius: 10px; padding: 15px; max-height: 280px; overflow-y: auto;">
               <div id="artist-song-list" style="display: flex; flex-direction: column; gap: 3px;">
                 <!-- Songs will be generated by JavaScript -->
               </div>
@@ -604,7 +602,7 @@
         <!-- News Pagination - Below the frame -->
         <div class="news-pagination" style="text-align: center; margin-top: 15px; padding: 10px 0; display: flex; justify-content: center; align-items: center; gap: 20px; background: transparent;">
           <button class="page-btn-prev" style="padding: 8px 16px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 1em;">←</button>
-          <span class="page-indicator" style="font-weight: 600; font-size: 0.9em; color: var(--rokko-brown);">1 / 4</span>
+          <span class="page-indicator" style="font-weight: 600; font-size: 0.85em; color: var(--rokko-brown);">1 / 4</span>
           <button class="page-btn-next" style="padding: 8px 16px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 1em;">→</button>
         </div>
       </div>
@@ -620,7 +618,7 @@
         </div>
         
         <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-          <p style="margin-bottom: 15px; line-height: 1.5; font-size: 0.9em;">
+          <p style="margin-bottom: 15px; line-height: 1.5; font-size: 0.85em;">
             Besuche unseren offiziellen Merchandise-Shop für exklusive ROKKO Records Produkte, T-Shirts, Hoodies und mehr!
           </p>
         
@@ -649,7 +647,7 @@
         </div>
         
         <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-          <p style="margin-bottom: 15px; line-height: 1.5; font-size: 0.9em;">
+          <p style="margin-bottom: 15px; line-height: 1.5; font-size: 0.85em;">
             Folge ROKKO! Records auf unseren Social Media Kanälen für aktuelle Updates, neue Releases und exklusive Inhalte!
           </p>
         
@@ -702,7 +700,7 @@
         <div style="margin-bottom: 5px;">
           <img src="images/kontakt.png" alt="ROKKO! Kontakt" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 5px 5px 0 0;">
         </div>
-        <p style="margin-bottom: 15px; max-width: 600px; font-size: 0.9em; line-height: 1.5;">
+        <p style="margin-bottom: 15px; max-width: 600px; font-size: 0.85em; line-height: 1.5;">
           Hinterlasse hier eine Nachricht — wir freuen uns auf deine Kontaktaufnahme!
         </p>
 
@@ -711,14 +709,14 @@
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_next" value="https://skarramushvandango-tech.github.io/Webseite-ROKKO-Records/">
 
-          <label for="cf-name" style="display: block; margin-top: 10px; font-weight: 600; font-size: 0.9em;">Name</label>
-          <input id="cf-name" name="name" type="text" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: #ffffff; font-size: 0.9em;">
+          <label for="cf-name" style="display: block; margin-top: 10px; font-weight: 600; font-size: 0.85em;">Name</label>
+          <input id="cf-name" name="name" type="text" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: #ffffff; font-size: 0.85em;">
 
-          <label for="cf-email" style="display: block; margin-top: 10px; font-weight: 600; font-size: 0.9em;">E-Mail</label>
-          <input id="cf-email" name="email" type="email" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: #ffffff; font-size: 0.9em;">
+          <label for="cf-email" style="display: block; margin-top: 10px; font-weight: 600; font-size: 0.85em;">E-Mail</label>
+          <input id="cf-email" name="email" type="email" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: #ffffff; font-size: 0.85em;">
 
-          <label for="cf-message" style="display: block; margin-top: 10px; font-weight: 600; font-size: 0.9em;">Deine Nachricht</label>
-          <textarea id="cf-message" name="message" rows="6" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: #ffffff; font-size: 0.9em;"></textarea>
+          <label for="cf-message" style="display: block; margin-top: 10px; font-weight: 600; font-size: 0.85em;">Deine Nachricht</label>
+          <textarea id="cf-message" name="message" rows="6" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background: #ffffff; font-size: 0.85em;"></textarea>
 
           <button type="submit" class="btn-send" style="margin-top: 15px; margin-bottom: 5px; padding: 10px 24px; background: var(--rokko-brown); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 0.95em;">Senden</button>
         </form>
@@ -734,7 +732,7 @@
 
   <!-- Artist Detail Modal Overlay -->
   <div id="artistModal" class="artist-modal" role="dialog" aria-hidden="true" aria-labelledby="modalTitle" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; overflow-y: auto; padding: 0;">
-    <button id="closeArtistModal" aria-label="Modal schließen" style="position: fixed; top: 20px; left: 20px; padding: 10px 15px; background: var(--rokko-brown); color: #E0C290; border: none; border-radius: 4px; cursor: pointer; font-weight: 700; font-size: 0.9em; z-index: 10000; line-height: 1;">
+    <button id="closeArtistModal" aria-label="Modal schließen" style="position: fixed; top: 20px; left: 20px; padding: 10px 15px; background: var(--rokko-brown); color: #E0C290; border: none; border-radius: 4px; cursor: pointer; font-weight: 700; font-size: 0.85em; z-index: 10000; line-height: 1;">
       SCHLIESSEN
     </button>
     
@@ -745,7 +743,7 @@
 
   <!-- Audio Player Popup Modal -->
   <div id="audioPlayerModal" class="audio-player-modal" role="dialog" aria-hidden="true" aria-labelledby="audioPlayerTitle" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9998; overflow-y: auto; padding: 20px;">
-    <button id="closeAudioPlayerModal" aria-label="Player schließen" style="position: fixed; top: 20px; right: 20px; padding: 10px 15px; background: var(--rokko-brown); color: #E0C290; border: none; border-radius: 4px; cursor: pointer; font-weight: 700; font-size: 0.9em; z-index: 10000; line-height: 1;">
+    <button id="closeAudioPlayerModal" aria-label="Player schließen" style="position: fixed; top: 20px; right: 20px; padding: 10px 15px; background: var(--rokko-brown); color: #E0C290; border: none; border-radius: 4px; cursor: pointer; font-weight: 700; font-size: 0.85em; z-index: 10000; line-height: 1;">
       ✕ SCHLIESSEN
     </button>
     
@@ -764,7 +762,7 @@
           <source src="" type="audio/mp4">
           Your browser does not support the audio element.
         </audio>
-        <div id="modal-current-track" style="text-align: center; color: #201613; margin-top: 8px; font-size: 0.9em; font-weight: 700; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);">
+        <div id="modal-current-track" style="text-align: center; color: #201613; margin-top: 8px; font-size: 0.85em; font-weight: 700; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);">
         </div>
       </div>
       
