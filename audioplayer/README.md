@@ -2,6 +2,19 @@
 
 A modern, accessible, and responsive audio player designed for ROKKO Records with full playlist functionality, keyboard navigation, and ARIA labels.
 
+## 🆕 New Shared Player Component
+
+The new **shared player component** (`player-component.js`, `player-styles.css`) provides a modern, reusable audio player:
+- 🎵 Dynamic component-based architecture (no static images)
+- 🌊 Waveform visualization with Web Audio API
+- 💿 Vinyl spinning animation synchronized with playback
+- 📱 Fully responsive (desktop, tablet, mobile)
+- ⌨️ Keyboard shortcuts and accessibility features
+
+**Quick Start**: See `player-template.html` for a working demo and usage examples.
+
+**Legacy Player**: The original image-based player has been moved to `legacy/` folder for reference.
+
 ## Features
 
 - ✅ **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices

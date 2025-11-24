@@ -232,254 +232,131 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  padding: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.rokko-btn-prev,
-.rokko-btn-next {
-  width: 50px;
-  height: 50px;
+.ctrl:hover {
+  background: var(--rokko-dark);
+  color: var(--rokko-bg);
+  transform: scale(1.1);
 }
 
-.rokko-btn-play {
-  width: 70px;
-  height: 70px;
+.ctrl.play {
+  width: 90px;
+  height: 90px;
+  font-size: 32px;
+  border-width: 5px;
 }
 
-.rokko-btn:hover {
-  background: var(--rokko-brown);
-  transform: scale(1.05);
-}
-
-.rokko-btn:active {
-  transform: scale(0.95);
-}
-
-.rokko-btn:focus {
-  outline: 2px solid var(--rokko-orange);
-  outline-offset: 3px;
-}
-
-.rokko-btn svg {
-  pointer-events: none;
-}
-
-/* Time Display */
-.rokko-time-display {
+/* Streaming buttons */
+.stream-buttons {
   display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  color: var(--rokko-brown-dark);
-  font-weight: 600;
-  padding: 0 10px;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 10px;
 }
 
-/* Playlist */
-.rokko-playlist {
-  flex: 1;
-  overflow-y: auto;
-  background: var(--content-bg);
-  border: 3px solid var(--rokko-brown-dark);
+.stream-btn {
+  width: 60px;
+  height: 60px;
+  padding: 8px;
+  border: 3px solid var(--rokko-dark);
   border-radius: 8px;
-  padding: 10px;
-  max-height: 200px;
-}
-
-.rokko-playlist-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 12px;
-  margin-bottom: 5px;
-  background: var(--rokko-sand);
-  border: 2px solid transparent;
-  border-radius: 6px;
+  background: #fff;
   cursor: pointer;
   transition: all 0.2s;
-}
-
-.rokko-playlist-item:hover {
-  background: var(--rokko-accent);
-  border-color: var(--rokko-brown-dark);
-}
-
-.rokko-playlist-item.active {
-  background: var(--rokko-accent);
-  border-color: var(--rokko-brown);
-  font-weight: 700;
-}
-
-.rokko-playlist-number {
-  flex: 0 0 30px;
-  text-align: center;
-  font-weight: 700;
-  color: var(--rokko-brown);
-}
-
-.rokko-playlist-title {
-  flex: 1;
-  color: var(--rokko-brown);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.rokko-playlist-artist {
-  flex: 0 0 auto;
-  color: var(--rokko-brown-dark);
-  font-size: 0.85rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 150px;
-}
-
-/* Streaming Buttons */
-.rokko-streaming-buttons {
   display: flex;
-  gap: 15px;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
 }
 
-.rokko-stream-btn {
-  display: block;
-  width: 120px;
-  height: 40px;
-  border: 2px solid var(--rokko-brown-dark);
-  border-radius: 6px;
-  overflow: hidden;
-  transition: all 0.2s;
-  opacity: 0.9;
+.stream-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.rokko-stream-btn:hover {
-  opacity: 1;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.rokko-stream-btn:focus {
-  outline: 2px solid var(--rokko-orange);
-  outline-offset: 2px;
-}
-
-.rokko-stream-btn img {
+.stream-btn img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
-/* Scrollbar Styling */
-.rokko-playlist::-webkit-scrollbar {
-  width: 8px;
-}
-
-.rokko-playlist::-webkit-scrollbar-track {
-  background: var(--rokko-sand);
-  border-radius: 4px;
-}
-
-.rokko-playlist::-webkit-scrollbar-thumb {
-  background: var(--rokko-brown-dark);
-  border-radius: 4px;
-}
-
-.rokko-playlist::-webkit-scrollbar-thumb:hover {
-  background: var(--rokko-brown);
-}
-
-/* Responsive Design */
-@media (max-width: 900px) {
-  .rokko-player-content {
+/* Responsive design */
+@media (max-width: 1024px) {
+  .rokko-player {
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
   }
 
-  .rokko-player-vinyl-section {
-    flex: 0 0 auto;
+  .left-column {
+    flex: none;
+    width: 100%;
+    max-width: 400px;
   }
 
-  .rokko-vinyl-wrapper {
-    width: 250px;
-    height: 250px;
-  }
-
-  .rokko-cover-inset {
-    width: 100px;
-    height: 100px;
-  }
-
-  .rokko-tonearm {
-    width: 70px;
-    right: 15px;
-  }
-
-  .rokko-artist-name {
-    font-size: 1.5rem;
-  }
-
-  .rokko-track-title {
-    font-size: 1.1rem;
+  .right-column {
+    width: 100%;
   }
 }
 
-@media (max-width: 600px) {
-  .rokko-player-container {
-    width: 95%;
-    height: 95%;
+@media (max-width: 768px) {
+  .rokko-player-wrap {
     padding: 20px;
   }
 
-  .rokko-vinyl-wrapper {
-    width: 200px;
-    height: 200px;
+  .left-column {
+    max-width: 300px;
   }
 
-  .rokko-cover-inset {
-    width: 80px;
-    height: 80px;
+  .rokko-waveform {
+    height: 100px;
   }
 
-  .rokko-tonearm {
-    width: 60px;
-    right: 10px;
-  }
-
-  .rokko-btn-prev,
-  .rokko-btn-next {
-    width: 45px;
-    height: 45px;
-  }
-
-  .rokko-btn-play {
+  .ctrl {
     width: 60px;
     height: 60px;
+    font-size: 20px;
   }
 
-  .rokko-streaming-buttons {
-    gap: 10px;
+  .ctrl.play {
+    width: 75px;
+    height: 75px;
+    font-size: 28px;
   }
 
-  .rokko-stream-btn {
-    width: 100px;
-    height: 35px;
+  .stream-btn {
+    width: 50px;
+    height: 50px;
   }
 }
 
-/* Accessibility - Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  .rokko-player-overlay,
-  .rokko-player-container,
-  .rokko-btn,
-  .rokko-playlist-item,
-  .rokko-stream-btn,
-  .rokko-tonearm {
-    animation: none;
-    transition: none;
+@media (max-width: 480px) {
+  .rokko-player-wrap {
+    padding: 15px;
   }
 
-  .rokko-vinyl {
-    transition: none;
+  .left-column {
+    max-width: 250px;
+  }
+
+  .meta .artist {
+    font-size: 20px;
+  }
+
+  .meta .album {
+    font-size: 16px;
+  }
+
+  .ctrl {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+  }
+
+  .ctrl.play {
+    width: 65px;
+    height: 65px;
+    font-size: 24px;
   }
 }
