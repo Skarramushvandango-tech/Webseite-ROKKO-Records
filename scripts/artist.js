@@ -49,15 +49,15 @@ document.addEventListener('DOMContentLoaded', function(){
               
               imgContainer.appendChild(clonedImg);
               
-              // Add click handler to open template player when clicking artist image
+              // Add click handler to open modern player when clicking artist image
               imgContainer.addEventListener('click', function(e) {
                 e.stopPropagation();
                 // Get artist name from data attribute
                 var artistName = detailsSection.id.replace('artist-', '');
                 var fullArtistName = ARTIST_NAME_MAP[artistName];
                 
-                // Open template player with artist's tracks
-                if (window.rokkoAudioPlayer && fullArtistName && artistAlbums[fullArtistName]) {
+                // Open modern player with artist's tracks
+                if (window.rokkoModernPlayer && fullArtistName && artistAlbums[fullArtistName]) {
                   var album = artistAlbums[fullArtistName];
                   var tracks = album.tracks.map(function(t) {
                     return {
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function(){
                       cover: album.cover
                     };
                   });
-                  window.rokkoAudioPlayer.openPlayer(tracks, fullArtistName);
+                  window.rokkoModernPlayer.openPlayer(tracks, fullArtistName);
                 }
               });
               
@@ -541,9 +541,9 @@ document.addEventListener('DOMContentLoaded', function(){
         this.style.boxShadow = 'none';
       });
       
-      // Click to open template player
+      // Click to open modern player
       albumCard.addEventListener('click', function() {
-        if (window.rokkoAudioPlayer && artistAlbums[artistName]) {
+        if (window.rokkoModernPlayer && artistAlbums[artistName]) {
           var album = artistAlbums[artistName];
           var tracks = album.tracks.map(function(t) {
             return {
@@ -554,7 +554,7 @@ document.addEventListener('DOMContentLoaded', function(){
               cover: album.cover
             };
           });
-          window.rokkoAudioPlayer.openPlayer(tracks, artistName);
+          window.rokkoModernPlayer.openPlayer(tracks, artistName);
         }
       });
       
