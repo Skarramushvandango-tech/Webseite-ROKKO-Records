@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rokko Shared Audio Player - Demo</title>
+  <link rel="stylesheet" href="player-styles.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #3D2817 0%, #201613 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .demo-container {
+      text-align: center;
+      padding: 40px;
+      background: rgba(224, 194, 144, 0.1);
+      border: 3px solid #E0C290;
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      color: #E0C290;
+      font-size: 42px;
+      margin: 0 0 20px 0;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    p {
+      color: #E0C290;
+      font-size: 18px;
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+
+    .test-btn {
+      font-size: 20px;
+      padding: 20px 40px;
+      background: #E0C290;
+      border: 4px solid #3D2817;
+      border-radius: 12px;
+      color: #201613;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s;
+      margin: 10px;
+    }
+
+    .test-btn:hover {
+      background: #3D2817;
+      color: #E0C290;
+      transform: scale(1.05);
+    }
+
+    .test-btn:active {
+      transform: scale(0.98);
+    }
+
+    .buttons-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .info-box {
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 20px;
+      background: rgba(61, 40, 23, 0.6);
+      border: 2px solid #E0C290;
+      border-radius: 8px;
+    }
+
+    .info-box h2 {
+      color: #E0C290;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .info-box ul {
+      text-align: left;
+      color: #E0C290;
+      line-height: 1.8;
+      margin-left: 20px;
+    }
+
+    .info-box code {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      color: #FFF;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <h1>🎵 ROKKO Audio Player</h1>
+    <p>Shared audio player component for ROKKO Records</p>
+    
+    <div class="buttons-row">
+      <button class="test-btn" id="test-artist-folder">
+        Open Player (Artist Folder)
+      </button>
+      <button class="test-btn" id="test-custom-playlist">
+        Open Player (Custom Playlist)
+      </button>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h2>Features</h2>
+    <ul>
+      <li>Full-screen overlay player with waveform visualization</li>
+      <li>Vinyl spinning animation synchronized with playback</li>
+      <li>Responsive design (desktop, tablet, mobile)</li>
+      <li>Keyboard shortcuts (Space = play/pause, Esc = close, Arrows = seek)</li>
+      <li>Progress bar with click-to-seek</li>
+      <li>Streaming platform buttons (Beatport, Spotify, Apple Music, SoundCloud)</li>
+      <li>Automatic metadata loading from artist folders</li>
+      <li>Cross-origin audio support with CORS</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h2>Usage</h2>
+    <p><strong>Option 1: Load from artist folder</strong></p>
+    <p><code>RokkoPlayer.openPlayer({ artistFolder: 'mp3/SkaRamushVandango', startIndex: 0 })</code></p>
+    
+    <p><strong>Option 2: Custom playlist</strong></p>
+    <p><code>RokkoPlayer.openPlayer({ playlist: [{title, artist, audioSrc, coverSrc}, ...], startIndex: 0 })</code></p>
+  </div>
+
+  <div class="info-box">
+    <h2>Known Limitations</h2>
+    <ul>
+      <li><strong>CORS:</strong> Waveform visualization requires audio files to be served with proper CORS headers</li>
+      <li><strong>Streaming links:</strong> Currently placeholder links - update <code>data-url</code> attributes with actual URLs</li>
+      <li><strong>Assets:</strong> Requires assets folder with vinyl.png, tonearm.png, avatar.png, and platform logos</li>
+    </ul>
+  </div>
+
+  <!-- Include the player component -->
+  <script src="player-component.js"></script>
+
+  <!-- Demo initialization -->
+  <script>
+    // Test button 1: Load from artist folder
+    document.getElementById('test-artist-folder').addEventListener('click', () => {
+      RokkoPlayer.openPlayer({
+        artistFolder: 'mp3/SkaRamushVandango',
+        startIndex: 0
+      });
+    });
+
+    // Test button 2: Custom playlist example
+    document.getElementById('test-custom-playlist').addEventListener('click', () => {
+      RokkoPlayer.openPlayer({
+        playlist: [
+          {
+            title: 'Demo Track 1',
+            artist: 'ROKKO Artist',
+            audioSrc: 'mp3/SkaRamushVandango/01.mp3',
+            coverSrc: 'mp3/SkaRamushVandango/cover.jpg',
+            streamLinks: {
+              beatport: 'https://www.beatport.com/artist/example',
+              spotify: 'https://open.spotify.com/artist/example',
+              apple: 'https://music.apple.com/artist/example',
+              soundcloud: 'https://soundcloud.com/example'
+            }
+          },
+          {
+            title: 'Demo Track 2',
+            artist: 'ROKKO Artist',
+            audioSrc: 'mp3/SkaRamushVandango/02.mp3',
+            coverSrc: 'mp3/SkaRamushVandango/cover.jpg',
+            streamLinks: {
+              beatport: 'https://www.beatport.com/artist/example',
+              spotify: 'https://open.spotify.com/artist/example',
+              apple: 'https://music.apple.com/artist/example',
+              soundcloud: 'https://soundcloud.com/example'
+            }
+          }
+        ],
+        startIndex: 0
+      });
+    });
+  </script>
+</body>
+</html>
