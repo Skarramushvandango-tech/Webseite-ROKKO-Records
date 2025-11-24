@@ -9,6 +9,13 @@ var ROKKO_COLORS = {
   BROWN: '#201613'           // Dark brown text
 };
 
+// Wave visualization constants
+var WAVE_CONFIG = {
+  MIN_HEIGHT: 0.2,           // Minimum wave bar height (20%)
+  HEIGHT_RANGE: 0.8,         // Wave bar height variation range
+  NUM_BARS: 60               // Number of bars in the wave visualization
+};
+
 // Artist ID to name mapping for template player integration
 var ARTIST_NAME_MAP = {
   'vandango': 'Skaramush Vandango',
@@ -497,13 +504,13 @@ document.addEventListener('DOMContentLoaded', function(){
   var currentTracks = [];
   var selectedCardElement = null;
   
-  // Wave visualization variables
+  // Wave visualization variables using config constants
   var waveData = [];
-  var numBars = 60;
+  var numBars = WAVE_CONFIG.NUM_BARS;
   
   // Initialize wave data
   for(var i = 0; i < numBars; i++) {
-    waveData.push(0.2 + Math.random() * 0.8);
+    waveData.push(WAVE_CONFIG.MIN_HEIGHT + Math.random() * WAVE_CONFIG.HEIGHT_RANGE);
   }
   
   // Draw wave visualization
@@ -532,11 +539,11 @@ document.addEventListener('DOMContentLoaded', function(){
       var x = i * barWidth;
       var y = (height - barHeight) / 2;
       
-      // Color based on progress
+      // Color based on progress - using ROKKO brand colors
       if(i < playedBars) {
-        waveCtx.fillStyle = '#3D2817'; // Dark brown for played
+        waveCtx.fillStyle = ROKKO_COLORS.BROWN_DARK; // Dark brown for played
       } else {
-        waveCtx.fillStyle = '#B8935F'; // Light brown for unplayed
+        waveCtx.fillStyle = ROKKO_COLORS.ACCENT; // Light brown for unplayed
       }
       
       waveCtx.fillRect(x + 1, y, barWidth - 2, barHeight);
@@ -553,7 +560,7 @@ document.addEventListener('DOMContentLoaded', function(){
     artistPlayer.addEventListener('loadedmetadata', function() {
       // Generate new random wave data for each track
       for(var i = 0; i < numBars; i++) {
-        waveData[i] = 0.2 + Math.random() * 0.8;
+        waveData[i] = WAVE_CONFIG.MIN_HEIGHT + Math.random() * WAVE_CONFIG.HEIGHT_RANGE;
       }
       drawWaveVisualization(0);
     });
