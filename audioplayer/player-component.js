@@ -1,448 +1,580 @@
-/* audioplayer/player-component.js
-   Rokko shared audio player component (vanilla JS)
-   Usage:
-     RokkoPlayer.openPlayer({ artistFolder: 'mp3/SkaRamushVandango', startIndex: 0 })
-     OR
-     RokkoPlayer.openPlayer({ playlist: [{title, artist, audioSrc, coverSrc}, ...], startIndex: 0 })
-*/
-
+// ROKKO Records Vanilla JS Audio Player Component
+// Features: Waveform visualization, vinyl/tonearm animations, keyboard accessibility
 (function () {
+  'use strict';
+
   const ASSETS = {
-    vinyl: 'assets/vinyl.png',
-    tonearm: 'assets/tonearm.png',
-    avatar: 'assets/avatar.png',
-    logoBeatport: 'assets/logo-beatport.png',
-    logoSpotify: 'assets/logo-spotify.png',
-    logoApple: 'assets/logo-applemusic.png',
-    logoSoundcloud: 'assets/logo-soundcloud.png'
+    vinyl: 'assets/vinyl.svg',
+    tonearm: 'assets/tonearm.svg',
+    avatar: 'assets/avatar.svg',
+    logoBeatport: 'assets/logo-beatport.svg',
+    logoSpotify: 'assets/logo-spotify.svg',
+    logoApple: 'assets/logo-applemusic.svg',
+    logoSoundcloud: 'assets/logo-soundcloud.svg'
+  };
+
+  const COLORS = {
+    waveform: '#d77014'  // ROKKO orange for waveform
   };
 
   // Player state
-  let overlay, container, audioEl, canvas, ctx;
-  let playBtn, prevBtn, nextBtn, closeBtn;
-  let progressFill, timeCurrent, timeDuration, progressBar;
-  let vinylImg, tonearmImg, coverImg, avatarImg;
-  let streamButtons;
-  let playlist = [];
-  let currentIndex = 0;
-  let audioCtx, sourceNode, analyser;
-  let waveformPeaks = null;
-  let rafId = null;
-  let spinAnimFrame = null;
-  let rotation = 0;
-  let spinSpeed = 0; // normalized speed
-  let spinTarget = 0.6; // play speed target
+  let state = {
+    playlist: [],
+    currentIndex: 0,
+    isPlaying: false,
+    isOpen: false,
+    audioContext: null,
+    audioBuffer: null,
+    source: null,
+    startTime: 0,
+    pauseTime: 0,
+    duration: 0,
+    vinylRotation: 0,
+    animationFrame: null
+  };
 
-  // Soft spin-down params
-  const SPIN_DECAY = 0.98;
+  // DOM references
+  let elements = {};
 
-  // Create DOM once
-  function createDOM() {
-    overlay = document.createElement('div');
+  // Initialize the player
+  function initPlayer() {
+    createPlayerHTML();
+    cacheElements();
+    attachEventListeners();
+    setupKeyboardShortcuts();
+  }
+
+  // Create the player overlay HTML structure
+  function createPlayerHTML() {
+    const overlay = document.createElement('div');
+    overlay.id = 'rokko-player-overlay';
     overlay.className = 'rokko-player-overlay';
+    overlay.style.display = 'none';
     overlay.innerHTML = `
-      <div class="rokko-player-wrap" role="dialog" aria-modal="true" aria-label="ROKKO Audio Player">
-        <button class="rokko-close" aria-label="Schließen">✕</button>
-
-        <div class="rokko-player">
-          <div class="left-column">
-            <div class="cover-frame">
-              <img class="rokko-cover" src="" alt="Album Cover" />
-              <div class="vinyl-wrap">
-                <img class="rokko-vinyl" src="${ASSETS.vinyl}" alt="Vinyl" />
-                <img class="rokko-tonearm" src="${ASSETS.tonearm}" alt="Tonarm" />
+      <div class="rokko-player-container">
+        <button class="rokko-player-close" aria-label="Close player" title="Close (Esc)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        
+        <div class="rokko-player-content">
+          <!-- Left Section: Vinyl & Tonearm -->
+          <div class="rokko-player-vinyl-section">
+            <div class="rokko-vinyl-wrapper">
+              <img src="${ASSETS.vinyl}" alt="Vinyl record" class="rokko-vinyl" id="rokko-vinyl">
+              <img src="${ASSETS.tonearm}" alt="Tonearm" class="rokko-tonearm" id="rokko-tonearm">
+              <div class="rokko-cover-inset">
+                <img src="${ASSETS.avatar}" alt="Album cover" class="rokko-album-cover" id="rokko-album-cover">
               </div>
-            </div>
-            <div class="meta">
-              <div class="artist" id="rp-artist">Artist Name</div>
-              <div class="album" id="rp-album">Album / Track</div>
-            </div>
-            <div class="avatar-row">
-              <img class="rokko-avatar" src="${ASSETS.avatar}" alt="Mascot" />
             </div>
           </div>
 
-          <div class="right-column">
-            <canvas class="rokko-waveform" width="800" height="140"></canvas>
-
-            <div class="time-row">
-              <span class="time-current">0:00</span>
-              <div class="progress-bar" role="slider" tabindex="0" aria-label="Song position">
-                <div class="progress-fill" style="width:0%"></div>
-              </div>
-              <span class="time-duration">0:00</span>
+          <!-- Right Section: Controls & Info -->
+          <div class="rokko-player-info-section">
+            <div class="rokko-track-info">
+              <h2 class="rokko-artist-name" id="rokko-artist-name">Artist Name</h2>
+              <h3 class="rokko-track-title" id="rokko-track-title">Track Title</h3>
             </div>
 
-            <div class="controls-row">
-              <button class="ctrl prev" aria-label="Vorheriger Titel">⏮</button>
-              <button class="ctrl play" aria-label="Play">▶</button>
-              <button class="ctrl next" aria-label="Nächster Titel">⏭</button>
+            <!-- Waveform Canvas -->
+            <div class="rokko-waveform-container">
+              <canvas id="rokko-waveform" class="rokko-waveform" width="600" height="100"></canvas>
+              <div class="rokko-waveform-progress" id="rokko-waveform-progress"></div>
             </div>
 
-            <div class="stream-buttons">
-              <button class="stream-btn" data-url=""> <img src="${ASSETS.logoBeatport}" alt="Beatport" /> </button>
-              <button class="stream-btn" data-url=""> <img src="${ASSETS.logoSpotify}" alt="Spotify" /> </button>
-              <button class="stream-btn" data-url=""> <img src="${ASSETS.logoApple}" alt="Apple Music" /> </button>
-              <button class="stream-btn" data-url=""> <img src="${ASSETS.logoSoundcloud}" alt="SoundCloud" /> </button>
+            <!-- Playback Controls -->
+            <div class="rokko-controls">
+              <button class="rokko-btn rokko-btn-prev" id="rokko-btn-prev" aria-label="Previous track (Left Arrow)">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                  <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                </svg>
+              </button>
+              <button class="rokko-btn rokko-btn-play" id="rokko-btn-play" aria-label="Play (Space)">
+                <svg class="rokko-icon-play" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                <svg class="rokko-icon-pause" viewBox="0 0 24 24" fill="currentColor" width="32" height="32" style="display:none;">
+                  <path d="M6 4h4v16H6zM14 4h4v16h-4z"/>
+                </svg>
+              </button>
+              <button class="rokko-btn rokko-btn-next" id="rokko-btn-next" aria-label="Next track (Right Arrow)">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                  <path d="M16 18h2V6h-2zm-11-1l8.5-6L5 5z"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Time Display -->
+            <div class="rokko-time-display">
+              <span id="rokko-current-time">0:00</span>
+              <span id="rokko-duration">0:00</span>
+            </div>
+
+            <!-- Playlist -->
+            <div class="rokko-playlist" id="rokko-playlist"></div>
+
+            <!-- Streaming Buttons -->
+            <div class="rokko-streaming-buttons">
+              <a href="#" class="rokko-stream-btn" data-service="beatport" data-url="" aria-label="Listen on Beatport">
+                <img src="${ASSETS.logoBeatport}" alt="Beatport">
+              </a>
+              <a href="#" class="rokko-stream-btn" data-service="spotify" data-url="" aria-label="Listen on Spotify">
+                <img src="${ASSETS.logoSpotify}" alt="Spotify">
+              </a>
+              <a href="#" class="rokko-stream-btn" data-service="apple" data-url="" aria-label="Listen on Apple Music">
+                <img src="${ASSETS.logoApple}" alt="Apple Music">
+              </a>
+              <a href="#" class="rokko-stream-btn" data-service="soundcloud" data-url="" aria-label="Listen on SoundCloud">
+                <img src="${ASSETS.logoSoundcloud}" alt="SoundCloud">
+              </a>
             </div>
           </div>
         </div>
       </div>
     `;
     document.body.appendChild(overlay);
-
-    container = overlay.querySelector('.rokko-player-wrap');
-    closeBtn = overlay.querySelector('.rokko-close');
-    playBtn = overlay.querySelector('.ctrl.play');
-    prevBtn = overlay.querySelector('.ctrl.prev');
-    nextBtn = overlay.querySelector('.ctrl.next');
-    progressFill = overlay.querySelector('.progress-fill');
-    progressBar = overlay.querySelector('.progress-bar');
-    timeCurrent = overlay.querySelector('.time-current');
-    timeDuration = overlay.querySelector('.time-duration');
-    vinylImg = overlay.querySelector('.rokko-vinyl');
-    tonearmImg = overlay.querySelector('.rokko-tonearm');
-    coverImg = overlay.querySelector('.rokko-cover');
-    avatarImg = overlay.querySelector('.rokko-avatar');
-    canvas = overlay.querySelector('.rokko-waveform');
-    ctx = canvas.getContext('2d');
-    streamButtons = Array.from(overlay.querySelectorAll('.stream-btn'));
-
-    // audio element
-    audioEl = document.createElement('audio');
-    audioEl.preload = 'metadata';
-    audioEl.crossOrigin = 'anonymous';
-    overlay.appendChild(audioEl);
-
-    // events
-    closeBtn.addEventListener('click', closePlayer);
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) closePlayer();
-    });
-
-    playBtn.addEventListener('click', togglePlay);
-    prevBtn.addEventListener('click', prevTrack);
-    nextBtn.addEventListener('click', nextTrack);
-
-    progressBar.addEventListener('click', (e) => {
-      const rect = progressBar.getBoundingClientRect();
-      const pct = (e.clientX - rect.left) / rect.width;
-      seekToPct(pct);
-    });
-    progressBar.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') seekBy(-5);
-      if (e.key === 'ArrowRight') seekBy(5);
-    });
-
-    // stream buttons
-    streamButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const url = btn.getAttribute('data-url') || '#';
-        if (url && url !== '#') window.open(url, '_blank');
-      });
-    });
-
-    // keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-      if (!overlay || overlay.style.display !== 'flex') return;
-      if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
-      if (e.key === ' ') { e.preventDefault(); togglePlay(); }
-      if (e.key === 'Escape') { closePlayer(); }
-      if (e.key === 'ArrowLeft') prevTrack();
-      if (e.key === 'ArrowRight') nextTrack();
-    });
-
-    // audio events
-    audioEl.addEventListener('timeupdate', onAudioTime);
-    audioEl.addEventListener('loadedmetadata', onLoadedMeta);
-    audioEl.addEventListener('ended', nextTrack);
-    audioEl.addEventListener('play', onPlay);
-    audioEl.addEventListener('pause', onPause);
-
-    // web audio context
-    try {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      analyser = audioCtx.createAnalyser();
-      analyser.fftSize = 2048;
-    } catch (e) {
-      audioCtx = null;
-      analyser = null;
-      console.warn('WebAudio not supported:', e);
-    }
   }
 
-  function openOverlay() {
-    overlay.style.display = 'flex';
-    setTimeout(() => playBtn.focus(), 50);
-  }
-
-  function closePlayer() {
-    pause();
-    overlay.style.display = 'none';
-    if (rafId) cancelAnimationFrame(rafId);
-    if (spinAnimFrame) cancelAnimationFrame(spinAnimFrame);
-    tonearmImg.style.transform = '';
-  }
-
-  function loadPlaylistFromOptions(options = {}) {
-    return new Promise((resolve) => {
-      if (Array.isArray(options.playlist) && options.playlist.length) {
-        playlist = options.playlist.map(normalizeTrackObj);
-        resolve();
-        return;
-      }
-
-      if (options.artistFolder) {
-        const manifestUrl = `${options.artistFolder.replace(/\/$/, '')}/playlist.json`;
-        fetch(manifestUrl).then(r => {
-          if (!r.ok) throw new Error('no manifest');
-          return r.json();
-        }).then(data => {
-          if (Array.isArray(data)) {
-            playlist = data.map(normalizeTrackObj);
-            resolve();
-          } else {
-            throw new Error('invalid manifest');
-          }
-        }).catch(() => {
-          const tries = [];
-          for (let i = 1; i <= 12; i++) {
-            const n = String(i).padStart(2, '0');
-            tries.push(`${options.artistFolder.replace(/\/$/, '')}/track-${n}.mp3`);
-          }
-          playlist = tries.map((p, idx) => ({
-            title: `Track ${idx + 1}`,
-            artist: options.artistName || '',
-            audioSrc: p,
-            coverSrc: `${options.artistFolder.replace(/\/$/, '')}/cover.jpg`
-          }));
-          resolve();
-        });
-        return;
-      }
-
-      playlist = [];
-      resolve();
-    });
-  }
-
-  function normalizeTrackObj(t) {
-    return {
-      title: t.title || t.name || 'Unknown',
-      artist: t.artist || t.albumArtist || '',
-      audioSrc: t.audioSrc || t.src || t.file || '',
-      coverSrc: t.coverSrc || t.cover || t.art || ''
+  // Cache DOM elements
+  function cacheElements() {
+    elements = {
+      overlay: document.getElementById('rokko-player-overlay'),
+      closeBtn: document.querySelector('.rokko-player-close'),
+      vinyl: document.getElementById('rokko-vinyl'),
+      tonearm: document.getElementById('rokko-tonearm'),
+      albumCover: document.getElementById('rokko-album-cover'),
+      artistName: document.getElementById('rokko-artist-name'),
+      trackTitle: document.getElementById('rokko-track-title'),
+      waveform: document.getElementById('rokko-waveform'),
+      waveformProgress: document.getElementById('rokko-waveform-progress'),
+      btnPrev: document.getElementById('rokko-btn-prev'),
+      btnPlay: document.getElementById('rokko-btn-play'),
+      btnNext: document.getElementById('rokko-btn-next'),
+      currentTime: document.getElementById('rokko-current-time'),
+      duration: document.getElementById('rokko-duration'),
+      playlist: document.getElementById('rokko-playlist'),
+      iconPlay: document.querySelector('.rokko-icon-play'),
+      iconPause: document.querySelector('.rokko-icon-pause')
     };
   }
 
-  function openPlayer(options = {}) {
-    if (!overlay) createDOM();
-    loadPlaylistFromOptions(options).then(() => {
-      currentIndex = options.startIndex || 0;
-      if (!playlist || playlist.length === 0) {
-        console.warn('No tracks in playlist');
+  // Attach event listeners
+  function attachEventListeners() {
+    elements.closeBtn.addEventListener('click', closePlayer);
+    elements.overlay.addEventListener('click', (e) => {
+      if (e.target === elements.overlay) closePlayer();
+    });
+    elements.btnPrev.addEventListener('click', playPrevious);
+    elements.btnPlay.addEventListener('click', togglePlayPause);
+    elements.btnNext.addEventListener('click', playNext);
+    elements.waveform.addEventListener('click', handleWaveformClick);
+    elements.playlist.addEventListener('click', handlePlaylistClick);
+  }
+
+  // Setup keyboard shortcuts
+  function setupKeyboardShortcuts() {
+    document.addEventListener('keydown', (e) => {
+      if (!state.isOpen || state.playlist.length === 0) return;
+      
+      switch(e.key) {
+        case ' ':
+        case 'Spacebar':
+          e.preventDefault();
+          togglePlayPause();
+          break;
+        case 'Escape':
+          e.preventDefault();
+          closePlayer();
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          playPrevious();
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          playNext();
+          break;
       }
-      loadTrack(currentIndex).then(() => {
-        openOverlay();
-      });
     });
   }
 
-  async function loadTrack(idx) {
-    const t = playlist[idx];
-    if (!t) return;
-    container.querySelector('#rp-artist').textContent = t.artist || '';
-    container.querySelector('#rp-album').textContent = t.title || '';
-    coverImg.src = t.coverSrc || '';
-    audioEl.src = t.audioSrc;
-    audioEl.load();
-
-    if (audioCtx) {
-      try {
-        const resp = await fetch(t.audioSrc, { mode: 'cors' });
-        if (!resp.ok) throw new Error('failed fetch audio for waveform');
-        const ab = await resp.arrayBuffer();
-        const decoded = await audioCtx.decodeAudioData(ab.slice(0));
-        waveformPeaks = computePeaks(decoded, canvas.width);
-        drawWaveform();
-      } catch (err) {
-        console.warn('Waveform generation failed', err);
-        waveformPeaks = null;
-        clearCanvas();
-      }
+  // Open player with options
+  function openPlayer(options) {
+    if (options.playlist && Array.isArray(options.playlist)) {
+      state.playlist = options.playlist;
+      state.currentIndex = options.startIndex || 0;
+    } else if (options.artistFolder) {
+      loadPlaylistFromFolder(options.artistFolder, options.artistName || '');
+      return; // Will open after loading
     } else {
-      waveformPeaks = null;
-      clearCanvas();
-    }
-  }
-
-  function computePeaks(audioBuffer, width) {
-    const raw = audioBuffer.getChannelData(0);
-    const blockSize = Math.floor(raw.length / width);
-    const peaks = new Float32Array(width);
-    for (let i = 0; i < width; i++) {
-      let start = i * blockSize;
-      let end = start + blockSize;
-      let max = 0;
-      for (let j = start; j < end; j++) {
-        const v = Math.abs(raw[j]);
-        if (v > max) max = v;
-      }
-      peaks[i] = max;
-    }
-    return peaks;
-  }
-
-  function drawWaveform(progressPct = 0) {
-    const w = canvas.width;
-    const h = canvas.height;
-    ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = 'rgba(0,0,0,0.08)';
-    ctx.fillRect(0, 0, w, h);
-
-    if (!waveformPeaks) {
-      ctx.fillStyle = 'rgba(215,112,20,0.12)';
-      ctx.fillRect(0, h / 3, w, h / 3);
+      console.error('RokkoPlayer: Invalid options. Provide playlist array or artistFolder.');
       return;
     }
 
-    ctx.beginPath();
-    ctx.strokeStyle = 'rgba(228,199,154,0.45)';
-    ctx.lineWidth = 1;
-    for (let x = 0; x < w; x++) {
-      const p = waveformPeaks[x];
-      const y = (p * (h / 2));
-      ctx.moveTo(x, (h / 2) - y);
-      ctx.lineTo(x, (h / 2) + y);
+    renderPlaylist();
+    loadTrack(state.currentIndex);
+    state.isOpen = true;
+    elements.overlay.style.display = 'flex';
+    elements.btnPlay.focus();
+  }
+
+  // Load playlist from artist folder
+  async function loadPlaylistFromFolder(folder, artistName) {
+    try {
+      const response = await fetch(`${folder}/manifest.json`);
+      if (!response.ok) throw new Error('Manifest not found');
+      
+      const manifest = await response.json();
+      state.playlist = manifest.tracks.map(track => ({
+        title: track.title,
+        artist: artistName || track.artist || 'Unknown Artist',
+        audioSrc: `${folder}/${track.file}`,
+        coverSrc: track.cover ? `${folder}/${track.cover}` : `${folder}/cover.png`
+      }));
+      
+      state.currentIndex = 0;
+      renderPlaylist();
+      loadTrack(state.currentIndex);
+      elements.overlay.style.display = 'flex';
+      elements.btnPlay.focus();
+    } catch (error) {
+      console.warn('RokkoPlayer: Could not load manifest, attempting folder scan...', error);
+      await scanFolder(folder, artistName);
     }
-    ctx.stroke();
-
-    const activeW = Math.floor(w * progressPct);
-    ctx.fillStyle = '#d77014';
-    ctx.globalCompositeOperation = 'source-over';
-    for (let x = 0; x < activeW; x++) {
-      const p = waveformPeaks[x];
-      const y = (p * (h / 2));
-      ctx.fillRect(x, (h / 2) - y, 1, y * 2);
-    }
   }
 
-  function clearCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-  }
-
-  function onLoadedMeta() {
-    timeDuration.textContent = formatTime(audioEl.duration);
-  }
-
-  function onAudioTime() {
-    const pct = audioEl.duration ? (audioEl.currentTime / audioEl.duration) : 0;
-    progressFill.style.width = (pct * 100) + '%';
-    timeCurrent.textContent = formatTime(audioEl.currentTime);
-    drawWaveform(pct);
-  }
-
-  function formatTime(s) {
-    if (!s || !isFinite(s)) return '0:00';
-    const m = Math.floor(s / 60);
-    const sec = Math.floor(s % 60).toString().padStart(2, '0');
-    return `${m}:${sec}`;
-  }
-
-  function seekToPct(pct) {
-    if (!audioEl.duration) return;
-    audioEl.currentTime = pct * audioEl.duration;
-    onAudioTime();
-  }
-
-  function seekBy(seconds) {
-    if (!audioEl.duration) return;
-    audioEl.currentTime = Math.max(0, Math.min(audioEl.duration, audioEl.currentTime + seconds));
-  }
-
-  function togglePlay() {
-    if (audioEl.paused) audioEl.play();
-    else audioEl.pause();
-  }
-
-  function prevTrack() {
-    if (!playlist || !playlist.length) return;
-    currentIndex = Math.max(0, currentIndex - 1);
-    loadTrack(currentIndex).then(() => { audioEl.play(); });
-  }
-
-  function nextTrack() {
-    if (!playlist || !playlist.length) return;
-    currentIndex = Math.min(playlist.length - 1, currentIndex + 1);
-    loadTrack(currentIndex).then(() => { audioEl.play(); });
-  }
-
-  function animateSpin() {
-    function step() {
-      rotation += spinSpeed * 360 / 60;
-      vinylImg.style.transform = `rotate(${rotation}deg)`;
-      spinAnimFrame = requestAnimationFrame(step);
-    }
-    if (!spinAnimFrame) spinAnimFrame = requestAnimationFrame(step);
-  }
-
-  function startSpinning() {
-    spinSpeed = spinTarget;
-    if (!spinAnimFrame) animateSpin();
-  }
-
-  function softStopSpinning() {
-    function decay() {
-      spinSpeed *= SPIN_DECAY;
-      if (spinSpeed < 0.002) {
-        spinSpeed = 0;
-        if (spinAnimFrame) cancelAnimationFrame(spinAnimFrame);
-        spinAnimFrame = null;
-        return;
+  // Scan folder for audio files (fallback)
+  async function scanFolder(folder, artistName) {
+    try {
+      const response = await fetch(folder);
+      if (!response.ok) throw new Error('Folder not accessible');
+      
+      const html = await response.text();
+      // Safely parse HTML - only extract href attributes, don't execute scripts
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const links = Array.from(doc.querySelectorAll('a'));
+      
+      // Sanitize and filter audio files
+      const audioFiles = links
+        .map(a => {
+          const href = a.getAttribute('href');
+          // Only accept relative paths, no absolute URLs or protocols
+          return (href && !href.includes(':') && !href.startsWith('//')) ? href : null;
+        })
+        .filter(href => href && /\.(mp3|m4a|ogg|wav)$/i.test(href));
+      
+      if (audioFiles.length === 0) {
+        throw new Error('No audio files found in folder');
       }
-      spinAnimFrame = requestAnimationFrame(decay);
-    }
-    if (spinAnimFrame) requestAnimationFrame(decay);
-  }
-
-  function onPlay() {
-    playBtn.textContent = '❚❚';
-    tonearmImg.style.transformOrigin = 'left center';
-    tonearmImg.style.transition = 'transform 0.6s ease';
-    tonearmImg.style.transform = 'rotate(-15deg)';
-    startSpinning();
-    if (audioCtx && !sourceNode) {
-      try {
-        sourceNode = audioCtx.createMediaElementSource(audioEl);
-        sourceNode.connect(analyser);
-        analyser.connect(audioCtx.destination);
-      } catch (e) {}
-    }
-    if (!rafId) {
-      const frame = () => {
-        onAudioTime();
-        rafId = requestAnimationFrame(frame);
-      };
-      rafId = requestAnimationFrame(frame);
+      
+      state.playlist = audioFiles.map(file => ({
+        title: file.replace(/\.(mp3|m4a|ogg|wav)$/i, '').replace(/_/g, ' '),
+        artist: artistName || 'Unknown Artist',
+        audioSrc: `${folder}/${file}`,
+        coverSrc: `${folder}/cover.png`
+      }));
+      
+      state.currentIndex = 0;
+      renderPlaylist();
+      loadTrack(state.currentIndex);
+      state.isOpen = true;
+      elements.overlay.style.display = 'flex';
+      elements.btnPlay.focus();
+    } catch (error) {
+      console.error('RokkoPlayer: Failed to load playlist', error);
     }
   }
 
-  function onPause() {
-    playBtn.textContent = '▶';
-    tonearmImg.style.transform = '';
-    softStopSpinning();
-    if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+  // Close player
+  function closePlayer() {
+    stopPlayback();
+    state.isOpen = false;
+    elements.overlay.style.display = 'none';
   }
 
-  // expose API
+  // Render playlist
+  function renderPlaylist() {
+    elements.playlist.innerHTML = state.playlist.map((track, index) => `
+      <div class="rokko-playlist-item ${index === state.currentIndex ? 'active' : ''}" data-index="${index}">
+        <span class="rokko-playlist-number">${index + 1}</span>
+        <span class="rokko-playlist-title">${track.title}</span>
+        <span class="rokko-playlist-artist">${track.artist}</span>
+      </div>
+    `).join('');
+  }
+  
+  // Handle playlist item clicks using event delegation
+  function handlePlaylistClick(e) {
+    const item = e.target.closest('.rokko-playlist-item');
+    if (item) {
+      const index = parseInt(item.dataset.index);
+      if (index !== state.currentIndex) {
+        loadTrack(index);
+        play();
+      }
+    }
+  }
+
+  // Load a track
+  function loadTrack(index) {
+    if (index < 0 || index >= state.playlist.length) return;
+    
+    stopPlayback();
+    state.currentIndex = index;
+    const track = state.playlist[index];
+    
+    elements.artistName.textContent = track.artist;
+    elements.trackTitle.textContent = track.title;
+    elements.albumCover.src = track.coverSrc || ASSETS.avatar;
+    
+    // Update active playlist item
+    document.querySelectorAll('.rokko-playlist-item').forEach((item, i) => {
+      item.classList.toggle('active', i === index);
+    });
+    
+    // Load audio with Web Audio API
+    loadAudio(track.audioSrc);
+  }
+
+  // Load audio file
+  async function loadAudio(url) {
+    try {
+      if (!state.audioContext) {
+        state.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      
+      const response = await fetch(url);
+      const arrayBuffer = await response.arrayBuffer();
+      state.audioBuffer = await state.audioContext.decodeAudioData(arrayBuffer);
+      state.duration = state.audioBuffer.duration;
+      
+      elements.duration.textContent = formatTime(state.duration);
+      drawWaveform();
+    } catch (error) {
+      console.error('RokkoPlayer: Failed to load audio', error);
+    }
+  }
+
+  // Draw waveform
+  function drawWaveform() {
+    const canvas = elements.waveform;
+    const ctx = canvas.getContext('2d');
+    const buffer = state.audioBuffer;
+    
+    if (!buffer) return;
+    
+    const width = canvas.width;
+    const height = canvas.height;
+    const data = buffer.getChannelData(0);
+    const step = Math.ceil(data.length / width);
+    const amp = height / 2;
+    
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = COLORS.waveform;
+    ctx.beginPath();
+    
+    for (let i = 0; i < width; i++) {
+      let min = 1.0;
+      let max = -1.0;
+      
+      for (let j = 0; j < step; j++) {
+        const datum = data[(i * step) + j];
+        if (datum < min) min = datum;
+        if (datum > max) max = datum;
+      }
+      
+      const y1 = (1 + min) * amp;
+      const y2 = (1 + max) * amp;
+      ctx.fillRect(i, y1, 1, y2 - y1);
+    }
+  }
+
+  // Toggle play/pause
+  function togglePlayPause() {
+    if (state.isPlaying) {
+      pause();
+    } else {
+      play();
+    }
+  }
+
+  // Play audio
+  function play() {
+    if (!state.audioBuffer) return;
+    
+    state.source = state.audioContext.createBufferSource();
+    state.source.buffer = state.audioBuffer;
+    state.source.connect(state.audioContext.destination);
+    
+    const offset = state.pauseTime;
+    state.source.start(0, offset);
+    state.startTime = state.audioContext.currentTime - offset;
+    state.isPlaying = true;
+    
+    elements.iconPlay.style.display = 'none';
+    elements.iconPause.style.display = 'block';
+    elements.btnPlay.setAttribute('aria-label', 'Pause (Space)');
+    
+    // Start animations
+    startVinylAnimation();
+    moveTonearmDown();
+    updateProgress();
+    
+    // Auto-advance to next track
+    state.source.onended = () => {
+      if (state.isPlaying) {
+        playNext();
+      }
+    };
+  }
+
+  // Pause audio
+  function pause() {
+    if (!state.source) return;
+    
+    state.source.stop();
+    state.pauseTime = state.audioContext.currentTime - state.startTime;
+    state.isPlaying = false;
+    
+    elements.iconPlay.style.display = 'block';
+    elements.iconPause.style.display = 'none';
+    elements.btnPlay.setAttribute('aria-label', 'Play (Space)');
+    
+    stopVinylAnimation();
+    moveTonearmUp();
+    
+    if (state.animationFrame) {
+      cancelAnimationFrame(state.animationFrame);
+    }
+  }
+
+  // Stop playback
+  function stopPlayback() {
+    if (state.source) {
+      state.source.stop();
+      state.source = null;
+    }
+    state.isPlaying = false;
+    state.pauseTime = 0;
+    state.startTime = 0;
+    
+    elements.iconPlay.style.display = 'block';
+    elements.iconPause.style.display = 'none';
+    
+    stopVinylAnimation();
+    moveTonearmUp();
+    
+    if (state.animationFrame) {
+      cancelAnimationFrame(state.animationFrame);
+    }
+  }
+
+  // Play previous track
+  function playPrevious() {
+    const newIndex = state.currentIndex > 0 ? state.currentIndex - 1 : state.playlist.length - 1;
+    loadTrack(newIndex);
+    if (state.isPlaying) {
+      play();
+    }
+  }
+
+  // Play next track
+  function playNext() {
+    const newIndex = state.currentIndex < state.playlist.length - 1 ? state.currentIndex + 1 : 0;
+    loadTrack(newIndex);
+    if (state.isPlaying) {
+      play();
+    }
+  }
+
+  // Update progress display
+  function updateProgress() {
+    if (!state.isPlaying) return;
+    
+    const currentTime = state.audioContext.currentTime - state.startTime;
+    const progress = (currentTime / state.duration) * 100;
+    
+    elements.currentTime.textContent = formatTime(currentTime);
+    elements.waveformProgress.style.width = `${Math.min(progress, 100)}%`;
+    
+    state.animationFrame = requestAnimationFrame(updateProgress);
+  }
+
+  // Handle waveform click (seek)
+  function handleWaveformClick(e) {
+    if (!state.audioBuffer) return;
+    
+    const rect = elements.waveform.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percent = x / rect.width;
+    const seekTime = percent * state.duration;
+    
+    const wasPlaying = state.isPlaying;
+    if (wasPlaying) pause();
+    
+    state.pauseTime = seekTime;
+    elements.currentTime.textContent = formatTime(seekTime);
+    elements.waveformProgress.style.width = `${percent * 100}%`;
+    
+    if (wasPlaying) play();
+  }
+
+  // Start vinyl animation
+  function startVinylAnimation() {
+    function animate() {
+      if (!state.isPlaying) return;
+      state.vinylRotation += 2; // degrees per frame
+      elements.vinyl.style.transform = `rotate(${state.vinylRotation}deg)`;
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+
+  // Stop vinyl animation with soft spin-down
+  function stopVinylAnimation() {
+    let speed = 2;
+    function spinDown() {
+      if (speed <= 0) return;
+      speed *= 0.95; // Gradual slowdown
+      state.vinylRotation += speed;
+      elements.vinyl.style.transform = `rotate(${state.vinylRotation}deg)`;
+      if (speed > 0.1) {
+        requestAnimationFrame(spinDown);
+      }
+    }
+    spinDown();
+  }
+
+  // Move tonearm down (playing)
+  function moveTonearmDown() {
+    elements.tonearm.style.transform = 'rotate(-15deg)';
+    elements.tonearm.style.transformOrigin = 'top center';
+  }
+
+  // Move tonearm up (stopped)
+  function moveTonearmUp() {
+    elements.tonearm.style.transform = 'rotate(0deg)';
+  }
+
+  // Format time (seconds to mm:ss)
+  function formatTime(seconds) {
+    if (!isFinite(seconds)) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  }
+
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPlayer);
+  } else {
+    initPlayer();
+  }
+
+  // Export API
   window.RokkoPlayer = {
-    openPlayer,
-    closePlayer,
-    preloadAssets: function (map) {
-      Object.assign(ASSETS, map || {});
-    }
+    openPlayer: openPlayer,
+    closePlayer: closePlayer
   };
-
-  createDOM();
 
 })();

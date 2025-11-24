@@ -1,172 +1,161 @@
-/* audioplayer/player-styles.css
-   Rokko shared audio player styles
-   Used by player-component.js
-*/
+/* ROKKO Records Audio Player Styles */
+/* Compliant with COLOR_GUIDE.md color scheme */
 
 :root {
-  --rokko-bg: #E0C290;
-  --rokko-dark: #3D2817;
-  --rokko-text: #201613;
-  --rokko-accent: #8B4513;
+  --rokko-brown: #201613;
+  --rokko-brown-dark: #3D2817;
+  --rokko-sand: #E0C290;
+  --rokko-accent: #B8935F;
+  --content-bg: #997A4B;
+  --rokko-orange: #d77014;
+  --rokko-orange-transparent: rgba(215, 112, 20, 0.3);
 }
 
-* {
-  box-sizing: border-box;
-}
-
-/* Full-screen overlay */
+/* Overlay */
 .rokko-player-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.9);
-  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  overflow: auto;
+  z-index: 10000;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
 }
 
-/* Player wrapper */
-.rokko-player-wrap {
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Container */
+.rokko-player-container {
   position: relative;
-  background: var(--rokko-bg);
-  border: 6px solid var(--rokko-dark);
-  border-radius: 16px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
-  max-width: 1200px;
-  width: 100%;
-  padding: 40px;
+  width: 90%;
+  max-width: 1100px;
+  height: 90%;
+  max-height: 700px;
+  background: var(--rokko-sand);
+  border: 6px solid var(--rokko-brown-dark);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  animation: slideUp 0.3s ease-out;
 }
 
-/* Close button */
-.rokko-close {
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Close Button */
+.rokko-player-close {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  background: var(--rokko-dark);
-  border: 3px solid var(--rokko-bg);
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  background: var(--rokko-brown-dark);
+  border: 2px solid var(--rokko-brown);
   border-radius: 50%;
-  color: var(--rokko-bg);
+  color: var(--rokko-sand);
   font-size: 28px;
-  font-weight: bold;
+  line-height: 1;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s;
   z-index: 10;
-  transition: all 0.3s;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  line-height: 1;
 }
 
-.rokko-close:hover {
-  background: var(--rokko-bg);
-  color: var(--rokko-dark);
-  transform: scale(1.1) rotate(90deg);
+.rokko-player-close:hover {
+  background: var(--rokko-brown);
+  transform: scale(1.1);
 }
 
-/* Main player layout */
-.rokko-player {
+.rokko-player-close:focus {
+  outline: 2px solid var(--rokko-orange);
+  outline-offset: 2px;
+}
+
+/* Content Layout */
+.rokko-player-content {
   display: flex;
   gap: 40px;
-  align-items: flex-start;
+  height: 100%;
 }
 
-/* Left column - Album art & metadata */
-.left-column {
+/* Vinyl Section (Left) */
+.rokko-player-vinyl-section {
   flex: 0 0 350px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  justify-content: center;
 }
 
-.cover-frame {
+.rokko-vinyl-wrapper {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1;
-  border: 4px solid var(--rokko-dark);
-  border-radius: 8px;
-  overflow: hidden;
-  background: #000;
-}
-
-.rokko-cover {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Vinyl animation */
-.vinyl-wrap {
-  position: absolute;
-  top: 50%;
-  left: -25%;
-  width: 100%;
-  height: 100%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  z-index: 2;
+  width: 300px;
+  height: 300px;
 }
 
 .rokko-vinyl {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  transform-origin: center;
-  transition: transform 0.5s ease;
+  transition: transform 0.05s linear;
 }
 
 .rokko-tonearm {
   position: absolute;
-  top: -5%;
-  left: 50%;
-  width: 40%;
+  top: -20px;
+  right: 20px;
+  width: 80px;
   height: auto;
-  transform-origin: top left;
-  transition: transform 0.5s ease;
+  transform-origin: 50% 10%;
+  transition: transform 0.5s ease-out;
+  z-index: 2;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
 }
 
-/* Metadata */
-.meta {
-  text-align: center;
-  color: var(--rokko-text);
-}
-
-.meta .artist {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.meta .album {
-  font-size: 18px;
-  color: var(--rokko-dark);
-}
-
-/* Avatar row */
-.avatar-row {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-.rokko-avatar {
-  width: 100px;
-  height: 100px;
+.rokko-cover-inset {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  border: 3px solid var(--rokko-dark);
+  overflow: hidden;
+  border: 3px solid var(--rokko-brown-dark);
+  background: var(--rokko-sand);
+  z-index: 1;
+}
+
+.rokko-album-cover {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
-/* Right column - Waveform & controls */
-.right-column {
+/* Info Section (Right) */
+.rokko-player-info-section {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -174,67 +163,70 @@
   min-width: 0;
 }
 
-/* Waveform canvas */
-.rokko-waveform {
-  width: 100%;
-  height: 140px;
-  border: 3px solid var(--rokko-dark);
-  border-radius: 8px;
-  background: #000;
-  display: block;
+/* Track Info */
+.rokko-track-info {
+  text-align: center;
 }
 
-/* Time row with progress bar */
-.time-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--rokko-text);
-  font-size: 16px;
+.rokko-artist-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--rokko-brown);
+  margin: 0 0 5px 0;
+  line-height: 1.2;
+}
+
+.rokko-track-title {
+  font-size: 1.3rem;
   font-weight: 600;
+  color: var(--rokko-brown-dark);
+  margin: 0;
+  line-height: 1.2;
 }
 
-.time-current,
-.time-duration {
-  flex-shrink: 0;
-  min-width: 50px;
-}
-
-.progress-bar {
-  flex: 1;
-  height: 12px;
-  background: var(--rokko-dark);
-  border-radius: 6px;
-  cursor: pointer;
+/* Waveform */
+.rokko-waveform-container {
   position: relative;
+  width: 100%;
+  height: 100px;
+  background: var(--content-bg);
+  border: 3px solid var(--rokko-brown-dark);
+  border-radius: 8px;
   overflow: hidden;
+  cursor: pointer;
 }
 
-.progress-fill {
+.rokko-waveform {
+  display: block;
+  width: 100%;
   height: 100%;
-  background: var(--rokko-accent);
-  border-radius: 6px;
-  transition: width 0.1s linear;
-  pointer-events: none;
 }
 
-/* Control buttons */
-.controls-row {
+.rokko-waveform-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: var(--rokko-orange-transparent);
+  pointer-events: none;
+  transition: width 0.1s linear;
+}
+
+/* Controls */
+.rokko-controls {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   gap: 30px;
   margin: 10px 0;
 }
 
-.ctrl {
-  width: 70px;
-  height: 70px;
+.rokko-btn {
+  background: var(--rokko-brown-dark);
+  border: 3px solid var(--rokko-brown);
   border-radius: 50%;
-  border: 4px solid var(--rokko-dark);
-  background: var(--rokko-bg);
-  color: var(--rokko-dark);
-  font-size: 24px;
+  color: var(--rokko-sand);
   cursor: pointer;
   display: flex;
   align-items: center;
