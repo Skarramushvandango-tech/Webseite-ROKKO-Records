@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROKKO Player Integration Example</title>
+    
+    <!-- Include the new player -->
+    <link rel="stylesheet" href="player-styles.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #997A4B 0%, #3D2817 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .example-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #E0C290;
+            border: 6px solid #3D2817;
+            border-radius: 12px;
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #201613;
+            margin-bottom: 20px;
+        }
+        
+        .artist-card {
+            background: #997A4B;
+            border: 3px solid #3D2817;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .artist-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        
+        .artist-info {
+            flex: 1;
+        }
+        
+        .artist-info h2 {
+            color: #E0C290;
+            margin-bottom: 10px;
+        }
+        
+        .artist-info p {
+            color: #E0C290;
+            margin-bottom: 15px;
+        }
+        
+        .play-btn {
+            background: #3D2817;
+            color: #E0C290;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .play-btn:hover {
+            background: #201613;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .code-example {
+            background: #3D2817;
+            color: #E0C290;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        
+        .code-example pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="example-container">
+        <h1>🎵 ROKKO Player Integration Examples</h1>
+        
+        <!-- Example 1: Artist with folder -->
+        <div class="artist-card">
+            <img src="../mp3/vandango/cover.png" alt="Vandango" onerror="this.src='assets/avatar.svg'">
+            <div class="artist-info">
+                <h2>Vandango</h2>
+                <p>14 tracks available</p>
+                <button class="play-btn" onclick="playVandango()">
+                    ▶ Play All Tracks
+                </button>
+            </div>
+        </div>
+        
+        <!-- Example 2: Bellieu -->
+        <div class="artist-card">
+            <img src="../mp3/bellieu/petite_colibri.png" alt="Bellieu" onerror="this.src='assets/avatar.svg'">
+            <div class="artist-info">
+                <h2>Bellieu</h2>
+                <p>3 tracks including remixes</p>
+                <button class="play-btn" onclick="playBellieu()">
+                    ▶ Play All Tracks
+                </button>
+            </div>
+        </div>
+        
+        <!-- Example 3: Custom Playlist -->
+        <div class="artist-card">
+            <img src="assets/avatar.svg" alt="Custom Mix">
+            <div class="artist-info">
+                <h2>Custom Playlist Example</h2>
+                <p>Open player with custom tracks</p>
+                <button class="play-btn" onclick="playCustom()">
+                    ▶ Play Custom Mix
+                </button>
+            </div>
+        </div>
+        
+        <!-- Code Examples -->
+        <div class="code-example">
+            <h3 style="margin-top: 0; margin-bottom: 15px;">Integration Code:</h3>
+            
+            <h4 style="margin-bottom: 10px; color: #d77014;">Method 1: Load from Artist Folder</h4>
+            <pre>// Automatically loads manifest.json from folder
+window.RokkoPlayer.openPlayer({
+    artistFolder: 'mp3/vandango',
+    artistName: 'Vandango'
+});</pre>
+            
+            <h4 style="margin-top: 20px; margin-bottom: 10px; color: #d77014;">Method 2: Custom Playlist</h4>
+            <pre>window.RokkoPlayer.openPlayer({
+    playlist: [
+        {
+            title: "Track Title",
+            artist: "Artist Name",
+            audioSrc: "path/to/audio.m4a",
+            coverSrc: "path/to/cover.png"
+        }
+    ],
+    startIndex: 0
+});</pre>
+
+            <h4 style="margin-top: 20px; margin-bottom: 10px; color: #d77014;">Method 3: HTML Button Integration</h4>
+            <pre>&lt;button onclick="window.RokkoPlayer.openPlayer({
+    artistFolder: 'mp3/vandango',
+    artistName: 'Vandango'
+})"&gt;
+    Play Vandango
+&lt;/button&gt;</pre>
+        </div>
+    </div>
+    
+    <!-- Include player component AFTER page content -->
+    <script src="player-component.js"></script>
+    
+    <script>
+        // Example functions
+        function playVandango() {
+            window.RokkoPlayer.openPlayer({
+                artistFolder: 'mp3/vandango',
+                artistName: 'Vandango'
+            });
+        }
+        
+        function playBellieu() {
+            window.RokkoPlayer.openPlayer({
+                artistFolder: 'mp3/bellieu',
+                artistName: 'Bellieu'
+            });
+        }
+        
+        function playCustom() {
+            // Example with custom playlist
+            window.RokkoPlayer.openPlayer({
+                playlist: [
+                    {
+                        title: "Always Sunny",
+                        artist: "Vandango",
+                        audioSrc: "../mp3/vandango/always_sunny.m4a",
+                        coverSrc: "../mp3/vandango/cover.png"
+                    },
+                    {
+                        title: "Petite Colibri",
+                        artist: "Bellieu",
+                        audioSrc: "../mp3/bellieu/petite_colibri.m4a",
+                        coverSrc: "../mp3/bellieu/petite_colibri.png"
+                    }
+                ],
+                startIndex: 0
+            });
+        }
+    </script>
+</body>
+</html>
