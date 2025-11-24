@@ -1,0 +1,76 @@
+{
+  "artist": "Vandango",
+  "album": "Collection",
+  "tracks": [
+    {
+      "title": "Always Sunny",
+      "file": "always_sunny.m4a",
+      "cover": "cover.png"
+    },
+    {
+      "title": "Among The Crowd",
+      "file": "among_the_crowd.m4a",
+      "cover": "cover.png"
+    },
+    {
+      "title": "Borrowed Time",
+      "file": "borrowed_time.m4a",
+      "cover": "cover.png"
+    },
+    {
+      "title": "Like Water",
+      "file": "like_water.m4a",
+      "cover": "cover.png"
+    },
+    {
+      "title": "Love Song",
+      "file": "love_song.m4a",
+      "cover": "cover.png"
+    },
+    {
+      "title": "Man On A Mission",
+      "file": "man_on_a_mission.m4a",
+      "cover": "cover.png"
+    },
+    {
+      "title": "Nights Go By",
+      "file": "nights_go_by.m4a",
+      "cover": "cover.png"
+    },
+    {
+      "title": "No Stitch No Story",
+      "file": "no_stitch_no_story.m4a",
+      "cover": "cover.png"
+    },
+    {
+      "title": "Oh I Try",
+      "file": "oh_i_try.m4a",
+      "cover": "cover.png"
+    },
+    {
+      "title": "Set The Fire",
+      "file": "set_the_fire.m4a",
+      "cover": "cover.png"
+    },
+    {
+      "title": "Set The Fire (Remix)",
+      "file": "set_the_fire_remix.m4a",
+      "cover": "cover.png"
+    },
+    {
+      "title": "System Failure (Kortana Mix)",
+      "file": "system_failure_kortana_mix.m4a",
+      "cover": "cover.png"
+    },
+    {
+      "title": "Tiptoes",
+      "file": "tiptoes.m4a",
+      "cover": "cover.png"
+    },
+    {
+      "title": "What You Need",
+      "file": "what_you_need.m4a",
+      "cover": "cover.png"
+    }
+  ]
+}

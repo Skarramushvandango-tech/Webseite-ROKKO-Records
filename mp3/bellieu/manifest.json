@@ -1,0 +1,21 @@
+{
+  "artist": "Bellieu",
+  "album": "Petite Colibri",
+  "tracks": [
+    {
+      "title": "Petite Colibri",
+      "file": "petite_colibri.m4a",
+      "cover": "petite_colibri.png"
+    },
+    {
+      "title": "Petite Colibri (Ennio Mix)",
+      "file": "petite_colibri_ennio_mix.m4a",
+      "cover": "petite_colibri.png"
+    },
+    {
+      "title": "Petite Colibri (Nocturne Mix)",
+      "file": "petite_colibri_nocturne_mix.m4a",
+      "cover": "petite_colibri.png"
+    }
+  ]
+}
