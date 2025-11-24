@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="vinylGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#0d0d0d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  <!-- Outer record -->
+  <circle cx="100" cy="100" r="98" fill="url(#vinylGrad)" stroke="#000" stroke-width="2"/>
+  <!-- Label -->
+  <circle cx="100" cy="100" r="40" fill="#E0C290" stroke="#3D2817" stroke-width="2"/>
+  <!-- Center hole -->
+  <circle cx="100" cy="100" r="8" fill="#000"/>
+  <!-- Grooves -->
+  <circle cx="100" cy="100" r="85" fill="none" stroke="#333" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="100" cy="100" r="75" fill="none" stroke="#333" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="100" cy="100" r="65" fill="none" stroke="#333" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="100" cy="100" r="55" fill="none" stroke="#333" stroke-width="0.5" opacity="0.3"/>
+</svg>
