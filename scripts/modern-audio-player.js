@@ -5,6 +5,9 @@
  */
 
 class ModernAudioPlayer {
+    // Constants
+    static VINYL_RPM = 2; // Revolutions per minute for vinyl rotation
+    
     constructor() {
         this.currentPlaylist = [];
         this.currentArtist = '';
@@ -79,7 +82,7 @@ class ModernAudioPlayer {
                     <!-- Vinyl Record Area (animated) -->
                     <div class="modern-vinyl-area">
                         <div id="modernVinyl" class="modern-vinyl">
-                            <img id="modernAlbumCover" src="" alt="Album Cover" class="modern-vinyl-cover">
+                            <img id="modernAlbumCover" src="img/player_template.png" alt="Album Cover" class="modern-vinyl-cover">
                             <div class="modern-vinyl-label"></div>
                         </div>
                     </div>
@@ -108,7 +111,7 @@ class ModernAudioPlayer {
                         <span>▶</span>
                     </button>
                     <button id="modernNextBtn" class="modern-control-btn modern-next-btn" aria-label="Next Track" title="Next">
-                        <span>▶</span>
+                        <span>▶▶</span>
                     </button>
 
                     <!-- Progress Bar with Time Display -->
@@ -138,8 +141,8 @@ class ModernAudioPlayer {
                         <button class="modern-streaming-btn" aria-label="Listen on Beatport" title="Beatport">
                             <img src="img/logo_04.png" alt="Beatport">
                         </button>
-                        <button class="modern-streaming-btn" aria-label="Listen on Amazon Music" title="Amazon Music">
-                            <img src="img/logo_02.png" alt="Amazon Music">
+                        <button class="modern-streaming-btn" aria-label="Listen on Spotify" title="Spotify">
+                            <img src="img/logo_05.png" alt="Spotify">
                         </button>
                     </div>
                 </div>
@@ -308,7 +311,7 @@ class ModernAudioPlayer {
                 this.isPlaying = true;
                 this.playBtn.querySelector('span').textContent = '⏸';
                 this.playBtn.setAttribute('aria-label', 'Pause');
-                this.targetVinylSpeed = 2; // RPM
+                this.targetVinylSpeed = ModernAudioPlayer.VINYL_RPM;
                 this.tonearmElement.classList.add('on-record');
             })
             .catch(error => {

@@ -6,6 +6,8 @@
     --modern-dark: #201613;
     --modern-border: #3D2817;
     --modern-orange: #ff6600;
+    --template-width: 921;
+    --template-height: 1536;
 }
 
 /* Full Page Overlay */
@@ -57,9 +59,9 @@
 .modern-player-container {
     position: relative;
     width: 100vw;
-    height: calc(100vw * (1536 / 921));
+    height: calc(100vw * (var(--template-height) / var(--template-width)));
     max-height: calc(100vh - 80px);
-    max-width: calc((100vh - 80px) * (921 / 1536));
+    max-width: calc((100vh - 80px) * (var(--template-width) / var(--template-height)));
 }
 
 /* Background Image */
@@ -95,7 +97,7 @@
     left: 13.0%;
     top: 11.1%;
     width: 35.8%;
-    height: calc(35.8% * 1536 / 921); /* Maintain aspect ratio */
+    height: calc(35.8% * var(--template-height) / var(--template-width)); /* Maintain aspect ratio */
     display: flex;
     align-items: center;
     justify-content: center;
