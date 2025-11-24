@@ -162,4 +162,4 @@ The player requires these assets in `audioplayer/assets/`:
 
 ---
 
-**Ready for review!** 🎵
+**Ready for review!** 🎵🎸
