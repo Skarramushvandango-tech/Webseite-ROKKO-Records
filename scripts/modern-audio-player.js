@@ -50,6 +50,11 @@ class ModernAudioPlayer {
         this.vinylElement = document.getElementById('modernVinyl');
         this.tonearmElement = document.getElementById('modernTonearm');
         this.waveformCanvas = document.getElementById('modernWaveformCanvas');
+        
+        // Set canvas size before creating context
+        this.waveformCanvas.width = this.waveformCanvas.offsetWidth;
+        this.waveformCanvas.height = this.waveformCanvas.offsetHeight;
+        
         this.waveformCtx = this.waveformCanvas.getContext('2d');
         
         // Set volume
@@ -175,10 +180,6 @@ class ModernAudioPlayer {
             // Create data array for waveform
             const bufferLength = this.analyser.frequencyBinCount;
             this.dataArray = new Uint8Array(bufferLength);
-            
-            // Set canvas size
-            this.waveformCanvas.width = this.waveformCanvas.offsetWidth;
-            this.waveformCanvas.height = this.waveformCanvas.offsetHeight;
         } catch (error) {
             console.warn('Web Audio API not available:', error);
         }
