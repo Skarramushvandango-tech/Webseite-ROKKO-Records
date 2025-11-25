@@ -48,7 +48,7 @@ class TemplateAudioPlayer {
         <!-- Template Audio Player Overlay -->
         <div id="templatePlayerOverlay" class="template-player-overlay" style="display: none;">
             <!-- Close Button (Top Right) -->
-            <button id="templateCloseBtn" class="template-close-btn" aria-label="Player schließen" title="Schließen">✕</button>
+            <button id="templateCloseBtn" class="template-close-btn" aria-label="Player schließen" title="Schließen">X</button>
 
             <!-- Player Container with Template Background -->
             <div class="template-player-container">

@@ -787,7 +787,7 @@ body.home .btn-welcome { display:none !important; }
 }
 
 .track-item::before {
-  content: '▶';
+  content: '';
   position: absolute;
   left: -30px;
   top: 50%;

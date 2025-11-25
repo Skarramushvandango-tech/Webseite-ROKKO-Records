@@ -75,7 +75,7 @@ class ModernAudioPlayer {
         <!-- Modern Audio Player Overlay -->
         <div id="modernPlayerOverlay" class="modern-player-overlay" style="display: none;">
             <!-- Close Button (Top Right) -->
-            <button id="modernCloseBtn" class="modern-close-btn" aria-label="Player schließen" title="Schließen">✕</button>
+            <button id="modernCloseBtn" class="modern-close-btn" aria-label="Player schließen" title="Schließen">X</button>
 
             <!-- Player Container -->
             <div class="modern-player-container">
@@ -110,13 +110,13 @@ class ModernAudioPlayer {
 
                     <!-- Control Buttons -->
                     <button id="modernPrevBtn" class="modern-control-btn modern-prev-btn" aria-label="Previous Track" title="Previous">
-                        <span>◀</span>
+                        <span>PREV</span>
                     </button>
                     <button id="modernPlayBtn" class="modern-control-btn modern-play-btn" aria-label="Play" title="Play/Pause">
-                        <span>▶</span>
+                        <span>PLAY</span>
                     </button>
                     <button id="modernNextBtn" class="modern-control-btn modern-next-btn" aria-label="Next Track" title="Next">
-                        <span>▶▶</span>
+                        <span>PLAYPLAY</span>
                     </button>
 
                     <!-- Progress Bar with Time Display -->
@@ -310,7 +310,7 @@ class ModernAudioPlayer {
         this.audioElement.play()
             .then(() => {
                 this.isPlaying = true;
-                this.playBtn.querySelector('span').textContent = '⏸';
+                this.playBtn.querySelector('span').textContent = 'PAUSE';
                 this.playBtn.setAttribute('aria-label', 'Pause');
                 this.targetVinylSpeed = ModernAudioPlayer.VINYL_RPM;
                 this.tonearmElement.classList.add('on-record');
@@ -323,7 +323,7 @@ class ModernAudioPlayer {
     pause() {
         this.audioElement.pause();
         this.isPlaying = false;
-        this.playBtn.querySelector('span').textContent = '▶';
+        this.playBtn.querySelector('span').textContent = 'PLAY';
         this.playBtn.setAttribute('aria-label', 'Play');
         this.targetVinylSpeed = 0; // Soft spin-down
         this.tonearmElement.classList.remove('on-record');

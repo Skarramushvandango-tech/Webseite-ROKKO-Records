@@ -9,6 +9,13 @@ var ROKKO_COLORS = {
   BROWN: '#201613'           // Dark brown text
 };
 
+// Wave visualization constants
+var WAVE_CONFIG = {
+  MIN_HEIGHT: 0.2,           // Minimum wave bar height (20%)
+  HEIGHT_RANGE: 0.8,         // Wave bar height variation range
+  NUM_BARS: 60               // Number of bars in the wave visualization
+};
+
 // Artist ID to name mapping for template player integration
 var ARTIST_NAME_MAP = {
   'vandango': 'Skaramush Vandango',
@@ -489,10 +496,99 @@ document.addEventListener('DOMContentLoaded', function(){
   var artistPrevBtn = document.getElementById('artist-prev');
   var artistNextBtn = document.getElementById('artist-next');
   var artistPlayPauseBtn = document.getElementById('artist-play-pause');
+  var waveCanvas = document.getElementById('wave-visualization');
+  var waveCtx = waveCanvas ? waveCanvas.getContext('2d') : null;
   
   var currentArtist = null;
   var currentTrackIndex = 0;
   var currentTracks = [];
+  var selectedCardElement = null;
+  
+  // Wave visualization variables using config constants
+  var waveData = [];
+  var numBars = WAVE_CONFIG.NUM_BARS;
+  
+  // Initialize wave data
+  for(var i = 0; i < numBars; i++) {
+    waveData.push(WAVE_CONFIG.MIN_HEIGHT + Math.random() * WAVE_CONFIG.HEIGHT_RANGE);
+  }
+  
+  // Draw wave visualization
+  function drawWaveVisualization(progress) {
+    if(!waveCanvas || !waveCtx) return;
+    
+    // Get actual display size
+    var displayWidth = waveCanvas.offsetWidth;
+    var displayHeight = waveCanvas.offsetHeight;
+    
+    // Set canvas internal size to match display
+    if(waveCanvas.width !== displayWidth || waveCanvas.height !== displayHeight) {
+      waveCanvas.width = displayWidth;
+      waveCanvas.height = displayHeight;
+    }
+    
+    var width = waveCanvas.width;
+    var height = waveCanvas.height;
+    var barWidth = width / numBars;
+    var playedBars = Math.floor(progress * numBars);
+    
+    waveCtx.clearRect(0, 0, width, height);
+    
+    for(var i = 0; i < numBars; i++) {
+      var barHeight = waveData[i] * (height - 10);
+      var x = i * barWidth;
+      var y = (height - barHeight) / 2;
+      
+      // Color based on progress - using ROKKO brand colors
+      if(i < playedBars) {
+        waveCtx.fillStyle = ROKKO_COLORS.BROWN_DARK; // Dark brown for played
+      } else {
+        waveCtx.fillStyle = ROKKO_COLORS.ACCENT; // Light brown for unplayed
+      }
+      
+      waveCtx.fillRect(x + 1, y, barWidth - 2, barHeight);
+    }
+  }
+  
+  // Update wave visualization on time update
+  if(artistPlayer) {
+    artistPlayer.addEventListener('timeupdate', function() {
+      var progress = this.duration ? this.currentTime / this.duration : 0;
+      drawWaveVisualization(progress);
+    });
+    
+    artistPlayer.addEventListener('loadedmetadata', function() {
+      // Generate new random wave data for each track
+      for(var i = 0; i < numBars; i++) {
+        waveData[i] = WAVE_CONFIG.MIN_HEIGHT + Math.random() * WAVE_CONFIG.HEIGHT_RANGE;
+      }
+      drawWaveVisualization(0);
+    });
+  }
+  
+  // Click on wave to seek
+  if(waveCanvas) {
+    waveCanvas.addEventListener('click', function(e) {
+      if(!artistPlayer || !artistPlayer.duration) return;
+      var rect = this.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      var progress = x / rect.width;
+      artistPlayer.currentTime = progress * artistPlayer.duration;
+    });
+    
+    // Handle resize
+    window.addEventListener('resize', function() {
+      if(artistPlayer && artistPlayer.duration) {
+        var progress = artistPlayer.currentTime / artistPlayer.duration;
+        drawWaveVisualization(progress);
+      } else {
+        drawWaveVisualization(0);
+      }
+    });
+    
+    // Initial draw
+    drawWaveVisualization(0);
+  }
   
   // Build horizontal album carousel with infinite loop
   if(albumCarousel) {
@@ -523,15 +619,38 @@ document.addEventListener('DOMContentLoaded', function(){
       });
       
       albumCard.addEventListener('mouseleave', function() {
-        var img = this.querySelector('img');
-        img.style.transform = 'scale(1)';
-        this.style.transform = 'translateY(0)';
-        this.style.boxShadow = 'none';
+        // Only reset if not selected
+        if(selectedCardElement !== this) {
+          var img = this.querySelector('img');
+          img.style.transform = 'scale(1)';
+          this.style.transform = 'translateY(0)';
+          this.style.boxShadow = 'none';
+        }
       });
       
-      // Click to open inline dropdown player
+      // Click to open inline dropdown player with zoom effect
       albumCard.addEventListener('click', function() {
+        var card = this;
         if (artistAlbums[artistName]) {
+          // Reset previous selected card
+          if(selectedCardElement && selectedCardElement !== card) {
+            var prevImg = selectedCardElement.querySelector('img');
+            if(prevImg) prevImg.style.transform = 'scale(1)';
+            selectedCardElement.style.transform = 'translateY(0)';
+            selectedCardElement.style.boxShadow = 'none';
+            selectedCardElement.style.zIndex = '1';
+          }
+          
+          // Apply zoom effect to clicked card
+          var img = card.querySelector('img');
+          if(img) {
+            img.style.transform = 'scale(1.15)';
+          }
+          card.style.transform = 'translateY(-8px) scale(1.08)';
+          card.style.boxShadow = '0 12px 24px rgba(0,0,0,0.5)';
+          card.style.zIndex = '10';
+          selectedCardElement = card;
+          
           loadArtist(artistName);
           // Scroll to player
           if(playerDropdown) {
@@ -669,10 +788,8 @@ document.addEventListener('DOMContentLoaded', function(){
       artistTrackTitle.textContent = track.title;
     }
     
-    // Update play/pause button
-    if(artistPlayPauseBtn) {
-      artistPlayPauseBtn.textContent = '▶';
-    }
+    // Update play/pause button - buttons are transparent overlays on playerleiste.png
+    // No text content needed
     
     // Highlight active song
     updateSongListHighlight();
@@ -704,7 +821,7 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
   
-  // Previous button
+  // Previous button - transparent overlay on playerleiste.png
   if(artistPrevBtn) {
     artistPrevBtn.addEventListener('click', function() {
       var newIndex = currentTrackIndex - 1;
@@ -714,19 +831,9 @@ document.addEventListener('DOMContentLoaded', function(){
         artistPlayer.play().catch(function(e) { console.log(e); });
       }
     });
-    
-    artistPrevBtn.addEventListener('mouseenter', function() {
-      this.style.background = 'rgba(224, 194, 144, 0.15)';
-      this.style.borderColor = '#E0C290';
-    });
-    
-    artistPrevBtn.addEventListener('mouseleave', function() {
-      this.style.background = 'transparent';
-      this.style.borderColor = 'rgba(224, 194, 144, 0.4)';
-    });
   }
   
-  // Next button
+  // Next button - transparent overlay on playerleiste.png
   if(artistNextBtn) {
     artistNextBtn.addEventListener('click', function() {
       var newIndex = currentTrackIndex + 1;
@@ -736,56 +843,32 @@ document.addEventListener('DOMContentLoaded', function(){
         artistPlayer.play().catch(function(e) { console.log(e); });
       }
     });
-    
-    artistNextBtn.addEventListener('mouseenter', function() {
-      this.style.background = 'rgba(224, 194, 144, 0.15)';
-      this.style.borderColor = '#E0C290';
-    });
-    
-    artistNextBtn.addEventListener('mouseleave', function() {
-      this.style.background = 'transparent';
-      this.style.borderColor = 'rgba(224, 194, 144, 0.4)';
-    });
   }
   
-  // Play/Pause button
+  // Play/Pause button - transparent overlay on playerleiste.png
   if(artistPlayPauseBtn) {
     artistPlayPauseBtn.addEventListener('click', function() {
       if(!artistPlayer) return;
       
       if(artistPlayer.paused) {
         artistPlayer.play().catch(function(e) { console.log(e); });
-        this.textContent = '⏸';
       } else {
         artistPlayer.pause();
-        this.textContent = '▶';
       }
     });
     
-    artistPlayPauseBtn.addEventListener('mouseenter', function() {
-      this.style.background = '#D4B584';
-      this.style.transform = 'scale(1.05)';
-    });
-    
-    artistPlayPauseBtn.addEventListener('mouseleave', function() {
-      this.style.background = '#E0C290';
-      this.style.transform = 'scale(1)';
-    });
+    // No hover style changes needed for transparent buttons
   }
   
   // Listen to player events
   if(artistPlayer) {
     artistPlayer.addEventListener('play', function() {
-      if(artistPlayPauseBtn) {
-        artistPlayPauseBtn.textContent = '⏸';
-      }
+      // Buttons are transparent overlays - no text to update
       updateSongListHighlight();
     });
     
     artistPlayer.addEventListener('pause', function() {
-      if(artistPlayPauseBtn) {
-        artistPlayPauseBtn.textContent = '▶';
-      }
+      // Buttons are transparent overlays - no text to update
     });
     
     artistPlayer.addEventListener('ended', function() {
