@@ -9,13 +9,6 @@ var ROKKO_COLORS = {
   BROWN: '#201613'           // Dark brown text
 };
 
-// Wave visualization constants
-var WAVE_CONFIG = {
-  MIN_HEIGHT: 0.2,           // Minimum wave bar height (20%)
-  HEIGHT_RANGE: 0.8,         // Wave bar height variation range
-  NUM_BARS: 60               // Number of bars in the wave visualization
-};
-
 // Artist ID to name mapping for template player integration
 var ARTIST_NAME_MAP = {
   'vandango': 'Skaramush Vandango',
@@ -493,102 +486,11 @@ document.addEventListener('DOMContentLoaded', function(){
   var artistTrackTitle = document.getElementById('artist-track-title');
   var artistNameDisplay = document.getElementById('artist-name-display');
   var artistSongList = document.getElementById('artist-song-list');
-  var artistPrevBtn = document.getElementById('artist-prev');
-  var artistNextBtn = document.getElementById('artist-next');
-  var artistPlayPauseBtn = document.getElementById('artist-play-pause');
-  var waveCanvas = document.getElementById('wave-visualization');
-  var waveCtx = waveCanvas ? waveCanvas.getContext('2d') : null;
   
   var currentArtist = null;
   var currentTrackIndex = 0;
   var currentTracks = [];
   var selectedCardElement = null;
-  
-  // Wave visualization variables using config constants
-  var waveData = [];
-  var numBars = WAVE_CONFIG.NUM_BARS;
-  
-  // Initialize wave data
-  for(var i = 0; i < numBars; i++) {
-    waveData.push(WAVE_CONFIG.MIN_HEIGHT + Math.random() * WAVE_CONFIG.HEIGHT_RANGE);
-  }
-  
-  // Draw wave visualization
-  function drawWaveVisualization(progress) {
-    if(!waveCanvas || !waveCtx) return;
-    
-    // Get actual display size
-    var displayWidth = waveCanvas.offsetWidth;
-    var displayHeight = waveCanvas.offsetHeight;
-    
-    // Set canvas internal size to match display
-    if(waveCanvas.width !== displayWidth || waveCanvas.height !== displayHeight) {
-      waveCanvas.width = displayWidth;
-      waveCanvas.height = displayHeight;
-    }
-    
-    var width = waveCanvas.width;
-    var height = waveCanvas.height;
-    var barWidth = width / numBars;
-    var playedBars = Math.floor(progress * numBars);
-    
-    waveCtx.clearRect(0, 0, width, height);
-    
-    for(var i = 0; i < numBars; i++) {
-      var barHeight = waveData[i] * (height - 10);
-      var x = i * barWidth;
-      var y = (height - barHeight) / 2;
-      
-      // Color based on progress - using ROKKO brand colors
-      if(i < playedBars) {
-        waveCtx.fillStyle = ROKKO_COLORS.BROWN_DARK; // Dark brown for played
-      } else {
-        waveCtx.fillStyle = ROKKO_COLORS.ACCENT; // Light brown for unplayed
-      }
-      
-      waveCtx.fillRect(x + 1, y, barWidth - 2, barHeight);
-    }
-  }
-  
-  // Update wave visualization on time update
-  if(artistPlayer) {
-    artistPlayer.addEventListener('timeupdate', function() {
-      var progress = this.duration ? this.currentTime / this.duration : 0;
-      drawWaveVisualization(progress);
-    });
-    
-    artistPlayer.addEventListener('loadedmetadata', function() {
-      // Generate new random wave data for each track
-      for(var i = 0; i < numBars; i++) {
-        waveData[i] = WAVE_CONFIG.MIN_HEIGHT + Math.random() * WAVE_CONFIG.HEIGHT_RANGE;
-      }
-      drawWaveVisualization(0);
-    });
-  }
-  
-  // Click on wave to seek
-  if(waveCanvas) {
-    waveCanvas.addEventListener('click', function(e) {
-      if(!artistPlayer || !artistPlayer.duration) return;
-      var rect = this.getBoundingClientRect();
-      var x = e.clientX - rect.left;
-      var progress = x / rect.width;
-      artistPlayer.currentTime = progress * artistPlayer.duration;
-    });
-    
-    // Handle resize
-    window.addEventListener('resize', function() {
-      if(artistPlayer && artistPlayer.duration) {
-        var progress = artistPlayer.currentTime / artistPlayer.duration;
-        drawWaveVisualization(progress);
-      } else {
-        drawWaveVisualization(0);
-      }
-    });
-    
-    // Initial draw
-    drawWaveVisualization(0);
-  }
   
   // Build horizontal album carousel with infinite loop
   if(albumCarousel) {
@@ -748,6 +650,10 @@ document.addEventListener('DOMContentLoaded', function(){
         songItem.addEventListener('click', function() {
           var idx = parseInt(this.getAttribute('data-index'));
           loadTrack(idx);
+          // Auto-play when clicking on a track
+          if(artistPlayer) {
+            artistPlayer.play().catch(function(e) { console.log(e); });
+          }
         });
         
         artistSongList.appendChild(songItem);
@@ -821,57 +727,18 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
   
-  // Previous button - transparent overlay on playerleiste.png
-  if(artistPrevBtn) {
-    artistPrevBtn.addEventListener('click', function() {
-      var newIndex = currentTrackIndex - 1;
-      if(newIndex < 0) newIndex = currentTracks.length - 1;
-      loadTrack(newIndex);
-      if(artistPlayer && !artistPlayer.paused) {
-        artistPlayer.play().catch(function(e) { console.log(e); });
-      }
-    });
-  }
-  
-  // Next button - transparent overlay on playerleiste.png
-  if(artistNextBtn) {
-    artistNextBtn.addEventListener('click', function() {
-      var newIndex = currentTrackIndex + 1;
-      if(newIndex >= currentTracks.length) newIndex = 0;
-      loadTrack(newIndex);
-      if(artistPlayer && !artistPlayer.paused) {
-        artistPlayer.play().catch(function(e) { console.log(e); });
-      }
-    });
-  }
-  
-  // Play/Pause button - transparent overlay on playerleiste.png
-  if(artistPlayPauseBtn) {
-    artistPlayPauseBtn.addEventListener('click', function() {
-      if(!artistPlayer) return;
-      
-      if(artistPlayer.paused) {
-        artistPlayer.play().catch(function(e) { console.log(e); });
-      } else {
-        artistPlayer.pause();
-      }
-    });
-    
-    // No hover style changes needed for transparent buttons
-  }
-  
   // Listen to player events
   if(artistPlayer) {
     artistPlayer.addEventListener('play', function() {
-      // Buttons are transparent overlays - no text to update
       updateSongListHighlight();
     });
     
     artistPlayer.addEventListener('pause', function() {
-      // Buttons are transparent overlays - no text to update
+      // No action needed on pause
     });
     
     artistPlayer.addEventListener('ended', function() {
+      // Auto-advance to next track
       var newIndex = currentTrackIndex + 1;
       if(newIndex >= currentTracks.length) newIndex = 0;
       loadTrack(newIndex);
