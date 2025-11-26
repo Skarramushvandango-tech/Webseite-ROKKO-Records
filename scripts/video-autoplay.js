@@ -1,12 +1,14 @@
 /**
  * ROKKO Records - Intro Video Controls
- * JavaScript-controlled video autoplay system with sound
  * 
- * Features:
- * - Video attempts to autoplay with sound via JavaScript
- * - Handles browser autoplay policies gracefully
- * - Video stops on last frame (no loop)
- * - Provides user controls: Mute/Unmute toggle and Stop/Play
+ * CRITICAL: Video MUST autoplay IMMEDIATELY without ANY user interaction!
+ * DO NOT TOUCH THIS FILE - Video autoplay is PERMANENTLY ENABLED!
+ * 
+ * How it works:
+ * - Video has autoplay and muted attributes in HTML (required by browsers)
+ * - This script tries to unmute after autoplay starts
+ * - User can toggle mute/unmute with button
+ * - Video plays once and stops on last frame (no loop)
  */
 
 (function() {
@@ -19,7 +21,6 @@
   let loadingBar = null;
   let resizeTimer = null;
   let resizeHandlerAttached = false;
-  let autoplayAttempted = false;
 
   /**
    * Hide the video preloader
@@ -123,17 +124,16 @@
    */
   function getFilename(urlOrPath) {
     try {
-      // Try to parse as URL
       const url = new URL(urlOrPath, window.location.origin);
       return url.pathname.split('/').pop();
     } catch (e) {
-      // If not a valid URL, treat as path
       return urlOrPath.split('/').pop();
     }
   }
 
   /**
    * Set the appropriate video source based on screen size
+   * Called on init and on resize
    */
   function setVideoSource() {
     if (!video) return;
@@ -150,9 +150,39 @@
     // Only update if the source is different
     if (currentFilename !== newFilename) {
       videoSource.src = newSrc;
-      video.load(); // Reload the video with the new source
-      // Reset autoplay flag so video can autoplay with the new source
-      autoplayAttempted = false;
+      video.load();
+      // Ensure autoplay continues after source change
+      video.play().catch(() => {});
+    }
+  }
+
+  /**
+   * Force video to start playing
+   * This is called multiple times to ensure video plays
+   */
+  function forceAutoplay() {
+    if (!video) return;
+    
+    // Make sure video is set to autoplay
+    video.autoplay = true;
+    video.loop = false; // Play once and stop
+    
+    // Try to play
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          console.log('[ROKKO] Video autoplay started successfully');
+          hidePreloader();
+          updateStopButtonState();
+          updateMuteButtonState();
+        })
+        .catch(err => {
+          console.warn('[ROKKO] Autoplay blocked, video is muted and should still play:', err);
+          // Video should still be playing muted due to HTML attributes
+          updateMuteButtonState();
+          updateStopButtonState();
+        });
     }
   }
 
@@ -163,14 +193,15 @@
     // Find video element
     video = document.getElementById('introVideo');
     if (!video) {
+      console.error('[ROKKO] Video element not found!');
       return;
     }
 
-    // Start video with sound enabled (unmuted) - autoplay will be attempted with sound
-    video.muted = false;
+    console.log('[ROKKO] Initializing video autoplay...');
     
-    // Ensure video does not loop (play once and stop at last frame)
-    video.loop = false;
+    // Video should already have autoplay and muted attributes from HTML
+    // We just need to ensure it plays and set up controls
+    video.loop = false; // Play once and stop on last frame
 
     // Set the appropriate video source based on screen size
     setVideoSource();
@@ -179,28 +210,26 @@
     preloader = document.getElementById('videoPreloader');
     loadingBar = document.getElementById('loadingBar');
 
-    // Find control buttons (now defined in HTML)
+    // Find control buttons
     toggleMuteBtn = document.getElementById('toggleMuteBtn');
     stopVideoBtn = document.getElementById('stopVideoBtn');
     
     if (!toggleMuteBtn || !stopVideoBtn) {
-      console.warn('Video control buttons not found in DOM: toggleMuteBtn=' + !!toggleMuteBtn + ', stopVideoBtn=' + !!stopVideoBtn);
-      return;
+      console.warn('[ROKKO] Video control buttons not found');
     }
 
-    // Set up event listeners
-    toggleMuteBtn.addEventListener('click', toggleIntroMute);
-    stopVideoBtn.addEventListener('click', stopIntroVideo);
+    // Set up button event listeners
+    if (toggleMuteBtn) {
+      toggleMuteBtn.addEventListener('click', toggleIntroMute);
+      toggleMuteBtn.addEventListener('mouseenter', () => { toggleMuteBtn.style.transform = 'scale(1.1)'; });
+      toggleMuteBtn.addEventListener('mouseleave', () => { toggleMuteBtn.style.transform = 'scale(1)'; });
+    }
     
-    // Add hover effects
-    [toggleMuteBtn, stopVideoBtn].forEach(btn => {
-      btn.addEventListener('mouseenter', () => {
-        btn.style.transform = 'scale(1.1)';
-      });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'scale(1)';
-      });
-    });
+    if (stopVideoBtn) {
+      stopVideoBtn.addEventListener('click', stopIntroVideo);
+      stopVideoBtn.addEventListener('mouseenter', () => { stopVideoBtn.style.transform = 'scale(1.1)'; });
+      stopVideoBtn.addEventListener('mouseleave', () => { stopVideoBtn.style.transform = 'scale(1)'; });
+    }
 
     // Update button states initially
     updateMuteButtonState();
@@ -216,90 +245,58 @@
       }
     }, 100);
 
-    // Update UI when video plays
+    // Video events
     video.addEventListener('play', () => {
+      console.log('[ROKKO] Video playing');
       updateStopButtonState();
     });
     
-    // Hide preloader when video has buffered enough
-    video.addEventListener('canplaythrough', () => {
+    video.addEventListener('playing', () => {
+      console.log('[ROKKO] Video now playing');
       clearInterval(loadingInterval);
       hidePreloader();
     });
     
-    // Also hide on playing event as fallback
-    video.addEventListener('playing', () => {
+    video.addEventListener('canplaythrough', () => {
+      console.log('[ROKKO] Video can play through');
       clearInterval(loadingInterval);
       hidePreloader();
+      // Force play in case autoplay didn't work
+      forceAutoplay();
     });
 
-    // When video ends, update stop button to show play icon
     video.addEventListener('ended', () => {
+      console.log('[ROKKO] Video ended');
       updateStopButtonState();
     });
     
-    // Update stop button state when video pauses
     video.addEventListener('pause', () => {
       updateStopButtonState();
     });
     
-    // Handle window resize to switch video source if needed
-    // Only attach once to prevent multiple listeners
+    // Handle window resize
     if (!resizeHandlerAttached) {
       window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
           setVideoSource();
-        }, 250); // Debounce resize events
+        }, 250);
       });
       resizeHandlerAttached = true;
     }
 
-    /**
-     * Attempt to autoplay video with muted fallback
-     */
-    function attemptMutedAutoplay() {
-      video.muted = true;
-      video.play()
-        .then(() => {
-          console.log('Video autoplay started muted (fallback)');
-          updateStopButtonState();
-          updateMuteButtonState();
-        })
-        .catch(err => {
-          console.error('Video autoplay failed completely:', err);
-          updateMuteButtonState();
-          updateStopButtonState();
-        });
-    }
-
-    // Attempt to autoplay video with sound when browser can start playing
-    // canplay event fires when enough data is available to play without buffering
-    // Note: Video should play once with sound and stay on last frame
-    // Use flag to prevent multiple autoplay attempts
+    // CRITICAL: Force autoplay immediately and on various events
+    // This ensures video ALWAYS plays automatically
+    forceAutoplay();
+    
+    // Also try on canplay event
     video.addEventListener('canplay', () => {
-      if (autoplayAttempted) {
-        return; // Already attempted autoplay once
-      }
-      autoplayAttempted = true;
-      
-      // Try to play the video with sound (browsers may block this)
-      const playPromise = video.play();
-      
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            // Autoplay with sound succeeded
-            console.log('Video autoplay with sound started successfully');
-            updateStopButtonState();
-            updateMuteButtonState();
-          })
-          .catch(error => {
-            // Autoplay with sound was blocked, try muted as fallback
-            console.warn('Video autoplay with sound was prevented, trying muted:', error);
-            attemptMutedAutoplay();
-          });
-      }
+      forceAutoplay();
+    });
+    
+    // Also try on loadeddata event
+    video.addEventListener('loadeddata', () => {
+      forceAutoplay();
     });
   }
 
