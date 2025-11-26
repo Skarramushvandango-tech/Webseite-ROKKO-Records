@@ -145,11 +145,17 @@
             <!-- Integrated Audio Player (simple version with ROKKO colors) -->
             <div class="artist-audio-player-widget" style="margin: 15px 0;">
               <div style="background: #B8935F; border: 3px solid #3D2817; border-radius: 10px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-                <!-- Compact Audio Player -->
-                <audio id="player-vandango" controls style="width: 100%; margin-bottom: 15px; border-radius: 5px;">
+                <!-- Hidden Audio Player -->
+                <audio id="player-vandango" style="display: none;">
                   <source src="" type="audio/mp4">
                   Your browser does not support the audio element.
                 </audio>
+                
+                <!-- Waveform Progress Bar -->
+                <div class="waveform-progress" data-player="player-vandango" style="width: 100%; height: 40px; background: linear-gradient(to right, #3D2817 0%, #E0C290 100%); border-radius: 8px; margin-bottom: 15px; cursor: pointer; position: relative; border: 2px solid #3D2817; overflow: hidden;">
+                  <div class="waveform-fill" style="position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: linear-gradient(to right, #B8935F, #3D2817); border-radius: 6px 0 0 6px; transition: width 0.1s linear;"></div>
+                  <div class="waveform-time" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #201613; font-size: 0.75em; font-weight: 600;">0:00 / 0:00</div>
+                </div>
                 
                 <!-- Current Track Display -->
                 <div id="current-track-vandango" style="text-align: center; color: #201613; background: #E0C290; padding: 8px; border-radius: 6px; margin-bottom: 15px; font-size: 0.95em; font-weight: 700; min-height: 24px; border: 2px solid #3D2817;">
@@ -261,11 +267,17 @@
             <!-- Integrated Audio Player (same as carousel) -->
             <div class="artist-audio-player-widget" style="margin: 15px 0;">
               <div style="background: #B8935F; border: 3px solid #3D2817; border-radius: 10px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-                <!-- Compact Audio Player -->
-                <audio id="player-schablonski" controls style="width: 100%; margin-bottom: 15px; border-radius: 5px;">
+                <!-- Hidden Audio Player -->
+                <audio id="player-schablonski" style="display: none;">
                   <source src="" type="audio/mp4">
                   Your browser does not support the audio element.
                 </audio>
+                
+                <!-- Waveform Progress Bar -->
+                <div class="waveform-progress" data-player="player-schablonski" style="width: 100%; height: 40px; background: linear-gradient(to right, #3D2817 0%, #E0C290 100%); border-radius: 8px; margin-bottom: 15px; cursor: pointer; position: relative; border: 2px solid #3D2817; overflow: hidden;">
+                  <div class="waveform-fill" style="position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: linear-gradient(to right, #B8935F, #3D2817); border-radius: 6px 0 0 6px; transition: width 0.1s linear;"></div>
+                  <div class="waveform-time" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #201613; font-size: 0.75em; font-weight: 600;">0:00 / 0:00</div>
+                </div>
                 
                 <!-- Current Track Display -->
                 <div id="current-track-schablonski" style="text-align: center; color: #201613; background: #E0C290; padding: 8px; border-radius: 6px; margin-bottom: 15px; font-size: 0.95em; font-weight: 700; min-height: 24px; border: 2px solid #3D2817;">
@@ -315,11 +327,17 @@
             <!-- Integrated Audio Player (same as carousel) -->
             <div class="artist-audio-player-widget" style="margin: 15px 0;">
               <div style="background: #B8935F; border: 3px solid #3D2817; border-radius: 10px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-                <!-- Compact Audio Player -->
-                <audio id="player-bellieu" controls style="width: 100%; margin-bottom: 15px; border-radius: 5px;">
+                <!-- Hidden Audio Player -->
+                <audio id="player-bellieu" style="display: none;">
                   <source src="" type="audio/mp4">
                   Your browser does not support the audio element.
                 </audio>
+                
+                <!-- Waveform Progress Bar -->
+                <div class="waveform-progress" data-player="player-bellieu" style="width: 100%; height: 40px; background: linear-gradient(to right, #3D2817 0%, #E0C290 100%); border-radius: 8px; margin-bottom: 15px; cursor: pointer; position: relative; border: 2px solid #3D2817; overflow: hidden;">
+                  <div class="waveform-fill" style="position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: linear-gradient(to right, #B8935F, #3D2817); border-radius: 6px 0 0 6px; transition: width 0.1s linear;"></div>
+                  <div class="waveform-time" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #201613; font-size: 0.75em; font-weight: 600;">0:00 / 0:00</div>
+                </div>
                 
                 <!-- Current Track Display -->
                 <div id="current-track-bellieu" style="text-align: center; color: #201613; background: #E0C290; padding: 8px; border-radius: 6px; margin-bottom: 15px; font-size: 0.95em; font-weight: 700; min-height: 24px; border: 2px solid #3D2817;">
@@ -371,11 +389,17 @@
             <!-- Integrated Audio Player (same as carousel) -->
             <div class="artist-audio-player-widget" style="margin: 15px 0;">
               <div style="background: #B8935F; border: 3px solid #3D2817; border-radius: 10px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-                <!-- Compact Audio Player -->
-                <audio id="player-beunie" controls style="width: 100%; margin-bottom: 15px; border-radius: 5px;">
+                <!-- Hidden Audio Player -->
+                <audio id="player-beunie" style="display: none;">
                   <source src="" type="audio/mp4">
                   Your browser does not support the audio element.
                 </audio>
+                
+                <!-- Waveform Progress Bar -->
+                <div class="waveform-progress" data-player="player-beunie" style="width: 100%; height: 40px; background: linear-gradient(to right, #3D2817 0%, #E0C290 100%); border-radius: 8px; margin-bottom: 15px; cursor: pointer; position: relative; border: 2px solid #3D2817; overflow: hidden;">
+                  <div class="waveform-fill" style="position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: linear-gradient(to right, #B8935F, #3D2817); border-radius: 6px 0 0 6px; transition: width 0.1s linear;"></div>
+                  <div class="waveform-time" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #201613; font-size: 0.75em; font-weight: 600;">0:00 / 0:00</div>
+                </div>
                 
                 <!-- Current Track Display -->
                 <div id="current-track-beunie" style="text-align: center; color: #201613; background: #E0C290; padding: 8px; border-radius: 6px; margin-bottom: 15px; font-size: 0.95em; font-weight: 700; min-height: 24px; border: 2px solid #3D2817;">
@@ -439,11 +463,17 @@
           
           <div class="frame frame--dark-sand" style="background: #B8935F; border: 3px solid #3D2817; border-radius: 0 0 12px 12px; padding: 20px; box-shadow: 0 6px 20px rgba(61, 40, 23, 0.4);">
             
-            <!-- Compact Audio Player - matching artist profile style -->
-            <audio id="artist-player" controls style="width: 100%; margin-bottom: 15px; border-radius: 5px;">
+            <!-- Hidden Audio Player -->
+            <audio id="artist-player" style="display: none;">
               <source src="" type="audio/mp4">
               Your browser does not support the audio element.
             </audio>
+            
+            <!-- Waveform Progress Bar -->
+            <div class="waveform-progress" data-player="artist-player" style="width: 100%; height: 40px; background: linear-gradient(to right, #3D2817 0%, #E0C290 100%); border-radius: 8px; margin-bottom: 15px; cursor: pointer; position: relative; border: 2px solid #3D2817; overflow: hidden;">
+              <div class="waveform-fill" style="position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: linear-gradient(to right, #B8935F, #3D2817); border-radius: 6px 0 0 6px; transition: width 0.1s linear;"></div>
+              <div class="waveform-time" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #201613; font-size: 0.75em; font-weight: 600;">0:00 / 0:00</div>
+            </div>
             
             <!-- Current Track Display -->
             <div id="artist-track-info" style="text-align: center; color: #201613; background: #E0C290; padding: 8px; border-radius: 6px; margin-bottom: 15px; font-size: 0.95em; font-weight: 700; min-height: 24px; border: 2px solid #3D2817;">
@@ -485,10 +515,9 @@
                 </div>
                 
                 <!-- Bottom Section: Main Text -->
-                <!-- Reduced padding for tighter layout -->
-                <div style="background: #B8935F; padding: 5px; border-radius: 6px; min-height: 180px; height: 180px; overflow: hidden;">
+                <div style="background: #B8935F; padding: 5px; border-radius: 6px;">
                   <p style="font-size: 0.65em; color: #201613; margin-bottom: 5px;">16. November 2024</p>
-                  <p style="line-height: 1.5; font-size: 0.8em; color: #201613; text-align: justify; margin: 0;">
+                  <p style="line-height: 1.5; font-size: 0.8em; color: #201613; text-align: left; margin: 0;">
                     Das Album spiegelt das Leben die Liebe und dass Leid eines Autisten und greift dabei auf Erlebnisse aus dem waren Leben zurück. House music mit Message und einer Portion Selbstironie.
                     <br><br>
                     Der Sound ist ein Faustkampf zwischen Garage Blues und einem unnachgiebigen House Rhythmus der die Beine zum Schwofen zwingt.
@@ -509,10 +538,9 @@
                 </div>
                 
                 <!-- Bottom Section: Main Text -->
-                <!-- Reduced padding for tighter layout -->
-                <div style="background: #B8935F; padding: 5px; border-radius: 6px; min-height: 180px; height: 180px; overflow: hidden;">
+                <div style="background: #B8935F; padding: 5px; border-radius: 6px;">
                   <p style="font-size: 0.65em; color: #201613; margin-bottom: 5px;">08. Oktober 2024</p>
-                  <p style="line-height: 1.5; font-size: 0.8em; color: #201613; text-align: justify; margin: 0;">
+                  <p style="line-height: 1.5; font-size: 0.8em; color: #201613; text-align: left; margin: 0;">
                     Exklusive Einblicke in unsere aktuellen Studio Sessions! Unsere Artists arbeiten an spannenden neuen Projekten. 
                     Bleibt gespannt auf weitere Updates und neue Releases in den kommenden Monaten.
                   </p>
@@ -532,10 +560,9 @@
                 </div>
                 
                 <!-- Bottom Section: Main Text -->
-                <!-- Reduced padding for tighter layout -->
-                <div style="background: #B8935F; padding: 5px; border-radius: 6px; min-height: 180px; height: 180px; overflow: hidden;">
+                <div style="background: #B8935F; padding: 5px; border-radius: 6px;">
                   <p style="font-size: 0.65em; color: #201613; margin-bottom: 5px;">01. Oktober 2024</p>
-                  <p style="line-height: 1.5; font-size: 0.8em; color: #201613; text-align: justify; margin: 0;">
+                  <p style="line-height: 1.5; font-size: 0.8em; color: #201613; text-align: left; margin: 0;">
                     ROKKO Records freut sich, eine neue internationale Zusammenarbeit ankündigen zu können. 
                     Unsere Artists werden mit renommierten Produzenten aus verschiedenen Ländern zusammenarbeiten, um einzigartige Sounds zu kreieren.
                   </p>
@@ -555,10 +582,9 @@
                 </div>
                 
                 <!-- Bottom Section: Main Text -->
-                <!-- Reduced padding for tighter layout -->
-                <div style="background: #B8935F; padding: 5px; border-radius: 6px; min-height: 180px; height: 180px; overflow: hidden;">
+                <div style="background: #B8935F; padding: 5px; border-radius: 6px;">
                   <p style="font-size: 0.65em; color: #201613; margin-bottom: 5px;">25. September 2024</p>
-                  <p style="line-height: 1.5; font-size: 0.8em; color: #201613; text-align: justify; margin: 0;">
+                  <p style="line-height: 1.5; font-size: 0.8em; color: #201613; text-align: left; margin: 0;">
                     Wir sind stolz, unsere neuesten Artists im ROKKO Records Roster willkommen zu heißen! 
                     Mit frischen Talenten und innovativen Sounds erweitern wir unser musikalisches Portfolio kontinuierlich.
                   </p>
