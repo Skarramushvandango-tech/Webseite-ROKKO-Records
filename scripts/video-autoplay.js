@@ -1,12 +1,10 @@
 /**
  * ROKKO Records - Intro Video Controls
  * 
- * CRITICAL: Video MUST autoplay IMMEDIATELY without ANY user interaction!
- * DO NOT TOUCH THIS FILE - Video autoplay is PERMANENTLY ENABLED!
- * 
- * How it works:
- * - Video has autoplay and muted attributes in HTML (required by browsers)
- * - This script tries to unmute after autoplay starts
+ * Video Autoplay Requirements:
+ * - Video must start automatically when page loads
+ * - Browser policies require video to be muted for autoplay
+ * - Video has autoplay and muted attributes in HTML
  * - User can toggle mute/unmute with button
  * - Video plays once and stops on last frame (no loop)
  */
@@ -21,6 +19,7 @@
   let loadingBar = null;
   let resizeTimer = null;
   let resizeHandlerAttached = false;
+  let autoplayStarted = false; // Flag to prevent multiple play() calls
 
   /**
    * Hide the video preloader
@@ -158,10 +157,13 @@
 
   /**
    * Force video to start playing
-   * This is called multiple times to ensure video plays
+   * Uses flag to prevent redundant play() calls
    */
   function forceAutoplay() {
     if (!video) return;
+    
+    // Prevent multiple simultaneous play attempts
+    if (autoplayStarted && !video.paused) return;
     
     // Make sure video is set to autoplay
     video.autoplay = true;
@@ -172,6 +174,7 @@
     if (playPromise !== undefined) {
       playPromise
         .then(() => {
+          autoplayStarted = true;
           console.log('[ROKKO] Video autoplay started successfully');
           hidePreloader();
           updateStopButtonState();
