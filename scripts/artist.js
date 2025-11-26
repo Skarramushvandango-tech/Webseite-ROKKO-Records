@@ -370,58 +370,38 @@ document.addEventListener('DOMContentLoaded', function(){
               console.log('Playback failed:', error);
             });
             
-            // Remove active class from all tracks in this player's group
+            // Remove highlight from all tracks in this player's group
             var allWidgetTracks = document.querySelectorAll('.track-item-widget[data-player="' + playerId + '"]');
             allWidgetTracks.forEach(function(track) {
-              track.style.background = '#fff';
-              var playIndicator = track.querySelector('.play-indicator');
-              if(playIndicator) {
-                playIndicator.style.display = 'none';
-              }
+              track.style.background = 'transparent';
             });
             
-            // Highlight the selected track and show play indicator
-            trackItemWidget.style.background = '#f3e2c9';
-            var playIndicator = trackItemWidget.querySelector('.play-indicator');
-            if(playIndicator) {
-              playIndicator.style.display = 'block';
-            }
+            // Highlight the selected track with semi-transparent brown bar
+            trackItemWidget.style.background = 'rgba(61, 40, 23, 0.3)';
           }
         }
       }
     }
   });
   
-  // Handle audio pause event to hide play indicators
+  // Handle audio pause event - update track highlighting
   document.querySelectorAll('audio').forEach(function(player) {
     player.addEventListener('pause', function() {
-      var playerId = player.id;
-      var allWidgetTracks = document.querySelectorAll('.track-item-widget[data-player="' + playerId + '"]');
-      allWidgetTracks.forEach(function(track) {
-        var playIndicator = track.querySelector('.play-indicator');
-        if(playIndicator) {
-          playIndicator.style.display = 'none';
-        }
-      });
+      // Keep highlight on paused track (no change needed)
     });
     
     player.addEventListener('play', function() {
       var playerId = player.id;
       var currentSrc = player.src;
       
-      // Find and show play indicator for current track
+      // Highlight current track with semi-transparent brown bar
       var allWidgetTracks = document.querySelectorAll('.track-item-widget[data-player="' + playerId + '"]');
       allWidgetTracks.forEach(function(track) {
         var trackSrc = track.getAttribute('data-src');
-        var playIndicator = track.querySelector('.play-indicator');
-        if(playIndicator) {
-          if(currentSrc.indexOf(trackSrc) !== -1) {
-            playIndicator.style.display = 'block';
-            track.style.background = '#f3e2c9';
-          } else {
-            playIndicator.style.display = 'none';
-            track.style.background = '#fff';
-          }
+        if(currentSrc.indexOf(trackSrc) !== -1) {
+          track.style.background = 'rgba(61, 40, 23, 0.3)';
+        } else {
+          track.style.background = 'transparent';
         }
       });
     });
