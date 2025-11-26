@@ -726,6 +726,78 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
   
+  // Waveform Progress Bar Functionality
+  function formatTime(seconds) {
+    if(isNaN(seconds) || !isFinite(seconds) || seconds < 0) return '0:00';
+    var mins = Math.floor(seconds / 60);
+    var secs = Math.floor(seconds % 60);
+    return mins + ':' + (secs < 10 ? '0' : '') + secs;
+  }
+  
+  function updateWaveformProgress(player, waveformContainer) {
+    if(!player || !waveformContainer) return;
+    
+    var fill = waveformContainer.querySelector('.waveform-fill');
+    var timeDisplay = waveformContainer.querySelector('.waveform-time');
+    
+    if(fill && player.duration && isFinite(player.duration)) {
+      var progress = (player.currentTime / player.duration) * 100;
+      fill.style.width = progress + '%';
+    }
+    
+    if(timeDisplay && player.duration && isFinite(player.duration)) {
+      timeDisplay.textContent = formatTime(player.currentTime) + ' / ' + formatTime(player.duration);
+    }
+  }
+  
+  function setupWaveformForPlayer(playerId) {
+    var player = document.getElementById(playerId);
+    var waveformContainer = document.querySelector('.waveform-progress[data-player="' + playerId + '"]');
+    
+    if(!player || !waveformContainer) return;
+    
+    // Update progress during playback
+    player.addEventListener('timeupdate', function() {
+      updateWaveformProgress(player, waveformContainer);
+    });
+    
+    // Update time display when duration is known
+    player.addEventListener('loadedmetadata', function() {
+      var timeDisplay = waveformContainer.querySelector('.waveform-time');
+      if(timeDisplay && player.duration && isFinite(player.duration)) {
+        timeDisplay.textContent = '0:00 / ' + formatTime(player.duration);
+      }
+    });
+    
+    // Click to seek
+    waveformContainer.addEventListener('click', function(e) {
+      if(!player.duration || !isFinite(player.duration)) return;
+      
+      var rect = waveformContainer.getBoundingClientRect();
+      var clickX = e.clientX - rect.left;
+      var percentage = Math.max(0, Math.min(1, clickX / rect.width));
+      player.currentTime = percentage * player.duration;
+      
+      // If not playing, start playing
+      if(player.paused) {
+        player.play().catch(function(err) { console.log('[' + playerId + '] Waveform seek playback failed:', err); });
+      }
+    });
+    
+    // Reset progress when track ends
+    player.addEventListener('ended', function() {
+      var fill = waveformContainer.querySelector('.waveform-fill');
+      if(fill) fill.style.width = '0%';
+    });
+  }
+  
+  // Initialize waveform for all players
+  setupWaveformForPlayer('player-vandango');
+  setupWaveformForPlayer('player-schablonski');
+  setupWaveformForPlayer('player-bellieu');
+  setupWaveformForPlayer('player-beunie');
+  setupWaveformForPlayer('artist-player');
+  
   // Audio Player Modal Functions
   var audioPlayerModal = document.getElementById('audioPlayerModal');
   var modalAudioPlayer = document.getElementById('modal-audio-player');
