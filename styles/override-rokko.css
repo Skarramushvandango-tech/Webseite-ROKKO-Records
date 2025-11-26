@@ -1559,14 +1559,6 @@ audio::-moz-range-track {
   border-radius: 0 !important;
 }
 
-/* Fixed height for news text sections - MANDATORY */
-/* News text must have static height to prevent layout jumping */
-.news-item .news-text-container {
-  min-height: 200px;
-  height: 200px;
-  overflow-y: auto;
-}
-
 /* Audio Player Styling - ROKKO Colors */
 /* Style the native HTML5 audio controls to match ROKKO design */
 audio[controls] {
