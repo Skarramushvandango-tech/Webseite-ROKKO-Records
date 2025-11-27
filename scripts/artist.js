@@ -338,14 +338,8 @@ document.addEventListener('DOMContentLoaded', function(){
       if(trackSrc && playerId) {
         // Determine artist from playerId (e.g., 'player-vandango' -> 'vandango')
         var artistKey = playerId.replace('player-', '');
-        var artistNameMapping = {
-          'vandango': 'Skaramush Vandango',
-          'schablonski': 'Skank Schablonski',
-          'bellieu': 'Henri Bellieu',
-          'beunie': 'Fléur et Beunié'
-        };
-        
-        var artistName = artistNameMapping[artistKey];
+        // Use the global ARTIST_NAME_MAP constant
+        var artistName = ARTIST_NAME_MAP[artistKey];
         
         if(artistName && artistAlbums[artistName]) {
           // Find the track index
