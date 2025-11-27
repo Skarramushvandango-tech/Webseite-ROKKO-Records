@@ -14,7 +14,7 @@
 }
 
 /* ============================================================
-   MODERN AUDIO PLAYER OVERLAY
+   MODERN AUDIO PLAYER OVERLAY - FULL SCREEN
    ============================================================ */
 
 .rokko-player-overlay {
@@ -23,16 +23,15 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.92);
+  background: linear-gradient(180deg, var(--rokko-sand) 0%, var(--rokko-accent) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
   opacity: 0;
   animation: fadeIn 0.3s forwards;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 20px;
+  overflow: hidden;
+  padding: 0;
 }
 
 @keyframes fadeIn {
@@ -42,21 +41,26 @@
 }
 
 /* ============================================================
-   MAIN CONTAINER - Modern Card Design
+   MAIN CONTAINER - Full Screen Design
    ============================================================ */
 
 .rokko-player-container {
   position: relative;
   width: 100%;
-  max-width: 500px;
-  background: linear-gradient(180deg, var(--rokko-sand) 0%, var(--rokko-accent) 100%);
-  border: 6px solid var(--rokko-brown-dark);
-  border-radius: 24px;
-  padding: 30px 25px;
-  box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.5),
-    inset 0 2px 10px rgba(255, 255, 255, 0.1);
-  animation: slideUp 0.4s ease-out;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 60px 25px 25px 25px;
+  box-shadow: none;
+  animation: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 @keyframes slideUp {
@@ -71,34 +75,35 @@
 }
 
 /* ============================================================
-   CLOSE BUTTON
+   CLOSE BUTTON - Fixed top right corner
    ============================================================ */
 
 .rokko-player-close {
-  position: absolute;
+  position: fixed;
   top: 15px;
   right: 15px;
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   background: var(--rokko-brown-dark);
   border: 3px solid var(--rokko-brown);
-  border-radius: 50%;
+  border-radius: 8px;
   color: var(--rokko-sand);
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: bold;
   line-height: 1;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  z-index: 10;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 10001;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .rokko-player-close:hover {
   background: var(--rokko-brown);
-  transform: scale(1.1) rotate(90deg);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
 }
 
 .rokko-player-close:focus {
@@ -107,13 +112,16 @@
 }
 
 /* ============================================================
-   CONTENT LAYOUT - Vertical Stack
+   CONTENT LAYOUT - Centered content for full-screen
    ============================================================ */
 
 .rokko-player-content {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
+  width: 100%;
+  max-width: 450px;
+  padding: 10px;
 }
 
 /* ============================================================
@@ -508,28 +516,29 @@
 }
 
 /* ============================================================
-   RESPONSIVE DESIGN - Mobile Optimized
+   RESPONSIVE DESIGN - Mobile Optimized for Full Screen
    ============================================================ */
 
 @media (max-width: 600px) {
   .rokko-player-container {
+    padding: 55px 15px 15px 15px;
+  }
+  
+  .rokko-player-content {
     max-width: 100%;
-    padding: 25px 20px;
-    border-radius: 20px;
-    border-width: 5px;
   }
 
   .rokko-album-frame {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
   }
 
   .rokko-track-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .rokko-artist-name {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .rokko-btn-prev,
@@ -539,16 +548,16 @@
   }
 
   .rokko-btn-play {
-    width: 75px;
-    height: 75px;
+    width: 70px;
+    height: 70px;
   }
 
   .rokko-controls {
-    gap: 20px;
+    gap: 18px;
   }
 
   .rokko-playlist {
-    max-height: 180px;
+    max-height: 150px;
   }
 
   .rokko-streaming-buttons {
@@ -556,23 +565,31 @@
   }
 
   .rokko-stream-btn {
-    padding: 8px 16px;
-    font-size: 0.8rem;
+    padding: 8px 14px;
+    font-size: 0.75rem;
+  }
+  
+  .rokko-player-close {
+    top: 10px;
+    right: 10px;
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
   }
 }
 
 @media (max-width: 400px) {
   .rokko-player-container {
-    padding: 20px 15px;
+    padding: 50px 10px 10px 10px;
   }
 
   .rokko-album-frame {
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
   }
 
   .rokko-track-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 
   .rokko-btn-prev,
@@ -582,8 +599,8 @@
   }
 
   .rokko-btn-play {
-    width: 65px;
-    height: 65px;
+    width: 60px;
+    height: 60px;
   }
 
   .rokko-playlist-item {
@@ -591,13 +608,13 @@
   }
 
   .rokko-stream-btn {
-    padding: 6px 12px;
-    font-size: 0.75rem;
+    padding: 6px 10px;
+    font-size: 0.7rem;
   }
 
   .rokko-stream-btn img {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
 }
 

@@ -326,6 +326,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     
     // Check if clicked element is a track-item-widget or its child
+    // Now opens the RokkoPlayer for consistent UI across artist profiles and carousel
     var trackItemWidget = target.closest('.track-item-widget');
     if(trackItemWidget) {
       e.stopPropagation();
@@ -335,50 +336,30 @@ document.addEventListener('DOMContentLoaded', function(){
       var trackTitle = trackItemWidget.getAttribute('data-title');
       
       if(trackSrc && playerId) {
-        var player = document.getElementById(playerId);
-        var currentTrackDisplay = document.getElementById('current-track-' + playerId.replace('player-', ''));
+        // Determine artist from playerId (e.g., 'player-vandango' -> 'vandango')
+        var artistKey = playerId.replace('player-', '');
+        var artistNameMapping = {
+          'vandango': 'Skaramush Vandango',
+          'schablonski': 'Skank Schablonski',
+          'bellieu': 'Henri Bellieu',
+          'beunie': 'Fléur et Beunié'
+        };
         
-        if(player) {
-          // Check if this track is currently playing
-          var isCurrentTrack = (player.src.indexOf(trackSrc) !== -1);
-          var isPlaying = !player.paused;
-          
-          if(isCurrentTrack && isPlaying) {
-            // Pause if currently playing this track
-            player.pause();
-          } else {
-            // Stop all other players first
-            document.querySelectorAll('audio').forEach(function(audio) {
-              if(!audio.paused) {
-                audio.pause();
-              }
-            });
-            
-            // If it's a different track, load and play it
-            if(!isCurrentTrack) {
-              player.src = trackSrc;
-              player.load();
-              
-              // Update current track display
-              if(currentTrackDisplay && trackTitle) {
-                currentTrackDisplay.textContent = trackTitle;
-              }
+        var artistName = artistNameMapping[artistKey];
+        
+        if(artistName && artistAlbums[artistName]) {
+          // Find the track index
+          var album = artistAlbums[artistName];
+          var trackIndex = 0;
+          for(var i = 0; i < album.tracks.length; i++) {
+            if(album.tracks[i].src === trackSrc || album.tracks[i].title === trackTitle) {
+              trackIndex = i;
+              break;
             }
-            
-            // Play the track
-            player.play().catch(function(error) {
-              console.log('Playback failed:', error);
-            });
-            
-            // Remove highlight from all tracks in this player's group
-            var allWidgetTracks = document.querySelectorAll('.track-item-widget[data-player="' + playerId + '"]');
-            allWidgetTracks.forEach(function(track) {
-              track.style.background = 'transparent';
-            });
-            
-            // Highlight the selected track with semi-transparent brown bar
-            trackItemWidget.style.background = 'rgba(61, 40, 23, 0.3)';
           }
+          
+          // Open RokkoPlayer with the artist's playlist starting at the clicked track
+          openRokkoPlayerForArtist(artistName, trackIndex);
         }
       }
     }

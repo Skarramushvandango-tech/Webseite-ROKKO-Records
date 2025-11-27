@@ -42,7 +42,7 @@
     setupKeyboardShortcuts();
   }
 
-  // Create the player overlay HTML structure - Modern Card Design
+  // Create the player overlay HTML structure - Full Screen Design
   function createPlayerHTML() {
     const overlay = document.createElement('div');
     overlay.id = 'rokko-player-overlay';
@@ -51,7 +51,7 @@
     overlay.innerHTML = `
       <div class="rokko-player-container">
         <button class="rokko-player-close" aria-label="Close player" title="Close (Esc)">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true">✕</span>
         </button>
         
         <div class="rokko-player-content">
