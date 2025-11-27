@@ -4,13 +4,13 @@
   'use strict';
 
   const ASSETS = {
-    vinyl: 'assets/vinyl.svg',
-    tonearm: 'assets/tonearm.svg',
-    avatar: 'assets/avatar.svg',
-    logoBeatport: 'assets/logo-beatport.svg',
-    logoSpotify: 'assets/logo-spotify.svg',
-    logoApple: 'assets/logo-applemusic.svg',
-    logoSoundcloud: 'assets/logo-soundcloud.svg'
+    vinyl: 'audioplayer/assets/vinyl.svg',
+    tonearm: 'audioplayer/assets/tonearm.svg',
+    avatar: 'audioplayer/assets/avatar.svg',
+    logoBeatport: 'audioplayer/assets/logo-beatport.svg',
+    logoSpotify: 'audioplayer/assets/logo-spotify.svg',
+    logoApple: 'audioplayer/assets/logo-applemusic.svg',
+    logoSoundcloud: 'audioplayer/assets/logo-soundcloud.svg'
   };
 
   const COLORS = {
