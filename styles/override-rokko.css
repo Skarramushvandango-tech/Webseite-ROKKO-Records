@@ -878,187 +878,96 @@ body.home .btn-welcome { display:none !important; }
   flex-shrink: 0 !important;
 }
 
-/* ============================================================
-   UNIFIED AUDIO PLAYER WIDGET STYLING
-   - Matches ROKKO color scheme from templates
-   - Responsive for desktop and mobile
-   - Uses sand/brown color scheme consistently
-   ============================================================ */
-
-/* Base audio player widget styling */
-.audio-player-widget,
-.artist-audio-player-widget > div {
-  background: var(--rokko-accent, #B8935F) !important;
-  border: 3px solid var(--rokko-brown-dark, #3D2817) !important;
+/* Audio Player Widget Styling - Minimalist Design */
+.audio-player-widget {
+  background: linear-gradient(135deg, #201613 0%, #2d1f1b 100%) !important;
   border-radius: 12px !important;
   padding: 20px !important;
-  margin: 15px 0 !important;
-  box-shadow: 0 6px 20px rgba(61, 40, 23, 0.4) !important;
+  margin: 20px 0 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(224, 194, 144, 0.08) !important;
   transition: all 0.3s ease !important;
 }
 
-.audio-player-widget:hover,
-.artist-audio-player-widget > div:hover {
-  box-shadow: 0 8px 24px rgba(61, 40, 23, 0.5) !important;
-  transform: translateY(-2px) !important;
+.audio-player-widget:hover {
+  box-shadow: 0 5px 14px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  transform: translateY(-1px) !important;
 }
 
-/* Hidden audio elements */
-.audio-player-widget audio,
-.artist-audio-player-widget audio {
-  display: none !important;
-}
-
-/* Waveform progress bar styling */
-.audio-player-widget .waveform-progress,
-.artist-audio-player-widget .waveform-progress {
+.audio-player-widget audio {
   width: 100% !important;
-  height: 40px !important;
-  background: linear-gradient(to right, var(--rokko-brown-dark, #3D2817) 0%, var(--rokko-sand, #E0C290) 100%) !important;
+  background: #E0C290 !important;
   border-radius: 8px !important;
-  margin-bottom: 15px !important;
-  cursor: pointer !important;
+  padding: 5px !important;
+}
+
+.audio-player-widget .track-item-widget {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: relative !important;
-  border: 2px solid var(--rokko-brown-dark, #3D2817) !important;
   overflow: hidden !important;
 }
 
-.audio-player-widget .waveform-fill,
-.artist-audio-player-widget .waveform-fill {
-  position: absolute !important;
-  left: 0 !important;
-  top: 0 !important;
-  height: 100% !important;
-  background: linear-gradient(to right, var(--rokko-accent, #B8935F), var(--rokko-brown-dark, #3D2817)) !important;
-  border-radius: 6px 0 0 6px !important;
-  transition: width 0.1s linear !important;
+.audio-player-widget .track-item-widget::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(224, 194, 144, 0.2), transparent);
+  transition: left 0.5s ease;
 }
 
-.audio-player-widget .waveform-time,
-.artist-audio-player-widget .waveform-time {
-  position: absolute !important;
-  right: 10px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  color: var(--rokko-brown, #201613) !important;
-  font-size: 0.75em !important;
-  font-weight: 600 !important;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3) !important;
+.audio-player-widget .track-item-widget:hover {
+  background: #E0C290 !important;
+  transform: translateX(3px) scale(1.02) !important;
+  box-shadow: 0 3px 8px rgba(61, 40, 23, 0.3) !important;
 }
 
-/* Current track display */
-.audio-player-widget div[id^="current-track-"],
-.artist-audio-player-widget div[id^="current-track-"] {
-  text-align: center !important;
-  color: var(--rokko-brown, #201613) !important;
-  background: var(--rokko-sand, #E0C290) !important;
-  padding: 10px 15px !important;
-  border-radius: 8px !important;
-  margin-bottom: 15px !important;
-  font-size: 0.95em !important;
-  font-weight: 700 !important;
-  min-height: 24px !important;
-  border: 2px solid var(--rokko-brown-dark, #3D2817) !important;
+.audio-player-widget .track-item-widget:hover::before {
+  left: 100%;
 }
 
-/* Track list container */
-.audio-player-widget > div:last-child,
-.artist-audio-player-widget > div > div:last-child {
-  max-height: 250px !important;
-  overflow-y: auto !important;
-  background: var(--rokko-sand, #E0C290) !important;
-  border-radius: 8px !important;
-  padding: 10px !important;
-  border: 2px solid var(--rokko-brown-dark, #3D2817) !important;
-  scrollbar-width: thin !important;
-  scrollbar-color: var(--rokko-brown-dark, #3D2817) var(--rokko-sand, #E0C290) !important;
+.audio-player-widget .track-item-widget:active {
+  transform: translateX(5px) scale(0.98) !important;
 }
 
-/* Track items unified styling */
-.audio-player-widget .track-item-widget,
-.artist-audio-player-widget .track-item-widget {
-  padding: 10px 12px !important;
-  cursor: pointer !important;
-  transition: all 0.25s ease !important;
-  position: relative !important;
-  border-radius: 6px !important;
-  margin-bottom: 4px !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  background: transparent !important;
+.audio-player-widget a[href] {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-.audio-player-widget .track-item-widget:hover,
-.artist-audio-player-widget .track-item-widget:hover {
-  background: rgba(61, 40, 23, 0.2) !important;
-  transform: translateX(4px) !important;
+.audio-player-widget a[href]:hover {
+  background: #4a3527 !important;
+  transform: scale(1.08) !important;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
 }
 
-.audio-player-widget .track-item-widget.playing,
-.audio-player-widget .track-item-widget[style*="background: rgba(61, 40, 23"],
-.artist-audio-player-widget .track-item-widget.playing,
-.artist-audio-player-widget .track-item-widget[style*="background: rgba(61, 40, 23"] {
-  background: rgba(61, 40, 23, 0.35) !important;
-  border-left: 3px solid var(--rokko-brown, #201613) !important;
-  padding-left: 9px !important;
-}
-
-.audio-player-widget .track-item-widget span,
-.artist-audio-player-widget .track-item-widget span {
-  color: var(--rokko-brown, #201613) !important;
-  font-size: 0.85em !important;
-  font-weight: 500 !important;
-}
-
-.audio-player-widget .track-item-widget:hover span,
-.artist-audio-player-widget .track-item-widget:hover span {
-  font-weight: 600 !important;
-}
-
-/* Play indicator triangle */
-.audio-player-widget .track-item-widget::before,
-.artist-audio-player-widget .track-item-widget::before {
-  content: '' !important;
-  width: 0 !important;
-  height: 0 !important;
-  border-left: 8px solid var(--rokko-brown, #201613) !important;
-  border-top: 5px solid transparent !important;
-  border-bottom: 5px solid transparent !important;
-  margin-right: 5px !important;
-  opacity: 0 !important;
-  transition: opacity 0.2s ease !important;
-  flex-shrink: 0 !important;
-}
-
-.audio-player-widget .track-item-widget:hover::before,
-.audio-player-widget .track-item-widget[style*="background: rgba(61, 40, 23"]::before,
-.artist-audio-player-widget .track-item-widget:hover::before,
-.artist-audio-player-widget .track-item-widget[style*="background: rgba(61, 40, 23"]::before {
-  opacity: 1 !important;
+.audio-player-widget a[href]:active {
+  transform: scale(1.05) !important;
 }
 
 /* Custom scrollbar for track list */
-.audio-player-widget > div:last-child::-webkit-scrollbar,
-.artist-audio-player-widget > div > div:last-child::-webkit-scrollbar {
+.audio-player-widget > div:last-child {
+  scrollbar-width: thin;
+  scrollbar-color: #201613 #E0C290;
+}
+
+.audio-player-widget > div:last-child::-webkit-scrollbar {
   width: 8px;
 }
 
-.audio-player-widget > div:last-child::-webkit-scrollbar-track,
-.artist-audio-player-widget > div > div:last-child::-webkit-scrollbar-track {
-  background: var(--rokko-sand, #E0C290);
+.audio-player-widget > div:last-child::-webkit-scrollbar-track {
+  background: #D4B584;
   border-radius: 4px;
 }
 
-.audio-player-widget > div:last-child::-webkit-scrollbar-thumb,
-.artist-audio-player-widget > div > div:last-child::-webkit-scrollbar-thumb {
-  background: var(--rokko-brown-dark, #3D2817);
+.audio-player-widget > div:last-child::-webkit-scrollbar-thumb {
+  background: #201613;
   border-radius: 4px;
 }
 
-.audio-player-widget > div:last-child::-webkit-scrollbar-thumb:hover,
-.artist-audio-player-widget > div > div:last-child::-webkit-scrollbar-thumb:hover {
-  background: var(--rokko-brown, #201613);
+.audio-player-widget > div:last-child::-webkit-scrollbar-thumb:hover {
+  background: #3D2817;
 }
 
 /* Music Productions Carousel Styling with enhanced animations */
@@ -1656,47 +1565,18 @@ audio[controls] {
   filter: sepia(20%) saturate(70%) hue-rotate(15deg);
 }
 
-/* ============================================================
-   MOBILE RESPONSIVE UNIFIED AUDIO PLAYER
-   ============================================================ */
-
+/* Mobile responsive audio player */
 @media (max-width: 768px) {
-  .artist-audio-player-widget,
-  .audio-player-widget {
+  .artist-audio-player-widget {
     margin: 10px 0 !important;
   }
   
-  .artist-audio-player-widget > div,
-  .audio-player-widget {
+  .artist-audio-player-widget > div {
     padding: 15px !important;
-    border-radius: 10px !important;
-  }
-  
-  .artist-audio-player-widget .waveform-progress,
-  .audio-player-widget .waveform-progress {
-    height: 35px !important;
-  }
-  
-  .artist-audio-player-widget .waveform-time,
-  .audio-player-widget .waveform-time {
-    font-size: 0.7em !important;
-    right: 8px !important;
-  }
-  
-  .artist-audio-player-widget div[id^="current-track-"],
-  .audio-player-widget div[id^="current-track-"] {
-    padding: 8px 12px !important;
-    font-size: 0.9em !important;
-  }
-  
-  .artist-audio-player-widget > div > div:last-child,
-  .audio-player-widget > div:last-child {
-    max-height: 200px !important;
-    padding: 8px !important;
   }
   
   .track-item-widget {
-    padding: 8px 10px !important;
+    padding: 6px !important;
     font-size: 0.8em !important;
   }
   
@@ -1707,44 +1587,6 @@ audio[controls] {
   
   audio[controls] {
     height: 40px !important;
-  }
-}
-
-/* Mobile portrait specific */
-@media (max-width: 480px) {
-  .artist-audio-player-widget > div,
-  .audio-player-widget {
-    padding: 12px !important;
-    border-width: 2px !important;
-    border-radius: 8px !important;
-  }
-
-  .artist-audio-player-widget .waveform-progress,
-  .audio-player-widget .waveform-progress {
-    height: 32px !important;
-    border-radius: 6px !important;
-  }
-
-  .artist-audio-player-widget div[id^="current-track-"],
-  .audio-player-widget div[id^="current-track-"] {
-    padding: 6px 10px !important;
-    font-size: 0.85em !important;
-    border-radius: 6px !important;
-  }
-
-  .artist-audio-player-widget > div > div:last-child,
-  .audio-player-widget > div:last-child {
-    max-height: 180px !important;
-    border-radius: 6px !important;
-  }
-
-  .track-item-widget {
-    padding: 7px 8px !important;
-    border-radius: 4px !important;
-  }
-
-  .track-item-widget span {
-    font-size: 0.75em !important;
   }
 }
 
