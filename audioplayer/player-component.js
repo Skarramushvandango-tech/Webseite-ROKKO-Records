@@ -1,11 +1,9 @@
-// ROKKO Records Vanilla JS Audio Player Component
-// Features: Waveform visualization, vinyl/tonearm animations, keyboard accessibility
+// ROKKO Records Modern Audio Player Component
+// Features: Modern card design, waveform visualization, large album cover, keyboard accessibility
 (function () {
   'use strict';
 
   const ASSETS = {
-    vinyl: 'audioplayer/assets/vinyl.svg',
-    tonearm: 'audioplayer/assets/tonearm.svg',
     avatar: 'audioplayer/assets/avatar.svg',
     logoBeatport: 'audioplayer/assets/logo-beatport.svg',
     logoSpotify: 'audioplayer/assets/logo-spotify.svg',
@@ -14,7 +12,8 @@
   };
 
   const COLORS = {
-    waveform: '#d77014'  // ROKKO orange for waveform
+    waveform: '#d77014',  // ROKKO orange for waveform
+    waveformBg: '#8B7355'
   };
 
   // Player state
@@ -29,7 +28,6 @@
     startTime: 0,
     pauseTime: 0,
     duration: 0,
-    vinylRotation: 0,
     animationFrame: null
   };
 
@@ -44,7 +42,7 @@
     setupKeyboardShortcuts();
   }
 
-  // Create the player overlay HTML structure
+  // Create the player overlay HTML structure - Modern Card Design
   function createPlayerHTML() {
     const overlay = document.createElement('div');
     overlay.id = 'rokko-player-overlay';
@@ -57,31 +55,32 @@
         </button>
         
         <div class="rokko-player-content">
-          <!-- Left Section: Vinyl & Tonearm -->
-          <div class="rokko-player-vinyl-section">
-            <div class="rokko-vinyl-wrapper">
-              <img src="${ASSETS.vinyl}" alt="Vinyl record" class="rokko-vinyl" id="rokko-vinyl">
-              <img src="${ASSETS.tonearm}" alt="Tonearm" class="rokko-tonearm" id="rokko-tonearm">
-              <div class="rokko-cover-inset">
-                <img src="${ASSETS.avatar}" alt="Album cover" class="rokko-album-cover" id="rokko-album-cover">
-              </div>
+          <!-- Album Cover Section - Large Framed Cover -->
+          <div class="rokko-player-cover-section">
+            <div class="rokko-album-frame">
+              <img src="${ASSETS.avatar}" alt="Album cover" class="rokko-album-cover" id="rokko-album-cover">
             </div>
           </div>
 
-          <!-- Right Section: Controls & Info -->
-          <div class="rokko-player-info-section">
-            <div class="rokko-track-info">
-              <h2 class="rokko-artist-name" id="rokko-artist-name">Artist Name</h2>
-              <h3 class="rokko-track-title" id="rokko-track-title">Track Title</h3>
-            </div>
+          <!-- Track Info - Artist & Title -->
+          <div class="rokko-track-info">
+            <p class="rokko-artist-name" id="rokko-artist-name">Artist Name</p>
+            <h2 class="rokko-track-title" id="rokko-track-title">Track Title</h2>
+          </div>
 
-            <!-- Waveform Canvas -->
-            <div class="rokko-waveform-container">
-              <canvas id="rokko-waveform" class="rokko-waveform" width="600" height="100"></canvas>
-              <div class="rokko-waveform-progress" id="rokko-waveform-progress"></div>
+          <!-- Progress Bar Section -->
+          <div class="rokko-progress-section">
+            <div class="rokko-progress-bar-wrapper" id="rokko-progress-bar">
+              <div class="rokko-progress-fill" id="rokko-progress-fill"></div>
+              <div class="rokko-progress-handle" id="rokko-progress-handle"></div>
             </div>
+            <div class="rokko-time-display">
+              <span id="rokko-current-time">0:00</span>/<span id="rokko-duration">0:00</span>
+            </div>
+          </div>
 
-            <!-- Playback Controls -->
+          <!-- Playback Controls -->
+          <div class="rokko-controls-section">
             <div class="rokko-controls">
               <button class="rokko-btn rokko-btn-prev" id="rokko-btn-prev" aria-label="Previous track (Left Arrow)">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
@@ -102,31 +101,31 @@
                 </svg>
               </button>
             </div>
+          </div>
 
-            <!-- Time Display -->
-            <div class="rokko-time-display">
-              <span id="rokko-current-time">0:00</span>
-              <span id="rokko-duration">0:00</span>
-            </div>
+          <!-- Waveform Visualization -->
+          <div class="rokko-waveform-container" id="rokko-waveform-container">
+            <canvas id="rokko-waveform" class="rokko-waveform" width="450" height="60"></canvas>
+            <div class="rokko-waveform-progress" id="rokko-waveform-progress"></div>
+          </div>
 
-            <!-- Playlist -->
-            <div class="rokko-playlist" id="rokko-playlist"></div>
+          <!-- Playlist -->
+          <div class="rokko-playlist" id="rokko-playlist"></div>
 
-            <!-- Streaming Buttons -->
-            <div class="rokko-streaming-buttons">
-              <a href="#" class="rokko-stream-btn" data-service="beatport" data-url="" aria-label="Listen on Beatport">
-                <img src="${ASSETS.logoBeatport}" alt="Beatport">
-              </a>
-              <a href="#" class="rokko-stream-btn" data-service="spotify" data-url="" aria-label="Listen on Spotify">
-                <img src="${ASSETS.logoSpotify}" alt="Spotify">
-              </a>
-              <a href="#" class="rokko-stream-btn" data-service="apple" data-url="" aria-label="Listen on Apple Music">
-                <img src="${ASSETS.logoApple}" alt="Apple Music">
-              </a>
-              <a href="#" class="rokko-stream-btn" data-service="soundcloud" data-url="" aria-label="Listen on SoundCloud">
-                <img src="${ASSETS.logoSoundcloud}" alt="SoundCloud">
-              </a>
-            </div>
+          <!-- Streaming Buttons -->
+          <div class="rokko-streaming-buttons">
+            <a href="#" class="rokko-stream-btn" data-service="beatport" data-url="" aria-label="Listen on Beatport">
+              Beatport
+            </a>
+            <a href="#" class="rokko-stream-btn" data-service="spotify" data-url="" aria-label="Listen on Spotify">
+              Spotify
+            </a>
+            <a href="#" class="rokko-stream-btn" data-service="apple" data-url="" aria-label="Listen on Apple Music">
+              Apple Music
+            </a>
+            <a href="#" class="rokko-stream-btn" data-service="soundcloud" data-url="" aria-label="Listen on SoundCloud">
+              SoundCloud
+            </a>
           </div>
         </div>
       </div>
@@ -139,11 +138,13 @@
     elements = {
       overlay: document.getElementById('rokko-player-overlay'),
       closeBtn: document.querySelector('.rokko-player-close'),
-      vinyl: document.getElementById('rokko-vinyl'),
-      tonearm: document.getElementById('rokko-tonearm'),
       albumCover: document.getElementById('rokko-album-cover'),
       artistName: document.getElementById('rokko-artist-name'),
       trackTitle: document.getElementById('rokko-track-title'),
+      progressBar: document.getElementById('rokko-progress-bar'),
+      progressFill: document.getElementById('rokko-progress-fill'),
+      progressHandle: document.getElementById('rokko-progress-handle'),
+      waveformContainer: document.getElementById('rokko-waveform-container'),
       waveform: document.getElementById('rokko-waveform'),
       waveformProgress: document.getElementById('rokko-waveform-progress'),
       btnPrev: document.getElementById('rokko-btn-prev'),
@@ -166,7 +167,8 @@
     elements.btnPrev.addEventListener('click', playPrevious);
     elements.btnPlay.addEventListener('click', togglePlayPause);
     elements.btnNext.addEventListener('click', playNext);
-    elements.waveform.addEventListener('click', handleWaveformClick);
+    elements.waveformContainer.addEventListener('click', handleWaveformClick);
+    elements.progressBar.addEventListener('click', handleProgressBarClick);
     elements.playlist.addEventListener('click', handlePlaylistClick);
   }
 
@@ -415,9 +417,7 @@
     elements.iconPause.style.display = 'block';
     elements.btnPlay.setAttribute('aria-label', 'Pause (Space)');
     
-    // Start animations
-    startVinylAnimation();
-    moveTonearmDown();
+    // Start progress updates
     updateProgress();
     
     // Auto-advance to next track
@@ -440,9 +440,6 @@
     elements.iconPause.style.display = 'none';
     elements.btnPlay.setAttribute('aria-label', 'Play (Space)');
     
-    stopVinylAnimation();
-    moveTonearmUp();
-    
     if (state.animationFrame) {
       cancelAnimationFrame(state.animationFrame);
     }
@@ -460,9 +457,6 @@
     
     elements.iconPlay.style.display = 'block';
     elements.iconPause.style.display = 'none';
-    
-    stopVinylAnimation();
-    moveTonearmUp();
     
     if (state.animationFrame) {
       cancelAnimationFrame(state.animationFrame);
@@ -493,9 +487,20 @@
     
     const currentTime = state.audioContext.currentTime - state.startTime;
     const progress = (currentTime / state.duration) * 100;
+    const clampedProgress = Math.min(progress, 100);
     
     elements.currentTime.textContent = formatTime(currentTime);
-    elements.waveformProgress.style.width = `${Math.min(progress, 100)}%`;
+    
+    // Update waveform progress
+    elements.waveformProgress.style.width = `${clampedProgress}%`;
+    
+    // Update progress bar and handle
+    if (elements.progressFill) {
+      elements.progressFill.style.width = `${clampedProgress}%`;
+    }
+    if (elements.progressHandle) {
+      elements.progressHandle.style.left = `${clampedProgress}%`;
+    }
     
     state.animationFrame = requestAnimationFrame(updateProgress);
   }
@@ -504,7 +509,7 @@
   function handleWaveformClick(e) {
     if (!state.audioBuffer) return;
     
-    const rect = elements.waveform.getBoundingClientRect();
+    const rect = elements.waveformContainer.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const percent = x / rect.width;
     const seekTime = percent * state.duration;
@@ -514,46 +519,44 @@
     
     state.pauseTime = seekTime;
     elements.currentTime.textContent = formatTime(seekTime);
-    elements.waveformProgress.style.width = `${percent * 100}%`;
+    
+    const clampedPercent = Math.min(percent * 100, 100);
+    elements.waveformProgress.style.width = `${clampedPercent}%`;
+    if (elements.progressFill) {
+      elements.progressFill.style.width = `${clampedPercent}%`;
+    }
+    if (elements.progressHandle) {
+      elements.progressHandle.style.left = `${clampedPercent}%`;
+    }
     
     if (wasPlaying) play();
   }
 
-  // Start vinyl animation
-  function startVinylAnimation() {
-    function animate() {
-      if (!state.isPlaying) return;
-      state.vinylRotation += 2; // degrees per frame
-      elements.vinyl.style.transform = `rotate(${state.vinylRotation}deg)`;
-      requestAnimationFrame(animate);
+  // Handle progress bar click (seek)
+  function handleProgressBarClick(e) {
+    if (!state.audioBuffer) return;
+    
+    const rect = elements.progressBar.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percent = x / rect.width;
+    const seekTime = percent * state.duration;
+    
+    const wasPlaying = state.isPlaying;
+    if (wasPlaying) pause();
+    
+    state.pauseTime = seekTime;
+    elements.currentTime.textContent = formatTime(seekTime);
+    
+    const clampedPercent = Math.min(percent * 100, 100);
+    elements.waveformProgress.style.width = `${clampedPercent}%`;
+    if (elements.progressFill) {
+      elements.progressFill.style.width = `${clampedPercent}%`;
     }
-    animate();
-  }
-
-  // Stop vinyl animation with soft spin-down
-  function stopVinylAnimation() {
-    let speed = 2;
-    function spinDown() {
-      if (speed <= 0) return;
-      speed *= 0.95; // Gradual slowdown
-      state.vinylRotation += speed;
-      elements.vinyl.style.transform = `rotate(${state.vinylRotation}deg)`;
-      if (speed > 0.1) {
-        requestAnimationFrame(spinDown);
-      }
+    if (elements.progressHandle) {
+      elements.progressHandle.style.left = `${clampedPercent}%`;
     }
-    spinDown();
-  }
-
-  // Move tonearm down (playing)
-  function moveTonearmDown() {
-    elements.tonearm.style.transform = 'rotate(-15deg)';
-    elements.tonearm.style.transformOrigin = 'top center';
-  }
-
-  // Move tonearm up (stopped)
-  function moveTonearmUp() {
-    elements.tonearm.style.transform = 'rotate(0deg)';
+    
+    if (wasPlaying) play();
   }
 
   // Format time (seconds to mm:ss)
