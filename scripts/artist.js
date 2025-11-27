@@ -19,7 +19,59 @@ var ARTIST_NAME_MAP = {
 
 document.addEventListener('DOMContentLoaded', function(){
 
-  // Toggle artist details when clicking grid images - FULL PAGE MODAL
+  // Music Productions - Horizontal Album Carousel with Dropdown (moved up for use in artist popup)
+  var artistAlbums = {
+    'Skaramush Vandango': {
+      cover: 'mp3/vandango/cover.png',
+      albumName: 'Neurocentric',
+      tracks: [
+        { src: 'mp3/vandango/set_the_fire.m4a', title: 'Set the Fire' },
+        { src: 'mp3/vandango/set_the_fire_remix.m4a', title: 'Set the Fire (Remix)' },
+        { src: 'mp3/vandango/always_sunny.m4a', title: 'Always Sunny' },
+        { src: 'mp3/vandango/borrowed_time.m4a', title: 'Borrowed Time' },
+        { src: 'mp3/vandango/like_water.m4a', title: 'Like Water' },
+        { src: 'mp3/vandango/love_song.m4a', title: 'Love Song' },
+        { src: 'mp3/vandango/man_on_a_mission.m4a', title: 'Man on a Mission' },
+        { src: 'mp3/vandango/nights_go_by.m4a', title: 'Nights Go By' },
+        { src: 'mp3/vandango/no_stitch_no_story.m4a', title: 'No Stitch No Story' },
+        { src: 'mp3/vandango/oh_i_try.m4a', title: 'Oh I Try' },
+        { src: 'mp3/vandango/system_failure_kortana_mix.m4a', title: 'System Failure (Kortana Mix)' },
+        { src: 'mp3/vandango/tiptoes.m4a', title: 'Tiptoes' },
+        { src: 'mp3/vandango/what_you_need.m4a', title: 'What You Need' },
+        { src: 'mp3/vandango/among_the_crowd.m4a', title: 'Among the Crowd' }
+      ]
+    },
+    'Skank Schablonski': {
+      cover: 'mp3/schablonski/kohle_raus_cover.png',
+      albumName: 'Kohle Raus',
+      tracks: [
+        { src: 'mp3/schablonski/kohle_raus.m4a', title: 'Kohle Raus' },
+        { src: 'mp3/schablonski/kohle_raus_rmx.m4a', title: 'Kohle Raus (Remix)' }
+      ]
+    },
+    'Henri Bellieu': {
+      cover: 'mp3/bellieu/petite_colibri.png',
+      albumName: 'Petite Colibri',
+      tracks: [
+        { src: 'mp3/bellieu/petite_colibri.m4a', title: 'Petite Colibri' },
+        { src: 'mp3/bellieu/petite_colibri_ennio_mix.m4a', title: 'Petite Colibri (Ennio Mix)' },
+        { src: 'mp3/bellieu/petite_colibri_nocturne_mix.m4a', title: 'Petite Colibri (Nocturne Mix)' }
+      ]
+    },
+    'Fléur et Beunié': {
+      cover: 'mp3/fleurbeunie/feu_leger_cover.png',
+      albumName: 'Feu Leger',
+      tracks: [
+        { src: 'mp3/fleurbeunie/feuleger_main.m4a', title: 'Feu Leger (Main)' },
+        { src: 'mp3/fleurbeunie/feuleger_house.m4a', title: 'Feu Leger (House)' },
+        { src: 'mp3/fleurbeunie/feuleger_sundown.m4a', title: 'Feu Leger (Sundown)' },
+        { src: 'mp3/fleurbeunie/feuleger_electricclub1.m4a', title: 'Feu Leger (Electric Club)' },
+        { src: 'mp3/fleurbeunie/feuleger_frenchclassic.m4a', title: 'Feu Leger (French Classic)' }
+      ]
+    }
+  };
+
+  // Toggle artist details when clicking grid images - FULL PAGE MODAL with embedded player
   document.querySelectorAll('.artist-header[data-artist]').forEach(function(header){
     header.addEventListener('click', function(){
       var artistId = this.dataset.artist;
@@ -34,7 +86,10 @@ document.addEventListener('DOMContentLoaded', function(){
           // Get artist image from the clicked header
           var artistImg = this.querySelector('img.artist-main-image');
           
-          // Build modal content with artist image at top
+          // Get artist name from mapping
+          var artistName = ARTIST_NAME_MAP[artistId];
+          var album = artistAlbums[artistName];
+          
           // Get the content from the details section
           var detailsDropdown = detailsSection.querySelector('.artist-dropdown');
           
@@ -42,43 +97,62 @@ document.addEventListener('DOMContentLoaded', function(){
             // Clear previous content
             modalContent.innerHTML = '';
             
-            // Add artist image at top if available
-            if(artistImg) {
-              var imgContainer = document.createElement('div');
-              imgContainer.style.textAlign = 'center';
-              imgContainer.style.marginBottom = '30px';
-              imgContainer.style.cursor = 'pointer';
-              imgContainer.title = 'Klicken zum Schließen';
-              
-              var clonedImg = artistImg.cloneNode(true);
-              clonedImg.style.maxWidth = '100%';
-              clonedImg.style.borderRadius = '8px';
-              clonedImg.alt = 'Artist';
-              
-              imgContainer.appendChild(clonedImg);
-              
-              // Note: Artist image is clickable to close modal (handled by parent click handler)
-              // The audio player is available inline below in the artist profile
-              
-              modalContent.appendChild(imgContainer);
-            }
-            
-            // Clone and append the details content
-            var contentWrapper = document.createElement('div');
-            contentWrapper.innerHTML = detailsDropdown.innerHTML;
-            modalContent.appendChild(contentWrapper);
-            
-            // Show modal
-            modal.style.display = 'block';
-            modal.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            
-            // Pause all playing audio tracks
+            // Stop any playing audio
             document.querySelectorAll('audio').forEach(function(audio) {
               if(!audio.paused) {
                 audio.pause();
               }
             });
+            
+            // Add artist image at top (smaller size)
+            if(artistImg) {
+              var imgContainer = document.createElement('div');
+              imgContainer.style.textAlign = 'center';
+              imgContainer.style.marginBottom = '15px';
+              
+              var clonedImg = artistImg.cloneNode(true);
+              clonedImg.style.maxWidth = '280px';
+              clonedImg.style.width = '60%';
+              clonedImg.style.borderRadius = '8px';
+              clonedImg.alt = artistName || 'Artist';
+              
+              imgContainer.appendChild(clonedImg);
+              modalContent.appendChild(imgContainer);
+            }
+            
+            // Extract and add only the biography section (not the widget player)
+            var bioSection = document.createElement('div');
+            bioSection.className = 'frame frame--dark-sand';
+            bioSection.style.padding = '10px';
+            bioSection.style.marginBottom = '15px';
+            
+            // Get biography text from original content
+            var originalBioHeading = detailsDropdown.querySelector('h3');
+            var originalBioText = detailsDropdown.querySelector('p');
+            
+            if(originalBioHeading && originalBioText) {
+              var bioHeading = document.createElement('h3');
+              bioHeading.style.marginBottom = '5px';
+              bioHeading.style.fontSize = '1em';
+              bioHeading.textContent = 'BIOGRAFIE';
+              bioSection.appendChild(bioHeading);
+              
+              var bioText = originalBioText.cloneNode(true);
+              bioSection.appendChild(bioText);
+            }
+            
+            modalContent.appendChild(bioSection);
+            
+            // Create embedded inline player (same style as RokkoPlayer but inline)
+            if(album) {
+              var playerContainer = createInlinePlayer(artistName, album);
+              modalContent.appendChild(playerContainer);
+            }
+            
+            // Show modal
+            modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
             
             // Scroll to top of modal
             modal.scrollTop = 0;
@@ -87,6 +161,215 @@ document.addEventListener('DOMContentLoaded', function(){
       }
     });
   });
+  
+  // Create inline embedded player for artist popup
+  function createInlinePlayer(artistName, album) {
+    var container = document.createElement('div');
+    container.className = 'inline-rokko-player';
+    container.style.cssText = 'background: linear-gradient(180deg, #E0C290 0%, #B8935F 100%); border: 4px solid #3D2817; border-radius: 16px; padding: 15px; margin-top: 10px;';
+    
+    // Create unique player ID
+    var playerId = 'inline-player-' + Date.now();
+    
+    // Audio element
+    var audio = document.createElement('audio');
+    audio.id = playerId;
+    audio.style.display = 'none';
+    container.appendChild(audio);
+    
+    // Track info display
+    var trackInfo = document.createElement('div');
+    trackInfo.id = playerId + '-track-info';
+    trackInfo.style.cssText = 'text-align: center; color: #201613; background: #E0C290; padding: 8px 12px; border-radius: 8px; margin-bottom: 12px; font-size: 0.9em; font-weight: 700; border: 2px solid #3D2817;';
+    trackInfo.textContent = album.tracks[0].title;
+    container.appendChild(trackInfo);
+    
+    // Progress bar
+    var progressWrapper = document.createElement('div');
+    progressWrapper.style.cssText = 'position: relative; width: 100%; height: 24px; background: #8B7355; border-radius: 12px; border: 2px solid #3D2817; overflow: hidden; cursor: pointer; margin-bottom: 12px;';
+    
+    var progressFill = document.createElement('div');
+    progressFill.id = playerId + '-progress';
+    progressFill.style.cssText = 'position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: linear-gradient(to right, #E0C290, #B8935F); border-radius: 10px; transition: width 0.1s linear;';
+    progressWrapper.appendChild(progressFill);
+    
+    var timeDisplay = document.createElement('div');
+    timeDisplay.id = playerId + '-time';
+    timeDisplay.style.cssText = 'position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #201613; font-size: 0.7em; font-weight: 600;';
+    timeDisplay.textContent = '0:00 / 0:00';
+    progressWrapper.appendChild(timeDisplay);
+    
+    container.appendChild(progressWrapper);
+    
+    // Controls
+    var controls = document.createElement('div');
+    controls.style.cssText = 'display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 12px;';
+    
+    var btnPrev = document.createElement('button');
+    btnPrev.innerHTML = '⏮';
+    btnPrev.style.cssText = 'width: 40px; height: 40px; background: #3D2817; border: 3px solid #201613; border-radius: 50%; color: #E0C290; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;';
+    
+    var btnPlay = document.createElement('button');
+    btnPlay.innerHTML = '▶';
+    btnPlay.id = playerId + '-playbtn';
+    btnPlay.style.cssText = 'width: 55px; height: 55px; background: #3D2817; border: 4px solid #201613; border-radius: 50%; color: #E0C290; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center;';
+    
+    var btnNext = document.createElement('button');
+    btnNext.innerHTML = '⏭';
+    btnNext.style.cssText = 'width: 40px; height: 40px; background: #3D2817; border: 3px solid #201613; border-radius: 50%; color: #E0C290; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;';
+    
+    controls.appendChild(btnPrev);
+    controls.appendChild(btnPlay);
+    controls.appendChild(btnNext);
+    container.appendChild(controls);
+    
+    // Track list
+    var trackList = document.createElement('div');
+    trackList.style.cssText = 'background: rgba(224, 194, 144, 0.9); border: 2px solid #3D2817; border-radius: 10px; padding: 8px; max-height: 150px; overflow-y: auto;';
+    
+    album.tracks.forEach(function(track, index) {
+      var trackItem = document.createElement('div');
+      trackItem.className = 'inline-track-item';
+      trackItem.dataset.index = index;
+      trackItem.style.cssText = 'display: flex; align-items: center; padding: 6px 10px; background: #B8935F; border-radius: 6px; cursor: pointer; margin-bottom: 4px; transition: all 0.2s;';
+      
+      var trackNum = document.createElement('span');
+      trackNum.style.cssText = 'font-weight: 700; margin-right: 8px; color: #3D2817; min-width: 20px; font-size: 0.8em;';
+      trackNum.textContent = (index + 1) + '.';
+      
+      var trackTitle = document.createElement('span');
+      trackTitle.style.cssText = 'color: #201613; font-size: 0.8em; font-weight: 500;';
+      trackTitle.textContent = track.title;
+      
+      trackItem.appendChild(trackNum);
+      trackItem.appendChild(trackTitle);
+      trackList.appendChild(trackItem);
+      
+      // Highlight first track as active
+      if(index === 0) {
+        trackItem.style.background = '#E0C290';
+        trackItem.style.borderLeft = '3px solid #3D2817';
+      }
+    });
+    
+    container.appendChild(trackList);
+    
+    // Player state
+    var currentIndex = 0;
+    
+    // Initialize first track
+    audio.src = album.tracks[0].src;
+    
+    // Format time helper
+    function formatTime(seconds) {
+      if(isNaN(seconds) || !isFinite(seconds) || seconds < 0) return '0:00';
+      var mins = Math.floor(seconds / 60);
+      var secs = Math.floor(seconds % 60);
+      return mins + ':' + (secs < 10 ? '0' : '') + secs;
+    }
+    
+    // Load track function
+    function loadTrack(index) {
+      if(index < 0 || index >= album.tracks.length) return;
+      currentIndex = index;
+      audio.src = album.tracks[index].src;
+      trackInfo.textContent = album.tracks[index].title;
+      
+      // Update track list highlighting
+      var items = trackList.querySelectorAll('.inline-track-item');
+      items.forEach(function(item, i) {
+        if(i === index) {
+          item.style.background = '#E0C290';
+          item.style.borderLeft = '3px solid #3D2817';
+        } else {
+          item.style.background = '#B8935F';
+          item.style.borderLeft = 'none';
+        }
+      });
+    }
+    
+    // Play/pause button
+    btnPlay.addEventListener('click', function() {
+      if(audio.paused) {
+        // Stop all other audio
+        document.querySelectorAll('audio').forEach(function(a) {
+          if(a !== audio && !a.paused) a.pause();
+        });
+        audio.play().catch(function(e) { console.log(e); });
+        btnPlay.innerHTML = '⏸';
+      } else {
+        audio.pause();
+        btnPlay.innerHTML = '▶';
+      }
+    });
+    
+    // Previous/Next buttons
+    btnPrev.addEventListener('click', function() {
+      var newIndex = currentIndex > 0 ? currentIndex - 1 : album.tracks.length - 1;
+      loadTrack(newIndex);
+      if(!audio.paused) {
+        audio.play().catch(function(e) { console.log(e); });
+      }
+    });
+    
+    btnNext.addEventListener('click', function() {
+      var newIndex = currentIndex < album.tracks.length - 1 ? currentIndex + 1 : 0;
+      loadTrack(newIndex);
+      if(!audio.paused) {
+        audio.play().catch(function(e) { console.log(e); });
+      }
+    });
+    
+    // Track item clicks
+    trackList.addEventListener('click', function(e) {
+      var item = e.target.closest('.inline-track-item');
+      if(item) {
+        var index = parseInt(item.dataset.index);
+        loadTrack(index);
+        audio.play().catch(function(e) { console.log(e); });
+        btnPlay.innerHTML = '⏸';
+      }
+    });
+    
+    // Progress bar click to seek
+    progressWrapper.addEventListener('click', function(e) {
+      if(!audio.duration || !isFinite(audio.duration)) return;
+      var rect = progressWrapper.getBoundingClientRect();
+      var clickX = e.clientX - rect.left;
+      var percentage = Math.max(0, Math.min(1, clickX / rect.width));
+      audio.currentTime = percentage * audio.duration;
+    });
+    
+    // Update progress during playback
+    audio.addEventListener('timeupdate', function() {
+      if(audio.duration && isFinite(audio.duration)) {
+        var progress = (audio.currentTime / audio.duration) * 100;
+        progressFill.style.width = progress + '%';
+        timeDisplay.textContent = formatTime(audio.currentTime) + ' / ' + formatTime(audio.duration);
+      }
+    });
+    
+    // Update time display when duration is known
+    audio.addEventListener('loadedmetadata', function() {
+      if(audio.duration && isFinite(audio.duration)) {
+        timeDisplay.textContent = '0:00 / ' + formatTime(audio.duration);
+      }
+    });
+    
+    // Reset on pause
+    audio.addEventListener('pause', function() {
+      btnPlay.innerHTML = '▶';
+    });
+    
+    // Auto-advance on track end
+    audio.addEventListener('ended', function() {
+      var newIndex = currentIndex < album.tracks.length - 1 ? currentIndex + 1 : 0;
+      loadTrack(newIndex);
+      audio.play().catch(function(e) { console.log(e); });
+    });
+    
+    return container;
+  }
   
   // Close modal button handler
   var closeModalBtn = document.getElementById('closeArtistModal');
@@ -381,58 +664,6 @@ document.addEventListener('DOMContentLoaded', function(){
       });
     });
   });
-
-  // Music Productions - Horizontal Album Carousel with Dropdown
-  var artistAlbums = {
-    'Skaramush Vandango': {
-      cover: 'mp3/vandango/cover.png',
-      albumName: 'Neurocentric',
-      tracks: [
-        { src: 'mp3/vandango/set_the_fire.m4a', title: 'Set the Fire' },
-        { src: 'mp3/vandango/set_the_fire_remix.m4a', title: 'Set the Fire (Remix)' },
-        { src: 'mp3/vandango/always_sunny.m4a', title: 'Always Sunny' },
-        { src: 'mp3/vandango/borrowed_time.m4a', title: 'Borrowed Time' },
-        { src: 'mp3/vandango/like_water.m4a', title: 'Like Water' },
-        { src: 'mp3/vandango/love_song.m4a', title: 'Love Song' },
-        { src: 'mp3/vandango/man_on_a_mission.m4a', title: 'Man on a Mission' },
-        { src: 'mp3/vandango/nights_go_by.m4a', title: 'Nights Go By' },
-        { src: 'mp3/vandango/no_stitch_no_story.m4a', title: 'No Stitch No Story' },
-        { src: 'mp3/vandango/oh_i_try.m4a', title: 'Oh I Try' },
-        { src: 'mp3/vandango/system_failure_kortana_mix.m4a', title: 'System Failure (Kortana Mix)' },
-        { src: 'mp3/vandango/tiptoes.m4a', title: 'Tiptoes' },
-        { src: 'mp3/vandango/what_you_need.m4a', title: 'What You Need' },
-        { src: 'mp3/vandango/among_the_crowd.m4a', title: 'Among the Crowd' }
-      ]
-    },
-    'Skank Schablonski': {
-      cover: 'mp3/schablonski/kohle_raus_cover.png',
-      albumName: 'Kohle Raus',
-      tracks: [
-        { src: 'mp3/schablonski/kohle_raus.m4a', title: 'Kohle Raus' },
-        { src: 'mp3/schablonski/kohle_raus_rmx.m4a', title: 'Kohle Raus (Remix)' }
-      ]
-    },
-    'Henri Bellieu': {
-      cover: 'mp3/bellieu/petite_colibri.png',
-      albumName: 'Petite Colibri',
-      tracks: [
-        { src: 'mp3/bellieu/petite_colibri.m4a', title: 'Petite Colibri' },
-        { src: 'mp3/bellieu/petite_colibri_ennio_mix.m4a', title: 'Petite Colibri (Ennio Mix)' },
-        { src: 'mp3/bellieu/petite_colibri_nocturne_mix.m4a', title: 'Petite Colibri (Nocturne Mix)' }
-      ]
-    },
-    'Fléur et Beunié': {
-      cover: 'mp3/fleurbeunie/feu_leger_cover.png',
-      albumName: 'Feu Leger',
-      tracks: [
-        { src: 'mp3/fleurbeunie/feuleger_main.m4a', title: 'Feu Leger (Main)' },
-        { src: 'mp3/fleurbeunie/feuleger_house.m4a', title: 'Feu Leger (House)' },
-        { src: 'mp3/fleurbeunie/feuleger_sundown.m4a', title: 'Feu Leger (Sundown)' },
-        { src: 'mp3/fleurbeunie/feuleger_electricclub1.m4a', title: 'Feu Leger (Electric Club)' },
-        { src: 'mp3/fleurbeunie/feuleger_frenchclassic.m4a', title: 'Feu Leger (French Classic)' }
-      ]
-    }
-  };
 
   // Horizontal Album Carousel Implementation
   var albumCarousel = document.getElementById('album-carousel');
