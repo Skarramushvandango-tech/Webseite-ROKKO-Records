@@ -581,16 +581,19 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
   
-  // Load artist and show dropdown - NOW USES RokkoPlayer
-  function loadArtist(artistName) {
-    if(!artistAlbums[artistName]) return;
-    
-    // Stop any currently playing audio
+  // Helper function to stop all audio
+  function stopAllAudio() {
     document.querySelectorAll('audio').forEach(function(audio) {
       if(!audio.paused) audio.pause();
     });
+  }
+  
+  // Helper function to open RokkoPlayer for an artist
+  function openRokkoPlayerForArtist(artistName, startIndex) {
+    if(!artistAlbums[artistName]) return;
     
-    // Create playlist for RokkoPlayer
+    stopAllAudio();
+    
     var album = artistAlbums[artistName];
     var playlist = album.tracks.map(function(track) {
       return {
@@ -601,13 +604,17 @@ document.addEventListener('DOMContentLoaded', function(){
       };
     });
     
-    // Open the professional RokkoPlayer with this playlist
     if(window.RokkoPlayer) {
       window.RokkoPlayer.openPlayer({
         playlist: playlist,
-        startIndex: 0
+        startIndex: startIndex || 0
       });
     }
+  }
+  
+  // Load artist and show dropdown - NOW USES RokkoPlayer
+  function loadArtist(artistName) {
+    openRokkoPlayerForArtist(artistName, 0);
   }
   
   // Load specific track
@@ -774,31 +781,7 @@ document.addEventListener('DOMContentLoaded', function(){
   
   // Open audio player modal with artist data - NOW USES RokkoPlayer
   function openAudioPlayerModal(artistName) {
-    if(!artistAlbums[artistName]) return;
-    
-    // Stop any currently playing audio
-    document.querySelectorAll('audio').forEach(function(audio) {
-      if(!audio.paused) audio.pause();
-    });
-    
-    // Create playlist for RokkoPlayer
-    var album = artistAlbums[artistName];
-    var playlist = album.tracks.map(function(track) {
-      return {
-        title: track.title,
-        artist: artistName,
-        audioSrc: track.src,
-        coverSrc: album.cover
-      };
-    });
-    
-    // Open the professional RokkoPlayer with this playlist
-    if(window.RokkoPlayer) {
-      window.RokkoPlayer.openPlayer({
-        playlist: playlist,
-        startIndex: 0
-      });
-    }
+    openRokkoPlayerForArtist(artistName, 0);
   }
   
   // Load track in modal
