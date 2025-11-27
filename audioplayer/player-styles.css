@@ -483,28 +483,13 @@
   margin-right: 6px;
 }
 
-/* Beatport - Blue */
-.rokko-stream-btn[data-service="beatport"] {
-  background: linear-gradient(135deg, #01FF95 0%, #00C878 100%);
-  color: #000;
-}
-
-/* Spotify - Green */
-.rokko-stream-btn[data-service="spotify"] {
-  background: linear-gradient(135deg, #1ED760 0%, #1DB954 100%);
-  color: #000;
-}
-
-/* Apple Music - Pink/Red */
-.rokko-stream-btn[data-service="apple"] {
-  background: linear-gradient(135deg, #FA586A 0%, #FC3C44 100%);
-  color: #fff;
-}
-
-/* SoundCloud - Orange */
+/* All streaming buttons use ROKKO brown/sand color scheme */
+.rokko-stream-btn[data-service="beatport"],
+.rokko-stream-btn[data-service="spotify"],
+.rokko-stream-btn[data-service="apple"],
 .rokko-stream-btn[data-service="soundcloud"] {
-  background: linear-gradient(135deg, #FF8800 0%, #FF5500 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--rokko-brown-dark) 0%, var(--rokko-brown) 100%);
+  color: var(--rokko-sand);
 }
 
 /* ============================================================
