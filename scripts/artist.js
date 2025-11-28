@@ -201,22 +201,32 @@ document.addEventListener('DOMContentLoaded', function(){
     
     container.appendChild(progressWrapper);
     
-    // Controls
+    // Controls - using SVG icons like the carousel player
     var controls = document.createElement('div');
     controls.style.cssText = 'display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 12px;';
     
+    // SVG icons matching the carousel player style
+    var svgPrev = '<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>';
+    var svgPlay = '<svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M8 5v14l11-7z"/></svg>';
+    var svgPause = '<svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
+    var svgNext = '<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M16 18h2V6h-2zm-11-1l8.5-6L5 5z"/></svg>';
+    
     var btnPrev = document.createElement('button');
-    btnPrev.innerHTML = '⏮';
-    btnPrev.style.cssText = 'width: 40px; height: 40px; background: #3D2817; border: 3px solid #201613; border-radius: 50%; color: #E0C290; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;';
+    btnPrev.innerHTML = svgPrev;
+    btnPrev.style.cssText = 'width: 50px; height: 50px; background: #3D2817; border: 3px solid #201613; border-radius: 50%; color: #E0C290; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;';
     
     var btnPlay = document.createElement('button');
-    btnPlay.innerHTML = '▶';
+    btnPlay.innerHTML = svgPlay;
     btnPlay.id = playerId + '-playbtn';
-    btnPlay.style.cssText = 'width: 55px; height: 55px; background: #3D2817; border: 4px solid #201613; border-radius: 50%; color: #E0C290; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center;';
+    btnPlay.style.cssText = 'width: 65px; height: 65px; background: #3D2817; border: 4px solid #201613; border-radius: 50%; color: #E0C290; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;';
     
     var btnNext = document.createElement('button');
-    btnNext.innerHTML = '⏭';
-    btnNext.style.cssText = 'width: 40px; height: 40px; background: #3D2817; border: 3px solid #201613; border-radius: 50%; color: #E0C290; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;';
+    btnNext.innerHTML = svgNext;
+    btnNext.style.cssText = 'width: 50px; height: 50px; background: #3D2817; border: 3px solid #201613; border-radius: 50%; color: #E0C290; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;';
+    
+    // Store SVG references for play/pause toggle
+    var playSvg = svgPlay;
+    var pauseSvg = svgPause;
     
     controls.appendChild(btnPrev);
     controls.appendChild(btnPlay);
@@ -296,10 +306,10 @@ document.addEventListener('DOMContentLoaded', function(){
           if(a !== audio && !a.paused) a.pause();
         });
         audio.play().catch(function(e) { console.log('[InlinePlayer] Play failed:', e.message); });
-        btnPlay.innerHTML = '⏸';
+        btnPlay.innerHTML = pauseSvg;
       } else {
         audio.pause();
-        btnPlay.innerHTML = '▶';
+        btnPlay.innerHTML = playSvg;
       }
     });
     
@@ -327,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function(){
         var index = parseInt(item.dataset.index);
         loadTrack(index);
         audio.play().catch(function(e) { console.log('[InlinePlayer] Track click play failed:', e.message); });
-        btnPlay.innerHTML = '⏸';
+        btnPlay.innerHTML = pauseSvg;
       }
     });
     
@@ -358,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function(){
     
     // Reset on pause
     audio.addEventListener('pause', function() {
-      btnPlay.innerHTML = '▶';
+      btnPlay.innerHTML = playSvg;
     });
     
     // Auto-advance on track end
