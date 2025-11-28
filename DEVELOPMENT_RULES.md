@@ -41,6 +41,36 @@ Dieses Dokument enthält alle verbindlichen Regeln für die Entwicklung der ROKK
 
 ---
 
+## 🔘 BUTTON-REGELN (IMMUTABLE)
+
+### ALLE Buttons müssen gleich aussehen!
+
+**KEINE individuellen Farben für verschiedene Dienste!**
+
+1. **Streaming-Buttons (YouTube, Spotify, Apple Music, SoundCloud, Beatport)**
+   - ❌ KEINE Markenfarben (kein Spotify-Grün, kein YouTube-Rot, etc.)
+   - ✅ ALLE verwenden: `background: linear-gradient(135deg, #3D2817 0%, #201613 100%)`
+   - ✅ ALLE verwenden: `color: #E0C290` (Sand-Farbe)
+   - ✅ Einheitliches Design auf der ganzen Website
+
+2. **Social-Media-Buttons**
+   - Gleiche Regel: Einheitliche ROKKO-Farben
+   - Keine individuellen Plattform-Farben
+
+3. **Alle anderen Buttons**
+   - Müssen dem ROKKO-Farbschema entsprechen
+   - Keine eigenen Farbvarianten
+
+**CSS-Beispiel (VERBINDLICH):**
+```css
+.rokko-stream-btn {
+  background: linear-gradient(135deg, var(--rokko-brown-dark) 0%, var(--rokko-brown) 100%);
+  color: var(--rokko-sand);
+}
+```
+
+---
+
 ## 🎵 PLAYER-REGELN
 
 ### Der RokkoPlayer ist der EINZIGE Player
@@ -65,6 +95,11 @@ Dieses Dokument enthält alle verbindlichen Regeln für die Entwicklung der ROKK
 ## 📋 ÄNDERUNGS-HISTORIE
 
 Diese Sektion dokumentiert alle wichtigen Entscheidungen:
+
+### 2025-11-28: Button-Uniformität
+- **Entscheidung:** Alle Buttons müssen gleich aussehen
+- **Grund:** Benutzer will keine individuellen Markenfarben für Streaming-Dienste
+- **NIEMALS RÜCKGÄNGIG MACHEN**
 
 ### 2025-11-28: Player-Vereinheitlichung
 - **Entscheidung:** Artist-Klick öffnet RokkoPlayer direkt
@@ -101,6 +136,7 @@ Ich, als Entwickler, verpflichte mich:
 - [ ] KEINE Emojis zu verwenden
 - [ ] Die festgelegten Farben NICHT zu ändern
 - [ ] Den RokkoPlayer als einzigen Player zu verwenden
+- [ ] ALLE Buttons einheitlich zu gestalten (keine individuellen Markenfarben)
 - [ ] Dieses Dokument bei jeder neuen Entscheidung zu aktualisieren
 - [ ] KEINE bereits getroffenen Entscheidungen rückgängig zu machen
 
