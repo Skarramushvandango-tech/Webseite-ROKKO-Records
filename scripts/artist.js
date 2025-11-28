@@ -168,8 +168,8 @@ document.addEventListener('DOMContentLoaded', function(){
     container.className = 'inline-rokko-player';
     container.style.cssText = 'background: linear-gradient(180deg, #E0C290 0%, #B8935F 100%); border: 4px solid #3D2817; border-radius: 16px; padding: 15px; margin-top: 10px;';
     
-    // Create unique player ID
-    var playerId = 'inline-player-' + Date.now();
+    // Create unique player ID using timestamp and random value for uniqueness
+    var playerId = 'inline-player-' + Date.now() + '-' + Math.floor(Math.random() * 10000);
     
     // Audio element
     var audio = document.createElement('audio');
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function(){
         document.querySelectorAll('audio').forEach(function(a) {
           if(a !== audio && !a.paused) a.pause();
         });
-        audio.play().catch(function(e) { console.log(e); });
+        audio.play().catch(function(e) { console.log('[InlinePlayer] Play failed:', e.message); });
         btnPlay.innerHTML = '⏸';
       } else {
         audio.pause();
@@ -308,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function(){
       var newIndex = currentIndex > 0 ? currentIndex - 1 : album.tracks.length - 1;
       loadTrack(newIndex);
       if(!audio.paused) {
-        audio.play().catch(function(e) { console.log(e); });
+        audio.play().catch(function(e) { console.log('[InlinePlayer] Previous track play failed:', e.message); });
       }
     });
     
@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function(){
       var newIndex = currentIndex < album.tracks.length - 1 ? currentIndex + 1 : 0;
       loadTrack(newIndex);
       if(!audio.paused) {
-        audio.play().catch(function(e) { console.log(e); });
+        audio.play().catch(function(e) { console.log('[InlinePlayer] Next track play failed:', e.message); });
       }
     });
     
@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function(){
       if(item) {
         var index = parseInt(item.dataset.index);
         loadTrack(index);
-        audio.play().catch(function(e) { console.log(e); });
+        audio.play().catch(function(e) { console.log('[InlinePlayer] Track click play failed:', e.message); });
         btnPlay.innerHTML = '⏸';
       }
     });
@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', function(){
     audio.addEventListener('ended', function() {
       var newIndex = currentIndex < album.tracks.length - 1 ? currentIndex + 1 : 0;
       loadTrack(newIndex);
-      audio.play().catch(function(e) { console.log(e); });
+      audio.play().catch(function(e) { console.log('[InlinePlayer] Auto-advance play failed:', e.message); });
     });
     
     return container;
