@@ -130,37 +130,93 @@
 
         <!-- Artist Details shown below carousel -->
         <article id="artist-vandango" class="artist-details">
-        <div class="artist-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease; padding: 0 10px;">
-          <div class="frame frame--dark-sand" style="padding: 15px;">
-            <!-- BIOGRAFIE Section -->
-            <h3 style="margin-bottom: 8px; font-size: 1.1em; color: var(--rokko-brown);">BIOGRAFIE</h3>
-            <p style="line-height: 1.5; margin-bottom: 15px; font-size: 0.85em;">
+        <div class="artist-dropdown" style="max-height: 0; transition: max-height 0.5s ease; padding: 0 10px;">
+          <div class="frame frame--dark-sand" style="padding: 10px;">
+            <h3 style="margin-bottom: 5px; font-size: 1em;">BIOGRAFIE</h3>
+            <p style="line-height: 1.4; margin-bottom: 8px; font-size: 0.85em;">
               Skaramush Vandango ist ein vielseitiger Künstler aus dem ROKKO Records Label. Mit seinem einzigartigen Stil verbindet er verschiedene Musikrichtungen zu einem unverwechselbaren Sound. 
               Folge ihm auf <a href="https://www.youtube.com/@skarramushvandango" target="_blank" style="color: var(--rokko-brown); text-decoration: underline; font-weight: 600;">YouTube</a> für die neuesten Releases und exklusive Einblicke in seine Musik.
             </p>
             
-            <div style="text-align: center; padding: 8px 0;">
+            <div style="text-align: center; padding: 5px 0;">
               <div class="trenner"></div>
             </div>
 
-            <!-- RELEASES Section with clickable cover thumbnail -->
-            <h3 style="margin-bottom: 10px; font-size: 1.1em; color: var(--rokko-brown);">RELEASES</h3>
-            <p style="font-size: 0.75em; color: var(--rokko-brown); margin-bottom: 10px; font-style: italic;">Klicke auf das Cover um den Player zu öffnen</p>
+            <h3 style="margin-bottom: 5px; font-size: 1em;">DISKOGRAPHIE</h3>
             
-            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-bottom: 15px;">
-              <!-- Album: Neurocentric -->
-              <div class="release-cover-thumb" data-artist="Skaramush Vandango" data-track-index="0" style="cursor: pointer; text-align: center; transition: transform 0.3s ease;">
-                <img src="mp3/vandango/cover.png" alt="Neurocentric Album" style="width: 120px; height: 120px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 2px solid #3D2817; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                <p style="margin-top: 6px; font-size: 0.7em; font-weight: 600; color: var(--rokko-brown);">Neurocentric</p>
+            <!-- Integrated Audio Player (simple version with ROKKO colors) -->
+            <div class="artist-audio-player-widget" style="margin: 15px 0;">
+              <div style="background: #B8935F; border: 3px solid #3D2817; border-radius: 10px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                <!-- Hidden Audio Player -->
+                <audio id="player-vandango" style="display: none;">
+                  <source src="" type="audio/mp4">
+                  Your browser does not support the audio element.
+                </audio>
+                
+                <!-- Waveform Progress Bar -->
+                <div class="waveform-progress" data-player="player-vandango" style="width: 100%; height: 40px; background: linear-gradient(to right, #3D2817 0%, #E0C290 100%); border-radius: 8px; margin-bottom: 15px; cursor: pointer; position: relative; border: 2px solid #3D2817; overflow: hidden;">
+                  <div class="waveform-fill" style="position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: linear-gradient(to right, #B8935F, #3D2817); border-radius: 6px 0 0 6px; transition: width 0.1s linear;"></div>
+                  <div class="waveform-time" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #201613; font-size: 0.75em; font-weight: 600;">0:00 / 0:00</div>
+                </div>
+                
+                <!-- Current Track Display -->
+                <div id="current-track-vandango" style="text-align: center; color: #201613; background: #E0C290; padding: 8px; border-radius: 6px; margin-bottom: 15px; font-size: 0.95em; font-weight: 700; min-height: 24px; border: 2px solid #3D2817;">
+                  Wähle einen Track
+                </div>
+                
+                <!-- Track List -->
+                <div style="max-height: 250px; overflow-y: auto; background: #E0C290; border-radius: 8px; padding: 10px; border: 2px solid #3D2817;">
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/set_the_fire.m4a" data-title="Set the Fire" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Set the Fire</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/set_the_fire_remix.m4a" data-title="Set the Fire (Remix)" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Set the Fire (Remix)</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/always_sunny.m4a" data-title="Always Sunny" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Always Sunny</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/borrowed_time.m4a" data-title="Borrowed Time" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Borrowed Time</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/like_water.m4a" data-title="Like Water" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Like Water</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/love_song.m4a" data-title="Love Song" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Love Song</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/man_on_a_mission.m4a" data-title="Man on a Mission" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Man on a Mission</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/nights_go_by.m4a" data-title="Nights Go By" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Nights Go By</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/no_stitch_no_story.m4a" data-title="No Stitch No Story" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">No Stitch No Story</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/oh_i_try.m4a" data-title="Oh I Try" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Oh I Try</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/system_failure_kortana_mix.m4a" data-title="System Failure (Kortana Mix)" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">System Failure (Kortana Mix)</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/tiptoes.m4a" data-title="Tiptoes" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Tiptoes</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/what_you_need.m4a" data-title="What You Need" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">What You Need</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-vandango" data-src="mp3/vandango/among_the_crowd.m4a" data-title="Among the Crowd" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Among the Crowd</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div style="text-align: center; padding: 8px 0;">
+            <div style="text-align: center; padding: 5px 0;">
               <div class="trenner"></div>
             </div>
 
-            <!-- SOCIAL MEDIA Section -->
-            <h3 style="margin-bottom: 10px; font-size: 1.1em; color: var(--rokko-brown);">SOCIAL MEDIA</h3>
+            <h3 style="margin-bottom: 8px; font-size: 1.1em;">SOCIAL MEDIA</h3>
             <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center;">
               <a href="https://www.youtube.com/@skaramushvandango" target="_blank" rel="noopener noreferrer" 
                  style="display: flex; align-items: center; justify-content: center; gap: 4px; padding: 8px 12px; background: var(--rokko-brown); color: #fff; text-decoration: none; border-radius: 5px; font-weight: 600; font-size: 0.7em; transition: all 0.3s ease;">
@@ -197,135 +253,184 @@
       </article>
 
       <article id="artist-schablonski" class="artist-details">
-        <div class="artist-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease; padding: 0 10px;">
-          <div class="frame frame--dark-sand" style="padding: 15px;">
-            <!-- BIOGRAFIE Section -->
-            <h3 style="margin-bottom: 8px; font-size: 1.1em; color: var(--rokko-brown);">BIOGRAFIE</h3>
-            <p style="line-height: 1.5; margin-bottom: 15px; font-size: 0.85em;">
+        <div class="artist-dropdown" style="max-height: 0; transition: max-height 0.5s ease; padding: 0 10px;">
+          <div class="frame frame--dark-sand" style="padding: 10px;">
+            <h3 style="margin-bottom: 5px; font-size: 1em;">BIOGRAFIE</h3>
+            <p style="line-height: 1.4; margin-bottom: 8px; font-size: 0.85em;">
               Skank Schablonski bringt energiegeladene Ska-Rhythmen und einzigartige Texte auf die Bühne. Ein fester Bestandteil des ROKKO Records Rosters.
             </p>
             
-            <div style="text-align: center; padding: 8px 0;">
+            <div style="text-align: center; padding: 5px 0;">
               <div class="trenner"></div>
             </div>
 
-            <!-- RELEASES Section with clickable cover thumbnail -->
-            <h3 style="margin-bottom: 10px; font-size: 1.1em; color: var(--rokko-brown);">RELEASES</h3>
-            <p style="font-size: 0.75em; color: var(--rokko-brown); margin-bottom: 10px; font-style: italic;">Klicke auf das Cover um den Player zu öffnen</p>
+            <h3 style="margin-bottom: 5px; font-size: 1em;">DISKOGRAPHIE</h3>
             
-            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-bottom: 15px;">
-              <!-- Album: Kohle Raus -->
-              <div class="release-cover-thumb" data-artist="Skank Schablonski" data-track-index="0" style="cursor: pointer; text-align: center; transition: transform 0.3s ease;">
-                <img src="mp3/schablonski/kohle_raus_cover.png" alt="Kohle Raus Album" style="width: 120px; height: 120px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 2px solid #3D2817; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                <p style="margin-top: 6px; font-size: 0.7em; font-weight: 600; color: var(--rokko-brown);">Kohle Raus</p>
+            <!-- Integrated Audio Player (same as carousel) -->
+            <div class="artist-audio-player-widget" style="margin: 15px 0;">
+              <div style="background: #B8935F; border: 3px solid #3D2817; border-radius: 10px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                <!-- Hidden Audio Player -->
+                <audio id="player-schablonski" style="display: none;">
+                  <source src="" type="audio/mp4">
+                  Your browser does not support the audio element.
+                </audio>
+                
+                <!-- Waveform Progress Bar -->
+                <div class="waveform-progress" data-player="player-schablonski" style="width: 100%; height: 40px; background: linear-gradient(to right, #3D2817 0%, #E0C290 100%); border-radius: 8px; margin-bottom: 15px; cursor: pointer; position: relative; border: 2px solid #3D2817; overflow: hidden;">
+                  <div class="waveform-fill" style="position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: linear-gradient(to right, #B8935F, #3D2817); border-radius: 6px 0 0 6px; transition: width 0.1s linear;"></div>
+                  <div class="waveform-time" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #201613; font-size: 0.75em; font-weight: 600;">0:00 / 0:00</div>
+                </div>
+                
+                <!-- Current Track Display -->
+                <div id="current-track-schablonski" style="text-align: center; color: #201613; background: #E0C290; padding: 8px; border-radius: 6px; margin-bottom: 15px; font-size: 0.95em; font-weight: 700; min-height: 24px; border: 2px solid #3D2817;">
+                  Wähle einen Track
+                </div>
+                
+                <!-- Track List -->
+                <div style="max-height: 250px; overflow-y: auto; background: #E0C290; border-radius: 8px; padding: 10px; border: 2px solid #3D2817;">
+                  <div class="track-item-widget" data-player="player-schablonski" data-src="mp3/schablonski/kohle_raus.m4a" data-title="Kohle Raus" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Kohle Raus</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-schablonski" data-src="mp3/schablonski/kohle_raus_rmx.m4a" data-title="Kohle Raus (Remix)" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Kohle Raus (Remix)</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div style="text-align: center; padding: 8px 0;">
+            <div style="text-align: center; padding: 5px 0;">
               <div class="trenner"></div>
             </div>
 
-            <!-- SOCIAL MEDIA Section -->
-            <h3 style="margin-bottom: 10px; font-size: 1.1em; color: var(--rokko-brown);">SOCIAL MEDIA</h3>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center;">
-              <a class="social-button" href="https://www.youtube.com/@skaskablonski" target="_blank" 
-                 style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; background: var(--rokko-brown); color: #fff; border-radius: 5px; text-decoration: none; font-weight: 600; font-size: 0.7em;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-                <span>YouTube</span>
-              </a>
-            </div>
+            <h3 style="margin-bottom: 8px; font-size: 1.1em;">SOCIAL MEDIA</h3>
+            <a class="social-button" href="https://www.youtube.com/@skaskablonski" target="_blank" 
+               style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--rokko-brown); color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600;">
+              <img src="img/youtube-icon.svg" alt="YouTube" style="width: 24px; height: 24px;"> Skank Schablonski
+            </a>
           </div>
         </div>
       
       </article>
 
       <article id="artist-bellieu" class="artist-details">
-        <div class="artist-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease; padding: 0 10px;">
-          <div class="frame frame--dark-sand" style="padding: 15px;">
-            <!-- BIOGRAFIE Section -->
-            <h3 style="margin-bottom: 8px; font-size: 1.1em; color: var(--rokko-brown);">BIOGRAFIE</h3>
-            <p style="line-height: 1.5; margin-bottom: 15px; font-size: 0.85em;">
+        <div class="artist-dropdown" style="max-height: 0; transition: max-height 0.5s ease; padding: 0 10px;">
+          <div class="frame frame--dark-sand" style="padding: 10px;">
+            <h3 style="margin-bottom: 5px; font-size: 1em;">BIOGRAFIE</h3>
+            <p style="line-height: 1.4; margin-bottom: 8px; font-size: 0.85em;">
               Henri Bellieu ist bekannt für seine melodischen und gefühlvollen Kompositionen. Seine Musik berührt die Herzen der Zuhörer weltweit.
             </p>
             
-            <div style="text-align: center; padding: 8px 0;">
+            <div style="text-align: center; padding: 5px 0;">
               <div class="trenner"></div>
             </div>
 
-            <!-- RELEASES Section with clickable cover thumbnail -->
-            <h3 style="margin-bottom: 10px; font-size: 1.1em; color: var(--rokko-brown);">RELEASES</h3>
-            <p style="font-size: 0.75em; color: var(--rokko-brown); margin-bottom: 10px; font-style: italic;">Klicke auf das Cover um den Player zu öffnen</p>
+            <h3 style="margin-bottom: 5px; font-size: 1em;">DISKOGRAPHIE</h3>
             
-            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-bottom: 15px;">
-              <!-- Album: Petite Colibri -->
-              <div class="release-cover-thumb" data-artist="Henri Bellieu" data-track-index="0" style="cursor: pointer; text-align: center; transition: transform 0.3s ease;">
-                <img src="mp3/bellieu/petite_colibri.png" alt="Petite Colibri Album" style="width: 120px; height: 120px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 2px solid #3D2817; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                <p style="margin-top: 6px; font-size: 0.7em; font-weight: 600; color: var(--rokko-brown);">Petite Colibri</p>
+            <!-- Integrated Audio Player (same as carousel) -->
+            <div class="artist-audio-player-widget" style="margin: 15px 0;">
+              <div style="background: #B8935F; border: 3px solid #3D2817; border-radius: 10px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                <!-- Hidden Audio Player -->
+                <audio id="player-bellieu" style="display: none;">
+                  <source src="" type="audio/mp4">
+                  Your browser does not support the audio element.
+                </audio>
+                
+                <!-- Waveform Progress Bar -->
+                <div class="waveform-progress" data-player="player-bellieu" style="width: 100%; height: 40px; background: linear-gradient(to right, #3D2817 0%, #E0C290 100%); border-radius: 8px; margin-bottom: 15px; cursor: pointer; position: relative; border: 2px solid #3D2817; overflow: hidden;">
+                  <div class="waveform-fill" style="position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: linear-gradient(to right, #B8935F, #3D2817); border-radius: 6px 0 0 6px; transition: width 0.1s linear;"></div>
+                  <div class="waveform-time" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #201613; font-size: 0.75em; font-weight: 600;">0:00 / 0:00</div>
+                </div>
+                
+                <!-- Current Track Display -->
+                <div id="current-track-bellieu" style="text-align: center; color: #201613; background: #E0C290; padding: 8px; border-radius: 6px; margin-bottom: 15px; font-size: 0.95em; font-weight: 700; min-height: 24px; border: 2px solid #3D2817;">
+                  Wähle einen Track
+                </div>
+                
+                <!-- Track List -->
+                <div style="max-height: 250px; overflow-y: auto; background: #E0C290; border-radius: 8px; padding: 10px; border: 2px solid #3D2817;">
+                  <div class="track-item-widget" data-player="player-bellieu" data-src="mp3/bellieu/petite_colibri.m4a" data-title="Petite Colibri" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Petite Colibri</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-bellieu" data-src="mp3/bellieu/petite_colibri_ennio_mix.m4a" data-title="Petite Colibri (Ennio Mix)" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Petite Colibri (Ennio Mix)</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-bellieu" data-src="mp3/bellieu/petite_colibri_nocturne_mix.m4a" data-title="Petite Colibri (Nocturne Mix)" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Petite Colibri (Nocturne Mix)</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div style="text-align: center; padding: 8px 0;">
               <div class="trenner"></div>
             </div>
 
-            <!-- SOCIAL MEDIA Section -->
-            <h3 style="margin-bottom: 10px; font-size: 1.1em; color: var(--rokko-brown);">SOCIAL MEDIA</h3>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center;">
-              <a class="social-button" href="https://www.youtube.com/@henribellieu" target="_blank" 
-                 style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; background: var(--rokko-brown); color: #fff; border-radius: 5px; text-decoration: none; font-weight: 600; font-size: 0.7em;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-                <span>YouTube</span>
-              </a>
-            </div>
+            <h3 style="margin-bottom: 8px; font-size: 1.1em;">SOCIAL MEDIA</h3>
+            <a class="social-button" href="https://www.youtube.com/@henribellieu" target="_blank" 
+               style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--rokko-brown); color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600;">
+              <img src="img/youtube-icon.svg" alt="YouTube" style="width: 24px; height: 24px;"> Henri Bellieu
+            </a>
           </div>
         </div>
       
       </article>
 
       <article id="artist-beunie" class="artist-details">
-        <div class="artist-dropdown" style="max-height: 0; overflow: hidden; transition: max-height 0.5s ease; padding: 0 10px;">
-          <div class="frame frame--dark-sand" style="padding: 15px;">
-            <!-- BIOGRAFIE Section -->
-            <h3 style="margin-bottom: 8px; font-size: 1.1em; color: var(--rokko-brown);">BIOGRAFIE</h3>
-            <p style="line-height: 1.5; margin-bottom: 15px; font-size: 0.85em;">
+        <div class="artist-dropdown" style="max-height: 0; transition: max-height 0.5s ease; padding: 0 10px;">
+          <div class="frame frame--dark-sand" style="padding: 10px;">
+            <h3 style="margin-bottom: 5px; font-size: 1em;">BIOGRAFIE</h3>
+            <p style="line-height: 1.4; margin-bottom: 8px; font-size: 0.85em;">
               Fléur et Beunié verzaubert mit einer einzigartigen Mischung aus elektronischen und akustischen Klängen. Ein Duo, das Grenzen überschreitet.
             </p>
             
-            <div style="text-align: center; padding: 8px 0;">
+            <div style="text-align: center; padding: 5px 0;">
               <div class="trenner"></div>
             </div>
 
-            <!-- RELEASES Section with clickable cover thumbnail -->
-            <h3 style="margin-bottom: 10px; font-size: 1.1em; color: var(--rokko-brown);">RELEASES</h3>
-            <p style="font-size: 0.75em; color: var(--rokko-brown); margin-bottom: 10px; font-style: italic;">Klicke auf das Cover um den Player zu öffnen</p>
+            <h3 style="margin-bottom: 5px; font-size: 1em;">DISKOGRAPHIE</h3>
             
-            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-bottom: 15px;">
-              <!-- Album: Feu Leger -->
-              <div class="release-cover-thumb" data-artist="Fléur et Beunié" data-track-index="0" style="cursor: pointer; text-align: center; transition: transform 0.3s ease;">
-                <img src="mp3/fleurbeunie/feu_leger_cover.png" alt="Feu Leger Album" style="width: 120px; height: 120px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 2px solid #3D2817; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                <p style="margin-top: 6px; font-size: 0.7em; font-weight: 600; color: var(--rokko-brown);">Feu Leger</p>
+            <!-- Integrated Audio Player (same as carousel) -->
+            <div class="artist-audio-player-widget" style="margin: 15px 0;">
+              <div style="background: #B8935F; border: 3px solid #3D2817; border-radius: 10px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                <!-- Hidden Audio Player -->
+                <audio id="player-beunie" style="display: none;">
+                  <source src="" type="audio/mp4">
+                  Your browser does not support the audio element.
+                </audio>
+                
+                <!-- Waveform Progress Bar -->
+                <div class="waveform-progress" data-player="player-beunie" style="width: 100%; height: 40px; background: linear-gradient(to right, #3D2817 0%, #E0C290 100%); border-radius: 8px; margin-bottom: 15px; cursor: pointer; position: relative; border: 2px solid #3D2817; overflow: hidden;">
+                  <div class="waveform-fill" style="position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: linear-gradient(to right, #B8935F, #3D2817); border-radius: 6px 0 0 6px; transition: width 0.1s linear;"></div>
+                  <div class="waveform-time" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #201613; font-size: 0.75em; font-weight: 600;">0:00 / 0:00</div>
+                </div>
+                
+                <!-- Current Track Display -->
+                <div id="current-track-beunie" style="text-align: center; color: #201613; background: #E0C290; padding: 8px; border-radius: 6px; margin-bottom: 15px; font-size: 0.95em; font-weight: 700; min-height: 24px; border: 2px solid #3D2817;">
+                  Wähle einen Track
+                </div>
+                
+                <!-- Track List -->
+                <div style="max-height: 250px; overflow-y: auto; background: #E0C290; border-radius: 8px; padding: 10px; border: 2px solid #3D2817;">
+                  <div class="track-item-widget" data-player="player-beunie" data-src="mp3/fleurbeunie/feuleger_main.m4a" data-title="Feu Leger (Main)" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Feu Leger (Main)</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-beunie" data-src="mp3/fleurbeunie/feuleger_house.m4a" data-title="Feu Leger (House)" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Feu Leger (House)</span>
+                  </div>
+                  <div class="track-item-widget" data-player="player-beunie" data-src="mp3/fleurbeunie/feuleger_sundown.m4a" data-title="Feu Leger (Sundown)" style="padding: 6px 8px; cursor: pointer; transition: background 0.2s; position: relative;">
+                    <span style="color: #201613; font-size: 0.85em;">Feu Leger (Sundown)</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div style="text-align: center; padding: 8px 0;">
               <div class="trenner"></div>
             </div>
 
-            <!-- SOCIAL MEDIA Section -->
-            <h3 style="margin-bottom: 10px; font-size: 1.1em; color: var(--rokko-brown);">SOCIAL MEDIA</h3>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center;">
-              <a class="social-button" href="https://www.youtube.com/@fleuretbeunie" target="_blank" 
-                 style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; background: var(--rokko-brown); color: #fff; border-radius: 5px; text-decoration: none; font-weight: 600; font-size: 0.7em;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-                <span>YouTube</span>
-              </a>
-            </div>
+            <h3 style="margin-bottom: 8px; font-size: 1.1em;">SOCIAL MEDIA</h3>
+            <a class="social-button" href="https://www.youtube.com/@fleuretbeunie" target="_blank" 
+               style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--rokko-brown); color: #fff; border-radius: 6px; text-decoration: none; font-weight: 600;">
+              <img src="img/youtube-icon.svg" alt="YouTube" style="width: 24px; height: 24px;"> Fléur et Beunié
+            </a>
           </div>
         </div>
       
