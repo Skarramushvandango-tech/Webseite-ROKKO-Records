@@ -71,38 +71,62 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   };
 
-  // Toggle artist details when clicking grid images - Opens RokkoPlayer directly
-  document.querySelectorAll('.artist-header[data-artist]').forEach(function(header){
-    header.addEventListener('click', function(){
-      var artistId = this.dataset.artist;
+  // Toggle artist details dropdown when clicking grid images - Shows biography and releases
+  // Using event delegation to handle clicks on artist headers and their children
+  document.body.addEventListener('click', function(e) {
+    var header = e.target.closest('.artist-header[data-artist]');
+    if(header) {
+      var artistId = header.dataset.artist;
+      var targetArticle = document.getElementById('artist-' + artistId);
       
-      // Get artist name from mapping
-      var artistName = ARTIST_NAME_MAP[artistId];
-      var album = artistAlbums[artistName];
-      
-      // Open RokkoPlayer directly (the carousel player) - same as clicking in carousel
-      if(album && window.RokkoPlayer) {
-        // Stop all other audio
-        document.querySelectorAll('audio').forEach(function(audio) {
-          if(!audio.paused) {
-            audio.pause();
-          }
+      if(targetArticle) {
+        var dropdown = targetArticle.querySelector('.artist-dropdown');
+        var isCurrentlyOpen = targetArticle.style.display === 'block';
+        
+        // Close all other artist details first
+        document.querySelectorAll('.artist-details').forEach(function(art) {
+          art.style.display = 'none';
+          var dd = art.querySelector('.artist-dropdown');
+          if(dd) dd.style.maxHeight = '0';
         });
         
-        var playlist = album.tracks.map(function(track) {
-          return {
-            title: track.title,
-            artist: artistName,
-            audioSrc: track.src,
-            coverSrc: album.cover
-          };
-        });
-        window.RokkoPlayer.openPlayer({
-          playlist: playlist,
-          startIndex: 0
-        });
+        if(!isCurrentlyOpen) {
+          // Show the article
+          targetArticle.style.display = 'block';
+          
+          if(dropdown) {
+            // Need a small delay for the display change to take effect
+            setTimeout(function() {
+              // Calculate the height of the inner content
+              var frame = dropdown.querySelector('.frame');
+              var contentHeight = frame ? frame.scrollHeight : 500;
+              dropdown.style.maxHeight = (contentHeight + 50) + 'px';
+              
+              // Scroll into view
+              setTimeout(function() {
+                targetArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }, 100);
+            }, 10);
+          }
+        }
       }
-    });
+    }
+  });
+  
+  // Handle clicks on release cover thumbnails - opens RokkoPlayer popup
+  document.body.addEventListener('click', function(e) {
+    var coverThumb = e.target.closest('.release-cover-thumb');
+    if(coverThumb) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      var artistName = coverThumb.getAttribute('data-artist');
+      var startIndex = parseInt(coverThumb.getAttribute('data-track-index') || '0');
+      
+      if(artistName && artistAlbums[artistName]) {
+        openRokkoPlayerForArtist(artistName, startIndex);
+      }
+    }
   });
   
   // Close modal button handler
