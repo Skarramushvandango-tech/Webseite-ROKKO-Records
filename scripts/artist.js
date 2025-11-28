@@ -19,71 +19,88 @@ var ARTIST_NAME_MAP = {
 
 document.addEventListener('DOMContentLoaded', function(){
 
-  // Toggle artist details when clicking grid images - FULL PAGE MODAL
+  // Music Productions - Horizontal Album Carousel with Dropdown (moved up for use in artist popup)
+  var artistAlbums = {
+    'Skaramush Vandango': {
+      cover: 'mp3/vandango/cover.png',
+      albumName: 'Neurocentric',
+      tracks: [
+        { src: 'mp3/vandango/set_the_fire.m4a', title: 'Set the Fire' },
+        { src: 'mp3/vandango/set_the_fire_remix.m4a', title: 'Set the Fire (Remix)' },
+        { src: 'mp3/vandango/always_sunny.m4a', title: 'Always Sunny' },
+        { src: 'mp3/vandango/borrowed_time.m4a', title: 'Borrowed Time' },
+        { src: 'mp3/vandango/like_water.m4a', title: 'Like Water' },
+        { src: 'mp3/vandango/love_song.m4a', title: 'Love Song' },
+        { src: 'mp3/vandango/man_on_a_mission.m4a', title: 'Man on a Mission' },
+        { src: 'mp3/vandango/nights_go_by.m4a', title: 'Nights Go By' },
+        { src: 'mp3/vandango/no_stitch_no_story.m4a', title: 'No Stitch No Story' },
+        { src: 'mp3/vandango/oh_i_try.m4a', title: 'Oh I Try' },
+        { src: 'mp3/vandango/system_failure_kortana_mix.m4a', title: 'System Failure (Kortana Mix)' },
+        { src: 'mp3/vandango/tiptoes.m4a', title: 'Tiptoes' },
+        { src: 'mp3/vandango/what_you_need.m4a', title: 'What You Need' },
+        { src: 'mp3/vandango/among_the_crowd.m4a', title: 'Among the Crowd' }
+      ]
+    },
+    'Skank Schablonski': {
+      cover: 'mp3/schablonski/kohle_raus_cover.png',
+      albumName: 'Kohle Raus',
+      tracks: [
+        { src: 'mp3/schablonski/kohle_raus.m4a', title: 'Kohle Raus' },
+        { src: 'mp3/schablonski/kohle_raus_rmx.m4a', title: 'Kohle Raus (Remix)' }
+      ]
+    },
+    'Henri Bellieu': {
+      cover: 'mp3/bellieu/petite_colibri.png',
+      albumName: 'Petite Colibri',
+      tracks: [
+        { src: 'mp3/bellieu/petite_colibri.m4a', title: 'Petite Colibri' },
+        { src: 'mp3/bellieu/petite_colibri_ennio_mix.m4a', title: 'Petite Colibri (Ennio Mix)' },
+        { src: 'mp3/bellieu/petite_colibri_nocturne_mix.m4a', title: 'Petite Colibri (Nocturne Mix)' }
+      ]
+    },
+    'Fléur et Beunié': {
+      cover: 'mp3/fleurbeunie/feu_leger_cover.png',
+      albumName: 'Feu Leger',
+      tracks: [
+        { src: 'mp3/fleurbeunie/feuleger_main.m4a', title: 'Feu Leger (Main)' },
+        { src: 'mp3/fleurbeunie/feuleger_house.m4a', title: 'Feu Leger (House)' },
+        { src: 'mp3/fleurbeunie/feuleger_sundown.m4a', title: 'Feu Leger (Sundown)' },
+        { src: 'mp3/fleurbeunie/feuleger_electricclub1.m4a', title: 'Feu Leger (Electric Club)' },
+        { src: 'mp3/fleurbeunie/feuleger_frenchclassic.m4a', title: 'Feu Leger (French Classic)' }
+      ]
+    }
+  };
+
+  // Toggle artist details when clicking grid images - Opens RokkoPlayer directly
   document.querySelectorAll('.artist-header[data-artist]').forEach(function(header){
     header.addEventListener('click', function(){
       var artistId = this.dataset.artist;
-      var detailsSection = document.getElementById('artist-' + artistId);
       
-      if(detailsSection) {
-        // Get the modal and content container
-        var modal = document.getElementById('artistModal');
-        var modalContent = document.getElementById('artistModalContent');
-        
-        if(modal && modalContent) {
-          // Get artist image from the clicked header
-          var artistImg = this.querySelector('img.artist-main-image');
-          
-          // Build modal content with artist image at top
-          // Get the content from the details section
-          var detailsDropdown = detailsSection.querySelector('.artist-dropdown');
-          
-          if(modal && modalContent && detailsDropdown) {
-            // Clear previous content
-            modalContent.innerHTML = '';
-            
-            // Add artist image at top if available
-            if(artistImg) {
-              var imgContainer = document.createElement('div');
-              imgContainer.style.textAlign = 'center';
-              imgContainer.style.marginBottom = '30px';
-              imgContainer.style.cursor = 'pointer';
-              imgContainer.title = 'Klicken zum Schließen';
-              
-              var clonedImg = artistImg.cloneNode(true);
-              clonedImg.style.maxWidth = '100%';
-              clonedImg.style.borderRadius = '8px';
-              clonedImg.alt = 'Artist';
-              
-              imgContainer.appendChild(clonedImg);
-              
-              // Note: Artist image is clickable to close modal (handled by parent click handler)
-              // The audio player is available inline below in the artist profile
-              
-              modalContent.appendChild(imgContainer);
-            }
-            
-            // Clone and append the details content
-            var contentWrapper = document.createElement('div');
-            contentWrapper.innerHTML = detailsDropdown.innerHTML;
-            modalContent.appendChild(contentWrapper);
-            
-            // Show modal
-            modal.style.display = 'block';
-            modal.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            
-            // Pause all playing audio tracks
-            document.querySelectorAll('audio').forEach(function(audio) {
-              if(!audio.paused) {
-                audio.pause();
-              }
-            });
-            
-            // Scroll to top of modal
-            modal.scrollTop = 0;
+      // Get artist name from mapping
+      var artistName = ARTIST_NAME_MAP[artistId];
+      var album = artistAlbums[artistName];
+      
+      // Open RokkoPlayer directly (the carousel player) - same as clicking in carousel
+      if(album && window.RokkoPlayer) {
+        // Stop all other audio
+        document.querySelectorAll('audio').forEach(function(audio) {
+          if(!audio.paused) {
+            audio.pause();
           }
-        }
+        });
+        
+        var playlist = album.tracks.map(function(track) {
+          return {
+            title: track.title,
+            artist: artistName,
+            audioSrc: track.src,
+            coverSrc: album.cover
+          };
+        });
+        window.RokkoPlayer.openPlayer({
+          playlist: playlist,
+          startIndex: 0
+        });
       }
     });
   });
@@ -381,58 +398,6 @@ document.addEventListener('DOMContentLoaded', function(){
       });
     });
   });
-
-  // Music Productions - Horizontal Album Carousel with Dropdown
-  var artistAlbums = {
-    'Skaramush Vandango': {
-      cover: 'mp3/vandango/cover.png',
-      albumName: 'Neurocentric',
-      tracks: [
-        { src: 'mp3/vandango/set_the_fire.m4a', title: 'Set the Fire' },
-        { src: 'mp3/vandango/set_the_fire_remix.m4a', title: 'Set the Fire (Remix)' },
-        { src: 'mp3/vandango/always_sunny.m4a', title: 'Always Sunny' },
-        { src: 'mp3/vandango/borrowed_time.m4a', title: 'Borrowed Time' },
-        { src: 'mp3/vandango/like_water.m4a', title: 'Like Water' },
-        { src: 'mp3/vandango/love_song.m4a', title: 'Love Song' },
-        { src: 'mp3/vandango/man_on_a_mission.m4a', title: 'Man on a Mission' },
-        { src: 'mp3/vandango/nights_go_by.m4a', title: 'Nights Go By' },
-        { src: 'mp3/vandango/no_stitch_no_story.m4a', title: 'No Stitch No Story' },
-        { src: 'mp3/vandango/oh_i_try.m4a', title: 'Oh I Try' },
-        { src: 'mp3/vandango/system_failure_kortana_mix.m4a', title: 'System Failure (Kortana Mix)' },
-        { src: 'mp3/vandango/tiptoes.m4a', title: 'Tiptoes' },
-        { src: 'mp3/vandango/what_you_need.m4a', title: 'What You Need' },
-        { src: 'mp3/vandango/among_the_crowd.m4a', title: 'Among the Crowd' }
-      ]
-    },
-    'Skank Schablonski': {
-      cover: 'mp3/schablonski/kohle_raus_cover.png',
-      albumName: 'Kohle Raus',
-      tracks: [
-        { src: 'mp3/schablonski/kohle_raus.m4a', title: 'Kohle Raus' },
-        { src: 'mp3/schablonski/kohle_raus_rmx.m4a', title: 'Kohle Raus (Remix)' }
-      ]
-    },
-    'Henri Bellieu': {
-      cover: 'mp3/bellieu/petite_colibri.png',
-      albumName: 'Petite Colibri',
-      tracks: [
-        { src: 'mp3/bellieu/petite_colibri.m4a', title: 'Petite Colibri' },
-        { src: 'mp3/bellieu/petite_colibri_ennio_mix.m4a', title: 'Petite Colibri (Ennio Mix)' },
-        { src: 'mp3/bellieu/petite_colibri_nocturne_mix.m4a', title: 'Petite Colibri (Nocturne Mix)' }
-      ]
-    },
-    'Fléur et Beunié': {
-      cover: 'mp3/fleurbeunie/feu_leger_cover.png',
-      albumName: 'Feu Leger',
-      tracks: [
-        { src: 'mp3/fleurbeunie/feuleger_main.m4a', title: 'Feu Leger (Main)' },
-        { src: 'mp3/fleurbeunie/feuleger_house.m4a', title: 'Feu Leger (House)' },
-        { src: 'mp3/fleurbeunie/feuleger_sundown.m4a', title: 'Feu Leger (Sundown)' },
-        { src: 'mp3/fleurbeunie/feuleger_electricclub1.m4a', title: 'Feu Leger (Electric Club)' },
-        { src: 'mp3/fleurbeunie/feuleger_frenchclassic.m4a', title: 'Feu Leger (French Classic)' }
-      ]
-    }
-  };
 
   // Horizontal Album Carousel Implementation
   var albumCarousel = document.getElementById('album-carousel');
