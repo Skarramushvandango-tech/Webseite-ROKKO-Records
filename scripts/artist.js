@@ -71,315 +71,39 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   };
 
-  // Toggle artist details when clicking grid images - FULL PAGE MODAL with embedded player
+  // Toggle artist details when clicking grid images - Opens RokkoPlayer directly
   document.querySelectorAll('.artist-header[data-artist]').forEach(function(header){
     header.addEventListener('click', function(){
       var artistId = this.dataset.artist;
-      var detailsSection = document.getElementById('artist-' + artistId);
       
-      if(detailsSection) {
-        // Get the modal and content container
-        var modal = document.getElementById('artistModal');
-        var modalContent = document.getElementById('artistModalContent');
-        
-        if(modal && modalContent) {
-          // Get artist image from the clicked header
-          var artistImg = this.querySelector('img.artist-main-image');
-          
-          // Get artist name from mapping
-          var artistName = ARTIST_NAME_MAP[artistId];
-          var album = artistAlbums[artistName];
-          
-          // Get the content from the details section
-          var detailsDropdown = detailsSection.querySelector('.artist-dropdown');
-          
-          if(modal && modalContent && detailsDropdown) {
-            // Clear previous content
-            modalContent.innerHTML = '';
-            
-            // Stop any playing audio
-            document.querySelectorAll('audio').forEach(function(audio) {
-              if(!audio.paused) {
-                audio.pause();
-              }
-            });
-            
-            // Add artist image at top (smaller size)
-            if(artistImg) {
-              var imgContainer = document.createElement('div');
-              imgContainer.style.textAlign = 'center';
-              imgContainer.style.marginBottom = '15px';
-              
-              var clonedImg = artistImg.cloneNode(true);
-              clonedImg.style.maxWidth = '280px';
-              clonedImg.style.width = '60%';
-              clonedImg.style.borderRadius = '8px';
-              clonedImg.alt = artistName || 'Artist';
-              
-              imgContainer.appendChild(clonedImg);
-              modalContent.appendChild(imgContainer);
-            }
-            
-            // Extract and add only the biography section (not the widget player)
-            var bioSection = document.createElement('div');
-            bioSection.className = 'frame frame--dark-sand';
-            bioSection.style.padding = '10px';
-            bioSection.style.marginBottom = '15px';
-            
-            // Get biography text from original content
-            var originalBioHeading = detailsDropdown.querySelector('h3');
-            var originalBioText = detailsDropdown.querySelector('p');
-            
-            if(originalBioHeading && originalBioText) {
-              var bioHeading = document.createElement('h3');
-              bioHeading.style.marginBottom = '5px';
-              bioHeading.style.fontSize = '1em';
-              bioHeading.textContent = 'BIOGRAFIE';
-              bioSection.appendChild(bioHeading);
-              
-              var bioText = originalBioText.cloneNode(true);
-              bioSection.appendChild(bioText);
-            }
-            
-            modalContent.appendChild(bioSection);
-            
-            // Create embedded inline player (same style as RokkoPlayer but inline)
-            if(album) {
-              var playerContainer = createInlinePlayer(artistName, album);
-              modalContent.appendChild(playerContainer);
-            }
-            
-            // Show modal
-            modal.style.display = 'block';
-            modal.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
-            
-            // Scroll to top of modal
-            modal.scrollTop = 0;
+      // Get artist name from mapping
+      var artistName = ARTIST_NAME_MAP[artistId];
+      var album = artistAlbums[artistName];
+      
+      // Open RokkoPlayer directly (the carousel player) - same as clicking in carousel
+      if(album && window.RokkoPlayer) {
+        // Stop all other audio
+        document.querySelectorAll('audio').forEach(function(audio) {
+          if(!audio.paused) {
+            audio.pause();
           }
-        }
+        });
+        
+        var playlist = album.tracks.map(function(track) {
+          return {
+            title: track.title,
+            artist: artistName,
+            audioSrc: track.src,
+            coverSrc: album.cover
+          };
+        });
+        window.RokkoPlayer.openPlayer({
+          playlist: playlist,
+          startIndex: 0
+        });
       }
     });
   });
-  
-  // Create inline embedded player for artist popup
-  function createInlinePlayer(artistName, album) {
-    var container = document.createElement('div');
-    container.className = 'inline-rokko-player';
-    container.style.cssText = 'background: linear-gradient(180deg, #E0C290 0%, #B8935F 100%); border: 4px solid #3D2817; border-radius: 16px; padding: 15px; margin-top: 10px;';
-    
-    // Create unique player ID using timestamp and random value for uniqueness
-    var playerId = 'inline-player-' + Date.now() + '-' + Math.floor(Math.random() * 10000);
-    
-    // Audio element
-    var audio = document.createElement('audio');
-    audio.id = playerId;
-    audio.style.display = 'none';
-    container.appendChild(audio);
-    
-    // Track info display
-    var trackInfo = document.createElement('div');
-    trackInfo.id = playerId + '-track-info';
-    trackInfo.style.cssText = 'text-align: center; color: #201613; background: #E0C290; padding: 8px 12px; border-radius: 8px; margin-bottom: 12px; font-size: 0.9em; font-weight: 700; border: 2px solid #3D2817;';
-    trackInfo.textContent = album.tracks[0].title;
-    container.appendChild(trackInfo);
-    
-    // Progress bar
-    var progressWrapper = document.createElement('div');
-    progressWrapper.style.cssText = 'position: relative; width: 100%; height: 24px; background: #8B7355; border-radius: 12px; border: 2px solid #3D2817; overflow: hidden; cursor: pointer; margin-bottom: 12px;';
-    
-    var progressFill = document.createElement('div');
-    progressFill.id = playerId + '-progress';
-    progressFill.style.cssText = 'position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: linear-gradient(to right, #E0C290, #B8935F); border-radius: 10px; transition: width 0.1s linear;';
-    progressWrapper.appendChild(progressFill);
-    
-    var timeDisplay = document.createElement('div');
-    timeDisplay.id = playerId + '-time';
-    timeDisplay.style.cssText = 'position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #201613; font-size: 0.7em; font-weight: 600;';
-    timeDisplay.textContent = '0:00 / 0:00';
-    progressWrapper.appendChild(timeDisplay);
-    
-    container.appendChild(progressWrapper);
-    
-    // Controls - using SVG icons like the carousel player
-    var controls = document.createElement('div');
-    controls.style.cssText = 'display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 12px;';
-    
-    // SVG icons matching the carousel player style
-    var svgPrev = '<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>';
-    var svgPlay = '<svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M8 5v14l11-7z"/></svg>';
-    var svgPause = '<svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>';
-    var svgNext = '<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M16 18h2V6h-2zm-11-1l8.5-6L5 5z"/></svg>';
-    
-    var btnPrev = document.createElement('button');
-    btnPrev.innerHTML = svgPrev;
-    btnPrev.style.cssText = 'width: 50px; height: 50px; background: #3D2817; border: 3px solid #201613; border-radius: 50%; color: #E0C290; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;';
-    
-    var btnPlay = document.createElement('button');
-    btnPlay.innerHTML = svgPlay;
-    btnPlay.id = playerId + '-playbtn';
-    btnPlay.style.cssText = 'width: 65px; height: 65px; background: #3D2817; border: 4px solid #201613; border-radius: 50%; color: #E0C290; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;';
-    
-    var btnNext = document.createElement('button');
-    btnNext.innerHTML = svgNext;
-    btnNext.style.cssText = 'width: 50px; height: 50px; background: #3D2817; border: 3px solid #201613; border-radius: 50%; color: #E0C290; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;';
-    
-    // Store SVG references for play/pause toggle
-    var playSvg = svgPlay;
-    var pauseSvg = svgPause;
-    
-    controls.appendChild(btnPrev);
-    controls.appendChild(btnPlay);
-    controls.appendChild(btnNext);
-    container.appendChild(controls);
-    
-    // Track list
-    var trackList = document.createElement('div');
-    trackList.style.cssText = 'background: rgba(224, 194, 144, 0.9); border: 2px solid #3D2817; border-radius: 10px; padding: 8px; max-height: 150px; overflow-y: auto;';
-    
-    album.tracks.forEach(function(track, index) {
-      var trackItem = document.createElement('div');
-      trackItem.className = 'inline-track-item';
-      trackItem.dataset.index = index;
-      trackItem.style.cssText = 'display: flex; align-items: center; padding: 6px 10px; background: #B8935F; border-radius: 6px; cursor: pointer; margin-bottom: 4px; transition: all 0.2s;';
-      
-      var trackNum = document.createElement('span');
-      trackNum.style.cssText = 'font-weight: 700; margin-right: 8px; color: #3D2817; min-width: 20px; font-size: 0.8em;';
-      trackNum.textContent = (index + 1) + '.';
-      
-      var trackTitle = document.createElement('span');
-      trackTitle.style.cssText = 'color: #201613; font-size: 0.8em; font-weight: 500;';
-      trackTitle.textContent = track.title;
-      
-      trackItem.appendChild(trackNum);
-      trackItem.appendChild(trackTitle);
-      trackList.appendChild(trackItem);
-      
-      // Highlight first track as active
-      if(index === 0) {
-        trackItem.style.background = '#E0C290';
-        trackItem.style.borderLeft = '3px solid #3D2817';
-      }
-    });
-    
-    container.appendChild(trackList);
-    
-    // Player state
-    var currentIndex = 0;
-    
-    // Initialize first track
-    audio.src = album.tracks[0].src;
-    
-    // Format time helper
-    function formatTime(seconds) {
-      if(isNaN(seconds) || !isFinite(seconds) || seconds < 0) return '0:00';
-      var mins = Math.floor(seconds / 60);
-      var secs = Math.floor(seconds % 60);
-      return mins + ':' + (secs < 10 ? '0' : '') + secs;
-    }
-    
-    // Load track function
-    function loadTrack(index) {
-      if(index < 0 || index >= album.tracks.length) return;
-      currentIndex = index;
-      audio.src = album.tracks[index].src;
-      trackInfo.textContent = album.tracks[index].title;
-      
-      // Update track list highlighting
-      var items = trackList.querySelectorAll('.inline-track-item');
-      items.forEach(function(item, i) {
-        if(i === index) {
-          item.style.background = '#E0C290';
-          item.style.borderLeft = '3px solid #3D2817';
-        } else {
-          item.style.background = '#B8935F';
-          item.style.borderLeft = 'none';
-        }
-      });
-    }
-    
-    // Play/pause button
-    btnPlay.addEventListener('click', function() {
-      if(audio.paused) {
-        // Stop all other audio
-        document.querySelectorAll('audio').forEach(function(a) {
-          if(a !== audio && !a.paused) a.pause();
-        });
-        audio.play().catch(function(e) { console.log('[InlinePlayer] Play failed:', e.message); });
-        btnPlay.innerHTML = pauseSvg;
-      } else {
-        audio.pause();
-        btnPlay.innerHTML = playSvg;
-      }
-    });
-    
-    // Previous/Next buttons
-    btnPrev.addEventListener('click', function() {
-      var newIndex = currentIndex > 0 ? currentIndex - 1 : album.tracks.length - 1;
-      loadTrack(newIndex);
-      if(!audio.paused) {
-        audio.play().catch(function(e) { console.log('[InlinePlayer] Previous track play failed:', e.message); });
-      }
-    });
-    
-    btnNext.addEventListener('click', function() {
-      var newIndex = currentIndex < album.tracks.length - 1 ? currentIndex + 1 : 0;
-      loadTrack(newIndex);
-      if(!audio.paused) {
-        audio.play().catch(function(e) { console.log('[InlinePlayer] Next track play failed:', e.message); });
-      }
-    });
-    
-    // Track item clicks
-    trackList.addEventListener('click', function(e) {
-      var item = e.target.closest('.inline-track-item');
-      if(item) {
-        var index = parseInt(item.dataset.index);
-        loadTrack(index);
-        audio.play().catch(function(e) { console.log('[InlinePlayer] Track click play failed:', e.message); });
-        btnPlay.innerHTML = pauseSvg;
-      }
-    });
-    
-    // Progress bar click to seek
-    progressWrapper.addEventListener('click', function(e) {
-      if(!audio.duration || !isFinite(audio.duration)) return;
-      var rect = progressWrapper.getBoundingClientRect();
-      var clickX = e.clientX - rect.left;
-      var percentage = Math.max(0, Math.min(1, clickX / rect.width));
-      audio.currentTime = percentage * audio.duration;
-    });
-    
-    // Update progress during playback
-    audio.addEventListener('timeupdate', function() {
-      if(audio.duration && isFinite(audio.duration)) {
-        var progress = (audio.currentTime / audio.duration) * 100;
-        progressFill.style.width = progress + '%';
-        timeDisplay.textContent = formatTime(audio.currentTime) + ' / ' + formatTime(audio.duration);
-      }
-    });
-    
-    // Update time display when duration is known
-    audio.addEventListener('loadedmetadata', function() {
-      if(audio.duration && isFinite(audio.duration)) {
-        timeDisplay.textContent = '0:00 / ' + formatTime(audio.duration);
-      }
-    });
-    
-    // Reset on pause
-    audio.addEventListener('pause', function() {
-      btnPlay.innerHTML = playSvg;
-    });
-    
-    // Auto-advance on track end
-    audio.addEventListener('ended', function() {
-      var newIndex = currentIndex < album.tracks.length - 1 ? currentIndex + 1 : 0;
-      loadTrack(newIndex);
-      audio.play().catch(function(e) { console.log('[InlinePlayer] Auto-advance play failed:', e.message); });
-    });
-    
-    return container;
-  }
   
   // Close modal button handler
   var closeModalBtn = document.getElementById('closeArtistModal');
