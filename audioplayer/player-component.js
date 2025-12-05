@@ -397,7 +397,7 @@
       ctx.fillStyle = '#999';
       ctx.textAlign = 'center';
       ctx.font = '14px sans-serif';
-      ctx.fillText('Keine Audio verfügbar', elements.waveform.width / 2, elements.waveform.height / 2);
+      ctx.fillText('Kein Audio verfügbar', elements.waveform.width / 2, elements.waveform.height / 2);
     }
   }
   

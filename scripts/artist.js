@@ -81,7 +81,10 @@ document.addEventListener('DOMContentLoaded', function(){
     var randomAlbumTitle = document.getElementById('random-album-title');
     var randomAlbumCover = document.getElementById('random-album-cover');
     
-    if(!randomAlbumContainer || !randomAlbumImage) return;
+    if(!randomAlbumContainer || !randomAlbumImage) {
+      console.warn('[ROKKO] Random album showcase elements not found - section may not be on this page');
+      return;
+    }
     
     // Get all artists and pick a random one
     var artistNames = Object.keys(artistAlbums);
