@@ -881,15 +881,36 @@ document.addEventListener('DOMContentLoaded', function(){
     
     if(!album) return;
     
-    // Create album display with clickable cover
-    var albumHTML = '<div style="cursor: pointer; transition: transform 0.3s ease;" class="random-album-card" data-artist="' + randomArtistName + '">' +
-      '<img src="' + album.cover + '" alt="' + album.albumName + '" style="width: 100%; max-width: 300px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); border: 3px solid #3D2817; margin-bottom: 12px; transition: transform 0.3s ease;">' +
-      '<div style="color: var(--rokko-brown); font-size: 0.9em; font-weight: 600; margin-bottom: 5px;">' + randomArtistName + '</div>' +
-      '<div style="color: var(--rokko-brown); font-size: 1.1em; font-weight: 700;">' + album.albumName + '</div>' +
-      '<p style="font-size: 0.75em; color: var(--rokko-brown); margin-top: 8px; font-style: italic;">Klicke auf das Cover um zu hören</p>' +
-      '</div>';
+    // Create album display with clickable cover using DOM methods to prevent XSS
+    var cardDiv = document.createElement('div');
+    cardDiv.className = 'random-album-card';
+    cardDiv.setAttribute('data-artist', randomArtistName);
+    cardDiv.style.cssText = 'cursor: pointer; transition: transform 0.3s ease;';
     
-    randomAlbumContainer.innerHTML = albumHTML;
+    var img = document.createElement('img');
+    img.src = album.cover;
+    img.alt = album.albumName;
+    img.style.cssText = 'width: 100%; max-width: 300px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); border: 3px solid ' + ROKKO_COLORS.BROWN_DARK + '; margin-bottom: 12px; transition: transform 0.3s ease;';
+    
+    var artistDiv = document.createElement('div');
+    artistDiv.textContent = randomArtistName;
+    artistDiv.style.cssText = 'color: var(--rokko-brown); font-size: 0.9em; font-weight: 600; margin-bottom: 5px;';
+    
+    var albumDiv = document.createElement('div');
+    albumDiv.textContent = album.albumName;
+    albumDiv.style.cssText = 'color: var(--rokko-brown); font-size: 1.1em; font-weight: 700;';
+    
+    var hintP = document.createElement('p');
+    hintP.textContent = 'Klicke auf das Cover um zu hören';
+    hintP.style.cssText = 'font-size: 0.75em; color: var(--rokko-brown); margin-top: 8px; font-style: italic;';
+    
+    cardDiv.appendChild(img);
+    cardDiv.appendChild(artistDiv);
+    cardDiv.appendChild(albumDiv);
+    cardDiv.appendChild(hintP);
+    
+    randomAlbumContainer.innerHTML = '';
+    randomAlbumContainer.appendChild(cardDiv);
     
     // Add hover effect
     var albumCard = randomAlbumContainer.querySelector('.random-album-card');
