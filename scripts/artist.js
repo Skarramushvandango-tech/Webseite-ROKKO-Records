@@ -864,4 +864,56 @@ document.addEventListener('DOMContentLoaded', function(){
       this.style.transform = 'scale(1)';
     });
   }
+
+  // Load random album on intro page
+  function loadRandomAlbum() {
+    var randomAlbumContainer = document.getElementById('random-album-container');
+    if(!randomAlbumContainer) return;
+    
+    // Get all artist names
+    var artistNames = Object.keys(artistAlbums);
+    if(artistNames.length === 0) return;
+    
+    // Pick a random artist
+    var randomIndex = Math.floor(Math.random() * artistNames.length);
+    var randomArtistName = artistNames[randomIndex];
+    var album = artistAlbums[randomArtistName];
+    
+    if(!album) return;
+    
+    // Create album display with clickable cover
+    var albumHTML = '<div style="cursor: pointer; transition: transform 0.3s ease;" class="random-album-card" data-artist="' + randomArtistName + '">' +
+      '<img src="' + album.cover + '" alt="' + album.albumName + '" style="width: 100%; max-width: 300px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); border: 3px solid #3D2817; margin-bottom: 12px; transition: transform 0.3s ease;">' +
+      '<div style="color: var(--rokko-brown); font-size: 0.9em; font-weight: 600; margin-bottom: 5px;">' + randomArtistName + '</div>' +
+      '<div style="color: var(--rokko-brown); font-size: 1.1em; font-weight: 700;">' + album.albumName + '</div>' +
+      '<p style="font-size: 0.75em; color: var(--rokko-brown); margin-top: 8px; font-style: italic;">Klicke auf das Cover um zu hören</p>' +
+      '</div>';
+    
+    randomAlbumContainer.innerHTML = albumHTML;
+    
+    // Add hover effect
+    var albumCard = randomAlbumContainer.querySelector('.random-album-card');
+    if(albumCard) {
+      var coverImg = albumCard.querySelector('img');
+      
+      albumCard.addEventListener('mouseenter', function() {
+        if(coverImg) coverImg.style.transform = 'scale(1.05)';
+      });
+      
+      albumCard.addEventListener('mouseleave', function() {
+        if(coverImg) coverImg.style.transform = 'scale(1)';
+      });
+      
+      // Click to open player
+      albumCard.addEventListener('click', function() {
+        var artistName = this.getAttribute('data-artist');
+        if(artistName && artistAlbums[artistName]) {
+          openRokkoPlayerForArtist(artistName, 0);
+        }
+      });
+    }
+  }
+  
+  // Load random album on page load
+  loadRandomAlbum();
 });
