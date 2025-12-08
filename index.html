@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>ROKKO — Startseite</title>
+  <!-- NOTE: Streaming platform URLs contain placeholder text [ARTIST_ID], [ARTIST], [ID] that should be replaced with actual artist profile URLs -->
   <!-- Preload critical resources for faster initial render -->
   <link rel="preload" href="images/header.png" as="image">
   <link rel="preload" href="styles/main.css" as="style">
@@ -218,7 +219,7 @@
 
             <!-- Videos Section -->
             <h3 style="margin-bottom: 8px; font-size: 1.1em;">VIDEOS</h3>
-            <button class="videos-section-btn" onclick="toggleVideos('vandango')">
+            <button class="videos-section-btn" onclick="toggleVideos('vandango', event)">
               <span>YouTube Videos anzeigen</span>
               <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M7 10l5 5 5-5z"/>
@@ -366,7 +367,7 @@
 
             <!-- Videos Section -->
             <h3 style="margin-bottom: 8px; font-size: 1.1em;">VIDEOS</h3>
-            <button class="videos-section-btn" onclick="toggleVideos('schablonski')">
+            <button class="videos-section-btn" onclick="toggleVideos('schablonski', event)">
               <span>YouTube Videos anzeigen</span>
               <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M7 10l5 5 5-5z"/>
@@ -489,7 +490,7 @@
 
             <!-- Videos Section -->
             <h3 style="margin-bottom: 8px; font-size: 1.1em;">VIDEOS</h3>
-            <button class="videos-section-btn" onclick="toggleVideos('bellieu')">
+            <button class="videos-section-btn" onclick="toggleVideos('bellieu', event)">
               <span>YouTube Videos anzeigen</span>
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
             </button>
@@ -592,7 +593,7 @@
 
             <!-- Videos Section -->
             <h3 style="margin-bottom: 8px; font-size: 1.1em;">VIDEOS</h3>
-            <button class="videos-section-btn" onclick="toggleVideos('beunie')">
+            <button class="videos-section-btn" onclick="toggleVideos('beunie', event)">
               <span>YouTube Videos anzeigen</span>
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
             </button>
@@ -1004,7 +1005,7 @@
   
   <!-- Videos dropdown toggle script -->
   <script>
-    function toggleVideos(artistId) {
+    function toggleVideos(artistId, event) {
       const dropdown = document.getElementById('videos-' + artistId);
       const button = event.currentTarget;
       
