@@ -864,4 +864,77 @@ document.addEventListener('DOMContentLoaded', function(){
       this.style.transform = 'scale(1)';
     });
   }
+
+  // Load random album on intro page
+  function loadRandomAlbum() {
+    var randomAlbumContainer = document.getElementById('random-album-container');
+    if(!randomAlbumContainer) return;
+    
+    // Get all artist names
+    var artistNames = Object.keys(artistAlbums);
+    if(artistNames.length === 0) return;
+    
+    // Pick a random artist
+    var randomIndex = Math.floor(Math.random() * artistNames.length);
+    var randomArtistName = artistNames[randomIndex];
+    var album = artistAlbums[randomArtistName];
+    
+    if(!album) return;
+    
+    // Create album display with clickable cover using DOM methods to prevent XSS
+    var cardDiv = document.createElement('div');
+    cardDiv.className = 'random-album-card';
+    cardDiv.setAttribute('data-artist', randomArtistName);
+    cardDiv.style.cssText = 'cursor: pointer; transition: transform 0.3s ease;';
+    
+    var img = document.createElement('img');
+    img.src = album.cover;
+    img.alt = album.albumName;
+    img.style.cssText = 'width: 100%; max-width: 300px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); border: 3px solid ' + ROKKO_COLORS.BROWN_DARK + '; margin-bottom: 12px; transition: transform 0.3s ease;';
+    
+    var artistDiv = document.createElement('div');
+    artistDiv.textContent = randomArtistName;
+    artistDiv.style.cssText = 'color: var(--rokko-brown); font-size: 0.9em; font-weight: 600; margin-bottom: 5px;';
+    
+    var albumDiv = document.createElement('div');
+    albumDiv.textContent = album.albumName;
+    albumDiv.style.cssText = 'color: var(--rokko-brown); font-size: 1.1em; font-weight: 700;';
+    
+    var hintP = document.createElement('p');
+    hintP.textContent = 'Klicke auf das Cover um zu hören';
+    hintP.style.cssText = 'font-size: 0.75em; color: var(--rokko-brown); margin-top: 8px; font-style: italic;';
+    
+    cardDiv.appendChild(img);
+    cardDiv.appendChild(artistDiv);
+    cardDiv.appendChild(albumDiv);
+    cardDiv.appendChild(hintP);
+    
+    randomAlbumContainer.innerHTML = '';
+    randomAlbumContainer.appendChild(cardDiv);
+    
+    // Add hover effect
+    var albumCard = randomAlbumContainer.querySelector('.random-album-card');
+    if(albumCard) {
+      var coverImg = albumCard.querySelector('img');
+      
+      albumCard.addEventListener('mouseenter', function() {
+        if(coverImg) coverImg.style.transform = 'scale(1.05)';
+      });
+      
+      albumCard.addEventListener('mouseleave', function() {
+        if(coverImg) coverImg.style.transform = 'scale(1)';
+      });
+      
+      // Click to open player
+      albumCard.addEventListener('click', function() {
+        var artistName = this.getAttribute('data-artist');
+        if(artistName && artistAlbums[artistName]) {
+          openRokkoPlayerForArtist(artistName, 0);
+        }
+      });
+    }
+  }
+  
+  // Load random album on page load
+  loadRandomAlbum();
 });
