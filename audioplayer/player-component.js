@@ -201,7 +201,7 @@
 
   // Open player with options
   function openPlayer(options) {
-    if (options.playlist && Array.isArray(options.playlist)) {
+    if (options.playlist && Array.isArray(options.playlist) && options.playlist.length > 0) {
       state.playlist = options.playlist;
       state.currentIndex = options.startIndex || 0;
     } else if (options.artistFolder) {
@@ -209,6 +209,8 @@
       return; // Will open after loading
     } else {
       console.error('RokkoPlayer: Invalid options. Provide playlist array or artistFolder.');
+      // Show empty state if player is opened without valid playlist
+      showEmptyPlayerState();
       return;
     }
 
@@ -217,6 +219,16 @@
     state.isOpen = true;
     elements.overlay.style.display = 'flex';
     elements.btnPlay.focus();
+  }
+  
+  // Show empty player state when no tracks available
+  function showEmptyPlayerState() {
+    state.isOpen = true;
+    elements.overlay.style.display = 'flex';
+    elements.trackTitle.textContent = 'Keine Tracks verfügbar';
+    elements.artistName.textContent = 'ROKKO Records';
+    elements.albumCover.src = ASSETS.avatar;
+    elements.playlist.innerHTML = '<div style="text-align: center; padding: 20px; color: var(--rokko-brown);">Keine Tracks geladen</div>';
   }
 
   // Load playlist from artist folder
@@ -345,15 +357,54 @@
         state.audioContext = new (window.AudioContext || window.webkitAudioContext)();
       }
       
+      // Show loading state
+      if (elements.trackTitle) {
+        elements.trackTitle.textContent = state.playlist[state.currentIndex]?.title || 'Lädt...';
+      }
+      
       const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('HTTP error! status: ' + response.status);
+      }
       const arrayBuffer = await response.arrayBuffer();
       state.audioBuffer = await state.audioContext.decodeAudioData(arrayBuffer);
       state.duration = state.audioBuffer.duration;
       
       elements.duration.textContent = formatTime(state.duration);
       drawWaveform();
+      
+      // Clear any error state
+      clearErrorState();
     } catch (error) {
       console.error('RokkoPlayer: Failed to load audio', error);
+      showErrorState('Audio konnte nicht geladen werden. Bitte versuche es erneut.');
+    }
+  }
+  
+  // Show error state in the player
+  function showErrorState(message) {
+    if (elements.trackTitle) {
+      elements.trackTitle.textContent = message;
+      elements.trackTitle.style.color = '#c44';
+    }
+    if (elements.duration) {
+      elements.duration.textContent = '--:--';
+    }
+    // Draw empty waveform
+    if (elements.waveform) {
+      const ctx = elements.waveform.getContext('2d');
+      ctx.clearRect(0, 0, elements.waveform.width, elements.waveform.height);
+      ctx.fillStyle = '#999';
+      ctx.textAlign = 'center';
+      ctx.font = '14px sans-serif';
+      ctx.fillText('Kein Audio verfügbar', elements.waveform.width / 2, elements.waveform.height / 2);
+    }
+  }
+  
+  // Clear error state
+  function clearErrorState() {
+    if (elements.trackTitle) {
+      elements.trackTitle.style.color = '';
     }
   }
 
